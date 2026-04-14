@@ -1,6 +1,6 @@
 ---
-name: Project UI Design
-description: Generate UI consistent with the existing product style, structure, and UX rules.
+name: Warm Fintech Minimalism
+description: Generate warm, premium operational UI with cream canvas, forest green hierarchy, lime accents, rounded cards, and calm data density.
 ---
 
 # Usage

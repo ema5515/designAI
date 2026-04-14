@@ -1,6 +1,6 @@
-# Project UI Design
+# Industrial Ledger Console
 
-This skill was generated automatically from the current repository using Codex CLI.
+Skill for generating dark, square, high-contrast ledger UI with terminal metadata, yellow primary emphasis, orange risk accents, and precise dashboard structure.
 
 ## Contents
 

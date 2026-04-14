@@ -1,6 +1,6 @@
 ---
-name: Project UI Design
-description: Generate UI consistent with the existing product style, structure, and UX rules.
+name: Industrial Ledger Console
+description: Generate dark, square, high-contrast ledger UI with terminal metadata, yellow primary emphasis, orange risk accents, and precise dashboard structure.
 ---
 
 # Usage
@@ -41,11 +41,11 @@ Priority rules:
 
 # Final Design Skill
 
-# PixelCraft UI Design Skill
+# Industrial Ledger Console UI Design Skill
 
 ## Purpose
 
-Use this skill to generate new UI screens, components, product flows, and interface states that feel native to the existing PixelCraft application.
+Use this skill to generate new UI screens, components, product flows, and interface states that feel native to an industrial ledger console.
 
 The goal is not to copy existing sections literally. The goal is to preserve the application’s design logic: dark industrial surfaces, squared geometry, strict spacing, high-contrast yellow emphasis, restrained orange accents, border-led structure, terminal-like metadata, and bold product hierarchy.
 
@@ -59,7 +59,7 @@ You must think like both a designer and a system maintainer: every new screen sh
 
 ## Design Philosophy
 
-PixelCraft uses an industrial, dark-first, precision-oriented interface language. It feels like a design system, code editor, production console, and product marketing surface merged into one coherent system.
+Industrial Ledger Console uses an industrial, dark-first, precision-oriented interface language. It feels like a finance ledger, code editor, production console, and risk dashboard merged into one coherent system.
 
 The visual identity is defined by:
 

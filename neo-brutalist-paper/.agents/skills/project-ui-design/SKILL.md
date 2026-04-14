@@ -1,6 +1,6 @@
 ---
-name: Project UI Design
-description: Generate UI consistent with the existing product style and UX rules.
+name: Neo-Brutalist Paper
+description: Generate UI with white paper surfaces, heavy black borders, offset shadows, bold hierarchy, and controlled primary-color accents.
 ---
 
 # Usage
@@ -48,7 +48,7 @@ Priority rules:
 
 # Final Design Skill
 
-# Product UI/UX Design Skill — “Paperfolio X” System
+# Product UI/UX Design Skill - Neo-Brutalist Paper
 
 ## Purpose
 Create new product interfaces that look and feel native to the existing Next.js app, uphold strong UX principles, and are ready for production without visual or behavioral drift.

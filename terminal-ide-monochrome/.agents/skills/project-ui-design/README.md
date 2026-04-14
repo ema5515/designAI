@@ -1,6 +1,6 @@
-# Project UI Design
+# Terminal IDE Monochrome
 
-This skill was generated automatically from the current repository using Codex CLI.
+Skill for generating terminal-native product UI with black/navy surfaces, monospaced typography, hard borders, compact command workflows, and restrained semantic color.
 
 ## Contents
 

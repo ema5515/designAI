@@ -1,6 +1,6 @@
 ---
-name: Project UI Design
-description: Generate UI consistent with the existing product style, structure, and UX rules.
+name: Terminal IDE Monochrome
+description: Generate terminal-native product UI with black/navy surfaces, monospaced typography, hard borders, compact command workflows, and restrained semantic color.
 ---
 
 # Usage

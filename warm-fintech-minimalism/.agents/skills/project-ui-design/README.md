@@ -1,6 +1,6 @@
-# Project UI Design
+# Warm Fintech Minimalism
 
-This skill was generated automatically from the current repository using Codex CLI.
+Skill for generating warm, premium operational UI with cream canvas, forest green hierarchy, lime accents, rounded cards, and calm data density.
 
 ## Contents
 
@@ -13,7 +13,15 @@ This skill was generated automatically from the current repository using Codex C
 ## Repository snapshot
 
 - Detected framework hints: Next.js, Tailwind CSS, shadcn/ui, Charts, Radix/Lucide
-- Candidate design files found: 64
+- Candidate design files found: 89
+
+## What this version improves
+
+- Stronger extraction of radius and spacing as identity traits
+- Stronger visual hierarchy and typography-as-UX guidance
+- Better interaction-state reasoning
+- Conservative inference of missing components such as forms, cards, tables, and dialogs
+- Better anti-drift protection when adapting from one UI category to another
 
 ## How to refresh the skill
 
