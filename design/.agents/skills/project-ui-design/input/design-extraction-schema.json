@@ -1,0 +1,83 @@
+{
+  "style_name": "",
+  "visual_identity": {
+    "tone": "",
+    "density": "",
+    "corner_style": "",
+    "elevation_style": "",
+    "contrast_profile": "",
+    "mood": "",
+    "notes": []
+  },
+  "tokens": {
+    "colors": {
+      "primary": "",
+      "secondary": "",
+      "accent": "",
+      "neutral": [],
+      "success": "",
+      "warning": "",
+      "danger": "",
+      "background": "",
+      "surface": "",
+      "text": {
+        "primary": "",
+        "secondary": "",
+        "muted": "",
+        "inverse": ""
+      },
+      "border": ""
+    },
+    "spacing": [],
+    "radius": [],
+    "shadows": [],
+    "typography": {
+      "font_families": [],
+      "scale": [],
+      "font_weights": [],
+      "line_heights": []
+    },
+    "widths": [],
+    "breakpoints": []
+  },
+  "layout": {
+    "page_shell": "",
+    "page_width_strategy": "",
+    "header_pattern": "",
+    "section_spacing": "",
+    "grid_rules": [],
+    "navigation_patterns": [],
+    "responsive_rules": []
+  },
+  "components": {
+    "buttons": {},
+    "inputs": {},
+    "selects": {},
+    "dropdowns": {},
+    "cards": {},
+    "tables": {},
+    "modals": {},
+    "dialogs": {},
+    "sidebars": {},
+    "tabs": {},
+    "badges": {},
+    "alerts": {},
+    "empty_states": {},
+    "charts_containers": {},
+    "page_headers": {},
+    "filters": {},
+    "form_layouts": {}
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "",
+    "information_grouping": "",
+    "filter_placement": "",
+    "form_structure": "",
+    "validation_behavior": "",
+    "table_detail_strategy": "",
+    "loading_error_empty_states": "",
+    "action_placement": "",
+    "notes": []
+  },
+  "constraints": []
+}

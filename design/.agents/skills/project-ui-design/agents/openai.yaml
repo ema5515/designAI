@@ -1,0 +1,5 @@
+version: 1
+skill:
+  name: "Project UI Design"
+  description: "Generate UI consistent with the existing product style and UX rules."
+entrypoint: ../SKILL.md

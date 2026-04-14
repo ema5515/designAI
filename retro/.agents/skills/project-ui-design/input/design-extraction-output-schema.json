@@ -1,0 +1,1709 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "style_name": {
+      "type": "string"
+    },
+    "visual_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tone": {
+          "type": "string"
+        },
+        "density": {
+          "type": "string"
+        },
+        "corner_style": {
+          "type": "string"
+        },
+        "elevation_style": {
+          "type": "string"
+        },
+        "contrast_profile": {
+          "type": "string"
+        },
+        "mood": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "tone",
+        "density",
+        "corner_style",
+        "elevation_style",
+        "contrast_profile",
+        "mood",
+        "notes"
+      ]
+    },
+    "identity_traits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "non_negotiable_traits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "adaptable_traits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_type": {
+          "type": "string"
+        },
+        "adaptation_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "non_negotiable_traits",
+        "adaptable_traits",
+        "source_type",
+        "adaptation_notes"
+      ]
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "primary": {
+              "type": "string"
+            },
+            "secondary": {
+              "type": "string"
+            },
+            "accent": {
+              "type": "string"
+            },
+            "neutral": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "success": {
+              "type": "string"
+            },
+            "warning": {
+              "type": "string"
+            },
+            "danger": {
+              "type": "string"
+            },
+            "background": {
+              "type": "string"
+            },
+            "surface": {
+              "type": "string"
+            },
+            "text": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "primary": {
+                  "type": "string"
+                },
+                "secondary": {
+                  "type": "string"
+                },
+                "muted": {
+                  "type": "string"
+                },
+                "inverse": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "primary",
+                "secondary",
+                "muted",
+                "inverse"
+              ]
+            },
+            "border": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "primary",
+            "secondary",
+            "accent",
+            "neutral",
+            "success",
+            "warning",
+            "danger",
+            "background",
+            "surface",
+            "text",
+            "border"
+          ]
+        },
+        "spacing": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "density": {
+              "type": "string"
+            },
+            "section_gap": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "card_gap": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "control_gap": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "grouping_pattern": {
+              "type": "string"
+            },
+            "adaptation_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "density",
+            "section_gap",
+            "card_gap",
+            "control_gap",
+            "grouping_pattern",
+            "adaptation_rule"
+          ]
+        },
+        "radius": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "control": {
+              "type": "string"
+            },
+            "container": {
+              "type": "string"
+            },
+            "overlay": {
+              "type": "string"
+            },
+            "pill": {
+              "type": "string"
+            },
+            "dominant_family": {
+              "type": "string"
+            },
+            "sharp_allowed": {
+              "type": "string"
+            },
+            "style_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "control",
+            "container",
+            "overlay",
+            "pill",
+            "dominant_family",
+            "sharp_allowed",
+            "style_rule"
+          ]
+        },
+        "shadows": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "typography": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "font_families": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "scale": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "font_weights": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "line_heights": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "font_families",
+            "scale",
+            "font_weights",
+            "line_heights"
+          ]
+        },
+        "widths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "breakpoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "colors",
+        "spacing",
+        "radius",
+        "shadows",
+        "typography",
+        "widths",
+        "breakpoints"
+      ]
+    },
+    "hierarchy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_focus_pattern": {
+          "type": "string"
+        },
+        "secondary_content_pattern": {
+          "type": "string"
+        },
+        "cta_hierarchy": {
+          "type": "string"
+        },
+        "emphasis_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grouping_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contrast_usage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_focus_pattern",
+        "secondary_content_pattern",
+        "cta_hierarchy",
+        "emphasis_rules",
+        "grouping_rules",
+        "contrast_usage"
+      ]
+    },
+    "typography_roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page_title": {
+          "type": "string"
+        },
+        "section_title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "supporting_text": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "scanning_behavior": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "page_title",
+        "section_title",
+        "body",
+        "supporting_text",
+        "label",
+        "caption",
+        "scanning_behavior"
+      ]
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hover": {
+          "type": "string"
+        },
+        "focus": {
+          "type": "string"
+        },
+        "active": {
+          "type": "string"
+        },
+        "selected": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "string"
+        },
+        "loading": {
+          "type": "string"
+        },
+        "validation": {
+          "type": "string"
+        },
+        "feedback_style": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "hover",
+        "focus",
+        "active",
+        "selected",
+        "disabled",
+        "loading",
+        "validation",
+        "feedback_style"
+      ]
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page_shell": {
+          "type": "string"
+        },
+        "page_width_strategy": {
+          "type": "string"
+        },
+        "header_pattern": {
+          "type": "string"
+        },
+        "section_spacing": {
+          "type": "string"
+        },
+        "grid_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "navigation_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "responsive_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "page_shell",
+        "page_width_strategy",
+        "header_pattern",
+        "section_spacing",
+        "grid_rules",
+        "navigation_patterns",
+        "responsive_rules"
+      ]
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "buttons": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "selects": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "dropdowns": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "cards": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "tables": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "modals": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "dialogs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "sidebars": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "tabs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "badges": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "alerts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "empty_states": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "charts_containers": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "page_headers": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "filters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        },
+        "form_layouts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "explicit": {
+              "type": "boolean"
+            },
+            "source_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string"
+            },
+            "rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "purpose": {
+                  "type": "string"
+                },
+                "appearance": {
+                  "type": "string"
+                },
+                "spacing": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "border": {
+                  "type": "string"
+                },
+                "shadow": {
+                  "type": "string"
+                },
+                "typography": {
+                  "type": "string"
+                },
+                "states": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "purpose",
+                "appearance",
+                "spacing",
+                "radius",
+                "border",
+                "shadow",
+                "typography",
+                "states",
+                "variants"
+              ]
+            }
+          },
+          "required": [
+            "explicit",
+            "source_basis",
+            "confidence",
+            "rules"
+          ]
+        }
+      },
+      "required": [
+        "buttons",
+        "inputs",
+        "selects",
+        "dropdowns",
+        "cards",
+        "tables",
+        "modals",
+        "dialogs",
+        "sidebars",
+        "tabs",
+        "badges",
+        "alerts",
+        "empty_states",
+        "charts_containers",
+        "page_headers",
+        "filters",
+        "form_layouts"
+      ]
+    },
+    "ux_patterns": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cta_hierarchy": {
+          "type": "string"
+        },
+        "information_grouping": {
+          "type": "string"
+        },
+        "filter_placement": {
+          "type": "string"
+        },
+        "form_structure": {
+          "type": "string"
+        },
+        "validation_behavior": {
+          "type": "string"
+        },
+        "table_detail_strategy": {
+          "type": "string"
+        },
+        "loading_error_empty_states": {
+          "type": "string"
+        },
+        "action_placement": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "cta_hierarchy",
+        "information_grouping",
+        "filter_placement",
+        "form_structure",
+        "validation_behavior",
+        "table_detail_strategy",
+        "loading_error_empty_states",
+        "action_placement",
+        "notes"
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "style_name",
+    "visual_identity",
+    "identity_traits",
+    "tokens",
+    "hierarchy",
+    "typography_roles",
+    "interaction",
+    "layout",
+    "components",
+    "ux_patterns",
+    "constraints"
+  ]
+}

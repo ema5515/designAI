@@ -1,0 +1,567 @@
+## Executive Summary
+
+This repository expresses a dark, terminal-native design language for a developer CLI product. The strongest source identity is not the default shadcn system by itself, but the custom `app/page.tsx`, `app/docs/page.tsx`, and `app/globals.css` layer: black backgrounds, gray terminal panels, white text, monospaced typography, hard borders, command-line copy blocks, ASCII/matrix motion, and crisp hover feedback.
+
+**EXPLICIT:** The app uses `bg-black`, `text-white`, and `font-mono` at the page level, with dark neutral surfaces such as `bg-gray-950`, `bg-gray-900`, `border-gray-800`, and `border-gray-700`.
+
+**EXPLICIT:** The project includes shadcn/ui `new-york` primitives with neutral OKLCH tokens, modest radii, Radix state patterns, Lucide icons, and standard focus rings.
+
+**INFERRED:** New product screens should preserve the terminal-console identity first, then borrow shadcn primitives for accessibility and state handling. A dashboard should feel like a structured CLI control surface, not a generic SaaS dashboard.
+
+What must be preserved:
+- Monochrome-first palette with very limited semantic accents.
+- Hard-edged, bordered panels.
+- Monospaced or code-adjacent typography.
+- Dense but readable spacing.
+- Clear command/action affordances.
+- Subtle gray hover states and border brightening.
+- Minimal decoration, using grids, ASCII, terminal chrome, and status dots instead of illustrations.
+
+## Identity-Defining Traits
+
+**EXPLICIT:** The dominant mood is technical, developer-focused, terminal-like, monochrome, and utilitarian.
+
+**EXPLICIT:** The strongest recurring visual objects are terminal windows, command rows, copyable code blocks, status dots, left/right documentation navigation, bordered content panels, and numbered step blocks.
+
+**EXPLICIT:** The project uses color mostly as functional signal: green for active/success, yellow/red for terminal window controls or pending/destructive hints, blue only in terminal path text.
+
+**EXPLICIT:** Strong contrast is central: white on black, gray support text, white CTA fill, gray borders.
+
+**INFERRED:** The system’s reusable identity anchor is “terminal control panel”: every new UI category should read as part of a CLI/IDE environment.
+
+**INFERRED:** Avoid soft SaaS visual language. Rounded white cards, colorful gradients, pastel badges, large friendly illustrations, and heavy brand colors would drift away from the source identity.
+
+## Design Tokens
+
+### Color Roles
+
+**EXPLICIT:** Global shadcn tokens define a neutral system:
+- `--background`: white in light mode, near-black in dark mode.
+- `--foreground`: near-black in light mode, near-white in dark mode.
+- `--card`, `--popover`, `--primary`, `--secondary`, `--muted`, `--accent`, `--border`, `--input`, `--ring`, `--destructive`.
+- `--chart-1` through `--chart-5`.
+- `--sidebar`, `--sidebar-foreground`, `--sidebar-accent`, `--sidebar-border`.
+
+**EXPLICIT:** Custom app screens override the practical identity to:
+- Page background: `black`.
+- Main text: `white`.
+- Primary surface: `gray-950`.
+- Secondary surface/header strip: `gray-900`.
+- Deep content/code surface: `black`.
+- Default border: `gray-800`.
+- Interactive border: `gray-700`, `gray-600`, `gray-500`.
+- Strong active border: `white`.
+- Primary CTA fill: `white`.
+- Primary CTA text: `black`.
+
+**EXPLICIT:** Text color hierarchy:
+- Primary text: `text-white`.
+- Body/support text: `text-gray-300` and `text-gray-400`.
+- Metadata: `text-gray-500`.
+- Footer/deemphasized text: `text-gray-600` and `text-gray-700`.
+- Inverse CTA text: `text-black`.
+
+**EXPLICIT:** Semantic accents:
+- Success/active: `green-400`, `green-500`.
+- Warning/pending: `yellow-500`.
+- Destructive/window close: `red-500`.
+- Terminal path accent: `blue-400`.
+- Destructive token: OKLCH red in shadcn variables.
+
+**INFERRED:** For new screens, keep 85-90% of UI in black/gray/white. Use green, yellow, red, and blue only for status, validation, terminal semantics, and chart series.
+
+### Background And Surface Behavior
+
+**EXPLICIT:** Page shells use black backgrounds.
+
+**EXPLICIT:** Major panels use `bg-gray-950` with `border-gray-800` or `border-gray-700`.
+
+**EXPLICIT:** Terminal body areas use `bg-black`.
+
+**EXPLICIT:** Terminal title bars use `bg-gray-900` and bottom borders.
+
+**EXPLICIT:** Some sections use `bg-gray-950/30` to create a subtle band.
+
+**INFERRED:** Product screens should use stacked dark surfaces:
+- Base: black.
+- Shell/sidebar/nav: `gray-950`.
+- Panel header: `gray-900`.
+- Panel body: black or `gray-950`.
+- Hover row: `gray-900`.
+- Selected row: `gray-900` plus stronger border.
+
+### Border And Divider Treatment
+
+**EXPLICIT:** Borders are more important than shadows. Recurring borders include `border-gray-800`, `border-gray-700`, `border-gray-600`, `border-gray-500`, and white on focus/primary hover.
+
+**EXPLICIT:** Dividers use `border-t`, `border-b`, `border-r`, and `border-l-2`.
+
+**EXPLICIT:** Documentation metadata groups use left borders: `border-l-2 border-gray-700 pl-4`.
+
+**INFERRED:** Use 1px borders for normal structure, 2px borders for high-emphasis CTAs, dashed borders for secondary/exploratory actions, and left borders for callouts or property lists.
+
+### Radius System
+
+**EXPLICIT:** Custom app screens mostly use square corners. Many major containers omit `rounded-*`; one explicit link uses `rounded-none`.
+
+**EXPLICIT:** Status dots use `rounded-full`.
+
+**EXPLICIT:** shadcn primitives define `--radius: 0.625rem`, with `sm = radius - 4px`, `md = radius - 2px`, `lg = radius`, `xl = radius + 4px`.
+
+**EXPLICIT:** shadcn components commonly use `rounded-md`, `rounded-lg`, or `rounded-xl`.
+
+**INFERRED:** Brand-first product UI should prefer `rounded-none` or very small radii for terminal panels. Use shadcn radii only for accessibility-heavy controls, overlays, switches, and reusable primitives.
+
+### Spacing System
+
+**EXPLICIT:** Page horizontal padding: `px-6`, `lg:px-12`.
+
+**EXPLICIT:** Section vertical spacing: `py-16`, `py-20`.
+
+**EXPLICIT:** Content widths: `max-w-7xl`, `max-w-5xl`, `max-w-4xl`, `max-w-3xl`, `max-w-2xl`.
+
+**EXPLICIT:** Panel/card padding: usually `p-6`.
+
+**EXPLICIT:** Command/code row padding: usually `p-4`; compact command chips use `p-2.5`.
+
+**EXPLICIT:** Nav padding: `p-4`.
+
+**EXPLICIT:** Common gaps: `gap-1`, `gap-2`, `gap-3`, `gap-4`, `gap-6`, `gap-8`; vertical stacks use `space-y-2`, `space-y-3`, `space-y-4`, `space-y-6`, `space-y-8`.
+
+**INFERRED:** Density is balanced-to-dense. Marketing sections have large breathing room, but content inside panels is compact and terminal-like.
+
+### Shadows And Elevation
+
+**EXPLICIT:** The custom app uses `shadow-xl`, `shadow-2xl`, and white-tinted hover shadows such as `shadow-white/10` or `shadow-white/20`.
+
+**EXPLICIT:** shadcn primitives use `shadow-xs`, `shadow-sm`, `shadow-md`, `shadow-lg`, and `shadow-xl` for overlays/tooltips/charts.
+
+**INFERRED:** Elevation should be secondary to borders. Use shadows mostly for active CTAs, floating overlays, and terminal windows; avoid soft card stacks.
+
+### Typography Scale
+
+**EXPLICIT:** Hero title: `text-4xl lg:text-6xl`, `font-bold`, `leading-tight`.
+
+**EXPLICIT:** Large section titles: `text-4xl lg:text-5xl` or `text-3xl lg:text-4xl`, `font-bold`.
+
+**EXPLICIT:** Docs page title: `text-4xl font-bold`.
+
+**EXPLICIT:** Docs section title: `text-2xl font-bold`.
+
+**EXPLICIT:** Card/subsection title: `text-xl` or `text-lg`, usually `font-bold`.
+
+**EXPLICIT:** Body lead: `text-xl text-gray-400` or `text-lg text-gray-300/400`.
+
+**EXPLICIT:** Default command/list text: `text-sm font-mono`.
+
+**EXPLICIT:** Metadata/status text: `text-xs text-gray-500`.
+
+**INFERRED:** Use large type sparingly. Most product UI should sit at `text-sm`, with clear section headings at `text-lg`/`text-xl`.
+
+### Font Families
+
+**EXPLICIT:** Pages explicitly use `font-mono`.
+
+**EXPLICIT:** `app/layout.tsx` imports Geist and Geist Mono, and body has `font-sans antialiased`, but page wrappers and global base styling push the visible app toward monospaced typography.
+
+**EXPLICIT:** `styles/globals.css` defines `--font-sans: Geist` and `--font-mono: Geist Mono`, though `app/globals.css` is the imported stylesheet.
+
+**INFERRED:** Use mono as the primary identity font for the CLI brand. For dense admin screens, allow sans for long-form paragraphs only if mono hurts readability, but keep headings, labels, commands, stats, and navigation mono/code-like.
+
+### Font Weights And Line Heights
+
+**EXPLICIT:** Headings use `font-bold`.
+
+**EXPLICIT:** Controls and primitive labels use `font-medium`.
+
+**EXPLICIT:** Body/support text usually uses normal weight.
+
+**EXPLICIT:** Hero ASCII uses `leading-none`.
+
+**EXPLICIT:** Body copy uses `leading-relaxed`; primitive descriptions use relaxed/normal line heights.
+
+**INFERRED:** Preserve hierarchy through weight and color before adding size or decoration.
+
+### Content Widths And Breakpoints
+
+**EXPLICIT:** Main landing content is centered in `max-w-7xl`.
+
+**EXPLICIT:** Terminal/demo panels use `max-w-4xl`.
+
+**EXPLICIT:** Docs content uses `max-w-4xl mx-auto p-6 lg:p-12`.
+
+**EXPLICIT:** Docs sidebar is `w-80`.
+
+**EXPLICIT:** Responsive variants include `sm`, `md`, and `lg`; grid switches use `md:grid-cols-2`, `md:grid-cols-3`, `lg:grid-cols-3`.
+
+**INFERRED:** Utility layouts should use a fixed/collapsible sidebar plus a constrained main content column, widening tables and dashboards only where dense data requires it.
+
+## Geometry And Radius System
+
+**EXPLICIT:** The project-specific language is sharp and rectangular. Terminal windows, docs panels, command blocks, sidebar items, CTA frames, model rows, and feature cards are mostly square.
+
+**EXPLICIT:** Roundness is reserved for status dots, switches, shadcn primitive affordances, and small icon badges where the library supplies them.
+
+**EXPLICIT:** Primary recurring radii from primitives are:
+- `rounded-sm`: menu/select items and small internal objects.
+- `rounded-md`: buttons, inputs, tabs, sidebar menu buttons, badges.
+- `rounded-lg`: alerts, dialogs, empty states, chart tooltips.
+- `rounded-xl`: default shadcn cards.
+
+**INFERRED:** Dominant brand radius should be `0px` to `4px` for custom product surfaces, with `6px` to `8px` acceptable for standard form controls when using shadcn primitives.
+
+**INFERRED:** Sharp corners are allowed and strongly on-brand. Excessive pill shapes are off-brand except for status dots, switches, progress tracks, and unavoidable native-like controls.
+
+## Spacing Rhythm
+
+**EXPLICIT:** The landing page uses spacious section spacing but compact interactive interiors.
+
+**EXPLICIT:** Docs pages use `space-y-8` between major blocks, `p-6` panels, and `p-4` command rows.
+
+**EXPLICIT:** Interactive list rows use `py-2 px-3` or `py-2 px-4`.
+
+**EXPLICIT:** Header/sidebar navigation uses tight grouping: `gap-2`, `gap-3`, `p-2`, `p-3`.
+
+**INFERRED:** Overall density is balanced-dense: wide outer margins, compact terminal content, clear dividers.
+
+**INFERRED:** For dashboards, reduce section gaps from marketing scale to product scale:
+- Page header to content: 24-32px.
+- Panel grid gap: 16-24px.
+- Card internal padding: 16-24px.
+- Table row height: 40-48px.
+- Form field gap: 12-16px.
+- Field group gap: 24px.
+
+**INFERRED:** Preserve the rhythm by grouping dense controls inside bordered panels rather than spreading controls across open space.
+
+## Visual Priority And Hierarchy
+
+**EXPLICIT:** Focal points are established through high contrast: white text or white-filled CTA against black.
+
+**EXPLICIT:** Supporting content is pushed into `gray-400` and metadata into `gray-500`.
+
+**EXPLICIT:** Primary CTA uses white fill, black text, bold weight, and an offset border/backplate effect.
+
+**EXPLICIT:** Secondary CTA uses transparent fill, dashed border, gray/white hover, and arrow glyph.
+
+**EXPLICIT:** Tertiary actions are text links or copy rows with gray text that brightens on hover.
+
+**EXPLICIT:** Sidebar selected state is `bg-gray-900 border-gray-600 text-white`.
+
+**INFERRED:** The project uses subtle emphasis for most UI and strong emphasis only for the single primary action or active terminal/status state.
+
+**INFERRED:** Product screens should make priority legible by combining:
+- White text for primary values.
+- Gray labels for context.
+- Border intensity for state.
+- Sparse semantic color for status.
+- Monospaced numeric alignment for metrics.
+
+## Typography As UX
+
+**EXPLICIT:** Page titles use large, bold, high-contrast type to orient the user quickly.
+
+**EXPLICIT:** Section titles are bold and separated by large vertical spacing.
+
+**EXPLICIT:** Body text is muted gray and often constrained to `max-w-2xl` or `max-w-3xl`.
+
+**EXPLICIT:** Commands and code use mono, `text-sm` or `text-xs`, and explicit `$` prompt markers.
+
+**EXPLICIT:** Metadata uses `text-xs`, gray text, and compact inline grouping.
+
+**EXPLICIT:** Labels and captions are not decorative; they behave like terminal/status labels.
+
+**INFERRED:** Typography supports scanning by separating content into command prompts, numbered steps, status metadata, and short descriptive blurbs.
+
+**INFERRED:** For tables and dashboards, use mono/tabular numerals for IDs, counts, statuses, timestamps, CLI flags, and metric values.
+
+## Layout System
+
+**EXPLICIT:** The landing page uses a sticky top nav, centered hero, terminal demo panel, repeated bordered sections, and constrained max-width content.
+
+**EXPLICIT:** The docs page uses a sticky top nav, fixed/static responsive sidebar, and max-width content area.
+
+**EXPLICIT:** Navigation shell:
+- Top nav: `border-b border-gray-800 bg-gray-950/95 backdrop-blur-sm p-4 sticky top-0`.
+- Docs sidebar: `w-80 bg-gray-950 border-r border-gray-800`.
+- Mobile sidebar: off-canvas translate with black overlay.
+
+**EXPLICIT:** Section composition:
+- Heading block centered for marketing sections.
+- Terminal panel centered below.
+- Border-top between major sections.
+- Content panels stacked in docs.
+
+**EXPLICIT:** Grid logic:
+- Feature cards: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`.
+- IDE list: `grid-cols-2 md:grid-cols-3`.
+- Docs cards: `md:grid-cols-2`.
+
+**INFERRED:** Product/admin layouts should use:
+- Persistent left sidebar.
+- Sticky top or local page header.
+- Main content with bordered panels.
+- Tables and charts inside terminal-like containers.
+- Filters in compact command-bar rows above data.
+
+## Interaction Model
+
+**EXPLICIT:** Hover feedback is crisp and border-first: gray borders brighten, gray text becomes white, dark backgrounds shift to `gray-900`.
+
+**EXPLICIT:** Nav links show animated underline expansion.
+
+**EXPLICIT:** Primary CTA uses an offset frame that translates to align on hover.
+
+**EXPLICIT:** Cards may lift or rotate slightly on hover in the landing page, with white-tinted shadow.
+
+**EXPLICIT:** Copy interactions replace `Copy` icon with green `Check` for two seconds.
+
+**EXPLICIT:** Loading includes bouncing dots, animated cursor, spinner primitive, skeleton primitive, and terminal typing sequences.
+
+**EXPLICIT:** Focus-visible states in primitives use border ring plus `ring-[3px]`.
+
+**EXPLICIT:** Disabled states in primitives use `pointer-events-none` and `opacity-50`.
+
+**EXPLICIT:** Selected/active states use filled muted backgrounds and stronger borders.
+
+**INFERRED:** Interaction feel is crisp, technical, calm, and premium-dark. It should avoid playful bounce except for terminal loading/status contexts.
+
+**INFERRED:** Validation tone should be restrained: red border/text for error, gray description for help, green check/status for success.
+
+## Explicit Component Patterns
+
+### Navigation
+
+**EXPLICIT:** Top navigation uses black/gray terminal chrome, sticky positioning, bottom border, backdrop blur, logo text split as `HEXA` white and `CLI` gray, and terminal window control dots.
+
+**EXPLICIT:** Desktop nav links are gray text with white hover and animated underline.
+
+**EXPLICIT:** Mobile menu is an icon-only button with gray-to-white hover.
+
+### Hero
+
+**EXPLICIT:** Hero uses ASCII art, large centered bold text, muted descriptive paragraph, and command-style CTAs.
+
+**EXPLICIT:** Accent treatment is white-to-gray gradient text and subtle pulsing gray text, not a colorful brand gradient.
+
+### Terminal Window
+
+**EXPLICIT:** Terminal windows use `bg-gray-950` outer surface, `border-gray-700/800`, `bg-gray-900` header, `bg-black` body, red/yellow/green window dots, status dot, and small mono labels.
+
+**EXPLICIT:** Terminal contents use prompt markers, colored path/user/status fragments, text-sm mono, and a bordered footer metadata row.
+
+### Command Copy Block
+
+**EXPLICIT:** Command rows use black background, gray border, `p-4`, `font-mono text-sm`, `$` prompt in gray, command text in white, and copy/check icon on the right.
+
+**EXPLICIT:** Hover brightens border to `gray-500`.
+
+### CTA Buttons
+
+**EXPLICIT:** Custom primary CTAs are framed: absolute border/backplate behind a relative white button that translates on hover.
+
+**EXPLICIT:** Secondary CTA uses dashed border, transparent fill, white text, and arrow glyph.
+
+**EXPLICIT:** shadcn `Button` supports default, destructive, outline, secondary, ghost, and link variants with `h-8/h-9/h-10` sizes.
+
+### Docs Sidebar
+
+**EXPLICIT:** Sidebar uses `w-80`, `bg-gray-950`, `border-r border-gray-800`, `p-6`, section groups, icons, nested items, and active state `bg-gray-900 border-gray-600`.
+
+**EXPLICIT:** Mobile sidebar slides in/out and uses a black overlay.
+
+### Cards And Panels
+
+**EXPLICIT:** Custom docs panels use `bg-gray-950 border border-gray-800 p-6`.
+
+**EXPLICIT:** Interactive cards use border hover brightening and muted descriptions.
+
+**EXPLICIT:** Landing cards use black panels, gray borders, numbered square icons, command mini-blocks, and occasional rotated gray backplates.
+
+**EXPLICIT:** shadcn `Card` uses `rounded-xl border py-6 shadow-sm`, header/content/footer padding `px-6`, and gap `6`.
+
+### Tables
+
+**EXPLICIT:** Table primitive exists: full width, text-sm, border-bottom rows, hover `bg-muted/50`, selected `bg-muted`, header height `h-10`, cells `p-2`, and muted captions.
+
+**INFERRED:** The source app does not render tables in custom pages, but the primitive establishes product-table behavior.
+
+### Forms And Inputs
+
+**EXPLICIT:** Input exists with `h-9`, `rounded-md`, border, transparent background, `px-3`, text-base on mobile and text-sm on desktop, focus ring, invalid ring, disabled opacity.
+
+**EXPLICIT:** Textarea uses `min-h-16`, `rounded-md`, border, `px-3 py-2`, focus ring, invalid ring.
+
+**EXPLICIT:** Field primitives use vertical/horizontal/responsive orientations, label/description/error roles, `gap-3`, `gap-6`, and destructive error text.
+
+### Selects And Dropdowns
+
+**EXPLICIT:** Select trigger uses `h-9`, `rounded-md`, border, transparent background, text-sm, chevron icon, focus ring.
+
+**EXPLICIT:** Menus/popovers use `bg-popover`, border, `rounded-md`, `p-1`, `shadow-md`, animated open/close, and `text-sm` items.
+
+**EXPLICIT:** Menu items use `px-2 py-1.5`, `rounded-sm`, focus `bg-accent`, disabled opacity.
+
+### Dialogs And Overlays
+
+**EXPLICIT:** Dialog overlay is `bg-black/50`.
+
+**EXPLICIT:** Dialog content is centered, `max-w-lg`, `rounded-lg`, border, `p-6`, `shadow-lg`, with fade/zoom animation.
+
+**EXPLICIT:** Dialog footer stacks on mobile and aligns actions right on desktop.
+
+### Badges
+
+**EXPLICIT:** Badge primitive uses `rounded-md`, border, `px-2 py-0.5`, `text-xs font-medium`, default/secondary/destructive/outline variants.
+
+**EXPLICIT:** Custom docs tags use `bg-gray-800 text-gray-300 px-2 py-1`.
+
+### Alerts
+
+**EXPLICIT:** Alert primitive uses `rounded-lg`, border, `px-4 py-3`, text-sm grid, optional icon column, and destructive variant.
+
+### Empty States
+
+**EXPLICIT:** Empty primitive uses centered flex, `gap-6`, dashed border, `p-6 md:p-12`, title `text-lg font-medium`, description `text-sm/relaxed`.
+
+### Charts
+
+**EXPLICIT:** Chart container uses Recharts, `aspect-video`, muted axis/grid styling, text-xs, configurable colors, and tooltip/legend components.
+
+**EXPLICIT:** Chart tooltip uses border, background, `rounded-lg`, `px-2.5 py-1.5`, `text-xs`, `shadow-xl`, mono tabular values.
+
+### Loading
+
+**EXPLICIT:** Skeleton uses `bg-accent animate-pulse rounded-md`.
+
+**EXPLICIT:** Spinner uses Lucide `Loader2Icon`, `size-4 animate-spin`.
+
+**EXPLICIT:** Progress uses `h-2`, rounded-full track, primary fill, and transform-based fill width.
+
+## Inferred Component Patterns
+
+### Buttons
+
+**INFERRED:** Primary product button should use white fill, black text, bold or medium weight, 1-2px white border, rectangular geometry, and optional offset frame for high-emphasis actions.
+
+**INFERRED:** Secondary button should use transparent or black fill, gray border, white text, and hover `border-white` or `bg-gray-900`.
+
+**INFERRED:** Tertiary button should be text-only gray-to-white with optional icon.
+
+**INFERRED:** Destructive button should use red only when the action is destructive; keep the rest neutral.
+
+### Inputs
+
+**INFERRED:** Inputs in brand screens should look like command fields: black or transparent fill, gray border, white value text, gray placeholder, mono text, compact height around 36px, and brightened border on focus.
+
+**INFERRED:** Use shadcn focus rings for accessibility, but tune visual weight so the field still feels terminal-native.
+
+### Selects
+
+**INFERRED:** Selects should look like compact terminal controls: dark surface, gray border, chevron, text-sm, hover/focus border lift, and dropdown items on black/gray-950.
+
+### Dropdowns
+
+**INFERRED:** Dropdowns should be narrow, dense, and text-first. Use `p-1`, `text-sm`, `px-2 py-1.5`, icon size 16px, and avoid large padded menu cards.
+
+### Cards
+
+**INFERRED:** Dashboard cards should be bordered terminal panels, not soft elevated cards. Use black/gray-950 fill, 1px border, `p-4` to `p-6`, square or tiny radius, title in white, metadata in gray, and status accents sparingly.
+
+### Tables
+
+**INFERRED:** Tables should use bordered containers with black body, gray row dividers, compact text-sm rows, muted column labels, hover `bg-gray-900`, selected row border or bg lift, and mono numeric/ID columns.
+
+### Modals And Dialogs
+
+**INFERRED:** Dialogs should use black or gray-950 content, gray border, black/50 overlay, compact `p-6`, white title, gray description, and right-aligned actions. Avoid colorful modal headers.
+
+### Sidebars
+
+**INFERRED:** Admin sidebars should follow the docs sidebar: `w-64` to `w-80`, gray-950 background, right border, section labels, icon + label rows, active `bg-gray-900 border-gray-600`, nested items indented with gray text.
+
+### Tabs
+
+**INFERRED:** Tabs should be segmented, compact, and bordered. Active tab should use black/gray surface with white text; inactive text should be gray. Avoid pill-like bright tabs.
+
+### Badges
+
+**INFERRED:** Use square-ish `text-xs` badges with gray fill and gray text for categories. Use green/yellow/red only for state.
+
+### Alerts
+
+**INFERRED:** Alerts should be bordered callout panels with minimal fill change. Error uses red text/border hints, success uses green status icon/text, warnings use yellow but low saturation.
+
+### Empty States
+
+**INFERRED:** Empty states should look like a quiet terminal panel: dashed border, mono icon/glyph, short white title, gray explanation, one clear command-style action.
+
+### Chart Containers
+
+**INFERRED:** Charts should live inside bordered dark panels with muted gridlines and small mono labels. Use the chart token colors sparingly; do not let charts become the dominant brand palette.
+
+### Page Headers
+
+**INFERRED:** Product page headers should include a white title, gray short description, optional status/version metadata, and right-aligned command-like actions.
+
+### Filters
+
+**INFERRED:** Filters should sit in a single dark command bar above data: search input, selects, status chips, and one primary action. Keep filters compact and progressive; hide advanced filters behind a dropdown/drawer.
+
+### Form Layouts
+
+**INFERRED:** Forms should use grouped fieldsets in bordered panels. Labels are text-sm white/gray, descriptions are gray-400, errors red, and submission actions use the primary/secondary CTA hierarchy.
+
+## UX Behavior Patterns
+
+**EXPLICIT:** Actions are prioritized by visual contrast: white fill is primary, outlined/dashed is secondary, gray text is tertiary.
+
+**EXPLICIT:** Secondary actions are often visible but quieter, using gray text, dashed borders, or transparent fills.
+
+**EXPLICIT:** Information is grouped into terminal-like panels with clear headers, borders, and command rows.
+
+**EXPLICIT:** Dense lists reveal extra help on hover through opacity transitions rather than always displaying all details.
+
+**EXPLICIT:** Copy-to-clipboard feedback is immediate and local, changing icon color/state without a global toast.
+
+**INFERRED:** New controls should be introduced in compact clusters, preferably inside existing panel headers or command bars.
+
+**INFERRED:** Denser product screens should preserve the language by using terminal panel composition, strong text hierarchy, restrained color, and border-defined grouping.
+
+**INFERRED:** CRUD screens should avoid overloading the page with bright controls. Show the main action prominently, then tuck filters, bulk actions, and secondary options into compact rows or menus.
+
+## Constraints And Anti-Drift Rules
+
+**EXPLICIT:** Preserve black/gray/white dominance.
+
+**EXPLICIT:** Preserve monospaced terminal feel.
+
+**EXPLICIT:** Preserve hard borders and rectangular panels.
+
+**EXPLICIT:** Preserve command-style affordances for key actions.
+
+**EXPLICIT:** Preserve compact text-sm utility UI inside panels.
+
+**INFERRED:** Do not introduce a generic bright SaaS palette.
+
+**INFERRED:** Do not use large rounded cards as the default container shape.
+
+**INFERRED:** Do not rely on soft shadows as the primary separation mechanism.
+
+**INFERRED:** Do not use colorful decorative gradients. The only source gradient is restrained white-to-gray text/backplate treatment.
+
+**INFERRED:** Do not overuse semantic colors. Green, yellow, red, and blue should communicate state, not brand decoration.
+
+**INFERRED:** Do not replace terminal/status patterns with stock illustrations, blobs, glassmorphism, or playful iconography.
+
+**INFERRED:** Product dashboards should avoid generic card grids by adding terminal-specific details: command labels, status dots, mono metadata, bordered headers, CLI-like action labels, and gray hover rows.
+
+**INFERRED:** Flexible traits:
+- shadcn radius can be used for accessible primitives.
+- Sans typography can support long prose if mono hurts readability.
+- Larger spacing can be used for marketing pages.
+- More compact spacing can be used for dense admin workflows.
+
+## Final Style DNA Summary
+
+A reusable screen in this design system should feel like a polished developer terminal expanded into a product UI: black base, gray-950 panels, gray-900 headers, white primary text, gray support text, thin borders, square geometry, mono typography, compact command rows, local status feedback, and sparse semantic color. Use shadcn primitives for accessibility and state logic, but visually bias them toward the custom terminal identity: hard-edged, dense, monochrome, and crisp.

@@ -1,0 +1,2655 @@
+Reading additional input from stdin...
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /Users/emanueledagata/code/v0/boh3
+model: gpt-5.4
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 019d8d6c-ae10-74a1-9fb1-39e628ed1024
+--------
+user
+You are a senior design systems architect and AI prompt engineer.
+
+Your task is to generate a complete reusable design skill for an AI agent.
+
+The skill will be used inside a software project so that the AI can generate new UI screens, components, and product flows that are:
+- visually consistent with the source application's design language
+- aligned with strong UI/UX principles
+- professional and production-ready
+
+Use these source files as context:
+- outputs/01-ui-ux-foundation.md
+- outputs/02-design-extraction.md
+- outputs/02-design-extraction.json
+- input/repo-summary.md
+
+The final skill must do more than describe style. It must enforce a reusable design logic that remains coherent even when generating screens that were not present in the original repository.
+
+The final skill must include:
+
+1. Role definition
+Define the AI as a product UI/UX designer and interface system builder.
+
+2. Objective
+Explain that the AI must generate interfaces coherent with the project’s current style, geometry, hierarchy, spacing character, typography roles, and interaction tone.
+
+3. Design philosophy
+Merge general UX best practices with the specific visual identity extracted from the project.
+
+4. Non-negotiable style traits
+Add a dedicated section for identity-defining traits that must be preserved, especially:
+- radius and geometry family
+- spacing character
+- emphasis discipline
+- hierarchy style
+- typography roles
+- interaction tone
+
+5. Project style rules
+Include:
+- color usage rules
+- typography rules
+- spacing rules
+- radius rules
+- shadow/elevation rules
+- hierarchy rules
+- visual priority rules
+- interaction state rules
+- layout rules
+- responsiveness rules
+
+6. Component generation rules
+Explain how the AI should generate:
+- dashboards
+- settings pages
+- CRUD pages
+- forms
+- tables
+- analytics blocks
+- dialogs
+- navigation
+- cards
+- empty states
+- alerts
+- filters
+
+7. Derived component behavior
+Include a section explaining how to derive components that do not exist in the original repo while preserving the source identity.
+The AI must extend the source system conservatively instead of inventing a different style family.
+
+8. Behavioral constraints
+Explain what the AI must never do:
+- introduce sharper geometry if the source uses a rounded language
+- flatten or neutralize a spacious spacing character into a cramped generic admin style
+- break spacing rhythm
+- create inconsistent hierarchy
+- use decorative elements without functional value
+- overcomplicate interactions
+- invent unsupported component patterns without grounding them in the source identity
+
+9. UX reasoning rules
+The AI must justify key layout and component decisions using:
+- clarity
+- hierarchy
+- visual priority
+- consistency
+- task completion
+- accessibility
+- scalability
+
+10. Output mode
+The AI should:
+- prefer product-ready UI
+- reuse existing patterns
+- extend the system instead of reinventing it
+- preserve source design identity even across different UI categories
+- generate components that feel native to the existing app's design language
+
+11. Anti-drift rules
+Add a dedicated section explaining how to avoid style drift when generating new screens over time.
+
+12. Conservative adaptation rule
+State explicitly that a portfolio, marketing page, or landing style can be adapted into dashboards or utility screens, but the defining traits of geometry, hierarchy, spacing, emphasis, and tone must remain recognizable.
+
+Output format:
+- Title
+- Purpose
+- AI role
+- Design philosophy
+- Non-negotiable style traits
+- Core UI/UX principles
+- Project-specific style rules
+- Visual priority and hierarchy rules
+- Typography as UX rules
+- Interaction rules
+- Layout and page composition rules
+- Component rules
+- Derived component rules
+- Constraints
+- Anti-drift rules
+- Final operating instructions
+
+Return only markdown.
+codex
+I’ll use the skill-creator guidance because this is a reusable AI skill, then read the supplied design extraction files and synthesize the final markdown from those constraints.
+exec
+/bin/zsh -lc "sed -n '1,220p' /Users/emanueledagata/.codex/skills/.system/skill-creator/SKILL.md" in /Users/emanueledagata/code/v0/boh3
+exec
+/bin/zsh -lc "sed -n '1,260p' outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh3
+ exited 1 in 0ms:
+sed: outputs/01-ui-ux-foundation.md: No such file or directory
+
+ succeeded in 0ms:
+---
+name: skill-creator
+description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Codex's capabilities with specialized knowledge, workflows, or tool integrations.
+metadata:
+  short-description: Create or update a skill
+---
+
+# Skill Creator
+
+This skill provides guidance for creating effective skills.
+
+## About Skills
+
+Skills are modular, self-contained folders that extend Codex's capabilities by providing
+specialized knowledge, workflows, and tools. Think of them as "onboarding guides" for specific
+domains or tasks—they transform Codex from a general-purpose agent into a specialized agent
+equipped with procedural knowledge that no model can fully possess.
+
+### What Skills Provide
+
+1. Specialized workflows - Multi-step procedures for specific domains
+2. Tool integrations - Instructions for working with specific file formats or APIs
+3. Domain expertise - Company-specific knowledge, schemas, business logic
+4. Bundled resources - Scripts, references, and assets for complex and repetitive tasks
+
+## Core Principles
+
+### Concise is Key
+
+The context window is a public good. Skills share the context window with everything else Codex needs: system prompt, conversation history, other Skills' metadata, and the actual user request.
+
+**Default assumption: Codex is already very smart.** Only add context Codex doesn't already have. Challenge each piece of information: "Does Codex really need this explanation?" and "Does this paragraph justify its token cost?"
+
+Prefer concise examples over verbose explanations.
+
+### Set Appropriate Degrees of Freedom
+
+Match the level of specificity to the task's fragility and variability:
+
+**High freedom (text-based instructions)**: Use when multiple approaches are valid, decisions depend on context, or heuristics guide the approach.
+
+**Medium freedom (pseudocode or scripts with parameters)**: Use when a preferred pattern exists, some variation is acceptable, or configuration affects behavior.
+
+**Low freedom (specific scripts, few parameters)**: Use when operations are fragile and error-prone, consistency is critical, or a specific sequence must be followed.
+
+Think of Codex as exploring a path: a narrow bridge with cliffs needs specific guardrails (low freedom), while an open field allows many routes (high freedom).
+
+### Protect Validation Integrity
+
+You may use subagents during iteration to validate whether a skill works on realistic tasks or whether a suspected problem is real. This is most useful when you want an independent pass on the skill's behavior, outputs, or failure modes after a revision.  Only do this when it is possible to start new subagents.
+
+When using subagents for validation, treat that as an evaluation surface. The goal is to learn whether the skill generalizes, not whether another agent can reconstruct the answer from leaked context.
+
+Prefer raw artifacts such as example prompts, outputs, diffs, logs, or traces. Give the minimum task-local context needed to perform the validation. Avoid passing the intended answer, suspected bug, intended fix, or your prior conclusions unless the validation explicitly requires them.
+
+### Anatomy of a Skill
+
+Every skill consists of a required SKILL.md file and optional bundled resources:
+
+```
+skill-name/
+├── SKILL.md (required)
+│   ├── YAML frontmatter metadata (required)
+│   │   ├── name: (required)
+│   │   └── description: (required)
+│   └── Markdown instructions (required)
+├── agents/ (recommended)
+│   └── openai.yaml - UI metadata for skill lists and chips
+└── Bundled Resources (optional)
+    ├── scripts/          - Executable code (Python/Bash/etc.)
+    ├── references/       - Documentation intended to be loaded into context as needed
+    └── assets/           - Files used in output (templates, icons, fonts, etc.)
+```
+
+#### SKILL.md (required)
+
+Every SKILL.md consists of:
+
+- **Frontmatter** (YAML): Contains `name` and `description` fields. These are the only fields that Codex reads to determine when the skill gets used, thus it is very important to be clear and comprehensive in describing what the skill is, and when it should be used.
+- **Body** (Markdown): Instructions and guidance for using the skill. Only loaded AFTER the skill triggers (if at all).
+
+#### Agents metadata (recommended)
+
+- UI-facing metadata for skill lists and chips
+- Read references/openai_yaml.md before generating values and follow its descriptions and constraints
+- Create: human-facing `display_name`, `short_description`, and `default_prompt` by reading the skill
+- Generate deterministically by passing the values as `--interface key=value` to `scripts/generate_openai_yaml.py` or `scripts/init_skill.py`
+- On updates: validate `agents/openai.yaml` still matches SKILL.md; regenerate if stale
+- Only include other optional interface fields (icons, brand color) if explicitly provided
+- See references/openai_yaml.md for field definitions and examples
+
+#### Bundled Resources (optional)
+
+##### Scripts (`scripts/`)
+
+Executable code (Python/Bash/etc.) for tasks that require deterministic reliability or are repeatedly rewritten.
+
+- **When to include**: When the same code is being rewritten repeatedly or deterministic reliability is needed
+- **Example**: `scripts/rotate_pdf.py` for PDF rotation tasks
+- **Benefits**: Token efficient, deterministic, may be executed without loading into context
+- **Note**: Scripts may still need to be read by Codex for patching or environment-specific adjustments
+
+##### References (`references/`)
+
+Documentation and reference material intended to be loaded as needed into context to inform Codex's process and thinking.
+
+- **When to include**: For documentation that Codex should reference while working
+- **Examples**: `references/finance.md` for financial schemas, `references/mnda.md` for company NDA template, `references/policies.md` for company policies, `references/api_docs.md` for API specifications
+- **Use cases**: Database schemas, API documentation, domain knowledge, company policies, detailed workflow guides
+- **Benefits**: Keeps SKILL.md lean, loaded only when Codex determines it's needed
+- **Best practice**: If files are large (>10k words), include grep search patterns in SKILL.md
+- **Avoid duplication**: Information should live in either SKILL.md or references files, not both. Prefer references files for detailed information unless it's truly core to the skill—this keeps SKILL.md lean while making information discoverable without hogging the context window. Keep only essential procedural instructions and workflow guidance in SKILL.md; move detailed reference material, schemas, and examples to references files.
+
+##### Assets (`assets/`)
+
+Files not intended to be loaded into context, but rather used within the output Codex produces.
+
+- **When to include**: When the skill needs files that will be used in the final output
+- **Examples**: `assets/logo.png` for brand assets, `assets/slides.pptx` for PowerPoint templates, `assets/frontend-template/` for HTML/React boilerplate, `assets/font.ttf` for typography
+- **Use cases**: Templates, images, icons, boilerplate code, fonts, sample documents that get copied or modified
+- **Benefits**: Separates output resources from documentation, enables Codex to use files without loading them into context
+
+#### What to Not Include in a Skill
+
+A skill should only contain essential files that directly support its functionality. Do NOT create extraneous documentation or auxiliary files, including:
+
+- README.md
+- INSTALLATION_GUIDE.md
+- QUICK_REFERENCE.md
+- CHANGELOG.md
+- etc.
+
+The skill should only contain the information needed for an AI agent to do the job at hand. It should not contain auxiliary context about the process that went into creating it, setup and testing procedures, user-facing documentation, etc. Creating additional documentation files just adds clutter and confusion.
+
+### Progressive Disclosure Design Principle
+
+Skills use a three-level loading system to manage context efficiently:
+
+1. **Metadata (name + description)** - Always in context (~100 words)
+2. **SKILL.md body** - When skill triggers (<5k words)
+3. **Bundled resources** - As needed by Codex (Unlimited because scripts can be executed without reading into context window)
+
+#### Progressive Disclosure Patterns
+
+Keep SKILL.md body to the essentials and under 500 lines to minimize context bloat. Split content into separate files when approaching this limit. When splitting out content into other files, it is very important to reference them from SKILL.md and describe clearly when to read them, to ensure the reader of the skill knows they exist and when to use them.
+
+**Key principle:** When a skill supports multiple variations, frameworks, or options, keep only the core workflow and selection guidance in SKILL.md. Move variant-specific details (patterns, examples, configuration) into separate reference files.
+
+**Pattern 1: High-level guide with references**
+
+```markdown
+# PDF Processing
+
+## Quick start
+
+Extract text with pdfplumber:
+[code example]
+
+## Advanced features
+
+- **Form filling**: See [FORMS.md](FORMS.md) for complete guide
+- **API reference**: See [REFERENCE.md](REFERENCE.md) for all methods
+- **Examples**: See [EXAMPLES.md](EXAMPLES.md) for common patterns
+```
+
+Codex loads FORMS.md, REFERENCE.md, or EXAMPLES.md only when needed.
+
+**Pattern 2: Domain-specific organization**
+
+For Skills with multiple domains, organize content by domain to avoid loading irrelevant context:
+
+```
+bigquery-skill/
+├── SKILL.md (overview and navigation)
+└── reference/
+    ├── finance.md (revenue, billing metrics)
+    ├── sales.md (opportunities, pipeline)
+    ├── product.md (API usage, features)
+    └── marketing.md (campaigns, attribution)
+```
+
+When a user asks about sales metrics, Codex only reads sales.md.
+
+Similarly, for skills supporting multiple frameworks or variants, organize by variant:
+
+```
+cloud-deploy/
+├── SKILL.md (workflow + provider selection)
+└── references/
+    ├── aws.md (AWS deployment patterns)
+    ├── gcp.md (GCP deployment patterns)
+    └── azure.md (Azure deployment patterns)
+```
+
+When the user chooses AWS, Codex only reads aws.md.
+
+**Pattern 3: Conditional details**
+
+Show basic content, link to advanced content:
+
+```markdown
+# DOCX Processing
+
+## Creating documents
+
+Use docx-js for new documents. See [DOCX-JS.md](DOCX-JS.md).
+
+## Editing documents
+
+For simple edits, modify the XML directly.
+
+**For tracked changes**: See [REDLINING.md](REDLINING.md)
+**For OOXML details**: See [OOXML.md](OOXML.md)
+```
+
+Codex reads REDLINING.md or OOXML.md only when the user needs those features.
+
+**Important guidelines:**
+
+- **Avoid deeply nested references** - Keep references one level deep from SKILL.md. All reference files should link directly from SKILL.md.
+
+exec
+/bin/zsh -lc "sed -n '1,320p' outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh3
+ exited 1 in 0ms:
+sed: outputs/02-design-extraction.md: No such file or directory
+
+exec
+/bin/zsh -lc "sed -n '1,260p' input/repo-summary.md" in /Users/emanueledagata/code/v0/boh3
+ exited 1 in 0ms:
+sed: input/repo-summary.md: No such file or directory
+
+codex
+The referenced paths are not present at the current working directory root, so I’m locating the actual files before drafting the skill.
+exec
+/bin/zsh -lc pwd in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+/Users/emanueledagata/code/v0/boh3
+
+exec
+/bin/zsh -lc ls in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+app
+components
+components.json
+generate-design-skill.mjs
+hooks
+lib
+next.config.mjs
+package.json
+pnpm-lock.yaml
+postcss.config.mjs
+public
+styles
+tsconfig.json
+
+exec
+/bin/zsh -lc "rg --files -g '01-ui-ux-foundation.md' -g '02-design-extraction.md' -g '02-design-extraction.json' -g 'repo-summary.md'" in /Users/emanueledagata/code/v0/boh3
+ exited 1 in 0ms:
+exec
+/bin/zsh -lc "find .. -path '*/outputs/01-ui-ux-foundation.md' -o -path '*/outputs/02-design-extraction.md' -o -path '*/outputs/02-design-extraction.json' -o -path '*/input/repo-summary.md'" in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+../portfolio_disegno/.agents/skills/project-ui-design/input/repo-summary.md
+../portfolio_disegno/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../portfolio_disegno/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../portfolio_disegno/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+../boh1-base east/.agents/skills/project-ui-design/input/repo-summary.md
+../boh1-base east/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../boh1-base east/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../boh1-base east/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+../boh2/.agents/skills/project-ui-design/input/repo-summary.md
+../boh2/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../boh2/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../boh2/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+../boh3/.agents/skills/project-ui-design/input/repo-summary.md
+../boh3/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../boh3/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../boh3/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+
+codex
+The files live under `.agents/skills/project-ui-design/`, so I’m reading that generated design context now.
+exec
+/bin/zsh -lc "sed -n '1,320p' .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh3
+exec
+/bin/zsh -lc "sed -n '1,420p' .agents/skills/project-ui-design/outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+# Professional Software UI/UX Foundation
+
+## Purpose
+
+This skill teaches an AI agent how to design professional software interfaces using strong UI and UX fundamentals.
+
+It is intentionally style-agnostic. It does not prescribe a specific aesthetic, color palette, density, radius scale, typography family, or visual trend. It defines reusable product design judgment that can be combined with a project-specific style guide, existing design system, or codebase-derived visual language.
+
+Use this foundation whenever generating, reviewing, or improving software interfaces such as dashboards, admin tools, SaaS products, internal tools, data products, settings areas, CRUD workflows, and form-heavy applications.
+
+## Design Philosophy
+
+Professional software UI should help users complete tasks clearly, confidently, and efficiently.
+
+Prioritize clarity over novelty. A screen is successful when users can understand what matters, what they can do, what changed, and what to do next without unnecessary explanation.
+
+Good interface design is not decoration. Every layout, visual treatment, interaction state, and component choice should support usability, hierarchy, comprehension, or task completion.
+
+When a project-specific style guide exists, follow it. When no style guide exists, establish consistent local rules and reuse them throughout the interface.
+
+## UX Fundamentals
+
+### Clarity
+
+- Make the primary purpose of each screen immediately understandable.
+- Put the most important task, decision, or status in the strongest visual position.
+- Use plain, specific labels instead of vague or clever language.
+- Avoid making users infer what a control does from iconography alone unless the icon is universally understood.
+- Prefer explicit status, ownership, dates, amounts, and actions over ambiguous summaries.
+
+### Usability
+
+- Optimize for the user’s next likely action.
+- Make common tasks easy to find and complete.
+- Keep destructive, irreversible, or high-risk actions visually and spatially distinct.
+- Place actions close to the content they affect.
+- Avoid hiding essential functionality behind hover-only behavior.
+
+### Consistency
+
+- Reuse layout patterns, component structures, spacing, labels, and interaction behavior once established.
+- Similar things should look and behave similarly.
+- Different things should be visually distinct for a clear reason.
+- Do not introduce new button styles, card styles, shadows, radii, or spacing patterns unless the interface needs a new semantic level.
+
+### Feedback And State Visibility
+
+- Every user action should produce visible feedback.
+- Show loading, saving, success, warning, error, disabled, selected, focused, and empty states.
+- Make system status visible when latency, validation, permissions, or background processing affect the user.
+- Confirm completed changes when the outcome is not obvious.
+- Show progress for multi-step or long-running processes.
+
+### Cognitive Load Reduction
+
+- Reduce the number of competing decisions on screen.
+- Group related information and controls.
+- Use progressive disclosure for advanced, rare, or secondary options.
+- Prefer recognition over recall by showing context, labels, examples, and current values.
+- Avoid dense layouts where users must scan unrelated elements to complete a single task.
+
+### Accessibility
+
+- Maintain sufficient contrast for text, icons, borders, focus indicators, and semantic states.
+- Do not communicate meaning through color alone.
+- Ensure all interactive elements have visible focus states.
+- Use clear labels, helper text, and error messages.
+- Preserve keyboard navigation order that matches visual reading order.
+- Keep hit targets large enough for comfortable interaction.
+- Avoid relying on hover as the only way to reveal important content.
+
+### Responsiveness
+
+- Design layouts that adapt to available space without hiding core tasks.
+- On narrow screens, preserve task order and reading order.
+- Collapse secondary navigation, filters, metadata, or low-priority columns before primary actions.
+- Prevent text overflow, clipped controls, and unstable layout shifts.
+- Tables, forms, dashboards, and navigation should each have responsive behavior planned, not left accidental.
+
+### Task-Oriented Design
+
+- Start from what the user is trying to accomplish, not from available data alone.
+- Each screen should have a clear primary task or a clear set of related tasks.
+- Remove or demote information that does not support the current task.
+- Use page titles, section labels, and action labels that reflect user goals.
+- Avoid building pages that are only collections of components without workflow logic.
+
+### Progressive Disclosure
+
+- Show essential information first.
+- Reveal details, configuration, advanced controls, and secondary actions when needed.
+- Use accordions, expandable rows, drill-down pages, popovers, or secondary panels only when they reduce initial complexity.
+- Do not hide critical errors, required fields, primary actions, or safety information.
+
+### Predictable Interaction Behavior
+
+- Controls should behave according to platform and product conventions.
+- Buttons perform actions. Links navigate. Tabs switch peer views. Accordions reveal nested content. Checkboxes allow independent selection. Radios select one option from a set.
+- Avoid using components in ways that contradict user expectations.
+- Keep interaction patterns stable across similar screens.
+
+## UI Fundamentals
+
+### Visual Hierarchy
+
+- Create a clear order of importance using size, weight, placement, spacing, contrast, and grouping.
+- The primary content should be visually dominant.
+- Secondary content should support the primary content without competing with it.
+- Avoid screens where every card, heading, button, and badge has equal visual weight.
+
+### Visual Priority
+
+- Assign priority before styling.
+- Primary actions should stand out more than secondary actions.
+- Current status should be easier to find than historical details.
+- Required decisions should be more prominent than optional configuration.
+- Use emphasis sparingly so emphasized elements remain meaningful.
+
+### Spacing Rhythm
+
+- Use a consistent spacing scale.
+- Related elements should be closer together than unrelated elements.
+- Section gaps should be larger than gaps within a section.
+- Control groups should have predictable internal spacing.
+- Avoid arbitrary margins that make the interface feel uneven or improvised.
+
+### Typography Hierarchy
+
+- Use typography to establish reading order.
+- Headings, labels, body text, helper text, metadata, and captions should each have distinct roles.
+- Larger or heavier text should indicate importance, not decoration.
+- Avoid too many type sizes or weights in a single screen.
+- Keep line length readable, especially for descriptions, help text, and settings pages.
+
+### Typography As A UX Tool
+
+- Use headings to answer “Where am I?”
+- Use labels to answer “What is this?”
+- Use helper text to answer “How should I decide?”
+- Use error text to answer “What went wrong and how do I fix it?”
+- Use metadata styling to make secondary information scannable without overpowering primary content.
+- Align typography choices with scanning behavior: users often scan headings, labels, values, and actions before reading full descriptions.
+
+### Grouping And Alignment
+
+- Align elements to reveal relationships.
+- Use consistent left edges, column alignment, and baseline rhythm.
+- Group controls with the content they affect.
+- Avoid floating controls that are visually disconnected from their context.
+- Use dividers, spacing, background shifts, or containers only when they clarify structure.
+
+### Component Consistency
+
+- Components should have consistent anatomy, sizing, spacing, states, and behavior.
+- A button should not change radius, shadow, typography, or padding arbitrarily between screens.
+- Cards, tables, inputs, filters, navigation items, and modals should follow reusable patterns.
+- If variants exist, each variant needs a semantic purpose.
+
+### Contrast Management
+
+- Use contrast to guide attention, not merely to decorate.
+- Primary actions and key data need enough contrast to be found quickly.
+- Secondary elements should remain readable without dominating the screen.
+- Disabled states should look inactive while still being legible when necessary.
+- Semantic colors for success, warning, and error must be distinguishable by more than hue.
+
+### Border Radius Logic
+
+- Border radius should follow a defined system.
+- Similar components should share the same radius unless their role differs.
+- Inputs, buttons, cards, tags, modals, and panels may use different radius values only if the distinction is intentional and consistent.
+- Avoid arbitrary radius changes to create visual interest.
+- Large radius values should not reduce clarity, alignment, density, or perceived precision.
+
+### Shadow And Elevation Discipline
+
+- Use shadows to communicate elevation, layering, or active surfaces.
+- Do not use shadows as generic decoration.
+- Keep elevation levels limited and consistent.
+- Modals, popovers, dropdowns, sticky bars, and raised panels may use elevation when they sit above other content.
+- Avoid stacking multiple shadow styles without a clear depth model.
+
+### Emphasis Control
+
+- Not everything can be important at once.
+- Limit high-emphasis treatments to primary actions, urgent statuses, active navigation, selected items, and critical information.
+- Use subtle emphasis for supporting content.
+- Reduce visual noise by avoiding unnecessary badges, borders, fills, icons, shadows, and colored backgrounds.
+
+## Visual Priority And Hierarchy Rules
+
+- Identify the primary user task before laying out the screen.
+- Place primary content and primary actions where users naturally scan first.
+- Use one dominant focal point per screen or section.
+- Separate page-level hierarchy from component-level hierarchy.
+- Use whitespace as structure, not empty decoration.
+- Make important values, statuses, and actions easier to scan than labels and explanations.
+- Avoid giving equal weight to navigation, filters, content, and actions.
+- Reduce emphasis on repeated UI chrome so actual content can stand out.
+- Use alignment and spacing before adding borders or backgrounds.
+- When everything feels too loud, reduce contrast, size, color, or container treatment on secondary elements.
+
+## Typography As UX Rules
+
+- Use typography to create a clear reading path from page title to section title to content to action.
+- Keep headings concise and specific.
+- Pair labels with values consistently.
+- Use sentence case or title case according to the project style guide, then apply it consistently.
+- Avoid long all-caps labels except for very small metadata categories.
+- Use body text for explanation, not headings.
+- Use helper text only when it reduces uncertainty.
+- Error messages should be specific, actionable, and placed near the field or action that caused them.
+- Numeric data should align consistently and use formatting that supports comparison.
+- In dense UIs, typography must improve scanning through size, weight, spacing, and alignment.
+
+## Interaction State Rules
+
+### Hover
+
+- Hover states should indicate interactivity.
+- Use hover to clarify affordance, not to reveal essential information exclusively.
+- Hover changes should be noticeable but not disruptive.
+- Avoid layout shifts on hover.
+
+### Focus
+
+- Focus states must be visible and accessible.
+- Keyboard users should always know where they are.
+- Focus styling should work on light, dark, and mixed backgrounds.
+- Do not remove default focus behavior unless replacing it with an equally clear custom state.
+
+### Active Or Pressed
+
+- Active states should confirm that a control is being pressed or activated.
+- Use active feedback for buttons, toggles, menu items, and interactive rows.
+- The pressed state should feel connected to the default and hover states.
+
+### Selected
+
+- Selected states should be persistent and clearly distinguishable from hover.
+- Use selected states for tabs, navigation items, filters, rows, cards, options, and toggles.
+- Selected items should remain understandable without relying only on color.
+
+### Disabled
+
+- Disabled controls should communicate that an action is unavailable.
+- When the reason is not obvious, provide helper text, tooltip text, or inline explanation.
+- Disabled controls should not look like loading controls.
+- Avoid disabling primary actions without explaining what is required.
+
+### Loading
+
+- Use loading states when data, validation, submission, or processing takes time.
+- Prefer skeletons for content loading and spinners for short isolated actions.
+- Preserve layout stability during loading.
+- For submissions, prevent duplicate actions and show whether the system is saving, processing, or retrying.
+
+### Success, Warning, And Error
+
+- Success states confirm completion.
+- Warning states identify risk before damage occurs.
+- Error states explain what failed and how to recover.
+- Use semantic styling consistently.
+- Place feedback close to the relevant action or content.
+
+### Empty States
+
+- Empty states should explain what is missing and what the user can do next.
+- Provide a primary action when there is a clear next step.
+- Avoid decorative empty states that do not help the user proceed.
+- Distinguish between first-use empty states, filtered empty states, error empty states, and permission-limited empty states.
+
+### Validation Feedback
+
+- Validate as close to the source of input as practical.
+- Show field-level errors near fields.
+- Show form-level errors when submission fails for cross-field or system reasons.
+- Preserve user input after validation errors.
+- Use clear messages that tell users how to fix the issue.
+
+## Layout Rules
+
+### Dashboards
+
+- Dashboards should prioritize monitoring, comparison, and action.
+- Put the most important metrics, alerts, or work queues first.
+- Avoid filling dashboards with decorative charts that do not support decisions.
+- Use consistent card and chart sizing.
+- Provide time ranges, filters, and definitions when metrics may be ambiguous.
+- Make anomalies, trends, and required actions easier to find than static totals.
+
+### Data-Heavy Pages
+
+- Optimize for scanning, sorting, filtering, comparison, and bulk action.
+- Use tables for structured records with repeated attributes.
+- Keep important identifiers and statuses visible.
+- Provide meaningful empty, loading, error, and filtered states.
+- Avoid hiding essential data behind excessive card layouts.
+- Support density controls when users have different scanning needs.
+
+### CRUD Pages
+
+- Separate list, detail, create, edit, and delete flows clearly.
+- Use list views for finding records.
+- Use detail pages for reviewing a record and its related data.
+- Use forms for creating or editing.
+- Confirm destructive actions and explain consequences.
+- Keep primary record actions consistent across similar resources.
+
+### Settings Pages
+
+- Group settings by user mental model, not implementation model.
+- Use clear section titles and descriptions.
+- Show current values and consequences of changes.
+- Save behavior must be obvious: immediate save, explicit save, or staged changes.
+- Dangerous settings should be separated from routine configuration.
+
+### Forms
+
+- Group related fields into clear sections.
+
+ succeeded in 0ms:
+## Executive Summary
+
+This repository expresses a dark, terminal-native design language for a developer CLI product. The strongest source identity is not the default shadcn system by itself, but the custom `app/page.tsx`, `app/docs/page.tsx`, and `app/globals.css` layer: black backgrounds, gray terminal panels, white text, monospaced typography, hard borders, command-line copy blocks, ASCII/matrix motion, and crisp hover feedback.
+
+**EXPLICIT:** The app uses `bg-black`, `text-white`, and `font-mono` at the page level, with dark neutral surfaces such as `bg-gray-950`, `bg-gray-900`, `border-gray-800`, and `border-gray-700`.
+
+**EXPLICIT:** The project includes shadcn/ui `new-york` primitives with neutral OKLCH tokens, modest radii, Radix state patterns, Lucide icons, and standard focus rings.
+
+**INFERRED:** New product screens should preserve the terminal-console identity first, then borrow shadcn primitives for accessibility and state handling. A dashboard should feel like a structured CLI control surface, not a generic SaaS dashboard.
+
+What must be preserved:
+- Monochrome-first palette with very limited semantic accents.
+- Hard-edged, bordered panels.
+- Monospaced or code-adjacent typography.
+- Dense but readable spacing.
+- Clear command/action affordances.
+- Subtle gray hover states and border brightening.
+- Minimal decoration, using grids, ASCII, terminal chrome, and status dots instead of illustrations.
+
+## Identity-Defining Traits
+
+**EXPLICIT:** The dominant mood is technical, developer-focused, terminal-like, monochrome, and utilitarian.
+
+**EXPLICIT:** The strongest recurring visual objects are terminal windows, command rows, copyable code blocks, status dots, left/right documentation navigation, bordered content panels, and numbered step blocks.
+
+**EXPLICIT:** The project uses color mostly as functional signal: green for active/success, yellow/red for terminal window controls or pending/destructive hints, blue only in terminal path text.
+
+**EXPLICIT:** Strong contrast is central: white on black, gray support text, white CTA fill, gray borders.
+
+**INFERRED:** The system’s reusable identity anchor is “terminal control panel”: every new UI category should read as part of a CLI/IDE environment.
+
+**INFERRED:** Avoid soft SaaS visual language. Rounded white cards, colorful gradients, pastel badges, large friendly illustrations, and heavy brand colors would drift away from the source identity.
+
+## Design Tokens
+
+### Color Roles
+
+**EXPLICIT:** Global shadcn tokens define a neutral system:
+- `--background`: white in light mode, near-black in dark mode.
+- `--foreground`: near-black in light mode, near-white in dark mode.
+- `--card`, `--popover`, `--primary`, `--secondary`, `--muted`, `--accent`, `--border`, `--input`, `--ring`, `--destructive`.
+- `--chart-1` through `--chart-5`.
+- `--sidebar`, `--sidebar-foreground`, `--sidebar-accent`, `--sidebar-border`.
+
+**EXPLICIT:** Custom app screens override the practical identity to:
+- Page background: `black`.
+- Main text: `white`.
+- Primary surface: `gray-950`.
+- Secondary surface/header strip: `gray-900`.
+- Deep content/code surface: `black`.
+- Default border: `gray-800`.
+- Interactive border: `gray-700`, `gray-600`, `gray-500`.
+- Strong active border: `white`.
+- Primary CTA fill: `white`.
+- Primary CTA text: `black`.
+
+**EXPLICIT:** Text color hierarchy:
+- Primary text: `text-white`.
+- Body/support text: `text-gray-300` and `text-gray-400`.
+- Metadata: `text-gray-500`.
+- Footer/deemphasized text: `text-gray-600` and `text-gray-700`.
+- Inverse CTA text: `text-black`.
+
+**EXPLICIT:** Semantic accents:
+- Success/active: `green-400`, `green-500`.
+- Warning/pending: `yellow-500`.
+- Destructive/window close: `red-500`.
+- Terminal path accent: `blue-400`.
+- Destructive token: OKLCH red in shadcn variables.
+
+**INFERRED:** For new screens, keep 85-90% of UI in black/gray/white. Use green, yellow, red, and blue only for status, validation, terminal semantics, and chart series.
+
+### Background And Surface Behavior
+
+**EXPLICIT:** Page shells use black backgrounds.
+
+**EXPLICIT:** Major panels use `bg-gray-950` with `border-gray-800` or `border-gray-700`.
+
+**EXPLICIT:** Terminal body areas use `bg-black`.
+
+**EXPLICIT:** Terminal title bars use `bg-gray-900` and bottom borders.
+
+**EXPLICIT:** Some sections use `bg-gray-950/30` to create a subtle band.
+
+**INFERRED:** Product screens should use stacked dark surfaces:
+- Base: black.
+- Shell/sidebar/nav: `gray-950`.
+- Panel header: `gray-900`.
+- Panel body: black or `gray-950`.
+- Hover row: `gray-900`.
+- Selected row: `gray-900` plus stronger border.
+
+### Border And Divider Treatment
+
+**EXPLICIT:** Borders are more important than shadows. Recurring borders include `border-gray-800`, `border-gray-700`, `border-gray-600`, `border-gray-500`, and white on focus/primary hover.
+
+**EXPLICIT:** Dividers use `border-t`, `border-b`, `border-r`, and `border-l-2`.
+
+**EXPLICIT:** Documentation metadata groups use left borders: `border-l-2 border-gray-700 pl-4`.
+
+**INFERRED:** Use 1px borders for normal structure, 2px borders for high-emphasis CTAs, dashed borders for secondary/exploratory actions, and left borders for callouts or property lists.
+
+### Radius System
+
+**EXPLICIT:** Custom app screens mostly use square corners. Many major containers omit `rounded-*`; one explicit link uses `rounded-none`.
+
+**EXPLICIT:** Status dots use `rounded-full`.
+
+**EXPLICIT:** shadcn primitives define `--radius: 0.625rem`, with `sm = radius - 4px`, `md = radius - 2px`, `lg = radius`, `xl = radius + 4px`.
+
+**EXPLICIT:** shadcn components commonly use `rounded-md`, `rounded-lg`, or `rounded-xl`.
+
+**INFERRED:** Brand-first product UI should prefer `rounded-none` or very small radii for terminal panels. Use shadcn radii only for accessibility-heavy controls, overlays, switches, and reusable primitives.
+
+### Spacing System
+
+**EXPLICIT:** Page horizontal padding: `px-6`, `lg:px-12`.
+
+**EXPLICIT:** Section vertical spacing: `py-16`, `py-20`.
+
+**EXPLICIT:** Content widths: `max-w-7xl`, `max-w-5xl`, `max-w-4xl`, `max-w-3xl`, `max-w-2xl`.
+
+**EXPLICIT:** Panel/card padding: usually `p-6`.
+
+**EXPLICIT:** Command/code row padding: usually `p-4`; compact command chips use `p-2.5`.
+
+**EXPLICIT:** Nav padding: `p-4`.
+
+**EXPLICIT:** Common gaps: `gap-1`, `gap-2`, `gap-3`, `gap-4`, `gap-6`, `gap-8`; vertical stacks use `space-y-2`, `space-y-3`, `space-y-4`, `space-y-6`, `space-y-8`.
+
+**INFERRED:** Density is balanced-to-dense. Marketing sections have large breathing room, but content inside panels is compact and terminal-like.
+
+### Shadows And Elevation
+
+**EXPLICIT:** The custom app uses `shadow-xl`, `shadow-2xl`, and white-tinted hover shadows such as `shadow-white/10` or `shadow-white/20`.
+
+**EXPLICIT:** shadcn primitives use `shadow-xs`, `shadow-sm`, `shadow-md`, `shadow-lg`, and `shadow-xl` for overlays/tooltips/charts.
+
+**INFERRED:** Elevation should be secondary to borders. Use shadows mostly for active CTAs, floating overlays, and terminal windows; avoid soft card stacks.
+
+### Typography Scale
+
+**EXPLICIT:** Hero title: `text-4xl lg:text-6xl`, `font-bold`, `leading-tight`.
+
+**EXPLICIT:** Large section titles: `text-4xl lg:text-5xl` or `text-3xl lg:text-4xl`, `font-bold`.
+
+**EXPLICIT:** Docs page title: `text-4xl font-bold`.
+
+**EXPLICIT:** Docs section title: `text-2xl font-bold`.
+
+**EXPLICIT:** Card/subsection title: `text-xl` or `text-lg`, usually `font-bold`.
+
+**EXPLICIT:** Body lead: `text-xl text-gray-400` or `text-lg text-gray-300/400`.
+
+**EXPLICIT:** Default command/list text: `text-sm font-mono`.
+
+**EXPLICIT:** Metadata/status text: `text-xs text-gray-500`.
+
+**INFERRED:** Use large type sparingly. Most product UI should sit at `text-sm`, with clear section headings at `text-lg`/`text-xl`.
+
+### Font Families
+
+**EXPLICIT:** Pages explicitly use `font-mono`.
+
+**EXPLICIT:** `app/layout.tsx` imports Geist and Geist Mono, and body has `font-sans antialiased`, but page wrappers and global base styling push the visible app toward monospaced typography.
+
+**EXPLICIT:** `styles/globals.css` defines `--font-sans: Geist` and `--font-mono: Geist Mono`, though `app/globals.css` is the imported stylesheet.
+
+**INFERRED:** Use mono as the primary identity font for the CLI brand. For dense admin screens, allow sans for long-form paragraphs only if mono hurts readability, but keep headings, labels, commands, stats, and navigation mono/code-like.
+
+### Font Weights And Line Heights
+
+**EXPLICIT:** Headings use `font-bold`.
+
+**EXPLICIT:** Controls and primitive labels use `font-medium`.
+
+**EXPLICIT:** Body/support text usually uses normal weight.
+
+**EXPLICIT:** Hero ASCII uses `leading-none`.
+
+**EXPLICIT:** Body copy uses `leading-relaxed`; primitive descriptions use relaxed/normal line heights.
+
+**INFERRED:** Preserve hierarchy through weight and color before adding size or decoration.
+
+### Content Widths And Breakpoints
+
+**EXPLICIT:** Main landing content is centered in `max-w-7xl`.
+
+**EXPLICIT:** Terminal/demo panels use `max-w-4xl`.
+
+**EXPLICIT:** Docs content uses `max-w-4xl mx-auto p-6 lg:p-12`.
+
+**EXPLICIT:** Docs sidebar is `w-80`.
+
+**EXPLICIT:** Responsive variants include `sm`, `md`, and `lg`; grid switches use `md:grid-cols-2`, `md:grid-cols-3`, `lg:grid-cols-3`.
+
+**INFERRED:** Utility layouts should use a fixed/collapsible sidebar plus a constrained main content column, widening tables and dashboards only where dense data requires it.
+
+## Geometry And Radius System
+
+**EXPLICIT:** The project-specific language is sharp and rectangular. Terminal windows, docs panels, command blocks, sidebar items, CTA frames, model rows, and feature cards are mostly square.
+
+**EXPLICIT:** Roundness is reserved for status dots, switches, shadcn primitive affordances, and small icon badges where the library supplies them.
+
+**EXPLICIT:** Primary recurring radii from primitives are:
+- `rounded-sm`: menu/select items and small internal objects.
+- `rounded-md`: buttons, inputs, tabs, sidebar menu buttons, badges.
+- `rounded-lg`: alerts, dialogs, empty states, chart tooltips.
+- `rounded-xl`: default shadcn cards.
+
+**INFERRED:** Dominant brand radius should be `0px` to `4px` for custom product surfaces, with `6px` to `8px` acceptable for standard form controls when using shadcn primitives.
+
+**INFERRED:** Sharp corners are allowed and strongly on-brand. Excessive pill shapes are off-brand except for status dots, switches, progress tracks, and unavoidable native-like controls.
+
+## Spacing Rhythm
+
+**EXPLICIT:** The landing page uses spacious section spacing but compact interactive interiors.
+
+**EXPLICIT:** Docs pages use `space-y-8` between major blocks, `p-6` panels, and `p-4` command rows.
+
+**EXPLICIT:** Interactive list rows use `py-2 px-3` or `py-2 px-4`.
+
+**EXPLICIT:** Header/sidebar navigation uses tight grouping: `gap-2`, `gap-3`, `p-2`, `p-3`.
+
+**INFERRED:** Overall density is balanced-dense: wide outer margins, compact terminal content, clear dividers.
+
+**INFERRED:** For dashboards, reduce section gaps from marketing scale to product scale:
+- Page header to content: 24-32px.
+- Panel grid gap: 16-24px.
+- Card internal padding: 16-24px.
+- Table row height: 40-48px.
+- Form field gap: 12-16px.
+- Field group gap: 24px.
+
+**INFERRED:** Preserve the rhythm by grouping dense controls inside bordered panels rather than spreading controls across open space.
+
+## Visual Priority And Hierarchy
+
+**EXPLICIT:** Focal points are established through high contrast: white text or white-filled CTA against black.
+
+**EXPLICIT:** Supporting content is pushed into `gray-400` and metadata into `gray-500`.
+
+**EXPLICIT:** Primary CTA uses white fill, black text, bold weight, and an offset border/backplate effect.
+
+**EXPLICIT:** Secondary CTA uses transparent fill, dashed border, gray/white hover, and arrow glyph.
+
+**EXPLICIT:** Tertiary actions are text links or copy rows with gray text that brightens on hover.
+
+**EXPLICIT:** Sidebar selected state is `bg-gray-900 border-gray-600 text-white`.
+
+**INFERRED:** The project uses subtle emphasis for most UI and strong emphasis only for the single primary action or active terminal/status state.
+
+**INFERRED:** Product screens should make priority legible by combining:
+- White text for primary values.
+- Gray labels for context.
+- Border intensity for state.
+- Sparse semantic color for status.
+- Monospaced numeric alignment for metrics.
+
+## Typography As UX
+
+**EXPLICIT:** Page titles use large, bold, high-contrast type to orient the user quickly.
+
+**EXPLICIT:** Section titles are bold and separated by large vertical spacing.
+
+**EXPLICIT:** Body text is muted gray and often constrained to `max-w-2xl` or `max-w-3xl`.
+
+**EXPLICIT:** Commands and code use mono, `text-sm` or `text-xs`, and explicit `$` prompt markers.
+
+**EXPLICIT:** Metadata uses `text-xs`, gray text, and compact inline grouping.
+
+**EXPLICIT:** Labels and captions are not decorative; they behave like terminal/status labels.
+
+**INFERRED:** Typography supports scanning by separating content into command prompts, numbered steps, status metadata, and short descriptive blurbs.
+
+**INFERRED:** For tables and dashboards, use mono/tabular numerals for IDs, counts, statuses, timestamps, CLI flags, and metric values.
+
+## Layout System
+
+**EXPLICIT:** The landing page uses a sticky top nav, centered hero, terminal demo panel, repeated bordered sections, and constrained max-width content.
+
+**EXPLICIT:** The docs page uses a sticky top nav, fixed/static responsive sidebar, and max-width content area.
+
+**EXPLICIT:** Navigation shell:
+- Top nav: `border-b border-gray-800 bg-gray-950/95 backdrop-blur-sm p-4 sticky top-0`.
+- Docs sidebar: `w-80 bg-gray-950 border-r border-gray-800`.
+- Mobile sidebar: off-canvas translate with black overlay.
+
+**EXPLICIT:** Section composition:
+- Heading block centered for marketing sections.
+- Terminal panel centered below.
+- Border-top between major sections.
+- Content panels stacked in docs.
+
+**EXPLICIT:** Grid logic:
+- Feature cards: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`.
+- IDE list: `grid-cols-2 md:grid-cols-3`.
+- Docs cards: `md:grid-cols-2`.
+
+**INFERRED:** Product/admin layouts should use:
+- Persistent left sidebar.
+- Sticky top or local page header.
+- Main content with bordered panels.
+- Tables and charts inside terminal-like containers.
+- Filters in compact command-bar rows above data.
+
+## Interaction Model
+
+**EXPLICIT:** Hover feedback is crisp and border-first: gray borders brighten, gray text becomes white, dark backgrounds shift to `gray-900`.
+
+**EXPLICIT:** Nav links show animated underline expansion.
+
+**EXPLICIT:** Primary CTA uses an offset frame that translates to align on hover.
+
+**EXPLICIT:** Cards may lift or rotate slightly on hover in the landing page, with white-tinted shadow.
+
+**EXPLICIT:** Copy interactions replace `Copy` icon with green `Check` for two seconds.
+
+**EXPLICIT:** Loading includes bouncing dots, animated cursor, spinner primitive, skeleton primitive, and terminal typing sequences.
+
+**EXPLICIT:** Focus-visible states in primitives use border ring plus `ring-[3px]`.
+
+**EXPLICIT:** Disabled states in primitives use `pointer-events-none` and `opacity-50`.
+
+**EXPLICIT:** Selected/active states use filled muted backgrounds and stronger borders.
+
+**INFERRED:** Interaction feel is crisp, technical, calm, and premium-dark. It should avoid playful bounce except for terminal loading/status contexts.
+
+**INFERRED:** Validation tone should be restrained: red border/text for error, gray description for help, green check/status for success.
+
+## Explicit Component Patterns
+
+### Navigation
+
+**EXPLICIT:** Top navigation uses black/gray terminal chrome, sticky positioning, bottom border, backdrop blur, logo text split as `HEXA` white and `CLI` gray, and terminal window control dots.
+
+**EXPLICIT:** Desktop nav links are gray text with white hover and animated underline.
+
+**EXPLICIT:** Mobile menu is an icon-only button with gray-to-white hover.
+
+### Hero
+
+**EXPLICIT:** Hero uses ASCII art, large centered bold text, muted descriptive paragraph, and command-style CTAs.
+
+**EXPLICIT:** Accent treatment is white-to-gray gradient text and subtle pulsing gray text, not a colorful brand gradient.
+
+### Terminal Window
+
+**EXPLICIT:** Terminal windows use `bg-gray-950` outer surface, `border-gray-700/800`, `bg-gray-900` header, `bg-black` body, red/yellow/green window dots, status dot, and small mono labels.
+
+**EXPLICIT:** Terminal contents use prompt markers, colored path/user/status fragments, text-sm mono, and a bordered footer metadata row.
+
+### Command Copy Block
+
+**EXPLICIT:** Command rows use black background, gray border, `p-4`, `font-mono text-sm`, `$` prompt in gray, command text in white, and copy/check icon on the right.
+
+**EXPLICIT:** Hover brightens border to `gray-500`.
+
+### CTA Buttons
+
+**EXPLICIT:** Custom primary CTAs are framed: absolute border/backplate behind a relative white button that translates on hover.
+
+**EXPLICIT:** Secondary CTA uses dashed border, transparent fill, white text, and arrow glyph.
+
+**EXPLICIT:** shadcn `Button` supports default, destructive, outline, secondary, ghost, and link variants with `h-8/h-9/h-10` sizes.
+
+### Docs Sidebar
+
+**EXPLICIT:** Sidebar uses `w-80`, `bg-gray-950`, `border-r border-gray-800`, `p-6`, section groups, icons, nested items, and active state `bg-gray-900 border-gray-600`.
+
+**EXPLICIT:** Mobile sidebar slides in/out and uses a black overlay.
+
+### Cards And Panels
+
+**EXPLICIT:** Custom docs panels use `bg-gray-950 border border-gray-800 p-6`.
+
+**EXPLICIT:** Interactive cards use border hover brightening and muted descriptions.
+
+**EXPLICIT:** Landing cards use black panels, gray borders, numbered square icons, command mini-blocks, and occasional rotated gray backplates.
+
+**EXPLICIT:** shadcn `Card` uses `rounded-xl border py-6 shadow-sm`, header/content/footer padding `px-6`, and gap `6`.
+
+### Tables
+
+**EXPLICIT:** Table primitive exists: full width, text-sm, border-bottom rows, hover `bg-muted/50`, selected `bg-muted`, header height `h-10`, cells `p-2`, and muted captions.
+
+**INFERRED:** The source app does not render tables in custom pages, but the primitive establishes product-table behavior.
+
+### Forms And Inputs
+
+**EXPLICIT:** Input exists with `h-9`, `rounded-md`, border, transparent background, `px-3`, text-base on mobile and text-sm on desktop, focus ring, invalid ring, disabled opacity.
+
+**EXPLICIT:** Textarea uses `min-h-16`, `rounded-md`, border, `px-3 py-2`, focus ring, invalid ring.
+
+**EXPLICIT:** Field primitives use vertical/horizontal/responsive orientations, label/description/error roles, `gap-3`, `gap-6`, and destructive error text.
+
+### Selects And Dropdowns
+
+**EXPLICIT:** Select trigger uses `h-9`, `rounded-md`, border, transparent background, text-sm, chevron icon, focus ring.
+
+**EXPLICIT:** Menus/popovers use `bg-popover`, border, `rounded-md`, `p-1`, `shadow-md`, animated open/close, and `text-sm` items.
+
+**EXPLICIT:** Menu items use `px-2 py-1.5`, `rounded-sm`, focus `bg-accent`, disabled opacity.
+
+### Dialogs And Overlays
+
+**EXPLICIT:** Dialog overlay is `bg-black/50`.
+
+**EXPLICIT:** Dialog content is centered, `max-w-lg`, `rounded-lg`, border, `p-6`, `shadow-lg`, with fade/zoom animation.
+
+**EXPLICIT:** Dialog footer stacks on mobile and aligns actions right on desktop.
+
+### Badges
+
+**EXPLICIT:** Badge primitive uses `rounded-md`, border, `px-2 py-0.5`, `text-xs font-medium`, default/secondary/destructive/outline variants.
+
+**EXPLICIT:** Custom docs tags use `bg-gray-800 text-gray-300 px-2 py-1`.
+
+### Alerts
+
+
+exec
+/bin/zsh -lc "sed -n '1,260p' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh3
+exec
+/bin/zsh -lc "sed -n '1,320p' .agents/skills/project-ui-design/input/repo-summary.md" in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+# Repository Summary
+
+- Root: `/Users/emanueledagata/code/v0/boh3`
+- Detected hints: Next.js, Tailwind CSS, shadcn/ui, Charts, Radix/Lucide
+- Total indexed files: 83
+- Relevant UI/design files: 81
+
+## Key dependencies
+
+- @radix-ui/react-dialog: 1.1.4
+- @radix-ui/react-dropdown-menu: 2.1.4
+- @radix-ui/react-select: 2.1.4
+- @radix-ui/react-tabs: 1.1.2
+- class-variance-authority: ^0.7.1
+- clsx: ^2.1.1
+- lucide-react: ^0.454.0
+- next: 15.2.6
+- react: ^19
+- react-dom: ^19
+- recharts: 2.15.4
+- tailwind-merge: ^2.5.5
+- tailwindcss: ^4.1.9
+
+## Key analysis goals
+
+- Extract the source design language from the repository.
+- Identify explicit and inferred design-system rules.
+- Preserve radius, spacing character, hierarchy, typography roles, and interaction tone.
+- Produce a reusable design skill for generating new UI categories consistently.
+- Prevent style drift when adapting to dashboards, forms, CRUD, or utility-heavy interfaces.
+
+ succeeded in 0ms:
+{
+  "style_name": "Terminal IDE Monochrome",
+  "visual_identity": {
+    "tone": "technical, terminal-native, developer-focused",
+    "density": "medium-dense with compact controls, large hero moments, and high information density in docs",
+    "corner_style": "dominantly sharp and square in product surfaces; shadcn library components retain rounded-md/lg defaults",
+    "elevation_style": "border-led elevation with sparse shadows, glow-on-hover, and offset duplicate-border CTA treatment",
+    "contrast_profile": "high contrast black/white base with gray hierarchy and limited semantic status color",
+    "mood": "command-line, IDE chrome, cyber-terminal, precise",
+    "notes": [
+      "Requested context files under input/ and outputs/ were not present in the checkout; profile is based on direct inspection of app/page.tsx, app/docs/page.tsx, app/globals.css, styles/globals.css, components.json, and components/ui/*.",
+      "Landing and docs pages use bg-black text-white font-mono directly, overriding the more general shadcn neutral token system.",
+      "Visual signature comes from ASCII art, terminal panels, window-control dots, command snippets, matrix characters, scan/glow animation, and monochrome borders."
+    ]
+  },
+  "identity_traits": {
+    "non_negotiable_traits": [
+      "black or near-black page background",
+      "monospace product UI for terminal/CLI surfaces",
+      "white primary text with gray secondary hierarchy",
+      "rectangular bordered panels",
+      "hover states brighten borders/text rather than introducing new color families",
+      "green/red/yellow reserved for terminal status and window controls"
+    ],
+    "adaptable_traits": [
+      "shadcn components may use rounded-md/lg defaults when outside bespoke terminal surfaces",
+      "accent gradients are allowed only as white-to-gray text or subtle gray panel backplates",
+      "blue may appear in shell prompt/path text but should not become a primary brand color",
+      "animations may be pulsing, blinking, scanning, typing, or matrix-like when they reinforce the terminal metaphor"
+    ],
+    "source_type": "direct repository inspection",
+    "adaptation_notes": [
+      "Prefer page-level terminal aesthetic over default shadcn styling for product-facing screens.",
+      "Where a component exists only in components/ui and is not used by pages, confidence is lower and source_basis states library implementation."
+    ]
+  },
+  "tokens": {
+    "colors": {
+      "primary": "white / text-white / bg-white for primary CTA",
+      "secondary": "gray-400 for secondary text and navigation",
+      "accent": "gray-900, gray-800, gray-700, gray-600 border/surface accents",
+      "neutral": [
+        "black",
+        "gray-950",
+        "gray-900",
+        "gray-800",
+        "gray-700",
+        "gray-600",
+        "gray-500",
+        "gray-400",
+        "gray-300",
+        "white"
+      ],
+      "success": "green-400 / green-500 for status dots, copied state, active availability",
+      "warning": "yellow-500 for terminal window dot and pending status",
+      "danger": "red-500 for terminal window dot; shadcn destructive token oklch(0.577 0.245 27.325)",
+      "background": "bg-black; token --background defaults to oklch(1 0 0) light and oklch(0.145 0 0) dark",
+      "surface": "bg-gray-950, bg-gray-900, bg-black, bg-gray-950/95, bg-gray-950/30",
+      "text": {
+        "primary": "text-white",
+        "secondary": "text-gray-400",
+        "muted": "text-gray-500 / text-gray-600 / text-gray-700",
+        "inverse": "text-black on bg-white CTA"
+      },
+      "border": "border-gray-800 primary section dividers; border-gray-700 panels; border-gray-600/500 hover; border-white active CTA"
+    },
+    "spacing": {
+      "density": "medium-dense",
+      "section_gap": [
+        "py-16",
+        "py-20",
+        "mb-12",
+        "mb-16"
+      ],
+      "card_gap": [
+        "gap-4",
+        "gap-6",
+        "space-y-6",
+        "space-y-8"
+      ],
+      "control_gap": [
+        "gap-2",
+        "gap-3",
+        "gap-4",
+        "px-3 py-1.5",
+        "px-4 py-2",
+        "px-6 py-4"
+      ],
+      "grouping_pattern": "large centered sections with max-width containers; terminal panels use header/body split; docs use fixed sidebar plus content stack",
+      "adaptation_rule": "Use p-6 for panels/cards, px-6 lg:px-12 for page gutters, max-w-7xl for landing sections, max-w-4xl/5xl for terminal and docs content."
+    },
+    "radius": {
+      "control": "product CTAs and command blocks are square; shadcn controls default rounded-md",
+      "container": "product panels/cards are mostly square; shadcn Card default rounded-xl",
+      "overlay": "Dialog and AlertDialog use rounded-lg",
+      "pill": "only status indicators use rounded-full",
+      "dominant_family": "sharp/square terminal geometry",
+      "sharp_allowed": "yes; preferred for product-facing terminal surfaces",
+      "style_rule": "Default to no radius for terminal panels, code blocks, cards, and CTAs; allow rounded-md/lg only when using stock shadcn primitives or status dots."
+    },
+    "shadows": [
+      "shadow-xl",
+      "shadow-2xl",
+      "shadow-lg group-hover:shadow-white/20",
+      "group-hover:shadow-xl group-hover:shadow-white/10",
+      "shadow-sm/shadow-md/shadow-lg in shadcn overlays",
+      "custom terminal-window glow rgba(255,255,255,0.1-0.2)"
+    ],
+    "typography": {
+      "font_families": [
+        "Geist",
+        "Geist Mono",
+        "font-mono on product pages",
+        "Courier New / Monaco / Menlo for terminal-text utility"
+      ],
+      "scale": [
+        "text-xs",
+        "text-sm",
+        "text-base",
+        "text-lg",
+        "text-xl",
+        "text-2xl",
+        "text-3xl",
+        "text-4xl",
+        "text-5xl",
+        "text-6xl"
+      ],
+      "font_weights": [
+        "font-medium",
+        "font-semibold",
+        "font-bold"
+      ],
+      "line_heights": [
+        "leading-none for ASCII/title glyphs",
+        "leading-tight for hero headings",
+        "leading-relaxed for supporting copy",
+        "text-sm/relaxed in empty descriptions"
+      ]
+    },
+    "widths": [
+      "max-w-7xl page/nav sections",
+      "max-w-5xl CTA section",
+      "max-w-4xl terminal/docs content",
+      "max-w-3xl hero copy",
+      "w-80 docs mobile sidebar",
+      "16rem shadcn sidebar width",
+      "18rem shadcn mobile sidebar width",
+      "3rem shadcn collapsed sidebar width"
+    ],
+    "breakpoints": [
+      "sm",
+      "md",
+      "lg",
+      "desktop sidebar at lg",
+      "mobile menu below md/lg depending page"
+    ]
+  },
+  "hierarchy": {
+    "primary_focus_pattern": "centered hero with ASCII masthead, large bold headline, install CTA, and live terminal simulator",
+    "secondary_content_pattern": "terminal-window sections with command headers, rows, status metadata, and centered section headers",
+    "cta_hierarchy": "primary: white filled offset install command; secondary: dashed outline documentation link; tertiary: inline command copy rows/text links",
+    "emphasis_rules": [
+      "Use white for active/primary content.",
+      "Use gray-400 for explanatory copy and inactive navigation.",
+      "Use gray-500/600 for metadata and low-priority terminal chrome.",
+      "Use border brightness changes for hover/selection.",
+      "Use green only for success/online/copied/active status."
+    ],
+    "grouping_rules": [
+      "Terminal panels group content with gray-900 header, gray-700 divider, and black body.",
+      "Docs content groups each topic in bg-gray-950 border-gray-800 p-6 blocks.",
+      "Repeated command rows are black bordered strips with copy affordance on the right.",
+      "Feature cards use numbered square markers and command snippets as anchors."
+    ],
+    "contrast_usage": "Very high contrast for foreground and CTAs; gray hierarchy distinguishes metadata, descriptions, inactive items, and borders."
+  },
+  "typography_roles": {
+    "page_title": "text-4xl lg:text-6xl font-bold leading-tight on landing; text-4xl font-bold in docs",
+    "section_title": "text-3xl/lg:text-4xl or text-4xl/lg:text-5xl font-bold with centered alignment on landing; text-2xl font-bold in docs panels",
+    "body": "text-lg or text-xl for landing explanatory copy; text-gray-400 body copy in docs",
+    "supporting_text": "text-sm/text-xs gray-400/500 for metadata, descriptions, status labels, and command hints",
+    "label": "font-medium or font-bold, often text-white; sidebar labels use text-sm and active border/background",
+    "caption": "text-xs gray-500 for terminal status, version, availability, command metadata",
+    "scanning_behavior": "Users scan from white headings to gray descriptions to bordered command blocks; monospace rows and bracketed numbers support quick terminal-like parsing."
+  },
+  "interaction": {
+    "hover": "text gray-400 to white, border gray-700/600 to gray-500/white, subtle gray background, shadow-white glow, and occasional translate offset reset",
+    "focus": "shadcn primitives use focus-visible:border-ring and focus-visible:ring-ring/50 ring-[3px]; dialogs close button uses focus:ring-2 ring-offset",
+    "active": "docs active sidebar items use bg-gray-900 border-gray-600 text-white; selected shadcn rows/items use data-state styles",
+    "selected": "selected rows/items use bg-muted or bg-gray-900 with stronger border; select/menu items show check/circle indicators",
+    "disabled": "shadcn controls use disabled:pointer-events-none disabled:opacity-50; select adds disabled:cursor-not-allowed",
+    "loading": "terminal simulator uses bouncing dots, Processing text, blinking cursor, pulsing status dots, and timed command/output sequences",
+    "validation": "form/input/select/button primitives support aria-invalid:border-destructive and destructive ring; FormMessage renders text-destructive text-sm",
+    "feedback_style": "copy actions swap Copy icon to green Check for 2 seconds; success terminal lines render green; hover feedback is immediate via transition-colors/transition-all"
+  },
+  "layout": {
+    "page_shell": "black full-height shell with sticky top nav and terminal/matrix background on landing; docs shell uses sticky nav, left sidebar, and content main",
+    "page_width_strategy": "max-w-7xl for broad landing content, max-w-4xl for terminal/docs reading, max-w-5xl for CTA section, centered mx-auto containers",
+    "header_pattern": "sticky bg-gray-950/95 nav with border-b, backdrop-blur-sm, logo/window dots, hidden desktop links, and command/install action",
+    "section_spacing": "landing sections use px-6 py-16/20 lg:px-12 with border-t dividers; docs uses p-6 lg:p-12 content padding",
+    "grid_rules": [
+      "feature cards use grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+      "IDE list uses grid-cols-2 md:grid-cols-3 gap-4",
+      "docs default cards use md:grid-cols-2 gap-6",
+      "matrix background uses custom grid-cols-25 increasing at md/lg"
+    ],
+    "navigation_patterns": [
+      "desktop landing nav shows inline anchors with underline-on-hover",
+      "mobile landing shows hamburger icon only",
+      "docs mobile uses off-canvas sidebar with overlay",
+      "docs desktop sidebar is fixed/static left navigation with nested items"
+    ],
+    "responsive_rules": [
+      "CTAs stack flex-col on mobile and become sm:flex-row.",
+      "Long command text uses break-all on small screens where needed.",
+      "Sidebar is translated offscreen on mobile and static on lg.",
+      "Landing terminal/list footers switch from column to row at md."
+    ]
+  },
+  "components": {
+    "buttons": {
+      "explicit": true,
+      "source_basis": "components/ui/button.tsx plus custom CTA div/button patterns in app/page.tsx and app/docs/page.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "trigger install/copy/navigation/actions",
+        "appearance": "stock Button is rounded-md with variants; product CTAs are square bordered blocks, often offset over a secondary border layer",
+        "spacing": "stock h-8/h-9/h-10 px-3/4/6; product CTAs use px-6 to px-16 and py-2 to py-5",
+        "radius": "rounded-md in stock component; no radius in product CTAs",
+        "border": "primary product CTA uses border-white; secondary uses border-2 border-dashed gray-400/600; hover strengthens to white",
+        "shadow": "stock outline has shadow-xs; product hover uses shadow-lg/shadow-white/20",
+        "typography": "text-sm font-medium stock; font-bold monospace product CTA",
+        "states": "hover background/border/text transitions, disabled opacity-50 in stock, focus-visible ring in stock, copied state swaps icon to Check",
+        "variants": [
+          "default",
+          "destructive",
+          "outline",
+          "secondary",
+          "ghost",
+          "link",
+          "terminal-filled",
+          "terminal-dashed",
+          "command-copy"
+        ]
+      }
+    },
+    "inputs": {
+      "explicit": true,
+      "source_basis": "components/ui/input.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "text/file input primitive for forms and sidebar search contexts",
+        "appearance": "transparent bg, border-input, shadow-xs, placeholder muted, full width",
+        "spacing": "h-9 px-3 py-1; md:text-sm",
+        "radius": "rounded-md",
+        "border": "border-input with focus-visible:border-ring and aria-invalid:border-destructive",
+        "shadow": "shadow-xs",
+        "typography": "text-base on mobile, md:text-sm",
+        "states": "focus-visible ring-[3px], disabled opacity-50 cursor-not-allowed, invalid destructive ring/border",
+        "variants": [
+
+exec
+/bin/zsh -lc "sed -n '421,820p' .agents/skills/project-ui-design/outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+**EXPLICIT:** Alert primitive uses `rounded-lg`, border, `px-4 py-3`, text-sm grid, optional icon column, and destructive variant.
+
+### Empty States
+
+**EXPLICIT:** Empty primitive uses centered flex, `gap-6`, dashed border, `p-6 md:p-12`, title `text-lg font-medium`, description `text-sm/relaxed`.
+
+### Charts
+
+**EXPLICIT:** Chart container uses Recharts, `aspect-video`, muted axis/grid styling, text-xs, configurable colors, and tooltip/legend components.
+
+**EXPLICIT:** Chart tooltip uses border, background, `rounded-lg`, `px-2.5 py-1.5`, `text-xs`, `shadow-xl`, mono tabular values.
+
+### Loading
+
+**EXPLICIT:** Skeleton uses `bg-accent animate-pulse rounded-md`.
+
+**EXPLICIT:** Spinner uses Lucide `Loader2Icon`, `size-4 animate-spin`.
+
+**EXPLICIT:** Progress uses `h-2`, rounded-full track, primary fill, and transform-based fill width.
+
+## Inferred Component Patterns
+
+### Buttons
+
+**INFERRED:** Primary product button should use white fill, black text, bold or medium weight, 1-2px white border, rectangular geometry, and optional offset frame for high-emphasis actions.
+
+**INFERRED:** Secondary button should use transparent or black fill, gray border, white text, and hover `border-white` or `bg-gray-900`.
+
+**INFERRED:** Tertiary button should be text-only gray-to-white with optional icon.
+
+**INFERRED:** Destructive button should use red only when the action is destructive; keep the rest neutral.
+
+### Inputs
+
+**INFERRED:** Inputs in brand screens should look like command fields: black or transparent fill, gray border, white value text, gray placeholder, mono text, compact height around 36px, and brightened border on focus.
+
+**INFERRED:** Use shadcn focus rings for accessibility, but tune visual weight so the field still feels terminal-native.
+
+### Selects
+
+**INFERRED:** Selects should look like compact terminal controls: dark surface, gray border, chevron, text-sm, hover/focus border lift, and dropdown items on black/gray-950.
+
+### Dropdowns
+
+**INFERRED:** Dropdowns should be narrow, dense, and text-first. Use `p-1`, `text-sm`, `px-2 py-1.5`, icon size 16px, and avoid large padded menu cards.
+
+### Cards
+
+**INFERRED:** Dashboard cards should be bordered terminal panels, not soft elevated cards. Use black/gray-950 fill, 1px border, `p-4` to `p-6`, square or tiny radius, title in white, metadata in gray, and status accents sparingly.
+
+### Tables
+
+**INFERRED:** Tables should use bordered containers with black body, gray row dividers, compact text-sm rows, muted column labels, hover `bg-gray-900`, selected row border or bg lift, and mono numeric/ID columns.
+
+### Modals And Dialogs
+
+**INFERRED:** Dialogs should use black or gray-950 content, gray border, black/50 overlay, compact `p-6`, white title, gray description, and right-aligned actions. Avoid colorful modal headers.
+
+### Sidebars
+
+**INFERRED:** Admin sidebars should follow the docs sidebar: `w-64` to `w-80`, gray-950 background, right border, section labels, icon + label rows, active `bg-gray-900 border-gray-600`, nested items indented with gray text.
+
+### Tabs
+
+**INFERRED:** Tabs should be segmented, compact, and bordered. Active tab should use black/gray surface with white text; inactive text should be gray. Avoid pill-like bright tabs.
+
+### Badges
+
+**INFERRED:** Use square-ish `text-xs` badges with gray fill and gray text for categories. Use green/yellow/red only for state.
+
+### Alerts
+
+**INFERRED:** Alerts should be bordered callout panels with minimal fill change. Error uses red text/border hints, success uses green status icon/text, warnings use yellow but low saturation.
+
+### Empty States
+
+**INFERRED:** Empty states should look like a quiet terminal panel: dashed border, mono icon/glyph, short white title, gray explanation, one clear command-style action.
+
+### Chart Containers
+
+**INFERRED:** Charts should live inside bordered dark panels with muted gridlines and small mono labels. Use the chart token colors sparingly; do not let charts become the dominant brand palette.
+
+### Page Headers
+
+**INFERRED:** Product page headers should include a white title, gray short description, optional status/version metadata, and right-aligned command-like actions.
+
+### Filters
+
+**INFERRED:** Filters should sit in a single dark command bar above data: search input, selects, status chips, and one primary action. Keep filters compact and progressive; hide advanced filters behind a dropdown/drawer.
+
+### Form Layouts
+
+**INFERRED:** Forms should use grouped fieldsets in bordered panels. Labels are text-sm white/gray, descriptions are gray-400, errors red, and submission actions use the primary/secondary CTA hierarchy.
+
+## UX Behavior Patterns
+
+**EXPLICIT:** Actions are prioritized by visual contrast: white fill is primary, outlined/dashed is secondary, gray text is tertiary.
+
+**EXPLICIT:** Secondary actions are often visible but quieter, using gray text, dashed borders, or transparent fills.
+
+**EXPLICIT:** Information is grouped into terminal-like panels with clear headers, borders, and command rows.
+
+**EXPLICIT:** Dense lists reveal extra help on hover through opacity transitions rather than always displaying all details.
+
+**EXPLICIT:** Copy-to-clipboard feedback is immediate and local, changing icon color/state without a global toast.
+
+**INFERRED:** New controls should be introduced in compact clusters, preferably inside existing panel headers or command bars.
+
+**INFERRED:** Denser product screens should preserve the language by using terminal panel composition, strong text hierarchy, restrained color, and border-defined grouping.
+
+**INFERRED:** CRUD screens should avoid overloading the page with bright controls. Show the main action prominently, then tuck filters, bulk actions, and secondary options into compact rows or menus.
+
+## Constraints And Anti-Drift Rules
+
+**EXPLICIT:** Preserve black/gray/white dominance.
+
+**EXPLICIT:** Preserve monospaced terminal feel.
+
+**EXPLICIT:** Preserve hard borders and rectangular panels.
+
+**EXPLICIT:** Preserve command-style affordances for key actions.
+
+**EXPLICIT:** Preserve compact text-sm utility UI inside panels.
+
+**INFERRED:** Do not introduce a generic bright SaaS palette.
+
+**INFERRED:** Do not use large rounded cards as the default container shape.
+
+**INFERRED:** Do not rely on soft shadows as the primary separation mechanism.
+
+**INFERRED:** Do not use colorful decorative gradients. The only source gradient is restrained white-to-gray text/backplate treatment.
+
+**INFERRED:** Do not overuse semantic colors. Green, yellow, red, and blue should communicate state, not brand decoration.
+
+**INFERRED:** Do not replace terminal/status patterns with stock illustrations, blobs, glassmorphism, or playful iconography.
+
+**INFERRED:** Product dashboards should avoid generic card grids by adding terminal-specific details: command labels, status dots, mono metadata, bordered headers, CLI-like action labels, and gray hover rows.
+
+**INFERRED:** Flexible traits:
+- shadcn radius can be used for accessible primitives.
+- Sans typography can support long prose if mono hurts readability.
+- Larger spacing can be used for marketing pages.
+- More compact spacing can be used for dense admin workflows.
+
+## Final Style DNA Summary
+
+A reusable screen in this design system should feel like a polished developer terminal expanded into a product UI: black base, gray-950 panels, gray-900 headers, white primary text, gray support text, thin borders, square geometry, mono typography, compact command rows, local status feedback, and sparse semantic color. Use shadcn primitives for accessibility and state logic, but visually bias them toward the custom terminal identity: hard-edged, dense, monochrome, and crisp.
+exec
+/bin/zsh -lc "sed -n '261,620p' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+          "default",
+          "file input support"
+        ]
+      }
+    },
+    "selects": {
+      "explicit": true,
+      "source_basis": "components/ui/select.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "compact option selection with Radix Select",
+        "appearance": "transparent bordered trigger, popover content with bg-popover border shadow-md",
+        "spacing": "trigger h-9 px-3 py-2 default, h-8 sm; content p-1; item py-1.5 pl-2 pr-8",
+        "radius": "rounded-md trigger/content, rounded-sm items",
+        "border": "border-input trigger; content border",
+        "shadow": "shadow-xs trigger, shadow-md content",
+        "typography": "text-sm; label text-xs muted",
+        "states": "focus-visible ring-[3px], disabled opacity-50, invalid destructive, open/closed fade/zoom/slide animations, selected item check indicator",
+        "variants": [
+          "default",
+          "sm",
+          "popper"
+        ]
+      }
+    },
+    "dropdowns": {
+      "explicit": true,
+      "source_basis": "components/ui/dropdown-menu.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "menus, checkbox/radio menu items, nested submenus, shortcuts",
+        "appearance": "bg-popover text-popover-foreground bordered menu with compact item rows",
+        "spacing": "content p-1 min-w-8rem; items px-2 py-1.5 gap-2",
+        "radius": "rounded-md content, rounded-sm items",
+        "border": "content border; separators use bg-border",
+        "shadow": "shadow-md",
+        "typography": "text-sm items/labels; shortcut text-xs tracking-widest muted",
+        "states": "focus:bg-accent, data-state=open accent on subtrigger, disabled opacity-50, destructive item variant, open/closed fade/zoom/slide animations",
+        "variants": [
+          "item",
+          "checkbox",
+          "radio",
+          "sub",
+          "destructive",
+          "inset"
+        ]
+      }
+    },
+    "cards": {
+      "explicit": true,
+      "source_basis": "components/ui/card.tsx plus terminal/product panels in app/page.tsx and docs page topic blocks",
+      "confidence": "high",
+      "rules": {
+        "purpose": "group related content, terminal windows, docs topics, feature steps",
+        "appearance": "product cards/panels are bg-gray-950 or bg-black with gray borders; stock Card uses bg-card rounded-xl border shadow-sm",
+        "spacing": "stock py-6 gap-6 px-6 inner parts; product p-6 with gap-4/6 and section mb-12/16",
+        "radius": "product cards square; stock cards rounded-xl",
+        "border": "border-gray-800/700 product; stock border token",
+        "shadow": "terminal panels shadow-xl/2xl; feature cards hover shadow-white/10; stock shadow-sm",
+        "typography": "card titles font-bold/semibold; descriptions gray-400 text-sm",
+        "states": "hover:border-white or gray-500, hover:bg-gray-900, hover shadow/glow, optional slight transform/backplate rotation",
+        "variants": [
+          "terminal-window",
+          "docs-topic",
+          "feature-step",
+          "stock-card"
+        ]
+      }
+    },
+    "tables": {
+      "explicit": true,
+      "source_basis": "components/ui/table.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "responsive tabular data primitive",
+        "appearance": "full-width table inside overflow-x-auto container, border-separated rows via border-b",
+        "spacing": "head h-10 px-2; cells p-2",
+        "radius": "none",
+        "border": "row border-b; footer border-t",
+        "shadow": "none",
+        "typography": "text-sm, head font-medium, caption text-muted-foreground",
+        "states": "row hover:bg-muted/50 and data-state=selected:bg-muted",
+        "variants": [
+          "header",
+          "body",
+          "footer",
+          "caption",
+          "selected row"
+        ]
+      }
+    },
+    "modals": {
+      "explicit": true,
+      "source_basis": "components/ui/dialog.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "general modal content over overlay",
+        "appearance": "centered bg-background panel over bg-black/50 overlay",
+        "spacing": "gap-4 p-6, close button top-4 right-4",
+        "radius": "rounded-lg content; rounded-xs close",
+        "border": "content border",
+        "shadow": "shadow-lg",
+        "typography": "title text-lg font-semibold leading-none; description text-sm muted",
+        "states": "open/closed fade and zoom animations, close hover opacity-100, focus ring, disabled pointer-events-none",
+        "variants": [
+          "default",
+          "with close button",
+          "without close button"
+        ]
+      }
+    },
+    "dialogs": {
+      "explicit": true,
+      "source_basis": "components/ui/alert-dialog.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "confirmation/destructive decision dialogs",
+        "appearance": "same modal shell as Dialog with action/cancel buttons",
+        "spacing": "content gap-4 p-6; footer gap-2 column-reverse on mobile, row at sm",
+        "radius": "rounded-lg",
+        "border": "content border",
+        "shadow": "shadow-lg",
+        "typography": "title text-lg font-semibold; description text-sm muted",
+        "states": "open/closed fade and zoom animations; actions inherit Button states",
+        "variants": [
+          "action",
+          "cancel",
+          "destructive via button variant when supplied"
+        ]
+      }
+    },
+    "sidebars": {
+      "explicit": true,
+      "source_basis": "app/docs/page.tsx docs sidebar and components/ui/sidebar.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "documentation navigation and reusable collapsible app navigation",
+        "appearance": "docs sidebar bg-gray-950 border-r gray-800; reusable sidebar uses bg-sidebar text-sidebar-foreground",
+        "spacing": "docs width w-80 p-6, section gaps space-y-6, item p-2/p-3; reusable width 16rem, mobile 18rem, icon 3rem",
+        "radius": "docs sidebar square; reusable floating variant rounded-lg",
+        "border": "border-r gray-800 docs; reusable border-sidebar-border for floating/side borders",
+        "shadow": "floating reusable sidebar shadow-sm; docs no shadow",
+        "typography": "section labels text-white font-medium; nested items text-sm gray-400",
+        "states": "mobile translate-x open/closed, overlay on mobile, active bg-gray-900 border-gray-600, hover border-gray-700 bg-gray-900, keyboard shortcut support in reusable provider",
+        "variants": [
+          "docs fixed/offcanvas",
+          "sidebar",
+          "floating",
+          "inset",
+          "offcanvas",
+          "icon collapsed"
+        ]
+      }
+    },
+    "tabs": {
+      "explicit": true,
+      "source_basis": "components/ui/tabs.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "segmented content switching",
+        "appearance": "inline bg-muted tab list with active trigger bg-background and optional shadow",
+        "spacing": "root gap-2; list h-9 p-[3px]; trigger px-2 py-1 gap-1.5",
+        "radius": "rounded-lg list, rounded-md trigger",
+        "border": "transparent trigger border; active dark border-input",
+        "shadow": "active trigger shadow-sm",
+        "typography": "text-sm font-medium",
+        "states": "data-state=active background/text/shadow, focus-visible ring-[3px], disabled opacity-50",
+        "variants": [
+          "default"
+        ]
+      }
+    },
+    "badges": {
+      "explicit": true,
+      "source_basis": "components/ui/badge.tsx and inline docs model tags",
+      "confidence": "high",
+      "rules": {
+        "purpose": "compact status/category labels",
+        "appearance": "stock badge rounded-md border px-2 py-0.5; docs tags use bg-gray-800 text-gray-300 px-2 py-1",
+        "spacing": "px-2 py-0.5 stock; gap-1; docs px-2 py-1",
+        "radius": "rounded-md stock; docs tags appear square unless class adds radius",
+        "border": "transparent for filled variants; outline variant keeps border",
+        "shadow": "none",
+        "typography": "text-xs font-medium",
+        "states": "anchor badges hover background, focus-visible ring, invalid destructive support",
+        "variants": [
+          "default",
+          "secondary",
+          "destructive",
+          "outline",
+          "terminal-tag"
+        ]
+      }
+    },
+    "alerts": {
+      "explicit": true,
+      "source_basis": "components/ui/alert.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "inline messages and destructive notices",
+        "appearance": "bordered rounded panel using bg-card text-card-foreground; optional icon grid",
+        "spacing": "px-4 py-3 gap-x-3 gap-y-0.5",
+        "radius": "rounded-lg",
+        "border": "default border with destructive text variant",
+        "shadow": "none",
+        "typography": "text-sm; title font-medium tracking-tight; description text-sm muted",
+        "states": "destructive variant changes text/icon/description color",
+        "variants": [
+          "default",
+          "destructive"
+        ]
+      }
+    },
+    "empty_states": {
+      "explicit": true,
+      "source_basis": "components/ui/empty.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "centered no-content or setup prompts",
+        "appearance": "flex column centered, text-balance, optional icon media",
+        "spacing": "gap-6 p-6 md:p-12; content gap-4; header gap-2",
+        "radius": "rounded-lg container/media icon",
+        "border": "border-dashed on container",
+        "shadow": "none",
+        "typography": "title text-lg font-medium tracking-tight; description text-sm/relaxed muted",
+        "states": "links in description underline and hover:text-primary",
+        "variants": [
+          "default",
+          "icon media"
+        ]
+      }
+    },
+    "charts_containers": {
+      "explicit": true,
+      "source_basis": "components/ui/chart.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "Recharts responsive chart wrapper and tooltip/legend styling",
+        "appearance": "aspect-video flex container with muted axes/grid and tokenized series colors",
+        "spacing": "tooltip px-2.5 py-1.5 gap-1.5; chart container fills responsive area",
+        "radius": "tooltip rounded-lg; indicators rounded-[2px]",
+        "border": "tooltip border-border/50; grid uses stroke-border/50",
+        "shadow": "tooltip shadow-xl",
+        "typography": "text-xs chart/tooltip, font-medium labels",
+        "states": "tooltip renders only when active payload exists; indicator supports dot/line/dashed",
+        "variants": [
+          "dot tooltip indicator",
+          "line tooltip indicator",
+          "dashed tooltip indicator",
+          "themed series colors"
+        ]
+      }
+    },
+    "page_headers": {
+      "explicit": true,
+      "source_basis": "app/page.tsx hero/section headers and app/docs/page.tsx content headers",
+      "confidence": "high",
+      "rules": {
+        "purpose": "orient page/section and establish primary message",
+        "appearance": "large white bold headings, centered on landing and left-aligned in docs content",
+        "spacing": "mb-4/6/8 after titles; header groups mb-12/16",
+        "radius": "none",
+        "border": "section headers often sit above bordered terminal blocks; no direct border",
+        "shadow": "ASCII/terminal glow classes available but headings mostly unshadowed",
+        "typography": "landing h1 text-4xl lg:text-6xl; section h2 text-3xl to text-5xl; docs h1 text-4xl",
+        "states": "some emphasized words animate-pulse or use white-to-gray text gradient",
+        "variants": [
+          "hero ASCII masthead",
+          "centered landing section",
+          "docs content header"
+        ]
+      }
+    },
+    "filters": {
+      "explicit": false,
+      "source_basis": "inferred from available Input, Select, DropdownMenu, Tabs, and Table primitives; no dedicated filter component or product filter UI observed",
+      "confidence": "low",
+      "rules": {
+        "purpose": "filter rows should refine lists/tables without leaving terminal aesthetic",
+        "appearance": "transparent or black controls with gray borders, monospace labels, compact rows",
+        "spacing": "gap-2/3 controls, h-9 controls, p-4 wrapper if framed",
+        "radius": "square for product pages; rounded-md only if using stock primitives directly",
+        "border": "border-gray-700 default, border-gray-500/white hover/focus",
+        "shadow": "none unless dropdown/select popover uses shadow-md",
+        "typography": "text-sm font-mono with muted labels",
+        "states": "active filter should use bg-gray-900 border-gray-600 text-white; disabled opacity-50",
+        "variants": [
+          "search input",
+          "select filter",
+          "tab filter",
+          "dropdown filter"
+        ]
+      }
+    },
+    "form_layouts": {
+      "explicit": true,
+      "source_basis": "components/ui/form.tsx with Input/Select validation conventions",
+      "confidence": "high",
+      "rules": {
+        "purpose": "structured field composition with accessible descriptions and errors",
+        "appearance": "grid-based field stacks with labels, controls, muted descriptions, destructive messages",
+        "spacing": "FormItem grid gap-2; descriptions/messages directly under controls",
+        "radius": "inherits from controls",
+        "border": "inherits control border and invalid destructive border",
+        "shadow": "inherits control shadow-xs",
+        "typography": "label inherits Label; description text-sm muted; message text-sm destructive",
+        "states": "aria-describedby and aria-invalid wired through FormControl; label data-error true turns destructive",
+        "variants": [
+          "field",
+          "description",
+          "message",
+          "controlled input"
+        ]
+      }
+    }
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "Make the install command the strongest action: white filled, black text, offset border, copy feedback. Documentation/navigation actions use dashed or plain outline. Inline command rows act as tertiary copy actions.",
+    "information_grouping": "Group content into terminal-like panels with a chrome header, command body, status footer, and gray border. Docs group topics as stacked bordered blocks with headings, copyable commands, and option lists.",
+    "filter_placement": "No explicit filter UI observed. If added, place filters above the affected list/table as compact monospace control rows, not as detached cards.",
+    "form_structure": "Use FormItem grid gap-2 with label, control, optional muted description, and destructive message. Keep controls compact and full-width in narrow contexts.",
+    "validation_behavior": "Use aria-invalid destructive border/ring, destructive label/message, and preserve accessible describedby wiring from form primitives.",
+    "table_detail_strategy": "Tables should be horizontally scrollable, compact, row-hover highlighted, and selected rows use muted background; detail actions should appear as command-style rows or inline terminal links.",
+    "loading_error_empty_states": "Loading should feel terminal-native: blinking cursor, bouncing dots, Processing text, pulse status dots. Empty states use centered dashed bordered containers. Errors should use destructive alert/form variants but avoid expanding the palette.",
+    "action_placement": "Primary actions appear near section starts or terminal headers; copy actions sit at the right edge of command rows; docs navigation actions live in the left sidebar and close it on mobile.",
+    "notes": [
+      "The product UI favors direct manipulation of command snippets over conventional form-heavy flows.",
+      "Animations are part of the identity but should remain low-amplitude and terminal-relevant.",
+      "Use borders and text contrast as the main hierarchy tools; avoid colorful fills except semantic status indicators."
+    ]
+  },
+  "constraints": [
+    "Do not introduce broad new color families; preserve monochrome terminal identity.",
+    "Do not round terminal/product panels unless intentionally using stock shadcn primitives.",
+    "Do not use card elevation without borders; borders are the primary containment device.",
+    "Keep interactive feedback visible through text, border, icon, or transform changes.",
+    "Maintain responsive command readability; allow wrapping/breaking for long terminal strings on mobile.",
+    "Treat components/ui as reusable library evidence and app/page.tsx plus app/docs/page.tsx as product visual evidence."
+  ]
+}
+
+exec
+/bin/zsh -lc "sed -n '321,700p' .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh3
+ succeeded in 0ms:
+- Place labels close to inputs.
+- Mark required and optional fields consistently.
+- Use helper text for constraints, examples, or consequences.
+- Put primary submit actions where users expect them after completing the form.
+- Preserve data and show actionable errors after failed submission.
+- Avoid multi-column forms when fields need a strong reading sequence.
+
+### Tables
+
+- Use tables when users compare many records across shared attributes.
+- Align column content consistently.
+- Keep headers visible or easy to reference in large tables.
+- Prioritize columns based on task importance.
+- Use row actions consistently.
+- Avoid excessive badges, icons, or controls in every cell unless they support scanning or action.
+- Provide sorting, filtering, pagination, or virtualization when data volume requires it.
+
+### Cards
+
+- Use cards for distinct objects, summaries, previews, or grouped actions.
+- A card should have a clear subject and purpose.
+- Avoid cards inside cards unless the inner card represents a truly distinct repeated item.
+- Keep card actions predictable and visually connected to the card content.
+- Do not use cards as a default replacement for all layout structure.
+
+### Navigation
+
+- Navigation should reflect product structure and user tasks.
+- Keep labels short, specific, and consistent.
+- Show current location clearly.
+- Group navigation items logically.
+- Avoid mixing unrelated destinations at the same hierarchy level.
+- Preserve predictable navigation placement across the product.
+
+### Modals And Sheets
+
+- Use modals for focused tasks that interrupt the current flow intentionally.
+- Use sheets for contextual editing, inspection, or secondary workflows when preserving background context helps.
+- Avoid modals for complex multi-step tasks, deep editing, or content that needs full-page space.
+- Always provide clear close, cancel, and primary action behavior.
+- Prevent accidental destructive actions inside modals.
+
+### Alerts And Inline Feedback
+
+- Use alerts for important system-level or page-level messages.
+- Use inline feedback for field-level, row-level, or component-level issues.
+- Avoid persistent alert banners for low-importance information.
+- Alerts should explain the issue and provide recovery when applicable.
+- Use semantic severity consistently.
+
+### Filters And Search Areas
+
+- Put filters close to the data they affect.
+- Make active filters visible.
+- Provide clear reset behavior.
+- Use search for keyword matching and filters for structured refinement.
+- Avoid hiding commonly used filters behind advanced controls.
+- Collapse rare filters only when the active state remains visible.
+
+## Component Rules
+
+- Buttons need clear hierarchy: primary, secondary, tertiary, destructive, and disabled.
+- Primary buttons should represent the main intended action in the current context.
+- Secondary buttons should support alternative actions without competing.
+- Destructive buttons should be visually distinct and paired with confirmation when risk is high.
+- Inputs should include labels, values, placeholders only when helpful, helper text when needed, and validation states.
+- Selects, comboboxes, radios, and checkboxes should be chosen according to option count and selection behavior.
+- Tabs should switch between peer views without changing the overall task context.
+- Accordions should reveal optional or secondary content within the same page.
+- Badges should communicate compact status or category, not decorate headings.
+- Tooltips should clarify small uncertainties, not contain essential instructions.
+- Icons should support labels and scanning; avoid icon-only controls unless space or convention justifies them.
+- Cards should group coherent content and actions.
+- Tables should support comparison and data operations.
+- Modals should focus attention on a bounded task.
+- Toasts should confirm transient outcomes, not replace persistent error handling.
+
+## Decision Heuristics
+
+### Card Vs Table
+
+Use a card when each item is a distinct object, summary, preview, or content unit with variable structure.
+
+Use a table when users need to compare many records across the same attributes, scan rows, sort columns, filter data, or perform bulk actions.
+
+Choose a table for operational data. Choose cards for discovery, summaries, galleries, or object previews.
+
+### Modal Vs Dedicated Page
+
+Use a modal for short, focused, reversible tasks that depend on the current context.
+
+Use a dedicated page for complex forms, multi-step workflows, deep review, heavy content, collaboration, or tasks users may need to bookmark, revisit, or share.
+
+Do not force complex creation or editing flows into modals when users need space and context.
+
+### Tabs Vs Accordion
+
+Use tabs for switching between peer sections at the same hierarchy level.
+
+Use accordions for revealing or hiding sections within a single flow.
+
+Tabs imply separate views. Accordions imply expandable content on the same view.
+
+Avoid tabs when users need to compare all sections at once.
+
+### Sidebar Vs Top Navigation
+
+Use a sidebar when the product has many persistent sections, nested destinations, or admin-style workflows.
+
+Use top navigation when the product has a small number of primary areas or benefits from a broader content canvas.
+
+Do not use both heavily unless each has a distinct role.
+
+### Spacious Vs Compact Layout
+
+Use spacious layouts for onboarding, low-frequency decisions, complex comprehension, marketing-adjacent product areas, or workflows where confidence matters more than speed.
+
+Use compact layouts for expert tools, dashboards, dense data, repeated operations, and high-frequency workflows.
+
+Do not make dense workflows spacious at the cost of scanning efficiency. Do not make complex decisions cramped.
+
+### High Emphasis Vs Subtle Emphasis
+
+Use high emphasis for primary actions, critical states, selected navigation, dangerous warnings, and essential data.
+
+Use subtle emphasis for secondary metadata, supporting controls, optional information, and repeated structure.
+
+If too many elements need high emphasis, revisit the screen hierarchy.
+
+### Dense Information View Vs Progressive Disclosure
+
+Use dense information views when users need comparison, monitoring, or expert scanning.
+
+Use progressive disclosure when users need guidance, when information is optional, or when too much detail would slow the primary task.
+
+Do not hide information that is required to make a correct decision.
+
+## Anti-Patterns
+
+- Decorative UI without functional purpose.
+- Visual novelty that makes tasks harder to understand.
+- Flat hierarchy where every element competes equally.
+- Inconsistent spacing between similar elements.
+- Weak CTA hierarchy where primary and secondary actions look equally important.
+- Multiple unrelated primary actions in the same visual area.
+- Inaccessible contrast for text, icons, borders, or states.
+- Weak or missing keyboard focus feedback.
+- Interaction states that rely only on color.
+- Arbitrary border radius changes across similar components.
+- Arbitrary shadow changes without an elevation model.
+- Overdesigned controls that distract from the workflow.
+- Cramped grouping that makes unrelated elements feel connected.
+- Excessive containers, borders, cards, and dividers.
+- Cards used where a table would better support comparison.
+- Modals used for complex workflows that need a full page.
+- Tabs used for non-peer content.
+- Accordions used to hide essential information.
+- Hover-only actions with no keyboard or touch equivalent.
+- Disabled actions with no explanation.
+- Error messages that describe failure but not recovery.
+- Empty states that are only decorative.
+- Inconsistent loading behavior across similar actions.
+- Inconsistent labels for the same concept.
+- Icons used without labels when meaning is not obvious.
+- Layout shifts caused by hover, loading, validation, or dynamic content.
+
+## Final Behavioral Rules For The AI
+
+- Prioritize clarity over novelty.
+- Design around the user’s task, not around visual decoration.
+- Create clear focal points on every screen.
+- Establish visual hierarchy before adding detail.
+- Maintain consistent spacing rhythm.
+- Use typography intentionally to guide reading order and scanning.
+- Group related information and actions.
+- Reuse established patterns once they exist.
+- Keep interaction states complete and predictable.
+- Make feedback visible for user actions and system changes.
+- Choose components based on usability, not aesthetic preference.
+- Justify layout choices through task flow, density, comparison needs, and user risk.
+- Prefer accessible, readable, resilient interfaces.
+- Avoid arbitrary radius, shadow, color, spacing, or typography decisions.
+- Keep screens production-ready, responsive, and state-complete.
+- When combined with a project-specific style guide, preserve these UX principles while adopting the project’s visual language.
+codex
+# Terminal IDE Monochrome Product UI Design Skill
+
+## Purpose
+
+Use this skill to generate new UI screens, components, and product flows that feel native to this project’s existing interface language. The output must preserve the source application’s terminal-native identity while applying strong product UI/UX judgment for clarity, hierarchy, accessibility, task completion, and scalability.
+
+The source design language is **Terminal IDE Monochrome**: black backgrounds, gray terminal panels, white text, monospaced typography, hard borders, command-style controls, compact expert workflows, crisp hover states, and restrained semantic color.
+
+## AI Role
+
+Act as a **product UI/UX designer and interface system builder**.
+
+You design production-ready software interfaces, not decorative mockups. You translate product requirements into coherent layouts, component structures, interaction states, responsive behavior, and reusable design patterns that preserve the project’s visual identity.
+
+You must behave like a design systems architect: reuse existing patterns first, extend them conservatively when needed, and keep every new screen consistent with the source system’s geometry, spacing, typography, emphasis, and interaction tone.
+
+## Design Philosophy
+
+Design interfaces that feel like a polished developer terminal expanded into a complete product UI.
+
+Prioritize clarity over novelty. The interface should help users understand where they are, what matters, what they can do, what changed, and what to do next.
+
+The project’s style is technical, precise, terminal-native, developer-focused, and utilitarian. Good UI in this system is not soft SaaS decoration. It is structured control-surface design: bordered panels, command rows, status metadata, compact controls, white-on-black contrast, and restrained functional color.
+
+Use general UX best practices through the project’s identity:
+
+- Use hierarchy to make task priority obvious.
+- Use spacing to reveal relationships.
+- Use typography to support scanning.
+- Use borders before shadows.
+- Use color as signal, not decoration.
+- Use interaction feedback that feels crisp, local, and technical.
+- Use shadcn/Radix primitives for accessibility and state logic, but visually bias them toward the terminal-console identity.
+
+## Non-Negotiable Style Traits
+
+### Radius And Geometry Family
+
+- Preserve the sharp, rectangular terminal geometry.
+- Default custom product surfaces to `rounded-none` or very small radius, roughly `0px` to `4px`.
+- Use `rounded-md`, `rounded-lg`, or stock shadcn radius only for accessibility-heavy primitives such as inputs, selects, dialogs, popovers, switches, and tooltips.
+- Use `rounded-full` only for status dots, switches, progress tracks, and similar functional indicators.
+- Do not make large rounded SaaS cards the default container shape.
+
+### Spacing Character
+
+- Preserve medium-dense product spacing: broad page gutters, compact panel interiors, tight command/control rows, and clear section grouping.
+- Use `p-4` to `p-6` for most panels.
+- Use `gap-2`, `gap-3`, and `gap-4` for controls and dense groups.
+- Use `gap-6`, `gap-8`, or `space-y-6/8` for major product sections.
+- Avoid flattening the interface into a cramped generic admin layout. Dense does not mean crowded.
+
+### Emphasis Discipline
+
+- Use strong emphasis rarely.
+- Primary emphasis is white text, white fill, stronger border, or active terminal status.
+- Secondary content belongs in gray text and lower-contrast borders.
+- Semantic color is reserved for state: green for success/active, yellow for warning/pending, red for destructive/error, blue only for terminal path/link semantics.
+- Do not make multiple actions look equally primary.
+
+### Hierarchy Style
+
+- Establish hierarchy through contrast, alignment, border strength, spacing, typography weight, and panel structure.
+- Page-level hierarchy must be stronger than component-level hierarchy.
+- Use one dominant focal point per screen or section.
+- Make primary values, statuses, and actions easier to scan than labels and supporting text.
+
+### Typography Roles
+
+- Preserve monospaced or code-adjacent typography as a core identity trait.
+- Use mono for headings, labels, commands, stats, IDs, timestamps, navigation, filters, and compact product UI.
+- Sans text may support longer prose only when mono harms readability.
+- Use `text-sm` as the product UI default.
+- Use `text-xs` for metadata and status labels.
+- Use `text-lg` to `text-xl` for card and section titles.
+- Use larger headings sparingly for page orientation or marketing-adjacent moments.
+
+### Interaction Tone
+
+- Interactions should feel crisp, calm, technical, and local.
+- Hover states should brighten borders/text or shift dark backgrounds to `gray-900`.
+- Focus states must remain visible and accessible.
+- Loading should use terminal-native patterns such as blinking cursors, skeletons, spinners, processing labels, pulse status dots, or command-like progress.
+- Avoid playful, bouncy, or decorative interaction unless it reinforces terminal behavior.
+
+## Core UI/UX Principles
+
+- Start from the user task before choosing layout or components.
+- Make the primary purpose of each screen immediately clear.
+- Group related information and actions.
+- Keep common actions easy to find.
+- Make destructive or irreversible actions distinct and confirmed.
+- Show loading, empty, error, success, disabled, hover, focus, selected, and active states.
+- Maintain accessible contrast and keyboard-visible focus.
+- Do not rely on color alone for meaning.
+- Preserve layout stability during loading, validation, hover, and dynamic updates.
+- Prefer recognition over recall with labels, current values, helper text, and clear status.
+
+## Project-Specific Style Rules
+
+### Color Usage
+
+- Base background: black.
+- Main surfaces: `gray-950`, `gray-900`, and black.
+- Main text: white.
+- Supporting text: `gray-300`, `gray-400`, and `gray-500`.
+- Low-priority metadata: `gray-600` or `gray-700`.
+- Primary CTA: white fill, black text, strong border.
+- Default borders: `gray-800` or `gray-700`.
+- Hover/active borders: `gray-600`, `gray-500`, or white.
+- Keep 85-90% of the interface black, gray, and white.
+- Use green, yellow, red, and blue only for status, validation, terminal semantics, charts, or links.
+
+### Typography Rules
+
+- Use mono as the default product identity font.
+- Headings are bold and concise.
+- Labels are small, direct, and close to their controls.
+- Helper text is gray and used only when it reduces uncertainty.
+- Error text must explain what failed and how to recover.
+- IDs, commands, values, metrics, timestamps, and technical metadata should use mono/tabular treatment.
+- Avoid too many sizes or weights in one screen.
+
+### Spacing Rules
+
+- Use wide outer page gutters such as `px-6` and `lg:px-12`.
+- Use constrained max widths for reading-heavy content.
+- Use wider content areas for dashboards, tables, and operational views.
+- Product page header to content spacing should usually be `24px` to `32px`.
+- Panel grid gaps should usually be `16px` to `24px`.
+- Table rows should usually be `40px` to `48px`.
+- Form field gaps should usually be `12px` to `16px`.
+- Field group gaps should usually be around `24px`.
+
+### Radius Rules
+
+- Terminal panels, command rows, cards, tables, page sections, and custom CTAs should usually be square.
+- Form controls may use shadcn `rounded-md`.
+- Dialogs and overlays may use `rounded-lg`.
+- Do not mix arbitrary radii for visual interest.
+- Radius differences must correspond to component role or primitive constraints.
+
+### Shadow And Elevation Rules
+
+- Borders are the primary separation mechanism.
+- Shadows are secondary and sparse.
+- Use shadows for terminal windows, active CTAs, dialogs, popovers, dropdowns, and raised overlays.
+- If using glow, keep it white-tinted and subtle.
+- Do not use soft card stacks as the main structure.
+
+### Hierarchy Rules
+
+- White text and stronger borders indicate priority.
+- Gray text and weaker borders indicate support.
+- Active navigation uses `bg-gray-900`, stronger border, and white text.
+- Destructive actions use red only when the action is truly destructive.
+- Status badges should be compact and semantic.
+- Repeated chrome should be quiet so content can stand out.
+
+### Visual Priority Rules
+
+- Identify the screen’s primary task before styling.
+- Place primary actions near the content they affect.
+- Use one clear primary action per decision area.
+- Make important values scannable before explanations.
+- Use compact metadata rows for secondary information.
+- Do not allow filters, nav, badges, or decorative elements to compete with the main task.
+
+### Interaction State Rules
+
+- Hover: brighten text, border, or dark surface; avoid layout shift.
+- Focus: use visible ring or border treatment that works on black and gray surfaces.
+- Active: use stronger border/background and persistent white text.
+- Selected: distinguish from hover with persistent state, not color alone.
+- Disabled: use opacity plus explanation when the reason is not obvious.
+- Loading: preserve layout with skeletons, spinners, terminal labels, or processing states.
+- Success: use local green feedback when possible.
+- Warning: use yellow sparingly with clear text.
+- Error: use red border/text and actionable recovery guidance.
+
+### Layout Rules
+
+- Use black full-page shells.
+- Prefer sticky top nav, persistent left sidebar, or local page header depending on product complexity.
+- Use terminal-like panels with header/body/footer structure for grouped workflows.
+- Use command bars above data for search, filters, and actions.
+- Use bordered sections instead of floating decorative cards.
+- Avoid cards inside cards unless the inner item is a truly repeated object.
+- Keep controls visually connected to the content they affect.
+
+### Responsiveness Rules
+
+- Preserve task order on narrow screens.
+- Stack CTAs and controls vertically on mobile when needed.
+- Collapse sidebars into off-canvas navigation on small screens.
+- Keep command strings readable with wrapping or `break-all`.
+- Hide or collapse secondary columns before primary identifiers, statuses, or actions.
+- Tables should support horizontal scroll, responsive column priority, or alternate row detail views.
+- Do not let text overflow, clip, or cause layout shifts.
+
+## Visual Priority And Hierarchy Rules
+
+Every generated screen must answer:
+
+- What is the user trying to do?
+- What is the most important information?
+- What action should happen next?
+- What is secondary, historical, optional, or metadata?
+- What state is the system currently in?
+
+Use hierarchy in this order:
+
+1. Layout position.
+2. Grouping and spacing.
+3. Typography size and weight.
+4. Text and border contrast.
+5. Surface contrast.
+6. Semantic color.
+7. Motion or animation.
+
+Do not solve hierarchy primarily with color, decoration, or excessive badges.
+
+## Typography As UX Rules
+
+Use typography to guide comprehension:
+
+- Page title answers: where am I?
+- Section title answers: what is this group?
+- Label answers: what is this control or value?
+- Helper text answers: how should I decide?
+- Metadata answers: what is the supporting context?
+- Error text answers: what went wrong and how do I fix it?
+- Action label answers: what will happen if I click?
+
+Keep headings short, specific, and product-facing. Avoid vague labels like “Overview” when a task-specific title is possible.
+
+## Interaction Rules
+
+- Buttons perform actions.
+- Links navigate.
+- Tabs switch peer views.
+- Accordions reveal secondary content in the same flow.
+- Dialogs interrupt for bounded decisions.
+- Forms preserve user input after errors.
+- Filters stay close to the data they affect.
+- Copy actions should show immediate local feedback.
+- Advanced or rare options may use progressive disclosure, but critical actions and errors must remain visible.
+- Do not hide essential functionality behind hover-only behavior.
+
+## Layout And Page Composition Rules
+
+### Page Shells
+
+Use a terminal control-surface shell:
+
+- Black page background.
+- Gray-950 navigation/sidebar.
+- Gray-800 dividers.
+- White primary text.
+- Gray support text.
+- Compact command/action areas.
+- Bordered panels for content groups.
+
+### Page Headers
+
+Use page headers with:
+
+- White title.
+- Short gray description.
+- Optional status/version/timestamp metadata.
+- Right-aligned command-like primary action.
+- Secondary actions as outline, dashed, ghost, or text controls.
+
+### Product Dashboards
+
+Dashboards must feel like terminal monitoring surfaces, not generic SaaS metric grids.
+
+Use:
+
+- Compact metric panels with white values and gray labels.
+- Status dots and sparse semantic color.
+- Bordered chart containers with muted gridlines.
+- Command bar filters for time range, environment, status, or scope.
+- Alerts/work queues above static vanity metrics when action is required.
+
+### Data And CRUD Pages
+
+Use list/detail/create/edit/delete separation.
+
+- Lists use tables or dense rows for operational data.
+- Detail pages use panels, property lists, command blocks, and related-record sections.
+- Create/edit flows use grouped forms in bordered panels.
+- Delete flows require confirmation and consequence text.
+- Primary record actions stay consistent across resources.
+
+### Settings Pages
+
+Group settings by user mental model.
+
+- Use clear section titles.
+- Show current values.
+- Explain consequences of risky changes.
+- Separate dangerous settings from routine configuration.
+- Make save behavior explicit: immediate, explicit, or staged.
+
+## Component Rules
+
+### Dashboards
+
+- Use bordered metric panels with compact typography.
+- Use white values, gray labels, and mono/tabular numerals.
+- Use green/yellow/red only for actual state.
+- Place filters and time ranges in compact command bars.
+- Avoid decorative charts that do not support monitoring, comparison, or action.
+
+### Settings Pages
+
+- Use stacked bordered sections.
+- Use compact labels, descriptions, and current values.
+- Use inline status and save feedback.
+- Keep dangerous actions isolated with stronger warning language.
+
+### CRUD Pages
+
+- Use tables for scanning and comparison.
+- Use details panels for record inspection.
+- Use forms for create/edit.
+- Use confirmation dialogs for destructive actions.
+- Keep row actions compact and predictable.
+
+### Forms
+
+- Use grouped fieldsets inside bordered panels.
+- Use full-width controls in narrow contexts.
+- Place labels close to controls.
+- Use helper text for constraints or consequences.
+- Use red destructive text and border treatment for errors.
+- Put submit actions after the form content or in a sticky/local footer for long forms.
+
+### Tables
+
+- Use full-width tables inside bordered containers.
+- Use compact `text-sm` rows.
+- Use muted column headers.
+- Use row dividers instead of heavy card separation.
+- Use hover `bg-gray-900`.
+- Use selected state with stronger background or border.
+- Keep identifiers, statuses, and primary actions visible.
+- Use horizontal scroll or responsive column priority on mobile.
+
+### Analytics Blocks
+
+- Use dark bordered chart panels.
+- Use muted axes, gridlines, and labels.
+- Use mono values in tooltips.
+- Use chart colors sparingly and semantically.
+- Keep charts subordinate to the insight or decision they support.
+
+### Dialogs
+
+- Use black or gray-950 content with gray border.
+- Use `bg-black/50` overlay.
+- Use compact `p-6`.
+- Use white title and gray description.
+- Align actions right on desktop and stack appropriately on mobile.
+- Avoid colorful modal headers.
+- Use destructive styling only for destructive confirmations.
+
+### Navigation
+
+- Use terminal chrome, gray-950 backgrounds, and gray borders.
+- Use white active labels.
+- Use gray inactive labels.
+- Use active state with `bg-gray-900` and stronger border.
+- Use compact icon plus label rows.
+- Use nested indentation where needed.
+- Mobile navigation may slide off-canvas with a black overlay.
+
+### Cards
+
+- Use cards as bordered terminal panels, not soft elevated tiles.
+- Use black or gray-950 fill.
+- Use `p-4` to `p-6`.
+- Use square or tiny radius.
+- Use white titles and gray descriptions.
+- Use hover border brightening for interactive cards.
+- Do not use card grids where a table better supports comparison.
+
+### Empty States
+
+- Use dashed bordered terminal panels.
+- Use a short white title.
+- Use gray explanatory text.
+- Provide one clear command-style action when there is a next step.
+- Distinguish first-use, filtered-empty, permission-empty, and error-empty states.
+
+### Alerts
+
+- Use bordered callout panels.
+- Keep fill changes subtle.
+- Use semantic color only for severity.
+- Explain the issue and recovery action.
+- Prefer inline feedback for field-level or row-level problems.
+
+### Filters
+
+- Place filters directly above the data they affect.
+- Use a compact command-bar row.
+- Combine search, select filters, status chips, and reset behavior.
+- Show active filters clearly.
+- Hide rare advanced filters behind a dropdown, drawer, or expandable region only when active filters remain visible.
+
+## Derived Component Rules
+
+When creating components that do not exist in the original repository, derive them from the source identity instead of inventing a new style family.
+
+Use this derivation process:
+
+1. Identify the closest existing source pattern: terminal window, command row, docs panel, sidebar item, shadcn primitive, table row, dialog, badge, or empty state.
+2. Preserve the dominant traits: black/gray surfaces, mono typography, hard borders, compact spacing, restrained color, and crisp state changes.
+3. Choose component anatomy based on user task, not visual novelty.
+4. Use existing radius and spacing behavior unless the component’s function requires a primitive-specific exception.
+5. Use semantic variants only when they represent actual state or risk.
+6. Add new variants only when they have a clear reusable purpose.
+
+Examples:
+
+- A calendar should look like a bordered terminal grid with compact mono dates, gray inactive days, white selected day, and green/yellow/red only for availability or risk.
+- A kanban board should use dark bordered columns, compact cards, white titles, gray metadata, and status dots instead of colorful column backgrounds.
+- A billing screen should use property panels, command-like plan actions, compact invoices table, and restrained semantic status badges.
+- A profile editor should use grouped bordered form panels, mono labels, gray helper text, and explicit save feedback.
+- A notification center should use dense rows with timestamps, status dots, muted descriptions, and border/hover state instead of illustrated feed cards.
+
+## Constraints
+
+Never:
+
+- Introduce broad new color families, pastel palettes, glassmorphism, blobs, or colorful decorative gradients.
+- Replace the terminal identity with generic bright SaaS styling.
+- Use decorative elements without functional value.
+- Use soft shadows as the primary layout separator.
+- Use large rounded cards as the default surface.
+- Introduce sharper geometry if adapting a source system that is rounded; for this project, preserve the existing sharp terminal geometry.
+- Flatten or neutralize the spacious/dense rhythm into a cramped generic admin style.
+- Break spacing rhythm between similar groups.
+- Create inconsistent hierarchy where every card, badge, button, or metric competes equally.
+- Overuse semantic colors.
+- Hide critical actions, errors, or required fields behind progressive disclosure.
+- Use hover-only actions without keyboard or touch equivalents.
+- Overcomplicate interactions when a direct action, table, form, or dialog is clearer.
+- Invent unsupported component patterns without grounding them in the source identity.
+- Add illustrations, mascots, playful icons, or decorative animations unless they directly support terminal/product comprehension.
+
+## Anti-Drift Rules
+
+Use these checks before finalizing any generated UI:
+
+- Does the screen still read as a terminal/IDE control surface?
+- Is the palette still mostly black, gray, and white?
+- Are semantic colors used only for state, validation, or terminal semantics?
+- Are panels bordered before they are shadowed?
+- Are custom product surfaces mostly square?
+- Is mono typography still visible in core product elements?
+- Are spacing choices consistent with compact expert UI?
+- Is there one clear primary action per area?
+- Are supporting elements gray and quieter than primary content?
+- Are hover, focus, active, selected, disabled, loading, empty, and error states defined?
+- Are new components derived from existing source patterns?
+- Would this screen feel native beside the landing page, docs page, terminal panels, command rows, and sidebar?
+
+If the answer is no, revise toward the source identity. Remove decorative color, soften hierarchy conflicts, tighten spacing, strengthen borders, restore mono roles, and reduce unsupported component novelty.
+
+## Conservative Adaptation Rule
+
+A portfolio, marketing page, landing page, or documentation style may be adapted into dashboards, settings, CRUD flows, forms, analytics, or utility screens.
+
+The adaptation must preserve the recognizable traits of the source system:
+
+- Geometry remains sharp, rectangular, and terminal-like.
+- Hierarchy remains high-contrast but disciplined.
+- Spacing remains broad at page level and compact inside controls.
+- Emphasis remains sparse and purposeful.
+- Typography remains mono/code-adjacent in core UI roles.
+- Interaction remains crisp, local, and technical.
+- Components feel like extensions of terminal windows, command rows, docs panels, and shadcn primitives rather than a different product family.
+
+## Final Operating Instructions
+
+When generating UI for this project:
+
+1. Start with the user task and screen purpose.
+2. Select the closest existing source pattern.
+3. Build the layout using black shells, gray panels, hard borders, compact controls, and mono hierarchy.
+4. Reuse shadcn/Radix primitives for accessible behavior where appropriate.
+5. Style primitives to align with the terminal identity.
+6. Define responsive behavior and all important interaction states.
+7. Justify key layout and component decisions using clarity, hierarchy, visual priority, consistency, task completion, accessibility, and scalability.
+8. Prefer product-ready UI over conceptual styling.
+9. Extend the system conservatively instead of reinventing it.
+10. Preserve the Terminal IDE Monochrome identity across every new screen category.
+tokens used
+62,517

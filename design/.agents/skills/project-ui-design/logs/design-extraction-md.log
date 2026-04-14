@@ -1,0 +1,217 @@
+**Executive Summary**
+- The project is a Paperfolio-style portfolio built with Next.js and Tailwind v4, using shadcn/ui primitives for Button and Input. Evidence: `app/layout.tsx:4`, `components/ui/*`.
+- Visual language is “playful brutalist”: thick black borders (3–4px), offset hard shadows (4–8px), big rounded corners (up to 32px/rounded-3xl/full), and saturated spot accents over a black/white base. Evidence: `components/navigation.tsx:7`, `components/services-section.tsx:62`, `components/hero-section.tsx:24`.
+- Colors in code use a grayscale token set, but real sections rely on direct hex accents (pink/red, blue, yellow, indigo). Evidence: tokens in `app/globals.css:6-31`; hex usage in `components/hero-section.tsx:12-16`, `components/portfolio-section.tsx:18-37`, `components/footer.tsx:67-95`.
+- Typography is Onest (Google font) with bold display headings and medium body text. Evidence: `app/layout.tsx:6,15-19`, sizes throughout sections.
+- Layout rhythm: container + `px-4` gutters, sections spaced `py-16 md:py-24`, inner content mostly `max-w-7xl` grids, frequent `md:grid-cols-2`. Evidence: `components/hero-section.tsx:4-6`, `components/portfolio-section.tsx:41`, `components/experience-section.tsx:42`.
+- Component coverage: Buttons and Inputs are defined via shadcn; cards, badges, and content patterns are page-level compositions. No tables/modals/dropdowns present in repo.
+- Dark theme tokens exist but are not actively used (no theme toggle wired). Evidence: `app/globals.css:42-75`; body lacks `dark` class in `app/layout.tsx:33-35`.
+
+---
+
+**Design Tokens**
+- Colors (light theme) — explicit tokens
+  - Primary: `#0A0A0A` (near-black). Evidence: `app/globals.css:13`
+  - Primary-foreground: `#FAFAFA`. Evidence: `app/globals.css:14`
+  - Secondary: `#F5F5F5`; Secondary-foreground: `#171717`. Evidence: `app/globals.css:15-16`
+  - Background: `#FFFFFF`; Foreground: `#0A0A0A`. Evidence: `app/globals.css:7-8`
+  - Surface/Card: `#FFFFFF`; Card-foreground: `#0A0A0A`. Evidence: `app/globals.css:9-10`
+  - Muted: `#F5F5F5`; Muted-foreground: `#717171`. Evidence: `app/globals.css:17-18`
+  - Accent: `#F5F5F5`; Accent-foreground: `#171717`. Evidence: `app/globals.css:19-20`
+  - Destructive: `#E7000B`; Destructive-foreground: `#F5F5F5`. Evidence: `app/globals.css:21-22`
+  - Border: `#0A0A0A`; Input: `#FFFFFF`; Ring: `#A1A1A1`. Evidence: `app/globals.css:23-25`
+  - Charts 1–5: all `#737373` (placeholder). Evidence: `app/globals.css:26-30`
+- Colors (dark theme) — explicit tokens
+  - Background: `#0A0A0A`; Foreground: `#FAFAFA`. Evidence: `app/globals.css:43-44`
+  - Secondary: `#262626`; Border: `#383838`; Input: `#525252`; Ring: `#737373`. Evidence: `app/globals.css:51,59-61`
+  - Destructive: `#FF6467`. Evidence: `app/globals.css:57`
+- Accent “chips” used in components — evidence-based palette
+  - Pink/Red: `#FF6B7A`, `#FF4A60`. Evidence: `components/hero-section.tsx:12`, `components/services-section.tsx:22,35`
+  - Blue: `#2F81F7`. Evidence: `components/hero-section.tsx:14`, `components/testimonials-section.tsx:12`
+  - Yellow: `#FFC224`, `#FDB927`. Evidence: `components/portfolio-section.tsx:51`, `components/articles-section.tsx:30`
+  - Indigo: `#6366F1`. Evidence: `components/experience-section.tsx:15`
+  - Neutral text: `#393939` (body), `#0B0B0B` (headings). Evidence: `components/hero-section.tsx:18`, `components/services-section.tsx:80`
+- Radius scale
+  - Base token radius: `1rem` (16px). Evidence: `app/globals.css:31,104-107`
+  - Recurrent radii in UI: `rounded-xl`, `rounded-3xl`, `rounded-full`, and custom `[32px]`, `[16px]`, `[12px]`, `[10px]`, `[5px]`. Evidence: `components/services-section.tsx:62-66,90`, `components/footer.tsx:29,48,72`
+- Spacing scale (inferred from classes)
+  - Baseline: `4, 6, 8, 12, 16, 20, 24, 28, 32, 48, 64, 96` px (examples: `px-4=16`, `gap-6=24`, `py-16=64`, `md:py-24=96`). Evidence: section wrappers across components
+  - Custom paddings: `py-5(20px)`, `px-8(32px)`, `md:px-[62px]`. Evidence: `components/hero-section.tsx:20-23`, `components/about-section.tsx:36`
+- Shadows
+  - Hard offset “paper” shadows: `shadow-[4px_4px_0_0_rgba(0,0,0,1)]`, `shadow-[6px_6px_0_0_rgba(0,0,0,1)]`, `shadow-[8px_8px_0_0_rgba(0,0,0,1)]`. Evidence: `components/navigation.tsx:7`, `components/services-section.tsx:62`, `components/experience-section.tsx:58`
+  - Tiny elevation for controls: `shadow-xs`. Evidence: `components/ui/input.tsx:11`, `components/ui/button.tsx:16`
+- Typography
+  - Font families: Sans = Onest; Mono = JetBrains Mono (declared; mono not used in UI). Evidence: `app/layout.tsx:6,15-19`, `app/globals.css:78-79`
+  - Weights used: 700 bold, 600 semibold, 500 medium. Evidence: throughout sections (buttons: semibold; headings: bold)
+  - Size/leading examples (in px; inferred from classes):
+    - Display H1: `42/50` → `72/85` at md. Evidence: `components/hero-section.tsx:8-12`
+    - H2: `52/60` at md; also `text-4xl`. Evidence: `components/services-section.tsx:14-17`
+    - H3: `28/40`. Evidence: `components/services-section.tsx:80`
+    - Body: `18/30` (medium), small: `16/28`. Evidence: `components/hero-section.tsx:18`, `components/articles-section.tsx:86`
+    - Label/Tag: `text-xs` to `text-sm` with bold. Evidence: `components/articles-section.tsx:26`
+- Container widths (used)
+  - `max-w-2xl` (~672px), `max-w-5xl` (~1024px), `max-w-7xl` (~1280px). Evidence: `components/navigation.tsx:7`, `components/testimonials-section.tsx:28`, `components/hero-section.tsx:5`
+- Breakpoints (inferred, Tailwind defaults)
+  - Used: `sm`, `md` (primary pivot), `lg`. Defaults assumed: `sm 640px`, `md 768px`, `lg 1024px`. Evidence: classes across sections; no custom config present
+
+Notes:
+- `styles/globals.css` defines a different oklch palette and Geist fonts but is not imported. Evidence: `app/layout.tsx:4` imports `app/globals.css`. Treat `styles/globals.css` as non-authoritative.
+
+---
+
+**Layout System**
+- Page width strategy
+  - Outer: `container mx-auto px-4` + inner `max-w-7xl`. Evidence: `components/hero-section.tsx:4-6`
+  - Sections: vertical rhythm `py-16 md:py-24` (occasionally `md:py-32`). Evidence: `components/about-section.tsx:4`
+- Grid patterns
+  - Standard two-column at `md:grid-cols-2`; occasional asymmetric `md:grid-cols-[0.9fr_1.1fr]`. Evidence: `components/hero-section.tsx:5-6`, `components/articles-section.tsx:20`
+  - Cards arranged as `grid md:grid-cols-2 lg:grid-cols-3 gap-6`. Evidence: `components/services-section.tsx:40`
+- Header structure
+  - Centered nav inside narrow shell (`max-w-2xl`), thick border, offset shadow, circular logo dot, icon-only CTA button. Evidence: `components/navigation.tsx:7-13,31-33`
+  - Mobile hides menu (`hidden md:flex`). Evidence: `components/navigation.tsx:12`
+- Composition logic
+  - Sequence: Hero → Marquee stripe (rotated black band) → Services grid → About → Portfolio cards → Experience (inverted black section) → Testimonials → Articles → Footer. Evidence: `app/page.tsx:7-19`
+  - Inverted section (`bg-black`) reserved for Experience to create contrast break. Evidence: `components/experience-section.tsx:40-45`
+- Spacing rules
+  - Section headings often have `mb-12~16`; card gaps `gap-6`; inner paddings `p-6~12`. Evidence: multiple section containers
+- Responsive behaviors
+  - Primary breakpoint at `md`: grid splits, typography steps up; at `lg`: more spacing and larger type. Evidence: across sections
+  - Buttons and form controls become full-width on small screens (`w-full sm:w-auto`). Evidence: `components/hero-section.tsx:20-23`
+
+---
+
+**Component-by-Component Pattern Extraction**
+- Buttons (shadcn base with project overrides)
+  - Purpose: primary CTAs and icon-only actions.
+  - Visual style: filled black for primary; heavy outlined white for secondary; rounded from `sm` to `lg`. Evidence: `components/ui/button.tsx:7-22`, `components/hero-section.tsx:20-29`
+  - Density: comfortable; heights `h-12` in nav, custom paddings on pages.
+  - Spacing: icon + label `gap-2`; icon-only in nav `min-w-[48px]`. Evidence: `components/navigation.tsx:31-33`
+  - Radius: `rounded-sm/rounded-lg/rounded-xl`; page CTAs often `rounded-lg` or `[12px]`.
+  - Border: primary none; outline: `border-[3px] border-black`. Evidence: `components/hero-section.tsx:24-29`
+  - Shadow: none by default; outline variant uses `shadow-xs`.
+  - States: `hover:bg-black/90` for filled; `hover:bg-gray-50` for outlined; focus ring `ring-[3px]` using tokens; aria-invalid hooks defined. Evidence: `components/ui/button.tsx:8,12,15-16`
+  - Icon usage: lucide, typically `w-5 h-5` (nav uses bigger `w-10 h-10`). Evidence: `components/hero-section.tsx:20-23`, `components/navigation.tsx:31-33`
+  - Variants: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`. Evidence: `components/ui/button.tsx:11-22`
+- Inputs
+  - Purpose: email/newsletter and general inputs.
+  - Visual: transparent bg, strong border, compact height `h-9` (pages may override to `h-14~16`).
+  - Spacing: `px-3 py-1` base; page usage increases. Evidence: `components/ui/input.tsx:11`, `components/footer.tsx:38-45`
+  - Radius: `rounded-md` base; page usage `rounded-xl`.
+  - Border: uses token `border-input` with page override `border-4 border-black`.
+  - Shadow: `shadow-xs`.
+  - States: focus ring `ring-[3px]`, aria-invalid ring/destructive border styling prepared. Evidence: `components/ui/input.tsx:12-13`
+- Cards (content blocks)
+  - Purpose: service items, portfolio/project, article cards, testimonial block.
+  - Visual: `bg-white`, thick `border-[3px]` or `border-4` black, generous rounded corners (`rounded-3xl`/`[32px]`), hover offset shadow + slight lift. Evidence: `components/services-section.tsx:62`, `components/articles-section.tsx:29`, `components/testimonials-section.tsx:20-26`
+  - Spacing: `p-6~12` with internal sectioning lines (`border-t-[3px]`) in experience items. Evidence: `components/experience-section.tsx:68-75`
+  - States: hover `translate-y-[-4px]`, `group-hover:scale-110` on images. Evidence: `components/services-section.tsx:62-66`
+- Badges/Tags
+  - Purpose: surface category or project tag.
+  - Visual: pill with filled background (black or brand color), `text-white`, bold, small size. Evidence: `components/articles-section.tsx:26`, `components/portfolio-section.tsx:71-73`
+- Page headers/section headings
+  - Purpose: strong section intros with inline highlighted words (chip-style backgrounds in accent colors).
+  - Visual: large bold text with inline colored `span` chips (`px-3 py-1`, white text on accent). Evidence: `components/hero-section.tsx:8-16`, `components/testimonials-section.tsx:12-14`
+- Logo marquee
+  - Purpose: social proof.
+  - Visual: black rotated strip (`-rotate-[5deg]`), animated horizontal marquee. Evidence: `components/logo-marquee.tsx:8-16`
+- Experience list
+  - Purpose: timeline-like list of roles.
+  - Visual: white cards on black section, thick borders, avatar coin with border and small offset shadow, top divider line. Evidence: `components/experience-section.tsx:54-63`
+- Footer
+  - Purpose: newsletter CTA + four-column links + contact.
+  - Visual: black section; newsletter is a white rounded-3xl inline card with input and absolute-positioned subscribe button. Evidence: `components/footer.tsx:22-47`
+- Not present in repo (inferred guidance if needed)
+  - Selects/Dropdowns/Tables/Modals/Dialogs/Tabs/Alerts/Charts/Filters: not implemented. When adding, follow: thick borders, large-radius corners, strong focus ring, offset shadow for elevated containers, and minimal grayscale UI with spot accent chips for emphasis.
+
+---
+
+**Visual Identity Profile**
+- Style: Playful brutalist with paper-cut, editorial accents; “modern portfolio” flavor.
+- Density: Moderate (large type, generous section spacing; comfortable card paddings).
+- Contrast: High black/white base; gray body text; color as emphasis.
+- Corners: Soft to very soft (12px → 32px, frequent rounded-full).
+- Elevation: Hard, offset, unblurred shadows (4–8px) to suggest stacked paper.
+- Color intensity: Accents are saturated and sparingly used; core UI remains neutral.
+- Mood: Bold, confident, approachable, slightly whimsical.
+
+---
+
+**UX Behavior Patterns**
+- CTA hierarchy
+  - Primary actions: filled black buttons; large size; leftmost/first. Evidence: `components/hero-section.tsx:20-23`
+  - Secondary actions: white with thick black outline. Evidence: `components/hero-section.tsx:24-29`
+- Secondary actions treatment
+  - Lower emphasis via outline and hover-only background changes; no fill by default.
+- Information grouping
+  - Grouped in thick-bordered cards with rounded corners; images in rounded containers; dividers for sub-sections. Evidence: `components/experience-section.tsx:66-75`
+- Filters placement
+  - Not present.
+- Forms
+  - Simple, one-line newsletter form; input + prominent CTA; input uses strong border and large radius. Evidence: `components/footer.tsx:35-47`
+- Validation
+  - Prepared via shadcn inputs (aria-invalid ring + destructive border styles); not showcased in pages. Evidence: `components/ui/input.tsx:12-13`
+- Tables and detail views
+  - Not present.
+- Empty/loading/error states
+  - Not present; inferred to use same card language with icons and short copy.
+- Focus/keyboard
+  - Focus-visible ring at 3px using token `--ring`; consistent across controls. Evidence: `components/ui/button.tsx:8`, `components/ui/input.tsx:12`
+
+---
+
+**Consistency Rules**
+- Borders
+  - Use `border-[3px]` or `border-4` black for structural elements (cards/nav/testimonial block).
+- Shadows
+  - Use hard offset shadows of 4/6/8px; avoid blurred shadows.
+- Radii
+  - Cards: `rounded-3xl` or `rounded-[32px]`; buttons/inputs: `rounded-lg/xl`; avatars: `rounded-full`.
+- Spacing
+  - Section vertical rhythm: `py-16 md:py-24`; internal gaps primarily `gap-6~8`; card paddings `p-6~12`.
+- Typography
+  - Headings bold; H1 `42→72`, H2 around `52`, H3 `28`; body `18` medium; buttons `base→lg` semibold.
+- Icons
+  - Default inline icons `w-5 h-5`; small UI icons `w-4 h-4`; oversized only for hero/nav as deliberate emphasis.
+- Color usage
+  - Base UI: black/white/gray tokens. Use accent chips (pink/blue/yellow/indigo) to highlight nouns/labels or hero elements, not as global chrome.
+
+---
+
+**Constraints and Anti-Drift Rules**
+- Do not replace hard offset shadows with blurred drop shadows.
+- Do not switch to thin 1px borders for structural elements; keep 3–4px.
+- Do not reduce corner softness on cards below ~12px; maintain the soft aesthetic.
+- Do not flood layouts with accent backgrounds; accents are for chips, highlights, and hero blocks.
+- Do not introduce new brand colors beyond the observed palette without rationale.
+- Do not lower contrast on primary CTAs; keep filled black or very high-contrast.
+- Do not remove or weaken the focus-visible ring on interactive elements.
+- Do not switch typographic voice (keep Onest; bold headings + medium body).
+- Do not add glassmorphism, gradients, or skeuomorphic effects inconsistent with “paper” look.
+
+---
+
+**Final Style DNA Summary**
+- Name: Paperfolio Brutalist-Paper
+- Essence: Bold black/white base, thick borders, hard offset shadows, soft big corners, editorial accent chips.
+- Typography: Onest with big, bold display; medium body; generous line-height.
+- Rhythm: Spacious sections (`py-16/24`), two-column grids at `md`, generous card paddings.
+- Components: Filled black primary CTAs; thick-outlined secondary; inputs with heavy borders; cards with 3–4px black borders and 32px radius; hover lift + image scale.
+- Color: Neutral UI with saturated chips (pink/blue/yellow/indigo) for emphasis; red reserved for destructive.
+- Accessibility/Focus: Prominent 3px token-based focus ring; aria-invalid prepared in inputs.
+
+Evidence index
+- Tailwind tokens and fonts: `app/globals.css:6-31,77-116`
+- Font loading/application: `app/layout.tsx:6,15-19,34-35`
+- Button variants/states: `components/ui/button.tsx:7-22`
+- Input states: `components/ui/input.tsx:11-13`
+- Nav shell and styles: `components/navigation.tsx:6-13,31-33`
+- Hero headings and CTAs: `components/hero-section.tsx:8-16,20-29,34-42`
+- Services cards: `components/services-section.tsx:40,62-90`
+- Portfolio cards: `components/portfolio-section.tsx:55-91,106-132`
+- Experience section: `components/experience-section.tsx:40-45,54-75`
+- Testimonials block: `components/testimonials-section.tsx:20-28`
+- Articles layout: `components/articles-section.tsx:20-36,52-79,107-134`
+- Footer form: `components/footer.tsx:22-47`
+
+Note on dark mode
+- Dark token set exists (`app/globals.css:42-75`) but no theme toggle is wired (`ThemeProvider` exists but not used in layout). Treat dark as planned but inactive.

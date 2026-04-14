@@ -1,0 +1,249 @@
+{
+  "style_name": "shadcn new-york (with custom Paperfolio styling)",
+  "visual_identity": {
+    "tone": "bold, high-contrast, playful (inferred)",
+    "density": "spacious; large paddings and generous whitespace",
+    "corner_style": "rounded; base radius 1rem with large radii (e.g., 32px, full)",
+    "elevation_style": "hard offset drop-shadows (e.g., 8px_8px_0 rgba(0,0,0,1)); minimal soft blur",
+    "contrast_profile": "very high contrast (black/white) with bright accent blocks",
+    "mood": "neo‑brutalist, friendly, editorial (inferred)",
+    "notes": [
+      "Tokens sourced from app/globals.css; layout imports this file.",
+      "Multiple ad‑hoc accent colors used in components (e.g., #FF6B7A, #2F81F7, #FFC224, #6366F1, #FDB927).",
+      "components.json declares style \"new-york\"; implementation looks more neo‑brutalist than stock preset."
+    ]
+  },
+  "tokens": {
+    "colors": {
+      "primary": "#0a0a0a",
+      "secondary": "#f5f5f5",
+      "accent": "#f5f5f5",
+      "neutral": [
+        "#ffffff",
+        "#fafafa",
+        "#f5f5f5",
+        "#e5e5e5",
+        "#a1a1a1",
+        "#717171",
+        "#525252",
+        "#404040",
+        "#383838",
+        "#262626",
+        "#171717",
+        "#0a0a0a"
+      ],
+      "success": "unknown",
+      "warning": "unknown",
+      "danger": "#e7000b",
+      "background": "#ffffff",
+      "surface": "#ffffff",
+      "text": {
+        "primary": "#0a0a0a",
+        "secondary": "#171717",
+        "muted": "#717171",
+        "inverse": "#fafafa"
+      },
+      "border": "#0a0a0a"
+    },
+    "spacing": [
+      "0.75rem",
+      "1rem",
+      "1.25rem",
+      "1.5rem",
+      "1.75rem",
+      "2rem",
+      "3rem",
+      "4rem",
+      "6rem",
+      "8rem"
+    ],
+    "radius": [
+      "var(--radius)=1rem",
+      "radius-sm=calc(var(--radius)-4px)",
+      "radius-md=calc(var(--radius)-2px)",
+      "radius-lg=var(--radius)",
+      "radius-xl=calc(var(--radius)+4px)",
+      "rounded-xl",
+      "rounded-3xl",
+      "rounded-full",
+      "rounded-[10px]",
+      "rounded-[12px]",
+      "rounded-[16px]",
+      "rounded-[29px]",
+      "rounded-[32px]"
+    ],
+    "shadows": [
+      "shadow-xs",
+      "shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
+      "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
+      "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]",
+      "shadow-[-8px_8px_0px_0px_rgba(0,0,0,1)]"
+    ],
+    "typography": {
+      "font_families": [
+        "Onest",
+        "JetBrains Mono"
+      ],
+      "scale": [
+        "text-sm",
+        "text-base",
+        "text-lg",
+        "text-xl",
+        "text-2xl",
+        "text-3xl",
+        "text-4xl",
+        "text-5xl",
+        "text-6xl",
+        "16px",
+        "18px",
+        "20px",
+        "22px",
+        "28px",
+        "42px",
+        "52px",
+        "72px"
+      ],
+      "font_weights": [
+        500,
+        600,
+        700
+      ],
+      "line_heights": [
+        "leading-tight",
+        "leading-relaxed",
+        "20px",
+        "28px",
+        "30px",
+        "32px",
+        "34px",
+        "40px",
+        "50px",
+        "60px",
+        "85px",
+        "1.3"
+      ]
+    },
+    "widths": [
+      "max-w-7xl",
+      "max-w-5xl",
+      "max-w-2xl",
+      "max-w-md",
+      "max-w-lg",
+      "min-w-[200px]",
+      "min-w-[240px]",
+      "min-w-[400px]",
+      "min-w-[480px]"
+    ],
+    "breakpoints": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "layout": {
+    "page_shell": "Landing page with stacked sections inside centered container",
+    "page_width_strategy": "container mx-auto with max-w-7xl and section paddings",
+    "header_pattern": "Top navigation bar centered; thick black border, rounded, offset shadow; right-aligned icon CTA",
+    "section_spacing": "Vertical rhythm ~py-16 base, md:py-24/32",
+    "grid_rules": [
+      "grid md:grid-cols-2",
+      "md:grid-cols-[0.9fr_1.1fr]",
+      "lg:grid-cols-3"
+    ],
+    "navigation_patterns": [
+      "Inline link group centered on md+",
+      "Primary icon CTA at right",
+      "Hidden link group on small screens (no alt menu present)"
+    ],
+    "responsive_rules": [
+      "Typography scales up at md",
+      "Single column → two columns at md",
+      "Buttons widen on small screens (min-w constraints on sm+)"
+    ]
+  },
+  "components": {
+    "buttons": {
+      "variants": [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link"
+      ],
+      "sizes": [
+        "default (h-9, px-4)",
+        "sm (h-8, px-3)",
+        "lg (h-10, px-6)",
+        "icon (size-9)",
+        "icon-sm (size-8)",
+        "icon-lg (size-10)"
+      ],
+      "focus": "focus-visible:border-ring + ring-[3px] using --ring token",
+      "shape": "rounded-md by default; sections use larger custom radii",
+      "notes": [
+        "Primary treatment often overrides to solid black with white text.",
+        "Outline variant uses 3–4px black borders in sections."
+      ]
+    },
+    "inputs": {
+      "field_height": "h-9 default; newsletter uses h-14/h-16",
+      "style": "border-input, bg-transparent, rounded-md, text-base, shadow-xs",
+      "focus": "focus-visible:border-ring + ring-[3px] (--ring)",
+      "validation": "aria-invalid adds red destructive ring and border",
+      "states": [
+        "disabled: opacity-50 and no pointer events"
+      ]
+    },
+    "selects": {},
+    "dropdowns": {},
+    "cards": {
+      "style": "white surface, black border [3px–4px], large radius (≈32px), hard offset shadows on hover",
+      "content_patterns": [
+        "media top with rounded inner corners",
+        "title + description + link/CTA"
+      ]
+    },
+    "tables": {},
+    "modals": {},
+    "dialogs": {},
+    "sidebars": {},
+    "tabs": {},
+    "badges": {
+      "style": "rounded-full, text-xs, px-4 py-1.5",
+      "variants": [
+        "black bg with white text (portfolio tag)"
+      ]
+    },
+    "alerts": {},
+    "empty_states": {},
+    "charts_containers": {},
+    "page_headers": {
+      "hero": "Large headline with colored highlight chips; split 2-col at md; illustrated card with offset shadow"
+    },
+    "filters": {},
+    "form_layouts": {
+      "newsletter": "Inline input with absolute CTA button inside bordered rounded container"
+    }
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "Primary: solid black on white; Secondary: white with 3–4px black border; Icon CTA in nav",
+    "information_grouping": "Large bordered cards with clear media/title/description blocks",
+    "filter_placement": "none observed",
+    "form_structure": "Simple single-field forms; prominent CTA; inline in footer",
+    "validation_behavior": "ARIA-invalid triggers destructive ring/border on inputs",
+    "table_detail_strategy": "not present",
+    "loading_error_empty_states": "not present",
+    "action_placement": "Section-level CTAs at ends; global CTA in header right",
+    "notes": [
+      "Bright color highlight chips used to emphasize words within headings.",
+      "Hover scales images inside cards; cards lift with offset shadow."
+    ]
+  },
+  "constraints": [
+    "Success and warning colors are not defined in app/globals.css.",
+    "Spacing scale is not explicitly customized; Tailwind defaults implied.",
+    "Accent brand colors are applied ad‑hoc in components, not tokenized.",
+    "Two global styles exist; only app/globals.css is imported by layout."
+  ]
+}

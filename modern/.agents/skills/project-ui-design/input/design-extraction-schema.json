@@ -1,0 +1,216 @@
+{
+  "style_name": "",
+  "visual_identity": {
+    "tone": "",
+    "density": "",
+    "corner_style": "",
+    "elevation_style": "",
+    "contrast_profile": "",
+    "mood": "",
+    "notes": []
+  },
+  "identity_traits": {
+    "non_negotiable_traits": [],
+    "adaptable_traits": [],
+    "source_type": "",
+    "adaptation_notes": []
+  },
+  "tokens": {
+    "colors": {
+      "primary": "",
+      "secondary": "",
+      "accent": "",
+      "neutral": [],
+      "success": "",
+      "warning": "",
+      "danger": "",
+      "background": "",
+      "surface": "",
+      "text": {
+        "primary": "",
+        "secondary": "",
+        "muted": "",
+        "inverse": ""
+      },
+      "border": ""
+    },
+    "spacing": {
+      "density": "",
+      "section_gap": [],
+      "card_gap": [],
+      "control_gap": [],
+      "grouping_pattern": "",
+      "adaptation_rule": ""
+    },
+    "radius": {
+      "control": "",
+      "container": "",
+      "overlay": "",
+      "pill": "",
+      "dominant_family": "",
+      "sharp_allowed": "",
+      "style_rule": ""
+    },
+    "shadows": [],
+    "typography": {
+      "font_families": [],
+      "scale": [],
+      "font_weights": [],
+      "line_heights": []
+    },
+    "widths": [],
+    "breakpoints": []
+  },
+  "hierarchy": {
+    "primary_focus_pattern": "",
+    "secondary_content_pattern": "",
+    "cta_hierarchy": "",
+    "emphasis_rules": [],
+    "grouping_rules": [],
+    "contrast_usage": ""
+  },
+  "typography_roles": {
+    "page_title": "",
+    "section_title": "",
+    "body": "",
+    "supporting_text": "",
+    "label": "",
+    "caption": "",
+    "scanning_behavior": ""
+  },
+  "interaction": {
+    "hover": "",
+    "focus": "",
+    "active": "",
+    "selected": "",
+    "disabled": "",
+    "loading": "",
+    "validation": "",
+    "feedback_style": ""
+  },
+  "layout": {
+    "page_shell": "",
+    "page_width_strategy": "",
+    "header_pattern": "",
+    "section_spacing": "",
+    "grid_rules": [],
+    "navigation_patterns": [],
+    "responsive_rules": []
+  },
+  "components": {
+    "buttons": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "inputs": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "selects": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "dropdowns": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "cards": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "tables": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "modals": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "dialogs": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "sidebars": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "tabs": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "badges": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "alerts": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "empty_states": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "charts_containers": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "page_headers": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "filters": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "form_layouts": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    }
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "",
+    "information_grouping": "",
+    "filter_placement": "",
+    "form_structure": "",
+    "validation_behavior": "",
+    "table_detail_strategy": "",
+    "loading_error_empty_states": "",
+    "action_placement": "",
+    "notes": []
+  },
+  "constraints": []
+}

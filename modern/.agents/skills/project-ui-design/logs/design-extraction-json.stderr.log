@@ -1,0 +1,1886 @@
+Reading additional input from stdin...
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /Users/emanueledagata/code/v0/boh2
+model: gpt-5.4
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 019d8d68-8384-77d1-accc-63e382565ff2
+--------
+user
+You are a senior UI engineer and design system analyst.
+
+Analyze the repository and produce a structured JSON design profile.
+
+Use as context:
+- input/repo-summary.md
+- input/repo-file-map.txt
+- input/relevant-files.md
+- outputs/02-design-extraction.md
+- input/design-extraction-schema.json
+
+Rules:
+- Be evidence-based and conservative.
+- If a component category is missing from the repo, provide an inferred pattern only if it can be derived from the project's visual identity and UX logic.
+- Preserve the distinction between explicit and inferred patterns using fields such as `source_basis`, `confidence`, or `evidence_type` where helpful.
+- Make the result machine-usable and concise.
+- Ensure radius, spacing, hierarchy, typography roles, and interaction states are strongly represented.
+
+Return only valid JSON matching the provided schema.
+exec
+/bin/zsh -lc "sed -n '1,260p' input/relevant-files.md" in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "sed -n '1,220p' input/repo-summary.md" in /Users/emanueledagata/code/v0/boh2
+ exited 1 in 0ms:
+sed: input/relevant-files.md: No such file or directory
+
+ exited 1 in 0ms:
+sed: input/repo-summary.md: No such file or directory
+
+exec
+/bin/zsh -lc "sed -n '1,260p' input/design-extraction-schema.json" in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "sed -n '1,260p' outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh2
+ exited 1 in 0ms:
+sed: input/design-extraction-schema.json: No such file or directory
+
+ exited 1 in 0ms:
+sed: outputs/02-design-extraction.md: No such file or directory
+
+exec
+/bin/zsh -lc "sed -n '1,220p' input/repo-file-map.txt" in /Users/emanueledagata/code/v0/boh2
+ exited 1 in 0ms:
+sed: input/repo-file-map.txt: No such file or directory
+
+exec
+/bin/zsh -lc pwd in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+/Users/emanueledagata/code/v0/boh2
+
+exec
+/bin/zsh -lc 'rg --files' in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+tsconfig.json
+components.json
+lib/utils.ts
+hooks/use-toast.ts
+hooks/use-mobile.ts
+package.json
+public/placeholder.svg
+public/placeholder.jpg
+public/placeholder-user.jpg
+public/placeholder-logo.png
+public/icon.svg
+public/images/onboarding-hero.jpg
+public/apple-icon.png
+public/icon-dark-32x32.png
+public/icon-light-32x32.png
+public/placeholder-logo.svg
+components/finance/cards-screen.tsx
+components/finance/finance-app.tsx
+components/finance/profile-screen.tsx
+components/finance/home-screen.tsx
+components/finance/desktop-views.tsx
+components/finance/transactions-screen.tsx
+components/finance/nav-bar.tsx
+components/finance/onboarding-screen.tsx
+components/ui/carousel.tsx
+components/ui/form.tsx
+components/ui/context-menu.tsx
+components/ui/skeleton.tsx
+components/ui/input.tsx
+components/ui/textarea.tsx
+components/ui/select.tsx
+components/ui/dropdown-menu.tsx
+components/ui/collapsible.tsx
+components/ui/spinner.tsx
+components/ui/checkbox.tsx
+components/ui/toast.tsx
+components/ui/toggle.tsx
+components/ui/button.tsx
+components/ui/separator.tsx
+components/ui/table.tsx
+components/ui/sidebar.tsx
+components/ui/badge.tsx
+components/ui/dialog.tsx
+components/ui/kbd.tsx
+components/ui/menubar.tsx
+components/ui/avatar.tsx
+components/ui/toggle-group.tsx
+components/ui/item.tsx
+components/ui/command.tsx
+components/ui/radio-group.tsx
+components/ui/breadcrumb.tsx
+components/ui/calendar.tsx
+components/ui/switch.tsx
+components/ui/use-toast.ts
+components/ui/alert.tsx
+components/ui/tooltip.tsx
+components/ui/empty.tsx
+components/ui/drawer.tsx
+components/ui/accordion.tsx
+components/ui/navigation-menu.tsx
+components/ui/sonner.tsx
+components/ui/label.tsx
+components/ui/resizable.tsx
+components/ui/scroll-area.tsx
+components/ui/field.tsx
+components/ui/sheet.tsx
+components/ui/hover-card.tsx
+components/ui/chart.tsx
+components/ui/input-otp.tsx
+components/ui/toaster.tsx
+components/ui/progress.tsx
+components/ui/popover.tsx
+components/ui/input-group.tsx
+components/ui/slider.tsx
+components/ui/card.tsx
+components/ui/button-group.tsx
+components/ui/tabs.tsx
+components/ui/pagination.tsx
+components/ui/use-mobile.tsx
+components/ui/alert-dialog.tsx
+components/ui/aspect-ratio.tsx
+components/theme-provider.tsx
+styles/globals.css
+next-env.d.ts
+next.config.mjs
+postcss.config.mjs
+generate-design-skill.mjs
+app/globals.css
+app/page.tsx
+app/layout.tsx
+pnpm-lock.yaml
+
+exec
+/bin/zsh -lc "find .. -maxdepth 3 -type f \\( -name 'repo-summary.md' -o -name 'repo-file-map.txt' -o -name 'relevant-files.md' -o -name '02-design-extraction.md' -o -name 'design-extraction-schema.json' \\)" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+exec
+/bin/zsh -lc 'find . -maxdepth 3 -type d -print' in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc 'ls -la' in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+total 424
+drwx------@ 19 emanueledagata  staff     608 Apr 14 21:06 .
+drwxr-xr-x  11 emanueledagata  staff     352 Apr 14 21:05 ..
+drwxr-xr-x   3 emanueledagata  staff      96 Apr 14 21:06 .agents
+drwxr-xr-x   9 emanueledagata  staff     288 Apr 14 21:06 .git
+-rw-rw-r--@  1 emanueledagata  staff     236 Apr 14 19:39 .gitignore
+drwxr-xr-x@  5 emanueledagata  staff     160 Apr 14 19:39 app
+drwxr-xr-x@  5 emanueledagata  staff     160 Apr 14 19:39 components
+-rw-rw-r--@  1 emanueledagata  staff     427 Apr 14 19:39 components.json
+-rwxr-xr-x@  1 emanueledagata  staff   53203 Apr 14 21:05 generate-design-skill.mjs
+drwxr-xr-x@  4 emanueledagata  staff     128 Apr 14 19:39 hooks
+drwxr-xr-x@  3 emanueledagata  staff      96 Apr 14 19:39 lib
+-rw-rw-r--@  1 emanueledagata  staff     251 Apr 14 19:39 next-env.d.ts
+-rw-rw-r--@  1 emanueledagata  staff     181 Apr 14 19:39 next.config.mjs
+-rw-rw-r--@  1 emanueledagata  staff    2256 Apr 14 19:39 package.json
+-rw-rw-r--@  1 emanueledagata  staff  133118 Apr 14 19:39 pnpm-lock.yaml
+-rw-rw-r--@  1 emanueledagata  staff     144 Apr 14 19:39 postcss.config.mjs
+drwxr-xr-x@ 12 emanueledagata  staff     384 Apr 14 19:39 public
+drwxr-xr-x@  3 emanueledagata  staff      96 Apr 14 19:39 styles
+-rw-rw-r--@  1 emanueledagata  staff     695 Apr 14 19:39 tsconfig.json
+
+ succeeded in 0ms:
+.
+./app
+./.agents
+./.agents/skills
+./.agents/skills/project-ui-design
+./styles
+./components
+./components/ui
+./components/finance
+./public
+./public/images
+./hooks
+./lib
+./.git
+./.git/objects
+./.git/objects/pack
+./.git/objects/info
+./.git/info
+./.git/hooks
+./.git/refs
+./.git/refs/heads
+./.git/refs/tags
+
+exec
+/bin/zsh -lc "find /Users/emanueledagata/code/v0 -path '*repo-summary.md' -o -path '*repo-file-map.txt' -o -path '*relevant-files.md' -o -path '*02-design-extraction.md' -o -path '*design-extraction-schema.json'" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+/Users/emanueledagata/code/v0/portfolio_disegno/.agents/skills/project-ui-design/input/design-extraction-schema.json
+/Users/emanueledagata/code/v0/portfolio_disegno/.agents/skills/project-ui-design/input/relevant-files.md
+/Users/emanueledagata/code/v0/portfolio_disegno/.agents/skills/project-ui-design/input/repo-summary.md
+/Users/emanueledagata/code/v0/portfolio_disegno/.agents/skills/project-ui-design/input/repo-file-map.txt
+/Users/emanueledagata/code/v0/portfolio_disegno/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+/Users/emanueledagata/code/v0/boh1-base east/.agents/skills/project-ui-design/input/design-extraction-schema.json
+/Users/emanueledagata/code/v0/boh1-base east/.agents/skills/project-ui-design/input/relevant-files.md
+/Users/emanueledagata/code/v0/boh1-base east/.agents/skills/project-ui-design/input/repo-summary.md
+/Users/emanueledagata/code/v0/boh1-base east/.agents/skills/project-ui-design/input/repo-file-map.txt
+/Users/emanueledagata/code/v0/boh1-base east/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+/Users/emanueledagata/code/v0/boh2/.agents/skills/project-ui-design/input/design-extraction-schema.json
+/Users/emanueledagata/code/v0/boh2/.agents/skills/project-ui-design/input/relevant-files.md
+/Users/emanueledagata/code/v0/boh2/.agents/skills/project-ui-design/input/repo-summary.md
+/Users/emanueledagata/code/v0/boh2/.agents/skills/project-ui-design/input/repo-file-map.txt
+/Users/emanueledagata/code/v0/boh2/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+/Users/emanueledagata/code/v0/boh3/.agents/skills/project-ui-design/input/design-extraction-schema.json
+/Users/emanueledagata/code/v0/boh3/.agents/skills/project-ui-design/input/relevant-files.md
+/Users/emanueledagata/code/v0/boh3/.agents/skills/project-ui-design/input/repo-summary.md
+/Users/emanueledagata/code/v0/boh3/.agents/skills/project-ui-design/input/repo-file-map.txt
+/Users/emanueledagata/code/v0/boh3/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+
+exec
+/bin/zsh -lc "sed -n '1,260p' .agents/skills/project-ui-design/input/repo-summary.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+# Repository Summary
+
+- Root: `/Users/emanueledagata/code/v0/boh2`
+- Detected hints: Next.js, Tailwind CSS, shadcn/ui, Charts, Radix/Lucide
+- Total indexed files: 92
+- Relevant UI/design files: 89
+
+## Key dependencies
+
+- @radix-ui/react-dialog: 1.1.15
+- @radix-ui/react-dropdown-menu: 2.1.16
+- @radix-ui/react-select: 2.2.6
+- @radix-ui/react-tabs: 1.1.13
+- class-variance-authority: ^0.7.1
+- clsx: ^2.1.1
+- lucide-react: ^0.564.0
+- next: 16.1.6
+- react: 19.2.4
+- react-dom: 19.2.4
+- recharts: 2.15.0
+- tailwind-merge: ^3.3.1
+- tailwindcss: ^4.2.0
+
+## Key analysis goals
+
+- Extract the source design language from the repository.
+- Identify explicit and inferred design-system rules.
+- Preserve radius, spacing character, hierarchy, typography roles, and interaction tone.
+- Produce a reusable design skill for generating new UI categories consistently.
+- Prevent style drift when adapting to dashboards, forms, CRUD, or utility-heavy interfaces.
+
+exec
+/bin/zsh -lc "sed -n '1,260p' .agents/skills/project-ui-design/input/relevant-files.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+# Relevant Files
+
+These files were selected as likely useful for design-system extraction.
+
+## Config & Theme
+
+- `components.json`
+- `components/theme-provider.tsx`
+- `next.config.mjs`
+- `package.json`
+- `postcss.config.mjs`
+- `tsconfig.json`
+
+## Global Styles
+
+- `app/globals.css`
+- `styles/globals.css`
+
+## Layouts & App Shell
+
+- `app/layout.tsx`
+- `components/ui/sidebar.tsx`
+
+## Components
+
+- `components/finance/cards-screen.tsx`
+- `components/finance/desktop-views.tsx`
+- `components/finance/finance-app.tsx`
+- `components/finance/home-screen.tsx`
+- `components/finance/nav-bar.tsx`
+- `components/finance/onboarding-screen.tsx`
+- `components/finance/profile-screen.tsx`
+- `components/finance/transactions-screen.tsx`
+- `components/ui/accordion.tsx`
+- `components/ui/alert-dialog.tsx`
+- `components/ui/alert.tsx`
+- `components/ui/aspect-ratio.tsx`
+- `components/ui/avatar.tsx`
+- `components/ui/badge.tsx`
+- `components/ui/breadcrumb.tsx`
+- `components/ui/button-group.tsx`
+- `components/ui/button.tsx`
+- `components/ui/calendar.tsx`
+- `components/ui/card.tsx`
+- `components/ui/carousel.tsx`
+- `components/ui/chart.tsx`
+- `components/ui/checkbox.tsx`
+- `components/ui/collapsible.tsx`
+- `components/ui/command.tsx`
+- `components/ui/context-menu.tsx`
+- `components/ui/dialog.tsx`
+- `components/ui/drawer.tsx`
+- `components/ui/dropdown-menu.tsx`
+- `components/ui/empty.tsx`
+- `components/ui/field.tsx`
+- `components/ui/form.tsx`
+- `components/ui/hover-card.tsx`
+- `components/ui/input-group.tsx`
+- `components/ui/input-otp.tsx`
+- `components/ui/input.tsx`
+- `components/ui/item.tsx`
+- `components/ui/kbd.tsx`
+- `components/ui/label.tsx`
+- `components/ui/menubar.tsx`
+- `components/ui/navigation-menu.tsx`
+- `components/ui/pagination.tsx`
+- `components/ui/popover.tsx`
+- `components/ui/progress.tsx`
+- `components/ui/radio-group.tsx`
+- `components/ui/resizable.tsx`
+- `components/ui/scroll-area.tsx`
+- `components/ui/select.tsx`
+- `components/ui/separator.tsx`
+- `components/ui/sheet.tsx`
+- `components/ui/skeleton.tsx`
+- `components/ui/slider.tsx`
+- `components/ui/sonner.tsx`
+- `components/ui/spinner.tsx`
+- `components/ui/switch.tsx`
+- `components/ui/table.tsx`
+- `components/ui/tabs.tsx`
+- `components/ui/textarea.tsx`
+- `components/ui/toast.tsx`
+- `components/ui/toaster.tsx`
+- `components/ui/toggle-group.tsx`
+- `components/ui/toggle.tsx`
+- `components/ui/tooltip.tsx`
+- `components/ui/use-mobile.tsx`
+- `components/ui/use-toast.ts`
+
+## Pages
+
+- `app/page.tsx`
+
+## Assets
+
+- `public/apple-icon.png`
+- `public/icon-dark-32x32.png`
+- `public/icon-light-32x32.png`
+- `public/icon.svg`
+- `public/images/onboarding-hero.jpg`
+- `public/placeholder-logo.png`
+- `public/placeholder-logo.svg`
+- `public/placeholder-user.jpg`
+- `public/placeholder.jpg`
+- `public/placeholder.svg`
+
+## Other
+
+- `hooks/use-mobile.ts`
+- `hooks/use-toast.ts`
+- `lib/utils.ts`
+- `pnpm-lock.yaml`
+
+## Preview snippets
+
+### app/globals.css
+
+```
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.97 0.015 100);
+  --foreground: oklch(0.18 0.04 145);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 145);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 145);
+  --primary: oklch(0.28 0.07 145);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0.03 100);
+  --secondary-foreground: oklch(0.28 0.07 145);
+  --muted: oklch(0.94 0.02 100);
+  --muted-foreground: oklch(0.52 0.03 145);
+  --accent: oklch(0.88 0.22 120);
+  --accent-foreground: oklch(0.18 0.08 145);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.90 0.02 100);
+  --input: oklch(0.90 0.02 100);
+  --ring: oklch(0.88 0.22 120);
+  --chart-1: oklch(0.88 0.22 120);
+  --chart-2: oklch(0.28 0.07 145);
+  --chart-3: oklch(0.70 0.18 120);
+  --chart-4: oklch(0.55 0.14 135);
+  --chart-5: oklch(0.40 0.10 145);
+  --radius: 1rem;
+
+  /* Custom finance tokens */
+  --lime: oklch(0.88 0.22 120);
+  --lime-dark: oklch(0.78 0.20 120);
+  --forest: oklch(0.28 0.07 145);
+  --forest-dark: oklch(0.20 0.06 145);
+  --cream: oklch(0.97 0.015 100);
+  --cream-dark: oklch(0.93 0.025 100);
+}
+```
+
+### app/layout.tsx
+
+```
+import type { Metadata } from 'next'
+import { Plus_Jakarta_Sans } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+export const metadata: Metadata = {
+  title: 'FinFlow — All Your Finances. One Powerful Platform.',
+  description: 'Send, receive, and manage your money effortlessly fast, secure, and designed for everyday life.',
+  generator: 'v0.app',
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${plusJakarta.variable} font-sans antialiased`} suppressHydrationWarning>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
+}
+
+```
+
+### app/page.tsx
+
+```
+import { FinanceApp } from "@/components/finance/finance-app"
+
+export default function Page() {
+  return <FinanceApp />
+}
+
+```
+
+### components.json
+
+```
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+
+```
+
+### components/finance/cards-screen.tsx
+
+```
+"use client"
+
+import {
+  Plus,
+  QrCode,
+  Home,
+  ArrowLeftRight,
+  CreditCard,
+  User,
+  MoreHorizontal,
+  Eye,
+  EyeOff,
+} from "lucide-react"
+import { useState } from "react"
+import { NavBar } from "@/components/finance/nav-bar"
+
+interface CardsScreenProps {
+  onNavChange: (tab: string) => void
+  activeTab: string
+  hideNavBar?: boolean
+}
+
+exec
+/bin/zsh -lc "sed -n '1,300p' .agents/skills/project-ui-design/outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+# Executive Summary
+
+Source note: the requested `input/` support files are not present in this checkout, so the extraction is based on the active app source: `app/globals.css`, `app/layout.tsx`, `components/finance/*`, and `components/ui/*`.
+
+**EXPLICIT:** This repository expresses a soft, premium mobile-finance design language: warm cream backgrounds, deep forest green content, sharp lime highlights, large rounded geometry, compact information density, and subdued surface separation.
+
+**EXPLICIT:** The strongest identity anchors are:
+- Cream app canvas instead of pure white.
+- Forest green as the dominant text, brand, navigation, and high-emphasis surface color.
+- Lime as the signature action/accent color.
+- Large rounded cards and controls, especially `rounded-2xl` and `rounded-3xl`.
+- Compact finance-app typography with strong numeric emphasis.
+- White cards on cream backgrounds with light borders or `shadow-sm`.
+- Calm, quick transitions: `transition-colors`, `transition-all`, subtle scale on primary CTAs.
+
+**INFERRED:** When adapted to a different product area, preserve the cream/forest/lime system, large soft radii, compact but friendly spacing, strong numeric hierarchy, and low-noise interaction feedback. Avoid turning it into a generic admin UI with gray slabs, square controls, dense divider grids, or blue SaaS defaults.
+
+# Identity-Defining Traits
+
+- **EXPLICIT:** The product identity is fintech, not neutral SaaS. It uses money-card gradients, account stats, transaction rows, privacy controls, and banking-style trust badges.
+- **EXPLICIT:** The UI favors rounded physical objects: phone shell, cards, stat tiles, avatars, icon wells, nav items, CTA buttons, and chart bars are all rounded.
+- **EXPLICIT:** Content feels compact but not cramped. Mobile screens use `px-4`, `space-y-4`, `p-3`, `p-4`; desktop views use `p-6`, `gap-4`, and 3-column grids.
+- **EXPLICIT:** Visual emphasis is created through color contrast and weight, not heavy shadow or complex borders.
+- **EXPLICIT:** The app uses real imagery only for onboarding/profile hero imagery; product surfaces are mostly tokenized UI shapes.
+- **INFERRED:** New screens should feel like a wallet app: tactile, rounded, calm, financially precise, and optimistic without looking playful.
+
+# Design Tokens
+
+## Color Roles
+
+| Role | Status | Value / Pattern | Usage |
+|---|---:|---|---|
+| App background | EXPLICIT | `--background: oklch(0.97 0.015 100)`, `--cream` | Main app canvas |
+| Primary text | EXPLICIT | `--foreground: oklch(0.18 0.04 145)`, `--forest` | Headings, labels, nav, icons |
+| Primary surface | EXPLICIT | `--card: oklch(1 0 0)` | Cards, lists, popovers |
+| Primary action | EXPLICIT | `--primary`, `--forest`, hardcoded `#1B3A2D` | Main CTA, active nav, dark finance cards |
+| Accent action | EXPLICIT | `--accent`, `--lime`, hardcoded `#C8E63A` | QR CTA, highlights, positive brand emphasis |
+| Secondary background | EXPLICIT | `--secondary`, `--cream-dark` | Soft grouped rows, action tiles |
+| Muted text | EXPLICIT | `--muted-foreground: oklch(0.52 0.03 145)` | Captions, metadata, support copy |
+| Border | EXPLICIT | `--border: oklch(0.90 0.02 100)` | Card edges, top/bottom bars, controls |
+| Ring/focus | EXPLICIT | `--ring: oklch(0.88 0.22 120)` | Focus ring, lime-aligned |
+| Destructive | EXPLICIT | `--destructive`, red utilities | Sign out, negative transaction values |
+| Chart colors | EXPLICIT | `--chart-1` lime, `--chart-2` forest, plus green range | Finance analytics |
+
+Additional observed hardcoded palette:
+- **EXPLICIT:** Lime card/accent: `#C8E63A`, darker lime `#b5d42a`.
+- **EXPLICIT:** Forest card/text: `#1B3A2D`, secondary forest `#2d5c44`.
+- **EXPLICIT:** Teal demo shell gradient: `#4a8fa8`, `#3d7a8a`, `#2d6070`.
+- **EXPLICIT:** Positive/negative finance values use Tailwind greens and reds: `text-green-600`, `text-red-500`, `bg-red-50`, `text-green-500`.
+
+## Background And Surface Behavior
+
+- **EXPLICIT:** Main app screens use `bg-cream`; primary content cards use `bg-white`.
+- **EXPLICIT:** Elevated summaries can invert to `bg-forest` with white/lime text or use `bg-lime` with forest text.
+- **EXPLICIT:** Soft secondary group surfaces use `bg-cream-dark`, `bg-cream`, `bg-white/25`, `bg-white/30`, `bg-white/10`.
+- **INFERRED:** For dashboards, use cream page background, white cards, forest/lime hero cards, and subtle tinted rows. Avoid large neutral gray backgrounds.
+
+## Text Hierarchy
+
+- **EXPLICIT:** Large financial values use `text-3xl` to `text-4xl`, `font-extrabold`, often `tracking-tight`.
+- **EXPLICIT:** Desktop page titles use `text-2xl font-extrabold text-forest`.
+- **EXPLICIT:** Mobile screen titles use `text-base` to `text-xl`, `font-bold`.
+- **EXPLICIT:** Card section titles use `text-sm font-bold text-forest`.
+- **EXPLICIT:** Metadata and captions use `text-[9px]`, `text-[10px]`, `text-xs`, `text-muted-foreground`, or reduced opacity.
+- **INFERRED:** New product screens should keep titles short, use weight more than size, and reserve large type for balances, totals, and primary metrics.
+
+## Border And Divider Treatment
+
+- **EXPLICIT:** Borders are very light: `border-border`, `border-white/10`, `border-forest/20`, `border-white/8`.
+- **EXPLICIT:** Borders often appear with white cards and controls, but major cards frequently rely on color or shadow instead.
+- **EXPLICIT:** Dashed borders indicate add/new/empty actions.
+- **INFERRED:** Dividers should be sparse. Prefer spacing and soft background changes over table-like grid lines.
+
+## Radius System
+
+- **EXPLICIT:** Active app token sets `--radius: 1rem`.
+- **EXPLICIT:** Theme radii: `sm = 10px`, `md = 12px`, `lg = 16px`, `xl = 22px`.
+- **EXPLICIT:** Implemented finance screens repeatedly use `rounded-xl`, `rounded-2xl`, `rounded-3xl`, `rounded-full`.
+- **EXPLICIT:** Device shell uses very large custom radii: `42px`, `44px`, `46px`.
+- **INFERRED:** Primary brand radius is `24px` for major cards and `16px` for controls. Sharp rectangles are off-brand except tiny decorative card-chip squares.
+
+## Spacing System
+
+- **EXPLICIT:** Mobile page padding: `px-4`, headers `px-5`, onboarding content `px-7`.
+- **EXPLICIT:** Desktop page padding: `p-6`, onboarding panel `px-14 py-12`.
+- **EXPLICIT:** Common gaps: `gap-1`, `gap-1.5`, `gap-2`, `gap-2.5`, `gap-3`, `gap-4`.
+- **EXPLICIT:** Card padding: compact rows `p-2.5`/`p-3`, standard cards `p-4`/`p-5`, major desktop cards `p-6`.
+- **INFERRED:** Utility-heavy layouts should use `gap-4` grids, `p-5` cards, `p-3` rows, and avoid bloating density beyond the existing finance-dashboard rhythm.
+
+## Shadows And Elevation
+
+- **EXPLICIT:** Most app cards use `shadow-sm`; nav QR uses `shadow-lg`; profile/stat rows sometimes use `hover:shadow-md`.
+- **EXPLICIT:** Device/browser demo shells use strong external shadows, but those are presentation chrome, not app surfaces.
+- **INFERRED:** App UI elevation should stay low. Use color, radius, and spacing before shadows.
+
+## Typography
+
+- **EXPLICIT:** Active app font is Plus Jakarta Sans via `next/font/google`.
+- **EXPLICIT:** Weights loaded: `400`, `500`, `600`, `700`, `800`.
+- **EXPLICIT:** UI primitives use `text-sm font-medium` defaults; finance screens lean `font-bold`, `font-extrabold`, `font-black` for brand/numbers.
+- **EXPLICIT:** Body copy uses `leading-relaxed`; headings use `leading-tight`; labels often use compact `leading-none`.
+- **INFERRED:** Use `400` for body, `500` for labels, `600` for rows/buttons, `700` for section titles, `800` for metrics and page titles, `900`-like `font-black` only for brand/card network text.
+
+## Content Widths And Breakpoints
+
+- **EXPLICIT:** Demo toolbar/browser frame caps at `max-w-5xl`.
+- **EXPLICIT:** Desktop app content is fixed presentation height `640px`; sidebar width is `w-56`.
+- **EXPLICIT:** UI sidebar primitive uses `16rem` desktop, `18rem` mobile, `3rem` icon collapsed width.
+- **EXPLICIT:** Tailwind responsive classes appear through `md`, `sm`, and container queries in primitives.
+- **INFERRED:** Real app pages should cap content around `max-w-5xl` to `max-w-6xl`, with 3-column desktop grids, 1-column mobile stacks, and sidebar at 224-256px.
+
+# Geometry And Radius System
+
+- **EXPLICIT:** The dominant shape language is rounded and pill-like.
+- **EXPLICIT:** Major dashboard cards: `rounded-3xl`.
+- **EXPLICIT:** Secondary cards, action tiles, nav items, feature pills: `rounded-2xl`.
+- **EXPLICIT:** Small icon wells and controls: `rounded-xl`.
+- **EXPLICIT:** Avatars, notification dots, chart bars, pagination dots: `rounded-full`.
+- **EXPLICIT:** Generic shadcn primitives still define smaller `rounded-md` and `rounded-lg`, but the custom finance UI visually overrides them with larger radii.
+- **INFERRED:** For new branded product UI, upgrade primitive defaults where visible:
+  - Buttons: `rounded-2xl` for primary, `rounded-xl` for compact.
+  - Inputs/selects: `rounded-xl` or `rounded-2xl`.
+  - Cards/dialogs: `rounded-3xl`.
+  - Badges: `rounded-lg` or pill.
+- **INFERRED:** Sharp corners are only acceptable for tiny decorative details, chart ticks, table grid internals, or browser/device chrome. They should not define user-facing surfaces.
+
+# Spacing Rhythm
+
+- **EXPLICIT:** Overall density is balanced-compact. Mobile screens fit many financial actions without feeling cramped.
+- **EXPLICIT:** Main mobile vertical rhythm uses `space-y-4`; transaction rows use `space-y-2` or `space-y-3`.
+- **EXPLICIT:** Desktop dashboard grids use `gap-4`, not wide marketing spacing.
+- **EXPLICIT:** Large onboarding uses more relaxed spacing: `mb-8`, `mb-10`, `mt-12`, `pt-8`.
+- **EXPLICIT:** Controls pair icon and label with `gap-2` or `gap-2.5`; compact metadata uses `gap-0.5` to `gap-1.5`.
+- **INFERRED:** Dashboard adaptation:
+  - Keep page padding at `24px`.
+  - Keep card grids at `16px` gap.
+  - Use `20px` card padding for normal cards and `24px` for hero metric cards.
+  - Use `12px` padding for list rows.
+  - Use grouped controls in soft cream/white containers rather than adding many separate floating controls.
+
+# Visual Priority And Hierarchy
+
+- **EXPLICIT:** Focal points are established by:
+  - Large numeric values.
+  - Forest/lime color blocks.
+  - Gradient payment cards.
+  - Centered or top-aligned page headers.
+  - Floating QR action in mobile nav.
+- **EXPLICIT:** Primary content is separated from supporting content through color and weight, not heavy dividers.
+- **EXPLICIT:** CTA hierarchy:
+  - Primary: forest background with white text or lime background with forest text.
+  - Secondary: muted text link or white/cream button with border.
+  - Tertiary: icon-only, low opacity, hover color change.
+- **EXPLICIT:** Metadata uses small text, muted color, opacity, and sometimes right alignment.
+- **EXPLICIT:** The project uses subtle emphasis most of the time, with strong emphasis reserved for balances, primary cards, and active nav states.
+- **INFERRED:** For admin screens, preserve hierarchy by making only one card/metric/action visually dominant per section. Do not make every tile equally saturated.
+
+# Typography As UX
+
+- **EXPLICIT:** Titles act as location markers: “Transactions”, “My Cards”, “Profile”.
+- **EXPLICIT:** Large account values are the strongest scanning anchors.
+- **EXPLICIT:** Section titles are short, bold, and small: “Quick Send”, “Recent Transactions”, “Actions”.
+- **EXPLICIT:** Rows use a two-line pattern: primary label in forest/semibold, supporting date/category in muted small text.
+- **EXPLICIT:** Captions and labels are intentionally tiny in financial cards: `text-[8px]` to `text-[10px]`.
+- **EXPLICIT:** Transaction amounts are right-aligned, bold, and color-coded by sign.
+- **INFERRED:** Form-heavy screens should use labels as primary scan anchors, helper text as muted secondary copy, and errors in destructive red. Avoid verbose explanatory copy inside controls.
+
+# Layout System
+
+- **EXPLICIT:** App shell supports mobile phone and desktop browser presentations.
+- **EXPLICIT:** Mobile layout is vertical: status/header, scrollable content, bottom nav.
+- **EXPLICIT:** Desktop layout is sidebar plus content.
+- **EXPLICIT:** Desktop dashboard uses 3-column and 5-column grids:
+  - 3-column dashboard with large balance card spanning 2 columns.
+  - 5-column transactions layout with chart spanning 2 and list spanning 3.
+- **EXPLICIT:** Cards and horizontal carousels use overflow scrolling with hidden scrollbars.
+- **EXPLICIT:** Sidebar has logo header, nav group, user/balance card, and QR CTA footer.
+- **EXPLICIT:** Headers place title/subtitle left and actions/avatar/filters right.
+- **INFERRED:** New page layout recipe:
+  - Cream canvas.
+  - Header with title, short subtitle, and 1-2 actions.
+  - 3-column responsive grid for summary cards.
+  - White rounded content panels below.
+  - Dense lists inside panels with hover cream rows.
+  - Sidebar or bottom nav depending viewport.
+
+# Interaction Model
+
+- **EXPLICIT:** Hover feedback is restrained: `hover:bg-cream`, `hover:bg-cream-dark`, `hover:bg-white/20`, `hover:text-forest`.
+- **EXPLICIT:** Primary CTA hover may scale slightly: `hover:scale-[1.02]`; active press uses `active:scale-[0.98]`.
+- **EXPLICIT:** Screen transitions slide horizontally over `320ms cubic-bezier(0.4,0,0.2,1)`.
+- **EXPLICIT:** Dots and toggles animate width/color with `duration-300`.
+- **EXPLICIT:** Focus feedback in primitives uses `focus-visible:ring-ring/50 focus-visible:ring-[3px]`.
+- **EXPLICIT:** Disabled primitives use `disabled:pointer-events-none disabled:opacity-50`.
+- **EXPLICIT:** Selected nav states use forest fill + white text + lime dot, or active forest icon/text in bottom nav.
+- **EXPLICIT:** Loading skeletons use `bg-accent animate-pulse rounded-md`.
+- **EXPLICIT:** Validation uses destructive border/ring and text.
+- **INFERRED:** Interaction feel is calm, crisp, premium, and touch-friendly. Avoid dramatic animations, neon glow, or noisy hover elevation.
+
+# Explicit Component Patterns
+
+## Buttons
+
+- **EXPLICIT:** Generic primitive variants: default, destructive, outline, secondary, ghost, link.
+- **EXPLICIT:** Primitive sizes: `h-8`, `h-9`, `h-10`, icon `size-8/9/10`.
+- **EXPLICIT:** Finance primary buttons use larger radius: `rounded-2xl`, `py-4`, `font-semibold/bold`.
+- **EXPLICIT:** Icon buttons often use `w-9 h-9` or `w-10 h-10`, white background, border, `shadow-sm`, rounded-full or rounded-2xl.
+- **EXPLICIT:** CTA active state uses slight press scale.
+
+## Navigation
+
+- **EXPLICIT:** Mobile bottom nav uses white surface, top border, compact labels, active forest state.
+- **EXPLICIT:** Central QR action floats above nav with lime fill, rounded-2xl, shadow-lg.
+- **EXPLICIT:** Desktop sidebar active item uses forest fill, white text, and a small lime dot.
+- **EXPLICIT:** Inactive sidebar items are muted and become cream/forest on hover.
+
+## Cards
+
+- **EXPLICIT:** Major finance cards use `rounded-3xl`, `p-5/p-6`, often no border.
+- **EXPLICIT:** Standard white cards use `bg-white rounded-3xl shadow-sm`.
+- **EXPLICIT:** List rows use `bg-white rounded-2xl p-3 shadow-sm` on mobile, or hoverable `p-2.5 rounded-2xl` rows inside desktop cards.
+- **EXPLICIT:** Payment cards use diagonal gradients and high contrast typography.
+
+## Transaction Rows
+
+- **EXPLICIT:** Row structure: icon well/avatar, primary name, secondary date, right-aligned amount, category.
+- **EXPLICIT:** Positive values green, negative values red.
+- **EXPLICIT:** Merchant icons are circular or rounded-2xl colored blocks with initials.
+
+## Charts
+
+- **EXPLICIT:** Charts are simple bar charts with rounded bars, forest/lime colors, tiny muted labels.
+- **EXPLICIT:** Chart cards include compact summaries and legends.
+- **EXPLICIT:** Recharts primitive support exists with token-driven chart colors and tooltip/legend components.
+
+## Profile And Settings Rows
+
+- **EXPLICIT:** Profile uses avatar with lime ring, centered identity, stats card, then white menu rows.
+- **EXPLICIT:** Settings rows use left icon well, title, subtitle, optional chevron.
+- **EXPLICIT:** Danger items use red icon/text and omit the chevron in mobile profile.
+
+## Onboarding
+
+- **EXPLICIT:** Mobile onboarding uses full image hero plus bottom content panel.
+- **EXPLICIT:** Desktop onboarding uses split image/content panel, feature pills, progress dots, trust badges.
+- **EXPLICIT:** Onboarding CTA is prominent and rounded; skip is a muted text action.
+
+## Forms And Inputs
+
+- **EXPLICIT:** Generic input primitive exists: `h-9`, `rounded-md`, border, transparent background, focus ring.
+- **EXPLICIT:** Form primitives provide labels, descriptions, messages, invalid state, and field grouping.
+- **EXPLICIT:** These are not used heavily in finance screens, so their base look is generic shadcn rather than fully brand-adapted.
+
+## Tables
+
+- **EXPLICIT:** Table primitive exists with `text-sm`, row borders, hover `bg-muted/50`, selected `bg-muted`, `p-2` cells.
+- **EXPLICIT:** No brand-specific finance table implementation appears; transactions are represented as cards/list rows instead.
+
+## Dialogs, Sheets, Dropdowns, Selects, Tabs
+
+- **EXPLICIT:** Radix/shadcn primitives exist.
+- **EXPLICIT:** Dialogs use centered modal, black overlay, rounded-lg, border, `p-6`, `shadow-lg`.
+- **EXPLICIT:** Sheets slide from screen edges with overlay and border.
+- **EXPLICIT:** Dropdowns/selects use popover surfaces, `rounded-md`, border, shadow, compact item rows.
+- **EXPLICIT:** Tabs use muted pill list with active background and shadow.
+
+# Inferred Component Patterns
+
+## Buttons
+
+- **INFERRED:** Use lime fill with forest text for constructive primary actions in dashboards: “Add Card”, “Create Transfer”, “Apply Filter”.
+- **INFERRED:** Use forest fill with white text for major flow progression or security-sensitive actions.
+- **INFERRED:** Use cream/white ghost buttons for secondary actions, with hover `bg-cream` and text forest.
+- **INFERRED:** Radius should be `16px`; compact toolbar buttons may use `12px`.
+
+## Inputs
+
+- **INFERRED:** Brand inputs should evolve from primitive defaults to `h-10` or `h-11`, `rounded-xl`, white background, light border, forest text, muted placeholder.
+- **INFERRED:** Focus should use lime ring with forest border, not blue.
+- **INFERRED:** Helper text should be `text-xs text-muted-foreground`; errors use destructive red and avoid aggressive alert styling.
+
+## Selects And Dropdowns
+
+- **INFERRED:** Use white popovers with `rounded-2xl` for larger menus and `rounded-xl` for compact filters.
+- **INFERRED:** Selected items should use cream background and forest text; destructive items red.
+- **INFERRED:** Filter selects can look like existing “Monthly” pills: white or translucent surface, rounded-full/2xl, compact text, chevron.
+
+## Cards
+
+- **INFERRED:** Dashboard cards should be either:
+  - White `rounded-3xl p-5 shadow-sm`.
+  - Forest hero `rounded-3xl p-6` with lime highlights.
+  - Lime highlight `rounded-3xl p-5` with forest content.
+- **INFERRED:** Use borders only when surfaces are similar in color; otherwise use shadow or background contrast.
+
+## Tables
+
+- **INFERRED:** Prefer card-contained tables over full-width grid tables.
+- **INFERRED:** Header text should be `text-xs font-semibold text-muted-foreground`; row text `text-sm`.
+- **INFERRED:** Rows should be `h-12` to `h-14`, hover cream, minimal horizontal dividers.
+
+exec
+/bin/zsh -lc "sed -n '1,320p' .agents/skills/project-ui-design/input/design-extraction-schema.json" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+{
+  "style_name": "",
+  "visual_identity": {
+    "tone": "",
+    "density": "",
+    "corner_style": "",
+    "elevation_style": "",
+    "contrast_profile": "",
+    "mood": "",
+    "notes": []
+  },
+  "identity_traits": {
+    "non_negotiable_traits": [],
+    "adaptable_traits": [],
+    "source_type": "",
+    "adaptation_notes": []
+  },
+  "tokens": {
+    "colors": {
+      "primary": "",
+      "secondary": "",
+      "accent": "",
+      "neutral": [],
+      "success": "",
+      "warning": "",
+      "danger": "",
+      "background": "",
+      "surface": "",
+      "text": {
+        "primary": "",
+        "secondary": "",
+        "muted": "",
+        "inverse": ""
+      },
+      "border": ""
+    },
+    "spacing": {
+      "density": "",
+      "section_gap": [],
+      "card_gap": [],
+      "control_gap": [],
+      "grouping_pattern": "",
+      "adaptation_rule": ""
+    },
+    "radius": {
+      "control": "",
+      "container": "",
+      "overlay": "",
+      "pill": "",
+      "dominant_family": "",
+      "sharp_allowed": "",
+      "style_rule": ""
+    },
+    "shadows": [],
+    "typography": {
+      "font_families": [],
+      "scale": [],
+      "font_weights": [],
+      "line_heights": []
+    },
+    "widths": [],
+    "breakpoints": []
+  },
+  "hierarchy": {
+    "primary_focus_pattern": "",
+    "secondary_content_pattern": "",
+    "cta_hierarchy": "",
+    "emphasis_rules": [],
+    "grouping_rules": [],
+    "contrast_usage": ""
+  },
+  "typography_roles": {
+    "page_title": "",
+    "section_title": "",
+    "body": "",
+    "supporting_text": "",
+    "label": "",
+    "caption": "",
+    "scanning_behavior": ""
+  },
+  "interaction": {
+    "hover": "",
+    "focus": "",
+    "active": "",
+    "selected": "",
+    "disabled": "",
+    "loading": "",
+    "validation": "",
+    "feedback_style": ""
+  },
+  "layout": {
+    "page_shell": "",
+    "page_width_strategy": "",
+    "header_pattern": "",
+    "section_spacing": "",
+    "grid_rules": [],
+    "navigation_patterns": [],
+    "responsive_rules": []
+  },
+  "components": {
+    "buttons": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "inputs": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "selects": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "dropdowns": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "cards": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "tables": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "modals": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "dialogs": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "sidebars": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "tabs": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "badges": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "alerts": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "empty_states": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "charts_containers": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "page_headers": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "filters": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    },
+    "form_layouts": {
+      "explicit": false,
+      "source_basis": "",
+      "confidence": "",
+      "rules": {}
+    }
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "",
+    "information_grouping": "",
+    "filter_placement": "",
+    "form_structure": "",
+    "validation_behavior": "",
+    "table_detail_strategy": "",
+    "loading_error_empty_states": "",
+    "action_placement": "",
+    "notes": []
+  },
+  "constraints": []
+}
+
+exec
+/bin/zsh -lc "sed -n '1,260p' .agents/skills/project-ui-design/input/repo-file-map.txt" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+.gitignore
+app/globals.css
+app/layout.tsx
+app/page.tsx
+components.json
+components/finance/cards-screen.tsx
+components/finance/desktop-views.tsx
+components/finance/finance-app.tsx
+components/finance/home-screen.tsx
+components/finance/nav-bar.tsx
+components/finance/onboarding-screen.tsx
+components/finance/profile-screen.tsx
+components/finance/transactions-screen.tsx
+components/theme-provider.tsx
+components/ui/accordion.tsx
+components/ui/alert-dialog.tsx
+components/ui/alert.tsx
+components/ui/aspect-ratio.tsx
+components/ui/avatar.tsx
+components/ui/badge.tsx
+components/ui/breadcrumb.tsx
+components/ui/button-group.tsx
+components/ui/button.tsx
+components/ui/calendar.tsx
+components/ui/card.tsx
+components/ui/carousel.tsx
+components/ui/chart.tsx
+components/ui/checkbox.tsx
+components/ui/collapsible.tsx
+components/ui/command.tsx
+components/ui/context-menu.tsx
+components/ui/dialog.tsx
+components/ui/drawer.tsx
+components/ui/dropdown-menu.tsx
+components/ui/empty.tsx
+components/ui/field.tsx
+components/ui/form.tsx
+components/ui/hover-card.tsx
+components/ui/input-group.tsx
+components/ui/input-otp.tsx
+components/ui/input.tsx
+components/ui/item.tsx
+components/ui/kbd.tsx
+components/ui/label.tsx
+components/ui/menubar.tsx
+components/ui/navigation-menu.tsx
+components/ui/pagination.tsx
+components/ui/popover.tsx
+components/ui/progress.tsx
+components/ui/radio-group.tsx
+components/ui/resizable.tsx
+components/ui/scroll-area.tsx
+components/ui/select.tsx
+components/ui/separator.tsx
+components/ui/sheet.tsx
+components/ui/sidebar.tsx
+components/ui/skeleton.tsx
+components/ui/slider.tsx
+components/ui/sonner.tsx
+components/ui/spinner.tsx
+components/ui/switch.tsx
+components/ui/table.tsx
+components/ui/tabs.tsx
+components/ui/textarea.tsx
+components/ui/toast.tsx
+components/ui/toaster.tsx
+components/ui/toggle-group.tsx
+components/ui/toggle.tsx
+components/ui/tooltip.tsx
+components/ui/use-mobile.tsx
+components/ui/use-toast.ts
+generate-design-skill.mjs
+hooks/use-mobile.ts
+hooks/use-toast.ts
+lib/utils.ts
+next-env.d.ts
+next.config.mjs
+package.json
+pnpm-lock.yaml
+postcss.config.mjs
+public/apple-icon.png
+public/icon-dark-32x32.png
+public/icon-light-32x32.png
+public/icon.svg
+public/images/onboarding-hero.jpg
+public/placeholder-logo.png
+public/placeholder-logo.svg
+public/placeholder-user.jpg
+public/placeholder.jpg
+public/placeholder.svg
+styles/globals.css
+tsconfig.json
+
+exec
+/bin/zsh -lc "sed -n '301,620p' .agents/skills/project-ui-design/outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+- **INFERRED:** Important cells such as amounts/status should use bold forest, green, red, or small rounded badges.
+
+## Modals And Dialogs
+
+- **INFERRED:** Brand dialogs should use `rounded-3xl`, `p-6`, white background, light border/shadow, black overlay at 40-50%.
+- **INFERRED:** Titles should be `text-xl font-extrabold text-forest`; descriptions muted.
+- **INFERRED:** Footer actions should include lime/forest primary and ghost secondary.
+
+## Sidebars
+
+- **INFERRED:** Use white sidebar on cream page, border-right, logo row, grouped nav, active forest pill with lime dot.
+- **INFERRED:** Footer can contain a compact user/balance card and a lime action button.
+- **INFERRED:** Avoid dark sidebars except for marketing/demo chrome.
+
+## Tabs
+
+- **INFERRED:** Use cream pill container with active white or forest segment.
+- **INFERRED:** For high-level tabs, active state can be forest fill; for local filters, active can be white with shadow.
+
+## Badges
+
+- **INFERRED:** Finance/status badges should be compact, rounded-lg, `text-[9px]` to `text-xs`, semibold.
+- **INFERRED:** Use semantic tints: green for income/verified, red for failed/danger, lime/forest for brand statuses, cream for neutral.
+
+## Alerts
+
+- **INFERRED:** Alerts should be calm and card-like: rounded-2xl, light border, icon well, short title, muted explanation.
+- **INFERRED:** Destructive alerts should use red text and pale red background, not large saturated red blocks unless confirming irreversible financial action.
+
+## Empty States
+
+- **INFERRED:** Use dashed rounded-3xl containers, centered icon well, concise title, muted text, one primary action.
+- **INFERRED:** Empty states should resemble “Add New Card”: dashed border, muted icon, soft hover.
+
+## Chart Containers
+
+- **INFERRED:** Charts should sit in white rounded-3xl cards or lime/forest summary cards.
+- **INFERRED:** Bars should be rounded; legends tiny and muted; avoid dense axes.
+- **INFERRED:** Use forest and lime as first chart colors, then controlled semantic colors.
+
+## Page Headers
+
+- **INFERRED:** Use title/subtitle left, actions right.
+- **INFERRED:** Title: `text-2xl font-extrabold text-forest`.
+- **INFERRED:** Subtitle: `text-sm text-muted-foreground`.
+- **INFERRED:** Actions should be limited to 1 primary plus 1-2 compact secondary controls.
+
+## Filters
+
+- **INFERRED:** Filters should be compact chips/buttons, not full form panels by default.
+- **INFERRED:** Use rounded-xl/2xl, white background, light border, muted label, forest selected state.
+- **INFERRED:** Advanced filters can open a sheet/dialog rather than expanding a dense inline panel.
+
+## Form Layouts
+
+- **INFERRED:** Use one-column forms on mobile, two-column grouped forms on desktop.
+- **INFERRED:** Group related fields inside white rounded-3xl cards with `gap-4` or `gap-6`.
+- **INFERRED:** Use field descriptions sparingly. The style favors directness.
+
+# UX Behavior Patterns
+
+- **EXPLICIT:** Primary actions are visually isolated: floating QR button, lime “Add Card”, full-width onboarding CTA.
+- **EXPLICIT:** Secondary actions are small text buttons or subdued icon controls.
+- **EXPLICIT:** Information is grouped into digestible modules: balance, cards, actions, quick send, transactions.
+- **EXPLICIT:** Dense data is represented as cards/lists, not spreadsheet grids.
+- **EXPLICIT:** Progressive disclosure appears through “See all”, “Filter”, “Monthly”, balance visibility toggles, and onboarding skip.
+- **INFERRED:** Utility-heavy screens should introduce controls in layers:
+  - Page-level primary action in header.
+  - Compact filters as chips.
+  - Row-level actions hidden behind hover/menu icons.
+  - Advanced controls in dialogs/sheets.
+- **INFERRED:** Denser CRUD screens should still preserve the source language by using rounded cards, muted metadata, spacious row height, and brand-colored active states.
+
+# Constraints And Anti-Drift Rules
+
+- **EXPLICIT:** Do not replace the cream canvas with generic gray.
+- **EXPLICIT:** Do not replace forest/lime with blue SaaS defaults.
+- **EXPLICIT:** Do not make all cards white-on-white without contrast; use forest/lime hero surfaces for key metrics.
+- **EXPLICIT:** Do not overuse heavy shadows; app surfaces mostly use `shadow-sm`.
+- **EXPLICIT:** Do not make sharp rectangular cards or square buttons.
+- **EXPLICIT:** Do not create dense divider-heavy admin tables as the default representation for financial data.
+- **EXPLICIT:** Do not use large bodies of low-contrast text; the app uses short labels and strong hierarchy.
+- **INFERRED:** New UI must preserve:
+  - Cream page background.
+  - Forest primary text/action.
+  - Lime accent/CTA.
+  - Large radii.
+  - Compact finance-card density.
+  - Subtle interaction feedback.
+- **INFERRED:** Product context can flex:
+  - More tables/forms are acceptable.
+  - Slightly smaller radii are acceptable inside dense controls.
+  - White cards can carry more structured data.
+  - Sidebars and filters can become more utilitarian.
+- **INFERRED:** To prevent generic dashboard drift:
+  - Start every page with a branded metric or action surface.
+  - Use rounded list rows instead of raw table rows where possible.
+  - Keep semantic colors tied to financial meaning.
+  - Make active/selected states forest or lime.
+  - Keep copy short and task-oriented.
+
+# Final Style DNA Summary
+
+**EXPLICIT:** FinFlow’s style DNA is warm fintech minimalism: cream background, forest authority, lime optimism, soft tactile geometry, compact financial hierarchy, and quiet interaction feedback.
+
+**INFERRED:** A consistent new screen should feel like this:
+
+- Cream canvas.
+- White rounded-3xl cards.
+- One forest or lime focal surface per major section.
+- Plus Jakarta Sans with bold, compact labels and extra-bold numbers.
+- `16px` to `24px` radii as the default geometry.
+- `16px` grid gaps and `20px` card padding.
+- Muted metadata and high-contrast primary values.
+- Subtle hover fills, lime focus rings, light shadows.
+- Product controls introduced as chips, sheets, cards, and rounded rows rather than dense generic admin chrome.
+exec
+/bin/zsh -lc "sed -n '1,260p' app/globals.css" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.97 0.015 100);
+  --foreground: oklch(0.18 0.04 145);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 145);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 145);
+  --primary: oklch(0.28 0.07 145);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0.03 100);
+  --secondary-foreground: oklch(0.28 0.07 145);
+  --muted: oklch(0.94 0.02 100);
+  --muted-foreground: oklch(0.52 0.03 145);
+  --accent: oklch(0.88 0.22 120);
+  --accent-foreground: oklch(0.18 0.08 145);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.90 0.02 100);
+  --input: oklch(0.90 0.02 100);
+  --ring: oklch(0.88 0.22 120);
+  --chart-1: oklch(0.88 0.22 120);
+  --chart-2: oklch(0.28 0.07 145);
+  --chart-3: oklch(0.70 0.18 120);
+  --chart-4: oklch(0.55 0.14 135);
+  --chart-5: oklch(0.40 0.10 145);
+  --radius: 1rem;
+
+  /* Custom finance tokens */
+  --lime: oklch(0.88 0.22 120);
+  --lime-dark: oklch(0.78 0.20 120);
+  --forest: oklch(0.28 0.07 145);
+  --forest-dark: oklch(0.20 0.06 145);
+  --cream: oklch(0.97 0.015 100);
+  --cream-dark: oklch(0.93 0.025 100);
+}
+
+@theme inline {
+  --font-sans: var(--font-plus-jakarta);
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-lime: var(--lime);
+  --color-lime-dark: var(--lime-dark);
+  --color-forest: var(--forest);
+  --color-forest-dark: var(--forest-dark);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .bg-lime {
+    background-color: var(--lime);
+  }
+  .bg-lime-dark {
+    background-color: var(--lime-dark);
+  }
+  .bg-forest {
+    background-color: var(--forest);
+  }
+  .bg-forest-dark {
+    background-color: var(--forest-dark);
+  }
+  .bg-cream {
+    background-color: var(--cream);
+  }
+  .bg-cream-dark {
+    background-color: var(--cream-dark);
+  }
+  .text-lime {
+    color: var(--lime);
+  }
+  .text-forest {
+    color: var(--forest);
+  }
+  .text-cream {
+    color: var(--cream);
+  }
+  .ring-lime {
+    --tw-ring-color: var(--lime);
+  }
+  .hover\:bg-lime-dark:hover {
+    background-color: var(--lime-dark);
+  }
+  .hover\:bg-forest-dark:hover {
+    background-color: var(--forest-dark);
+  }
+  .border-forest\/20 {
+    border-color: color-mix(in srgb, var(--forest) 20%, transparent);
+  }
+}
+
+exec
+/bin/zsh -lc "sed -n '1,260p' components/finance/home-screen.tsx" in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "sed -n '1,220p' components/finance/finance-app.tsx" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+"use client"
+
+import {
+  Bell,
+  Eye,
+  EyeOff,
+  Plus,
+  ArrowUpRight,
+  Download,
+  ChevronRight,
+  ArrowLeftRight,
+  CreditCard,
+} from "lucide-react"
+import { useState } from "react"
+import { NavBar } from "@/components/finance/nav-bar"
+
+interface HomeScreenProps {
+  onNavChange: (tab: string) => void
+  activeTab: string
+  hideNavBar?: boolean
+}
+
+const contacts = [
+  { id: 0, name: "Add", isAdd: true },
+  { id: 1, name: "Jane", initials: "JA", color: "#C8E63A", textColor: "#1B3A2D" },
+  { id: 2, name: "Kristin", initials: "KR", color: "#1B3A2D", textColor: "#ffffff" },
+  { id: 3, name: "Hawkins", initials: "HW", color: "#8B5CF6", textColor: "#ffffff" },
+  { id: 4, name: "Darlene", initials: "DA", color: "#F59E0B", textColor: "#ffffff" },
+  { id: 5, name: "Sam", initials: "SM", color: "#EC4899", textColor: "#ffffff" },
+]
+
+const recentTx = [
+  { id: 1, name: "Amazon", date: "Feb 15", amount: -80, category: "Shopping", icon: "A", iconBg: "#1a1a1a", iconColor: "white" },
+  { id: 2, name: "Bank Transfer", date: "Feb 10", amount: 700, category: "Income", icon: "B", iconBg: "#1B3A2D", iconColor: "white" },
+  { id: 3, name: "Netflix", date: "Jan 5", amount: -25, category: "Subscription", icon: "N", iconBg: "#1a1a1a", iconColor: "#E50914" },
+]
+
+export function HomeScreen({ onNavChange, activeTab, hideNavBar }: HomeScreenProps) {
+  const [balanceVisible, setBalanceVisible] = useState(true)
+
+  return (
+    <div className="flex flex-col h-full bg-cream overflow-hidden">
+      {/* Status Bar */}
+      <div className="flex items-center justify-between px-5 pt-3 pb-1 flex-shrink-0">
+        <span className="text-xs font-semibold text-forest">9:41</span>
+        <div className="flex items-center gap-1">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" className="text-forest">
+            <rect x="0" y="3" width="3" height="9" rx="1" opacity="0.4"/>
+            <rect x="4.5" y="2" width="3" height="10" rx="1" opacity="0.6"/>
+            <rect x="9" y="0.5" width="3" height="11.5" rx="1" opacity="0.8"/>
+            <rect x="13.5" y="0" width="3" height="12" rx="1"/>
+          </svg>
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" className="text-forest">
+            <path d="M8 2.4C10.5 2.4 12.7 3.5 14.2 5.2L15.5 3.8C13.6 1.7 11 0.4 8 0.4C5 0.4 2.4 1.7 0.5 3.8L1.8 5.2C3.3 3.5 5.5 2.4 8 2.4Z" opacity="0.3"/>
+            <path d="M8 5.6C9.8 5.6 11.4 6.4 12.5 7.6L13.8 6.2C12.3 4.6 10.3 3.6 8 3.6C5.7 3.6 3.7 4.6 2.2 6.2L3.5 7.6C4.6 6.4 6.2 5.6 8 5.6Z" opacity="0.6"/>
+            <path d="M8 8.8C9.1 8.8 10 9.3 10.7 10L8 12.8L5.3 10C6 9.3 6.9 8.8 8 8.8Z"/>
+          </svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+            <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" strokeOpacity="0.35" className="text-forest"/>
+            <rect x="1.5" y="1.5" width="16" height="9" rx="2.5" fill="currentColor" className="text-forest"/>
+            <path d="M23 4v4a2 2 0 000-4z" fill="currentColor" opacity="0.4" className="text-forest"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* Scrollable content */}
+      <div className="flex-1 overflow-y-auto px-4 space-y-4 pb-2 scrollbar-hide">
+        {/* Profile Row */}
+        <div className="flex items-center justify-between py-1">
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 rounded-full overflow-hidden" style={{ outline: "2px solid var(--lime)", outlineOffset: "2px" }}>
+              <img src="/images/onboarding-hero.jpg" alt="Alex Piter" className="w-full h-full object-cover object-top" draggable={false} />
+            </div>
+            <span className="font-bold text-forest text-sm">Alex Piter</span>
+          </div>
+          <button className="relative w-9 h-9 rounded-full bg-white border border-border flex items-center justify-center shadow-sm">
+            <Bell size={16} className="text-forest" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
+          </button>
+        </div>
+
+        {/* Balance */}
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="text-xs text-muted-foreground mb-0.5">Total Balance</p>
+            <p className="text-3xl font-extrabold text-forest tracking-tight">
+              {balanceVisible ? "$45,000.00" : "••••••••"}
+            </p>
+          </div>
+          <button onClick={() => setBalanceVisible(!balanceVisible)} className="mb-1">
+            {balanceVisible
+              ? <Eye size={18} className="text-muted-foreground" />
+              : <EyeOff size={18} className="text-muted-foreground" />
+            }
+          </button>
+        </div>
+
+        {/* Cards Carousel */}
+        <div className="flex gap-3 overflow-x-auto pb-1 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+          <div className="flex-shrink-0 w-8 flex items-center">
+            <button className="w-8 h-8 rounded-full bg-white border-2 border-dashed border-border flex items-center justify-center">
+              <Plus size={14} className="text-muted-foreground" />
+            </button>
+          </div>
+          <div className="flex-shrink-0 w-56 rounded-3xl p-4 snap-start" style={{ background: "linear-gradient(135deg, #c8e63a 0%, #b5d42a 100%)" }}>
+            <div className="flex items-center justify-between mb-5">
+              <span className="text-xs font-bold text-forest">Debit</span>
+              <span className="font-black text-lg text-forest tracking-tight">VISA</span>
+            </div>
+            <div className="grid grid-cols-2 gap-0.5 w-8 mb-4">
+              {[0,1,2,3].map(i => <div key={i} className="w-2 h-2 rounded-sm bg-forest/80" />)}
+            </div>
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-[9px] text-forest/70 mb-0.5">Card Number</p>
+                <p className="text-[11px] font-bold text-forest tracking-widest">•••• •••• •••• 5690</p>
+              </div>
+              <div>
+                <p className="text-[9px] text-forest/70 mb-0.5">Valid</p>
+                <p className="text-[11px] font-bold text-forest">07/30</p>
+              </div>
+            </div>
+          </div>
+          <div className="flex-shrink-0 w-56 rounded-3xl p-4 snap-start" style={{ background: "linear-gradient(135deg, #1B3A2D 0%, #2d5c44 100%)" }}>
+            <div className="flex items-center justify-between mb-5">
+              <span className="text-xs font-bold text-white/80">Debit</span>
+              <span className="font-black text-lg text-white tracking-tight">VISA</span>
+            </div>
+            <div className="grid grid-cols-2 gap-0.5 w-8 mb-4">
+              {[0,1,2,3].map(i => <div key={i} className="w-2 h-2 rounded-sm bg-white/60" />)}
+            </div>
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-[9px] text-white/60 mb-0.5">Card Number</p>
+                <p className="text-[11px] font-bold text-white tracking-widest">•••• •••• •••• 3421</p>
+              </div>
+              <div>
+                <p className="text-[9px] text-white/60 mb-0.5">Valid</p>
+                <p className="text-[11px] font-bold text-white">12/28</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex justify-around">
+          {[
+            { icon: <Download size={18} className="text-forest" />, label: "Top Up" },
+            { icon: <ArrowUpRight size={18} className="text-forest" />, label: "Send" },
+            { icon: <CreditCard size={18} className="text-forest" />, label: "Pay" },
+            { icon: <ArrowLeftRight size={18} className="text-forest" />, label: "Transfer" },
+          ].map((action) => (
+            <button key={action.label} className="flex flex-col items-center gap-1.5">
+              <div className="w-12 h-12 rounded-2xl bg-white border border-border shadow-sm flex items-center justify-center">
+                {action.icon}
+              </div>
+              <span className="text-[10px] font-medium text-forest">{action.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Connect Card Banner */}
+        <div className="flex items-center gap-3 bg-cream-dark rounded-2xl p-3 border border-border">
+          <div className="w-10 h-10 rounded-xl bg-forest flex items-center justify-center flex-shrink-0">
+            <CreditCard size={18} style={{ color: "var(--lime)" }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-bold text-forest">Connect Your Card</p>
+            <p className="text-[10px] text-muted-foreground">The smarter way to pay your money</p>
+          </div>
+          <ChevronRight size={16} className="text-muted-foreground flex-shrink-0" />
+        </div>
+
+        {/* Quick Send */}
+        <div>
+          <h3 className="text-sm font-bold text-forest mb-3">Quick Send</h3>
+          <div className="flex gap-4 overflow-x-auto pb-1 scrollbar-hide">
+            {contacts.map((c) => (
+              <button key={c.id} className="flex flex-col items-center gap-1.5 flex-shrink-0">
+                {c.isAdd ? (
+                  <div className="w-11 h-11 rounded-full border-2 border-dashed border-border flex items-center justify-center bg-white">
+                    <Plus size={16} className="text-muted-foreground" />
+                  </div>
+                ) : (
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold"
+                    style={{ backgroundColor: c.color, color: c.textColor }}
+                  >
+                    {c.initials}
+                  </div>
+                )}
+                <span className="text-[10px] font-medium text-muted-foreground">{c.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Today's Transactions */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-bold text-forest">Today, Dec 25</p>
+            <button
+              onClick={() => onNavChange("transactions")}
+              className="flex items-center gap-1 text-[10px] font-semibold text-forest"
+            >
+              All transactions <ChevronRight size={12} />
+            </button>
+          </div>
+          <div className="space-y-2">
+            {recentTx.map((tx) => (
+              <div key={tx.id} className="flex items-center gap-3 bg-white rounded-2xl p-3 shadow-sm">
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                  style={{ backgroundColor: tx.iconBg, color: tx.iconColor }}
+                >
+                  {tx.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-semibold text-forest truncate">{tx.name}</p>
+                  <p className="text-[10px] text-muted-foreground">{tx.date}</p>
+                </div>
+                <div className="text-right">
+                  <p className={`text-xs font-bold ${tx.amount > 0 ? "text-green-600" : "text-red-500"}`}>
+                    {tx.amount > 0 ? "+" : ""}${Math.abs(tx.amount).toFixed(2)}
+                  </p>
+                  <p className="text-[9px] text-muted-foreground">{tx.category}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Home indicator */}
+        <div className="flex justify-center pt-1 pb-1">
+          <div className="w-32 h-1 bg-foreground/20 rounded-full" />
+        </div>
+      </div>
+
+      {!hideNavBar && <NavBar activeTab={activeTab} onNavChange={onNavChange} />}
+    </div>
+  )
+}
+
+ succeeded in 0ms:
+"use client"
+
+import { useState, useEffect } from "react"
+import { Smartphone, Monitor, Shield, RefreshCw, Search, ChevronLeft, ChevronRight } from "lucide-react"
+import { Home, ArrowLeftRight, CreditCard, User, Bell, QrCode } from "lucide-react"
+import { OnboardingScreen } from "@/components/finance/onboarding-screen"
+import { HomeScreen } from "@/components/finance/home-screen"
+import { TransactionsScreen } from "@/components/finance/transactions-screen"
+import { CardsScreen } from "@/components/finance/cards-screen"
+import { ProfileScreen } from "@/components/finance/profile-screen"
+import { DesktopHome, DesktopTransactions, DesktopCards, DesktopProfile, DesktopOnboarding } from "@/components/finance/desktop-views"
+
+type Screen = "onboarding" | "home" | "transactions" | "cards" | "profile"
+type ViewMode = "mobile" | "desktop"
+
+const SCREEN_ORDER: Screen[] = ["onboarding", "home", "transactions", "cards", "profile"]
+
+export function FinanceApp() {
+  const [viewMode, setViewMode] = useState<ViewMode>("mobile")
+  const [activeScreen, setActiveScreen] = useState<Screen>("onboarding")
+  const [prevScreen, setPrevScreen] = useState<Screen | null>(null)
+  const [transitioning, setTransitioning] = useState(false)
+  const [direction, setDirection] = useState<1 | -1>(1)
+  const [onboardingSlide, setOnboardingSlide] = useState(0)
+
+  const navigate = (to: Screen) => {
+    if (transitioning || to === activeScreen) return
+    const fromIdx = SCREEN_ORDER.indexOf(activeScreen)
+    const toIdx = SCREEN_ORDER.indexOf(to)
+    setDirection(toIdx >= fromIdx ? 1 : -1)
+    setPrevScreen(activeScreen)
+    setActiveScreen(to)
+    setTransitioning(true)
+  }
+
+  useEffect(() => {
+    if (!transitioning) return
+    const t = setTimeout(() => {
+      setPrevScreen(null)
+      setTransitioning(false)
+    }, 320)
+    return () => clearTimeout(t)
+  }, [transitioning])
+
+  const handleNavChange = (tab: string) => {
+    if (tab === "qr") return
+    navigate(tab as Screen)
+  }
+
+  const outStyle: React.CSSProperties = transitioning
+    ? { transform: direction === 1 ? "translateX(-100%)" : "translateX(100%)", transition: "transform 320ms cubic-bezier(0.4,0,0.2,1)" }
+    : {}
+
+  const inStyle: React.CSSProperties = transitioning
+    ? { transform: "translateX(0)", transition: "transform 320ms cubic-bezier(0.4,0,0.2,1)" }
+    : { transform: "translateX(0)" }
+
+  const inInitialStyle: React.CSSProperties = {
+    transform: direction === 1 ? "translateX(100%)" : "translateX(-100%)",
+    transition: "none",
+  }
+
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-[#4a8fa8] via-[#3d7a8a] to-[#2d6070] overflow-x-hidden">
+      {/* Background texture */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.06]"
+        style={{ backgroundImage: "radial-gradient(circle, white 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }}
+      />
+
+      {/* Top Toolbar */}
+      <div className="relative z-20 flex items-center justify-between w-full max-w-5xl px-6 py-5">
+        {/* Logo */}
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-lime flex items-center justify-center">
+            <span className="text-forest font-black text-xs">FF</span>
+          </div>
+          <span className="text-white font-bold text-sm tracking-wide">FinFlow</span>
+        </div>
+
+        {/* View Switcher */}
+        <div className="flex items-center bg-black/25 backdrop-blur-sm rounded-2xl p-1 gap-1">
+          <button
+            onClick={() => setViewMode("mobile")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+              viewMode === "mobile"
+                ? "bg-white text-forest shadow-sm"
+                : "text-white/70 hover:text-white"
+            }`}
+          >
+            <Smartphone size={15} />
+            Mobile
+          </button>
+          <button
+            onClick={() => setViewMode("desktop")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+              viewMode === "desktop"
+                ? "bg-white text-forest shadow-sm"
+                : "text-white/70 hover:text-white"
+            }`}
+          >
+            <Monitor size={15} />
+            Desktop
+          </button>
+        </div>
+
+        {/* Badge */}
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-lime animate-pulse" />
+          <span className="text-white/60 text-xs font-medium">Interactive Demo</span>
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="relative z-10 w-full flex items-center justify-center px-4 pb-10">
+        {viewMode === "mobile" ? (
+          <MobileFrame
+            activeScreen={activeScreen}
+            prevScreen={prevScreen}
+            transitioning={transitioning}
+            direction={direction}
+            onboardingSlide={onboardingSlide}
+            outStyle={outStyle}
+            inStyle={inStyle}
+            inInitialStyle={inInitialStyle}
+            handleNavChange={handleNavChange}
+            setOnboardingSlide={setOnboardingSlide}
+            navigate={navigate}
+          />
+        ) : (
+          <DesktopFrame
+            activeScreen={activeScreen}
+            prevScreen={prevScreen}
+            transitioning={transitioning}
+            direction={direction}
+            onboardingSlide={onboardingSlide}
+            outStyle={outStyle}
+            inStyle={inStyle}
+            inInitialStyle={inInitialStyle}
+            handleNavChange={handleNavChange}
+            setOnboardingSlide={setOnboardingSlide}
+            navigate={navigate}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Mobile Phone Frame ───────────────────────────────────────────────────────
+
+interface FrameProps {
+  activeScreen: Screen
+  prevScreen: Screen | null
+  transitioning: boolean
+  direction: 1 | -1
+  onboardingSlide: number
+  outStyle: React.CSSProperties
+  inStyle: React.CSSProperties
+  inInitialStyle: React.CSSProperties
+  handleNavChange: (tab: string) => void
+  setOnboardingSlide: (n: number) => void
+  navigate: (to: Screen) => void
+}
+
+function MobileFrame(props: FrameProps) {
+  const { activeScreen, prevScreen, transitioning, outStyle, inStyle, inInitialStyle, handleNavChange, onboardingSlide, setOnboardingSlide, navigate } = props
+
+  return (
+    <div className="relative" style={{ width: 300, height: 620 }}>
+      {/* Side buttons */}
+      <div className="absolute right-[-4px] top-24 w-[3px] h-14 bg-white/20 rounded-full" />
+      <div className="absolute left-[-4px] top-16 w-[3px] h-7 bg-white/20 rounded-full" />
+      <div className="absolute left-[-4px] top-28 w-[3px] h-10 bg-white/20 rounded-full" />
+      <div className="absolute left-[-4px] top-44 w-[3px] h-10 bg-white/20 rounded-full" />
+
+      {/* Shell */}
+      <div className="absolute inset-0 rounded-[46px] bg-[#0a0a0a]"
+        style={{ boxShadow: "0 32px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08) inset" }}>
+        {/* Bezel */}
+        <div className="absolute inset-[3px] rounded-[44px] bg-white overflow-hidden">
+          {/* Dynamic Island */}
+          <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[100px] h-[28px] bg-black rounded-full z-50" />
+
+          {/* Screen */}
+          <div className="absolute inset-0 overflow-hidden rounded-[42px] bg-cream">
+            {prevScreen && transitioning && (
+              <div className="absolute inset-0 z-10" style={outStyle}>
+                <ScreenRenderer screen={prevScreen} activeTab={prevScreen} onNavChange={handleNavChange}
+                  onboardingSlide={onboardingSlide} onSlideChange={setOnboardingSlide} onComplete={() => navigate("home")} />
+              </div>
+            )}
+            <ActiveScreenLayer key={activeScreen} screen={activeScreen} activeTab={activeScreen}
+              onNavChange={handleNavChange} onboardingSlide={onboardingSlide} onSlideChange={setOnboardingSlide}
+              onComplete={() => navigate("home")} transitioning={transitioning} inInitialStyle={inInitialStyle} inStyle={inStyle} />
+          </div>
+          {/* Home pill */}
+          <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2 w-28 h-[4px] bg-black/15 rounded-full z-50" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Desktop Browser Frame ────────────────────────────────────────────────────
+
+function DesktopFrame(props: FrameProps) {
+  const { activeScreen, prevScreen, transitioning, outStyle, inStyle, inInitialStyle, handleNavChange, onboardingSlide, setOnboardingSlide, navigate } = props
+
+  const screenTitle: Record<Screen, string> = {
+    onboarding: "Welcome — FinFlow",
+    home: "Dashboard — FinFlow",
+    transactions: "Transactions — FinFlow",
+    cards: "My Cards — FinFlow",
+    profile: "Profile — FinFlow",
+  }
+
+  return (
+    <div className="w-full max-w-5xl">
+      {/* Browser chrome */}
+
+codex
+{"style_name":"Warm Fintech Minimalism","visual_identity":{"tone":"Premium, calm, optimistic fintech with a tactile wallet-app feel.","density":"Balanced-compact: mobile screens use tight finance-app rhythm while preserving touch targets and breathing room.","corner_style":"Large rounded geometry dominates; rounded-2xl and rounded-3xl are the visible brand shapes, with pills for avatars, dots, and nav accents.","elevation_style":"Low elevation inside the app: mostly shadow-sm, light borders, and color contrast. Strong shadows are reserved for demo device/browser chrome.","contrast_profile":"Warm cream canvas, white surfaces, deep forest primary content, lime signature accents, and semantic green/red for financial values.","mood":"Trustworthy, soft, modern, financially precise, and lightly expressive without feeling playful.","notes":["EXPLICIT: app/globals.css defines cream, forest, lime, white card, muted, border, ring, chart, and radius tokens.","EXPLICIT: components/finance/* repeatedly use bg-cream, bg-white, bg-forest, bg-lime, rounded-2xl, rounded-3xl, shadow-sm, compact labels, and bold financial values.","EXPLICIT: app/layout.tsx uses Plus Jakarta Sans with weights 400, 500, 600, 700, and 800.","INFERRED: new product areas should preserve wallet-app tactility and avoid generic gray/blue SaaS styling."]},"identity_traits":{"non_negotiable_traits":["Cream page background instead of generic gray or pure white app canvas.","Forest green as primary text, navigation, and high-emphasis action color.","Lime as the signature accent for constructive actions, active highlights, rings, dots, and key chart bars.","Large soft radii for visible surfaces and controls: 16px-24px as the normal brand range.","Compact finance hierarchy: short labels, muted metadata, extra-bold totals, right-aligned amounts, and semantic positive/negative colors.","Subtle interaction feedback: restrained hover fills, lime focus rings, light scale on major CTAs, and minimal shadow escalation."],"adaptable_traits":["Tables and forms may become more structured for CRUD workflows if they stay card-contained, rounded, and low-divider.","Primitive shadcn radii may remain smaller for dense internal controls, but branded surfaces should use larger finance radii.","Forest and lime hero cards may be used selectively; not every card should be saturated.","Secondary accent colors may appear in avatars or charts, but they should not overtake the forest/lime identity.","Desktop sidebars and page headers can become more utilitarian if active states remain forest/lime and surfaces remain cream/white."],"source_type":"Explicit repo evidence plus conservative inference from finance screens and shadcn/ui primitives.","adaptation_notes":["Treat finance screens as stronger identity evidence than generic shadcn primitives.","When primitive defaults conflict with custom finance screens, prefer the finance screen visual language for branded product UI.","For missing branded implementations, infer only from token roles, radius system, spacing rhythm, and observed UX patterns."]},"tokens":{"colors":{"primary":"oklch(0.28 0.07 145) / var(--forest), observed hex #1B3A2D; use for primary text, active navigation, major CTAs, dark cards.","secondary":"oklch(0.96 0.03 100) / var(--secondary) and oklch(0.93 0.025 100) / var(--cream-dark); use for soft grouped surfaces and rows.","accent":"oklch(0.88 0.22 120) / var(--lime), observed hex #C8E63A; use for constructive actions, highlights, rings, active dots, and chart-1.","neutral":["background: oklch(0.97 0.015 100) / var(--cream)","surface: oklch(1 0 0) / white card surfaces","muted: oklch(0.94 0.02 100) / var(--muted)","border/input: oklch(0.90 0.02 100)","demo chrome gradient only: #4a8fa8, #3d7a8a, #2d6070"],"success":"Tailwind green utilities are explicit for positive values: text-green-600 and text-green-500; use for income, verified, success, and positive deltas.","warning":"No dedicated warning token; amber #F59E0B appears as an avatar color only. Infer amber for warnings sparingly, with cream/white containment.","danger":"oklch(0.577 0.245 27.325) / var(--destructive), plus text-red-500 and bg-red-50 for negative values and destructive actions.","background":"oklch(0.97 0.015 100) / var(--background), var(--cream); main app canvas.","surface":"oklch(1 0 0) / var(--card); cards, lists, popovers, nav bars.","text":{"primary":"oklch(0.18 0.04 145) / var(--foreground) and var(--forest); headings, labels, nav, icons.","secondary":"Forest at reduced opacity or secondary-foreground; row labels and less dominant content.","muted":"oklch(0.52 0.03 145) / var(--muted-foreground); captions, metadata, helper text.","inverse":"oklch(0.98 0 0) / primary-foreground or white; text on forest cards and dark demo chrome."},"border":"oklch(0.90 0.02 100) / var(--border); also border-white/10, border-forest/20, and dashed border-border for add/empty actions."},"spacing":{"density":"Balanced-compact, optimized for finance dashboards and mobile wallet screens.","section_gap":["mobile primary stack: space-y-4","desktop grids: gap-4","onboarding/marketing-like panels: mb-8, mb-10, mt-12, pt-8","major desktop page padding: p-6"],"card_gap":["compact list rows: space-y-2 or space-y-3","card internals: gap-2, gap-2.5, gap-3","horizontal carousels/actions: gap-3 or gap-4","desktop multi-card dashboards: gap-4"],"control_gap":["icon-label controls: gap-2 or gap-2.5","tight metadata: gap-0.5 to gap-1.5","button groups/view switchers: p-1 container with gap-1","action rows: justify-around or compact flex gap"],"grouping_pattern":"Group information into digestible modules: balance, cards, actions, quick send, transactions, chart, settings rows. Prefer spacing and soft background shifts over many dividers.","adaptation_rule":"For new utility screens, use 24px page padding, 16px grid gaps, 20px card padding, 12px list-row padding, and compact filter chips rather than large form panels by default."},"radius":{"control":"12px-16px for compact controls; 16px for branded primary buttons and action tiles.","container":"22px-24px for major cards and panels; rounded-3xl is the common finance card shape.","overlay":"16px in generic shadcn dialogs, inferred 24px for branded finance dialogs/sheets.","pill":"9999px / rounded-full for avatars, nav dots, progress dots, home indicators, chart bars, and circular icon wells.","dominant_family":"Soft rounded-xl, rounded-2xl, rounded-3xl, rounded-full.","sharp_allowed":"Only for tiny decorative elements, chart internals, table grid internals, or demo/browser chrome details; not for primary user-facing cards or buttons.","style_rule":"Visible branded surfaces should default to large radii. Primitive rounded-md may remain for dense low-emphasis internals but should not define the page character."},"shadows":["shadow-sm for standard white cards, transaction rows, icon buttons, and active segmented controls.","shadow-md only as a subtle hover escalation on some profile/stat rows.","shadow-lg for the central mobile QR action and important floating CTAs.","Large custom shadows are explicit on phone/browser demo frames only and should not be copied into normal app surfaces."],"typography":{"font_families":["Plus Jakarta Sans via next/font/google and --font-plus-jakarta","Geist Mono only as theme mono fallback"],"scale":["caption/card microcopy: text-[8px] to text-[10px]","metadata/supporting: text-xs","body/list rows/buttons: text-sm","mobile titles/section emphasis: text-base to text-xl","desktop page titles: text-2xl","financial totals: text-3xl to text-4xl"],"font_weights":["400 body copy","500 labels and subdued controls","600 buttons, rows, important labels","700 section titles and mobile titles","800 page titles and financial totals","font-black only for compact brand/card-network marks"],"line_heights":["leading-none for labels and primitive controls","leading-tight for headings and totals","leading-relaxed for longer body/onboarding copy"]},"widths":["mobile phone demo: 300px wide, 620px high","desktop demo/content shell: max-w-5xl","desktop sidebar observed: w-56 / 224px in finance app","generic sidebar primitive: 16rem desktop, 18rem mobile, 3rem icon-collapsed","mobile content padding: px-4 and px-5 headers","onboarding content panel: px-7 mobile, px-14 py-12 desktop"],"breakpoints":["sm and md responsive classes in primitives and screens","container-query behavior in sidebar primitives","mobile: bottom navigation and vertical stack","desktop: sidebar plus content, 3-column and 5-column grids"]},"hierarchy":{"primary_focus_pattern":"Lead with one strong financial anchor per view: a large balance, forest/lime hero card, active navigation state, or primary CTA. Use weight and color before heavy decoration.","secondary_content_pattern":"Secondary content appears as white cards, rounded list rows, muted metadata, small labels, and soft cream grouped surfaces.","cta_hierarchy":"Primary CTAs use forest fill with white text or lime fill with forest text. Secondary actions use white/cream surfaces with light borders or muted text. Tertiary actions are small icon-only or text links.","emphasis_rules":["Reserve lime for signature actions, active indicators, chart highlights, and key positive moments.","Use forest for authority: headings, selected nav, primary text, dark summary cards, and secure/major actions.","Use extra-bold type for balances, totals, and page-level metrics; avoid making every label large.","Use semantic green/red only for financial meaning, not general decoration.","Use color blocks sparingly so one card or action remains dominant in a section."],"grouping_rules":["Prefer card/list modules over dense raw grids.","Represent transactions as rows with icon well, primary label, secondary metadata, right-aligned amount, and category.","Use rounded icon wells to make action groups scannable.","Use dashed rounded containers for add/new/empty actions.","Keep dividers sparse; use spacing, background, and radius to separate groups."],"contrast_usage":"High contrast for primary numbers and active actions; low-noise contrast for metadata, borders, and hover states. Avoid low-contrast long text blocks."},"typography_roles":{"page_title":"Desktop: text-2xl font-extrabold text-forest. Mobile: text-base to text-xl font-bold, usually short location labels such as Transactions, My Cards, Profile.","section_title":"text-sm or text-xs font-bold text-forest with tight margins; labels such as Quick Send, Recent Transactions, Actions.","body":"text-sm or text-xs, forest or foreground, medium/semibold in rows; concise product copy rather than long explanations.","supporting_text":"text-xs or text-[10px] text-muted-foreground; used for dates, subtitles, helper copy, categories, descriptions.","label":"text-xs to text-sm font-medium or font-semibold; controls and finance labels use compact leading and forest/muted color.","caption":"text-[8px] to text-[10px], muted or opacity-reduced, especially on payment cards and transaction metadata.","scanning_behavior":"Users scan by large totals first, then bold section labels, row names, right-aligned amounts, muted dates/categories, and compact action icons."},"interaction":{"hover":"Restrained hover feedback: hover:bg-cream, hover:bg-cream-dark, hover:bg-white/20, hover:text-forest, and occasional hover:shadow-md on rows/cards.","focus":"Use lime-aligned focus: focus-visible:ring-ring/50, focus-visible:ring-[3px], border/ring tokens from app/globals.css; avoid blue default focus.","active":"Major CTAs may use hover:scale-[1.02] and active:scale-[0.98]; screen transitions slide horizontally over 320ms cubic-bezier(0.4,0,0.2,1).","selected":"Selected nav uses forest fill with white text and lime dot, or active forest icon/text in bottom nav. Segmented controls use white active surface and shadow-sm.","disabled":"Generic primitives use disabled:pointer-events-none and disabled:opacity-50. Preserve subdued disabled states without changing layout.","loading":"Skeleton primitive uses bg-accent animate-pulse rounded-md; inferred branded loading should use cream/lime-tinted rounded placeholders.","validation":"Primitive invalid states use destructive border/ring and aria-invalid styling; errors should be concise, red, and not visually louder than the form context unless destructive.","feedback_style":"Calm, crisp, touch-friendly, and low-drama. Use quick color/opacity/scale changes rather than glow, bounce, or heavy shadow."},"layout":{"page_shell":"Cream app canvas with mobile vertical shell or desktop sidebar/content shell. Demo wrapper uses teal gradient browser/phone chrome but app surfaces remain cream and white.","page_width_strategy":"Constrain app/demo content around max-w-5xl; desktop app uses fixed presentation frame and sidebar. For real pages, infer max-w-5xl to max-w-6xl with 24px padding.","header_pattern":"Title/subtitle or profile row on left, compact actions/avatar/filters on right. Mobile headers are compact; desktop headers can include page actions and filters.","section_spacing":"Mobile sections stack with space-y-4 and px-4. Desktop sections use p-6 and gap-4. Onboarding can use more relaxed spacing.","grid_rules":["Mobile: one-column stack with horizontal carousels where needed.","Desktop dashboard: 3-column grid with important balance/summary card spanning 2 columns.","Transactions desktop: 5-column layout with chart spanning 2 columns and list spanning 3 columns.","Cards/settings/profile modules: white rounded panels with compact rows.","Use overflow-x carousels for cards and quick-send contacts on mobile."],"navigation_patterns":["Mobile bottom nav: white surface, top border, compact labels, active forest state, central floating lime QR action.","Desktop sidebar: white on cream, logo header, grouped nav, active forest pill with lime dot, footer user/balance/action area.","Top demo toolbar: dark translucent segmented view switcher, white active state, lime logo dot; treat as presentation chrome."],"responsive_rules":["Bottom nav on mobile, sidebar on desktop.","Maintain touch-friendly icon wells around 36px-48px.","Avoid collapsing hierarchy by making desktop too sparse; keep gap-4 dashboard rhythm.","Use cards/lists before table grids on small screens.","Filters should become chips or sheet/dialog controls on narrow viewports."]},"components":{"buttons":{"explicit":true,"source_basis":"Explicit shadcn button primitive plus finance screen buttons in components/finance/home-screen.tsx, nav-bar.tsx, onboarding-screen.tsx, cards-screen.tsx.","confidence":"high","rules":{"purpose":"Primary progression, financial actions, navigation actions, icon actions, and secondary text links.","appearance":"Primary: forest fill with white text or lime fill with forest text. Secondary: white/cream with light border. Ghost/link: muted or forest text. Icon buttons often white with border and shadow-sm.","spacing":"Primitive sizes h-8, h-9, h-10; finance CTAs use py-4, px-4, w-9/h-9 to w-12/h-12 icon wells, gap-2.","radius":"Primitive uses rounded-md; branded finance buttons use rounded-xl, rounded-2xl, or rounded-full.","border":"Light border-border on secondary/icon buttons; no heavy outlines. Dashed border for add actions.","shadow":"shadow-sm for white/icon buttons, shadow-lg for floating QR CTA, minimal otherwise.","typography":"text-sm font-medium in primitive; finance buttons use text-xs to text-sm with font-semibold or font-bold.","states":"Hover uses cream/white tint or lime-dark/forest-dark; active may scale to 0.98; disabled opacity 50%; focus lime ring.","variants":["forest-primary","lime-primary","white-secondary","cream-ghost","icon-round","icon-rounded-2xl","dashed-add","text-link"]}},"inputs":{"explicit":true,"source_basis":"Generic shadcn input primitive exists, but branded finance screens use forms lightly; brand adaptation is inferred from tokens and visible control geometry.","confidence":"medium","rules":{"purpose":"Text entry for forms, filters, search, and account/card workflows.","appearance":"White or transparent-on-white field, forest text, muted placeholder, light border, lime/forest focus.","spacing":"Primitive h-9 px-3 py-1; inferred branded input h-10 or h-11 with px-3/px-4 and gap-2 when icon-led.","radius":"Primitive rounded-md; inferred branded visible inputs should use rounded-xl or rounded-2xl.","border":"border-input by default; focus should strengthen ring/border in lime or forest.","shadow":"No default shadow; use shadow-sm only when an input appears as a standalone filter chip/control.","typography":"text-sm for value, text-xs helper/description, label font-medium or semibold.","states":"Focus-visible ring-ring/50 ring-[3px]; invalid destructive border/ring; disabled opacity and cursor states from primitive.","variants":["text","search","icon-leading","filter-chip-input","invalid","disabled"]}},"selects":{"explicit":true,"source_basis":"shadcn/Radix select primitive exists; finance filter pills such as Monthly provide brand direction.","confidence":"medium","rules":{"purpose":"Compact filtering, period selection, account/card selection, and form options.","appearance":"White or cream rounded trigger with forest text, muted placeholder, chevron, and white popover surface.","spacing":"Compact triggers should use h-9/h-10, px-3, gap-2; popover items use compact row padding.","radius":"Primitive rounded-md; branded selects should use rounded-xl or rounded-2xl for visible filters.","border":"Light border-border/input; selected/open state may use forest border or lime ring.","shadow":"Popover shadow-md; active local filter may use shadow-sm.","typography":"text-sm trigger text; item labels text-sm with muted descriptions only where needed.","states":"Open/focus uses lime ring; selected item uses cream background and forest text; disabled uses opacity 50%.","variants":["form-select","period-pill","filter-select","account-select","compact-select"]}},"dropdowns":{"explicit":true,"source_basis":"shadcn/Radix dropdown-menu, context-menu, menubar, command, and popover primitives exist; row-level overflow actions are implied by MoreHorizontal icons.","confidence":"medium","rules":{"purpose":"Overflow actions, account menus, row actions, command-style choices, and contextual operations.","appearance":"White popover/menu with light border, compact rounded rows, forest text, muted shortcuts, red destructive rows.","spacing":"Menu item rows should stay compact with px-2/px-3, py-1.5/py-2, and gap-2.","radius":"Primitive rounded-md; branded larger menus can use rounded-xl or rounded-2xl.","border":"Light border and subtle separator only for grouping.","shadow":"shadow-md or shadow-lg on floating menu surfaces.","typography":"text-sm item labels; shortcuts and descriptions muted text-xs.","states":"Hover/active bg-cream or bg-muted; destructive hover should remain pale red; focus follows Radix item focus styling.","variants":["overflow-menu","account-menu","row-actions","command-menu","context-menu","destructive-action"]}},"cards":{"explicit":true,"source_basis":"Strong explicit evidence across components/finance/*: balance cards, payment cards, stat cards, transaction rows, connect-card banner, profile/settings panels.","confidence":"high","rules":{"purpose":"Primary grouping for balances, cards, charts, transactions, actions, settings, onboarding panels, and metric summaries.","appearance":"White rounded cards on cream; forest hero cards with lime highlights; lime payment/action cards with forest text; cream-dark secondary group cards.","spacing":"Mobile rows p-3; standard cards p-4/p-5; major desktop cards p-6; internal gaps 2-4.","radius":"rounded-2xl for rows/secondary cards; rounded-3xl for major cards and panels.","border":"Usually none or light border-border; border-forest/20 for tinted surfaces; dashed border for add/empty card actions.","shadow":"shadow-sm for standard white cards; hover:shadow-md only for interactive rows; saturated cards often rely on color instead of shadow.","typography":"Small bold section titles, extra-bold financial totals, muted captions, right-aligned amounts.","states":"Hover bg-cream for rows, subtle shadow escalation, selected/focal cards use forest/lime contrast.","variants":["white-standard","forest-hero","lime-highlight","payment-card","transaction-row-card","settings-row","dashed-add-card","chart-card"]}},"tables":{"explicit":true,"source_basis":"components/ui/table.tsx exists with generic table styles; finance-specific data is represented as list rows rather than tables.","confidence":"medium","rules":{"purpose":"Structured dense data when list cards are insufficient, especially desktop CRUD or audit views.","appearance":"Card-contained table on white rounded surface; minimal dividers, muted headers, forest primary cells, semantic amount/status colors.","spacing":"Primitive cells p-2; inferred branded rows h-12 to h-14 with px-3/px-4 and compact header spacing.","radius":"The table container should be rounded-3xl; internal cells can remain square for grid alignment.","border":"Use sparse row borders or separators; avoid dense full grid lines.","shadow":"Container may use shadow-sm; rows should use hover fill rather than raised shadows.","typography":"Header text text-xs font-semibold muted; body text text-sm; important values font-bold.","states":"Row hover bg-muted/50 or bg-cream; selected bg-muted/cream; status badges compact and rounded.","variants":["card-contained-table","transaction-table","audit-table","responsive-list-fallback"]}},"modals":{"explicit":true,"source_basis":"Dialog, alert-dialog, drawer, sheet primitives exist; branded finance modal pattern is inferred because custom finance screens do not show many modals.","confidence":"medium","rules":{"purpose":"Focused confirmation, creation/edit forms, advanced filters, QR/payment flows, and irreversible action confirmation.","appearance":"White modal over black overlay, forest title, muted description, rounded finance geometry, primary lime/forest action.","spacing":"p-6 modal body; footer gap-2/gap-3; use compact form spacing inside.","radius":"Primitive rounded-lg; inferred branded modals should use rounded-3xl where product-facing.","border":"Light border-border; destructive confirmations may use pale red accents.","shadow":"shadow-lg on modal surface; overlay handles separation.","typography":"Title text-lg/text-xl font-bold or extrabold forest; description text-sm muted.","states":"Overlay fade, content zoom/slide from primitives; focus trap and focus-visible lime ring.","variants":["confirmation","form-modal","advanced-filter","destructive-confirmation","qr-payment-modal"]}},"dialogs":{"explicit":true,"source_basis":"components/ui/dialog.tsx and alert-dialog.tsx define Radix dialog patterns; brand adaptation inferred from finance identity.","confidence":"medium","rules":{"purpose":"Dialog-level decisions, small forms, confirmation, and alert flows.","appearance":"White surface, black overlay, forest heading, muted description, lime or forest primary action.","spacing":"p-6 content; footer flex gap-2; descriptions and titles stacked compactly.","radius":"Primitive rounded-lg; branded dialog should move to rounded-2xl/3xl for visible product dialogs.","border":"Light border and focus-managed content.","shadow":"shadow-lg on dialog content.","typography":"Dialog title font-semibold/bold; finance title can be text-xl font-extrabold text-forest.","states":"Open/closed animation from Radix data-state; close icon subdued hover opacity; invalid fields destructive.","variants":["standard-dialog","alert-dialog","form-dialog","destructive-dialog"]}},"sidebars":{"explicit":true,"source_basis":"components/ui/sidebar.tsx primitive plus explicit desktop finance sidebar/navigation in components/finance/desktop-views.tsx.","confidence":"high","rules":{"purpose":"Desktop primary navigation, account context, balance summary, QR/action entry, and user footer.","appearance":"White sidebar on cream page, light right border, logo header, active forest nav pill with white text and lime dot, muted inactive rows.","spacing":"Finance sidebar observed w-56, p-4/p-6 patterns, nav row px-3 py-2.5, grouped vertical gaps.","radius":"Active nav rows rounded-2xl; logo well rounded-xl; footer cards rounded-2xl/3xl.","border":"Border-right or light surface separation; internal dividers sparse.","shadow":"Avoid heavy sidebar shadow; rely on white/cream contrast and border.","typography":"Nav labels text-sm font-semibold; footer/user metadata text-xs muted.","states":"Inactive hover bg-cream and text-forest; active forest fill; collapsed primitive supports icon width 3rem.","variants":["desktop-finance-sidebar","collapsible-sidebar","icon-sidebar","footer-balance-sidebar"]}},"tabs":{"explicit":true,"source_basis":"components/ui/tabs.tsx primitive and explicit demo view switcher/segmented controls in finance-app.tsx.","confidence":"medium","rules":{"purpose":"View switching, local filters, segmented modes, and high-level content categories.","appearance":"Muted/cream or translucent pill container; active segment white with forest text and shadow-sm, or forest fill for high-level active state.","spacing":"Container p-1 gap-1; segments px-3/px-4 py-2, text-sm.","radius":"Container rounded-2xl; active item rounded-xl or rounded-2xl.","border":"Usually borderless; optional light border when on white surface.","shadow":"shadow-sm for active segment only.","typography":"text-sm font-semibold for segment labels; icons 14px-16px when present.","states":"transition-all duration-200; inactive text muted with hover stronger; selected uses white or forest active treatment.","variants":["segmented-view-switcher","local-filter-tabs","high-level-tabs","icon-tabs"]}},"badges":{"explicit":true,"source_basis":"components/ui/badge.tsx exists; finance screens use small pills/dots/trust badges and semantic transaction colors.","confidence":"medium","rules":{"purpose":"Status, trust, category, filter count, notification, chart legend, and compact finance metadata.","appearance":"Compact rounded labels using cream, lime/forest, semantic green/red, or muted backgrounds; notification dots are red or lime.","spacing":"px-2 py-0.5 or tiny dot sizes 2px-8px; keep text concise.","radius":"rounded-lg, rounded-full, or small pill shape.","border":"Optional light border for outline/neutral badges; semantic badges can use tint backgrounds.","shadow":"No shadow by default.","typography":"text-[9px] to text-xs, font-medium or font-semibold.","states":"Interactive badges hover cream/forest; selected badges may use forest fill or lime fill.","variants":["status","category","trust","notification-dot","chart-legend","filter-count","destructive"]}},"alerts":{"explicit":true,"source_basis":"components/ui/alert.tsx exists; destructive and negative patterns are present, but custom finance alerts are inferred.","confidence":"medium","rules":{"purpose":"Informational messages, validation summaries, destructive warnings, and financial risk confirmations.","appearance":"Calm card-like alert with icon well, short title, muted explanation; destructive uses red text/pale red background.","spacing":"p-4 to p-5, gap-3 between icon and copy, compact action footer if needed.","radius":"Primitive rounded-lg; branded alerts should use rounded-2xl.","border":"Light border; destructive border can be red-tinted but not saturated.","shadow":"Usually no shadow or shadow-sm if floating in a panel.","typography":"Title text-sm font-semibold/bold; description text-xs/text-sm muted.","states":"No flashy animation; dismiss/secondary action hover follows cream/forest pattern.","variants":["info","success","warning","destructive","validation-summary","inline-alert"]}},"empty_states":{"explicit":true,"source_basis":"components/ui/empty.tsx exists and finance Add Card/Add contact patterns explicitly use dashed rounded controls.","confidence":"medium","rules":{"purpose":"No cards, no transactions, no results, add-new slots, and first-run setup prompts.","appearance":"Dashed rounded container or white rounded card with muted icon, concise title, muted copy, one lime/forest action.","spacing":"p-5/p-6 for empty panels; compact add slots can be w-8/h-8 or larger rounded tiles.","radius":"rounded-2xl for small add controls; rounded-3xl for panel empty states.","border":"border-2 border-dashed border-border for add/new; light border for full empty panels.","shadow":"No heavy shadow; optional shadow-sm for white panel.","typography":"Title text-sm/base font-bold forest; description text-xs/sm muted.","states":"Hover bg-cream or border-forest/20; primary action follows lime/forest CTA rules.","variants":["dashed-add","no-results","first-run","empty-transactions","empty-cards"]}},"charts_containers":{"explicit":true,"source_basis":"app/globals.css chart tokens, components/ui/chart.tsx, and desktop finance chart/list patterns.","confidence":"high","rules":{"purpose":"Spending trends, balances, income/expense comparison, compact analytics summaries.","appearance":"White rounded-3xl card or forest/lime summary card; rounded bars; forest/lime first; tiny muted legends/axis labels.","spacing":"Card p-5/p-6; chart and summary gaps around 3-4; labels compact.","radius":"Container rounded-3xl; bars rounded-full or rounded tops where possible.","border":"Usually none or light border; avoid dense chart grid borders.","shadow":"shadow-sm container; chart internals flat.","typography":"Summary numbers font-extrabold; legends text-[10px]/text-xs muted; labels compact.","states":"Tooltips use white/cream popover with border/shadow; active datapoint should use forest/lime emphasis.","variants":["bar-chart-card","summary-chart","forest-chart-card","lime-highlight-chart","tooltip-container"]}},"page_headers":{"explicit":true,"source_basis":"Finance mobile headers/profile rows and desktop views show title/action patterns; generic page header primitive is absent.","confidence":"medium","rules":{"purpose":"Orient the user, expose page-level actions, filters, notifications, and profile context.","appearance":"Left title/subtitle or profile identity; right compact icon buttons/avatar/filter chips; forest text on cream canvas.","spacing":"Mobile px-4/px-5 and compact vertical padding; desktop p-6 with flex justify-between and gap-4.","radius":"Header itself unframed; contained actions use rounded-full, rounded-xl, or rounded-2xl.","border":"No header border by default; nav bars may use top/bottom border-border.","shadow":"No header shadow; icon buttons may use shadow-sm.","typography":"Desktop title text-2xl font-extrabold forest; mobile title text-base-xl font-bold; subtitle text-sm muted.","states":"Header action hover bg-cream/cream-dark; notification dot red; active filters forest/lime.","variants":["mobile-profile-header","desktop-page-header","title-action-header","filter-header"]}},"filters":{"explicit":true,"source_basis":"Explicit compact filter controls appear in finance transactions/desktop views; select/dropdown primitives support inferred advanced filters.","confidence":"medium","rules":{"purpose":"Period, category, status, account, search, and transaction narrowing.","appearance":"Compact chips/pills, white or cream surface, light border, muted label, forest selected state, chevron for dropdown filters.","spacing":"px-3/px-4 py-2, h-9/h-10, gap-2; page-level filters sit in header right or above list.","radius":"rounded-xl, rounded-2xl, or rounded-full depending chip density.","border":"Light border-border; selected can use forest fill or lime/forest border.","shadow":"shadow-sm only for active white segment or floating popover.","typography":"text-xs/text-sm font-semibold; helper count text-xs muted.","states":"Hover bg-cream; selected forest fill or white active with shadow-sm; advanced filters open sheet/dialog.","variants":["period-pill","category-chip","search-filter","status-chip","advanced-filter-sheet","header-filter"]}},"form_layouts":{"explicit":true,"source_basis":"components/ui/form.tsx and field primitives exist; custom finance form screens are not prominent, so layout adaptation is inferred.","confidence":"medium","rules":{"purpose":"Account setup, transfer creation, card management, profile settings, and advanced filters.","appearance":"White rounded-3xl grouped panels on cream canvas, forest labels, muted descriptions, lime/forest primary actions.","spacing":"One-column mobile forms with gap-4; desktop two-column groups where useful; panel p-5/p-6; field helper spacing compact.","radius":"Form panels rounded-3xl; fields rounded-xl/2xl when branded; buttons rounded-2xl.","border":"Light panel/field borders; invalid destructive border/ring; avoid dense section dividers.","shadow":"Panel shadow-sm; no heavy elevation.","typography":"Labels text-sm font-medium/semibold; descriptions text-xs muted; errors text-xs destructive.","states":"Validation via aria-invalid destructive styles; focus lime ring; disabled opacity 50%.","variants":["mobile-single-column","desktop-two-column","grouped-card-form","inline-filter-form","destructive-confirm-form"]}}},"ux_patterns":{"cta_hierarchy":"Primary page/action CTAs are visually isolated and use lime or forest. Secondary actions are compact white/cream buttons or text links. Tertiary actions are icon-only, muted, or hidden behind overflow menus.","information_grouping":"Group financial information into modules: balance, cards, actions, quick-send people, transactions, charts, settings. Use rounded white cards and rows on cream rather than full-page grids.","filter_placement":"Place common filters in the page header or just above the affected list as compact chips/selects. Put advanced filters in a sheet/dialog instead of expanding dense inline panels.","form_structure":"Use short labels, one-column mobile forms, two-column desktop grouping only when it improves scanning, and rounded white form cards for related fields.","validation_behavior":"Use inline destructive text and destructive border/ring states; keep wording concise and avoid large saturated alert blocks except for irreversible financial actions.","table_detail_strategy":"Prefer transaction/list cards for primary workflows. Use card-contained tables for dense desktop data, with minimal dividers, muted headers, semantic badges, and responsive list fallback on mobile.","loading_error_empty_states":"Use rounded skeletons, calm card-like alerts, and dashed rounded empty/add states. Preserve forest/lime CTAs for resolution actions.","action_placement":"Primary action in header or dominant card; row actions at the right or overflow; mobile primary actions can be full-width or floating only when central to the workflow.","notes":["Progressive disclosure is explicit through See all, Filter, Monthly, balance visibility toggles, onboarding skip, and row/icon actions.","Dense CRUD screens should still preserve rounded rows, muted metadata, semantic amounts/status, and forest/lime active states.","Avoid representing financial data as raw spreadsheet grids unless task requirements demand it."]},"constraints":["Do not replace the cream canvas with generic gray or pure white page defaults.","Do not replace forest/lime brand states with blue SaaS defaults.","Do not make sharp rectangular cards, square primary buttons, or hard-edged panels the dominant geometry.","Do not overuse heavy shadows; most app surfaces should remain shadow-sm or flat.","Do not make every card saturated; use one forest or lime focal surface per major section.","Do not create divider-heavy admin tables as the default for financial data.","Do not use large bodies of low-contrast explanatory text; keep copy short, direct, and task-oriented.","Do not let generic shadcn rounded-md primitives visually dominate branded finance screens.","Do not use lime for arbitrary decoration; reserve it for action, brand, selection, and meaningful highlights.","Do not obscure hierarchy by giving all tiles equal visual weight."]}
+tokens used
+71,579

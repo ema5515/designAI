@@ -1,0 +1,599 @@
+{
+  "style_name": "Industrial Pixel Terminal",
+  "visual_identity": {
+    "tone": "technical, industrial, builder-focused, direct, all-caps product language",
+    "density": "high information density with compact labels, tight control copy, large section rhythm, and dense component grids",
+    "corner_style": "predominantly square and rectilinear; most UI surfaces and controls use 0px radius, with rare circular dots/avatars only",
+    "elevation_style": "flat layered surfaces separated by hard borders, 2px seams, color bands, and occasional accent rails; shadows are essentially absent except cursor effects",
+    "contrast_profile": "dark-first high contrast: near-black backgrounds, off-white primary text, muted gray metadata, bright yellow primary emphasis, orange secondary accent",
+    "mood": "precision tool, terminal/editor inspired, pixel-grid, unapologetically mechanical",
+    "notes": [
+      "Evidence: app/globals.css defines yellow, orange, near-black background, off-white text, muted grays, and border tokens.",
+      "Evidence: components use repeated bg-[#0A0A0A]/[#0D0D0D]/[#111111], border-[#2D2D2D], and bright #FFD600 accents.",
+      "Evidence: Navbar, Hero, Features, Bento, Comparison, Pricing, FAQ, Showcase, and FinalCTA use uppercase labels, bracket syntax, monospace metadata, and square controls."
+    ]
+  },
+  "identity_traits": {
+    "non_negotiable_traits": [
+      "Dark-first base with near-black page shell and section bands.",
+      "Primary accent is #FFD600 yellow; use it for active state, primary CTA, key borders, stats bands, and selected emphasis.",
+      "Use hard rectangular geometry: default radius 0px and border-driven separation.",
+      "Use Space Grotesk for bold display/product headings and IBM Plex Mono for labels, metadata, body support, nav, and data rows.",
+      "Preserve all-caps technical copy, bracketed labels, slash separators, and short declarative phrases.",
+      "Use dense 2px seams between repeated cards, grids, pricing tiers, and comparison rows."
+    ],
+    "adaptable_traits": [
+      "Secondary orange #FF6B35 can mark special capabilities, enterprise actions, or secondary accents.",
+      "Green #4ADE80 and blue #60A5FA appear mainly in the hero/editor visual and cursor affordances; use sparingly for system/status detail.",
+      "Section background can alternate among #050505, #060606, #080808, #0A0A0A, #0D0D0D, #0F0F0F, and #111111 to create depth without shadow.",
+      "Animations may use quick color transitions, smooth scroll, typewriter/glitch reveal, carousel translation, and subtle scan/cursor motion."
+    ],
+    "source_type": "direct repo evidence with conservative inference for missing categories",
+    "adaptation_notes": [
+      "The supplied input/*.md and outputs/02-design-extraction.md files were not present in the workspace, so this profile is derived directly from app and component source files.",
+      "Missing component categories are marked explicit=false and use low-confidence inferred rules only when consistent with the observed visual system."
+    ]
+  },
+  "tokens": {
+    "colors": {
+      "primary": "#FFD600",
+      "secondary": "#FF6B35",
+      "accent": "#FFD600",
+      "neutral": [
+        "#050505",
+        "#060606",
+        "#080808",
+        "#0A0A0A",
+        "#0D0D0D",
+        "#0F0F0F",
+        "#111111",
+        "#1A1A1A",
+        "#1D1D1D",
+        "#2D2D2D",
+        "#3D3D3D",
+        "#444444",
+        "#555555",
+        "#666666",
+        "#888888",
+        "#CCCCCC",
+        "#F5F5F0"
+      ],
+      "success": "#4ADE80",
+      "warning": "#FEBC2E",
+      "danger": "#FF5F57",
+      "background": "#0A0A0A",
+      "surface": "#111111",
+      "text": {
+        "primary": "#F5F5F0",
+        "secondary": "#888888",
+        "muted": "#555555",
+        "inverse": "#0A0A0A"
+      },
+      "border": "#2D2D2D"
+    },
+    "spacing": {
+      "density": "compact controls inside large section bands; 4px grid language is explicit in product copy and stats",
+      "section_gap": [
+        "48px mobile vertical section gap",
+        "64px desktop section gap",
+        "py-16 px-6 mobile section padding",
+        "md:py-[100px] md:px-[120px] common desktop section padding",
+        "FinalCTA uses md:p-[120px]"
+      ],
+      "card_gap": [
+        "2px repeated-card seam gap",
+        "20px internal card content gap",
+        "24px showcase card content gap",
+        "32px mobile card padding",
+        "40px desktop card padding"
+      ],
+      "control_gap": [
+        "8px icon/dot/button group gaps",
+        "10px mobile nav CTA stack gap",
+        "12px avatar/social/brand gaps",
+        "14px desktop nav CTA gap",
+        "16px CTA and small row gap",
+        "32px logo/section spacer rhythm"
+      ],
+      "grouping_pattern": "sections stack vertically; repeated cards sit in flex/grid rows with 2px seams; internal content stacks with 16-40px gaps; metadata badges sit above titles",
+      "adaptation_rule": "Prefer multiples of 4px; use 24px horizontal padding on mobile, 120px on desktop, 32-40px card padding, and 2px seams for dense component groups."
+    },
+    "radius": {
+      "control": "0px default",
+      "container": "0px default",
+      "overlay": "0px inferred default",
+      "pill": "9999px only for dots/avatars/active markers; not for badges or CTAs",
+      "dominant_family": "square brutalist rectangles",
+      "sharp_allowed": "required for most buttons, cards, badges, tables, pricing panels, and navigation controls",
+      "style_rule": "Use hard corners by default; only use circular radius for semantic dots, avatars, cursor markers, or tiny status indicators."
+    },
+    "shadows": [
+      "No standard card/surface shadows in repo.",
+      "Use borders and background shifts for elevation.",
+      "Cursor visuals use drop-shadow(0 2px 6px rgba(0,0,0,0.7)) and name tags use box-shadow 0 2px 8px rgba(0,0,0,0.5)."
+    ],
+    "typography": {
+      "font_families": [
+        "Space Grotesk via next/font for headings, brand, primary CTA labels, and large numerals",
+        "IBM Plex Mono via next/font for nav, labels, metadata, body support text, tables, pricing features, and captions"
+      ],
+      "scale": [
+        "9-12px micro labels and metadata",
+        "11-13px nav/body/caption mono text",
+        "14-16px FAQ and small headings",
+        "18-20px card headings",
+        "24-28px bento/pricing headings",
+        "36px mobile section titles",
+        "44px mobile final CTA title",
+        "48px pricing numbers and step numbers",
+        "56px desktop section titles",
+        "64px desktop stats",
+        "80px desktop final CTA title",
+        "clamp(32px,10vw,96px) hero title"
+      ],
+      "font_weights": [
+        "400 regular",
+        "500 available but rarely used",
+        "700 dominant for headings, labels, CTAs, values"
+      ],
+      "line_heights": [
+        "leading-none for hero and large numerals",
+        "1.05 for section titles",
+        "1.1 for bento titles",
+        "1.2 for card/FAQ titles",
+        "1.5 for step body",
+        "1.6 for paragraphs/supporting text"
+      ]
+    },
+    "widths": [
+      "max-w-[480px] FAQ header",
+      "max-w-[600px] section subtitle/showcase title",
+      "max-w-[700px] default section title and final subtitle",
+      "max-w-[800px] hero subtitle and bento title",
+      "max-w-[1000px] final CTA title",
+      "max-w-[1100px] hero title and design interface",
+      "max-w-[1400px] navbar inner shell"
+    ],
+    "breakpoints": [
+      "sm used for CTA row changes and footer bottom row; Tailwind default inferred at 640px",
+      "md used as primary desktop switch for sections, nav, cards, carousel, tables, and typography; Tailwind default inferred at 768px"
+    ]
+  },
+  "hierarchy": {
+    "primary_focus_pattern": "large bold Space Grotesk headlines, often multiline and all caps, paired with yellow accent words, bands, borders, or badges",
+    "secondary_content_pattern": "IBM Plex Mono captions and support text in #666666/#888888 with tracking and 1.5-1.6 line height",
+    "cta_hierarchy": "primary CTA is yellow fill with black text; secondary CTA is dark fill with 2px gray or orange border; text links are muted gray until hover or active yellow",
+    "emphasis_rules": [
+      "Use yellow fill or yellow text for the highest-priority state or plan.",
+      "Use orange border/text for secondary special features or enterprise emphasis.",
+      "Use border width 2px for selected/featured/primary containers and 1px for normal surfaces.",
+      "Use black-on-yellow inverse text for stats bands, primary CTAs, and featured pricing badges.",
+      "Use bracketed numeric labels like [01] and section prefixes like [06] // VS. THE REST for scanning."
+    ],
+    "grouping_rules": [
+      "Group repeated items edge-to-edge with 2px gaps rather than isolated floating cards.",
+      "Separate data-heavy rows with 1px #1D1D1D/#2D2D2D borders.",
+      "Use alternating section backgrounds to structure long pages.",
+      "Keep action groups adjacent to header/title blocks, generally right-aligned on desktop or full-width stacked on mobile."
+    ],
+    "contrast_usage": "High contrast is reserved for primary actions and highlighted sections; most supporting text and inactive states remain deliberately low contrast in gray."
+  },
+  "typography_roles": {
+    "page_title": "Space Grotesk, 700, clamp(32px,10vw,96px), tracking -1px, leading none, centered, all caps; yellow may be used for the emphasized line",
+    "section_title": "Space Grotesk, 700, 36px mobile / 56px desktop, tracking -1px, leading 1.05, all caps, often whitespace-pre-line",
+    "body": "IBM Plex Mono, 11-13px, tracking 1px, leading 1.5-1.6, gray/off-white depending emphasis, uppercase copy",
+    "supporting_text": "IBM Plex Mono, 10-14px, #555555/#666666/#888888, tracking 0.5-2px, often centered in hero/CTA and left-aligned in cards",
+    "label": "IBM Plex Mono, 9-12px, 700 when important, #FFD600 or muted gray, tracking 1.5-3px, bracket/slash syntax",
+    "caption": "IBM Plex Mono, 10-11px, #444444/#555555/#666666, tracking 1-2px",
+    "scanning_behavior": "users scan by yellow section labels, huge multiline titles, 2px card seams, bracket tags, and hard row dividers"
+  },
+  "interaction": {
+    "hover": "color-only or border-only transitions: yellow CTAs darken to #e6c200, secondary controls shift border from #3D3D3D to #888888, muted links brighten to #CCCCCC/#F5F5F0, logo mark scales to 110%",
+    "focus": "not explicitly implemented; infer visible 2px yellow outline or border treatment should be added for accessibility while preserving square geometry",
+    "active": "nav active state uses #FFD600 text plus a 1.5px yellow underline; mobile nav uses yellow text and yellow dot; FAQ open state uses yellow square toggle with black glyph; carousel active dot expands from 8px to 32px",
+    "selected": "selected/featured panels use yellow border/fill, 2px border, dark inverse text, or a left/top accent rail; hero editor selection uses dashed yellow outline and handles",
+    "disabled": "not explicitly implemented; inferred pattern is #333333/#3D3D3D text or marks with no hover elevation, matching excluded pricing features and comparison negative states",
+    "loading": "no generic loader; explicit motion vocabulary includes typewriter/glitch text reveal, blinking cursor, scanline, pulse, and carousel transition",
+    "validation": "not present; infer inline monospace message, square border state, yellow/orange for attention, green #4ADE80 for success, red #FF5F57 for error if needed",
+    "feedback_style": "immediate mechanical feedback through color, border, underline, expanded indicator bars, and plus/minus glyph changes rather than soft animation or shadow"
+  },
+  "layout": {
+    "page_shell": "Next.js single landing page with fixed 60px navbar, full-width vertical sections, bg #0A0A0A, overflow-x hidden",
+    "page_width_strategy": "sections are full-bleed color bands with inner horizontal padding px-6 mobile and md:px-[120px]; navbar has max-w-[1400px]; hero media/title max at 1100px",
+    "header_pattern": "fixed transparent-to-blurred dark navbar; 60px height; desktop nav centered with active underline; desktop login/CTA on right; mobile burger opens dark blurred drawer",
+    "section_spacing": "common pattern: py-16 px-6 gap-12 on mobile, md:py-[100px] md:px-[120px] gap-[64px] on desktop; smaller bands use py-[48px] or py-[80px]",
+    "grid_rules": [
+      "Cards use flex-col on mobile and md:flex-row on desktop.",
+      "Repeated cards/tables/pricing use gap-[2px] to create pixel seams.",
+      "Stats use two-column mobile grid and desktop flex row with hard dividers.",
+      "Comparison uses desktop table and separate compact mobile grid.",
+      "Showcase uses mobile single-card and desktop horizontal carousel with fixed 560px cards.",
+      "Bento uses two stacked rows of three equal columns on desktop."
+    ],
+    "navigation_patterns": [
+      "Smooth-scroll section links.",
+      "IntersectionObserver active section tracking.",
+      "Mobile drawer expands via max-height from 0 to 400px.",
+      "Active section communicates through yellow text, underline/dot, and muted inactive text."
+    ],
+    "responsive_rules": [
+      "Mobile first: stack CTAs, cards, pricing, footer, FAQ actions, and showcase cards.",
+      "Use md breakpoint for major layout shift to horizontal rows and desktop table/carousel.",
+      "Use sm breakpoint for CTA pairs and footer bottom alignment.",
+      "Use max-width constraints on long title/subtitle blocks to preserve readable line length."
+    ]
+  },
+  "components": {
+    "buttons": {
+      "explicit": true,
+      "source_basis": "Navbar, Hero, Showcase, Pricing, FAQ, FinalCTA, and Footer implement buttons/links with square geometry, fixed heights, yellow fill or bordered dark variants, hover color/border transitions.",
+      "confidence": "high",
+      "rules": {
+        "purpose": "primary actions, secondary actions, carousel controls, FAQ toggles, nav buttons, social buttons",
+        "appearance": "square rectangular controls; primary #FFD600 fill with #0A0A0A text; secondary #0A0A0A/#111111 fill with 2px #3D3D3D border; icon toggles use 32-48px square blocks",
+        "spacing": "heights 36px, 48px, 56px, or 64px; horizontal padding 18px for nav CTA, full-width on mobile, fixed 200-260px CTA widths on sm+",
+        "radius": "0px except small circular status dots not actual buttons",
+        "border": "primary often borderless; secondary 2px #3D3D3D; social 1px #2D2D2D; featured states #FFD600 or #FF6B35",
+        "shadow": "none",
+        "typography": "Space Grotesk 11-13px bold for primary/brand actions; IBM Plex Mono 10-12px for secondary, nav, and utility actions; tracking 1.5-2px",
+        "states": "hover changes fill to #e6c200/#F5F5F0 or border to #888888; active nav uses yellow text and underline; FAQ open uses yellow fill and black minus; no explicit focus or disabled styling",
+        "variants": [
+          "primary-yellow",
+          "secondary-bordered-dark",
+          "nav-text",
+          "icon-square",
+          "faq-toggle",
+          "carousel-arrow",
+          "social-square",
+          "text-link"
+        ]
+      }
+    },
+    "inputs": {
+      "explicit": false,
+      "source_basis": "No form input components found; inferred from buttons, table cells, badges, and editor visual language only.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "data entry or search should follow terminal/editor aesthetic if added",
+        "appearance": "dark #0A0A0A/#111111 field, square corners, 1-2px #2D2D2D/#3D3D3D border, mono text, yellow caret/accent",
+        "spacing": "height likely 48-56px; px 16-18px; gap 8-12px for labels/help",
+        "radius": "0px",
+        "border": "default #2D2D2D, hover #888888, focus #FFD600 inferred",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 12-13px with tracking near 1px; labels 10-12px bold uppercase",
+        "states": "inferred hover border brightens, focus yellow outline/border, disabled #333333 text, validation red/green border if needed",
+        "variants": [
+          "text-field-inferred",
+          "search-field-inferred",
+          "textarea-inferred"
+        ]
+      }
+    },
+    "selects": {
+      "explicit": false,
+      "source_basis": "No native select/listbox components found; inferred from square controls and dropdown-like nav/menu logic.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "single-choice selection should use compact terminal rows",
+        "appearance": "dark square trigger, mono uppercase value, right glyph, hard border",
+        "spacing": "48px height, px 16, option rows 40-48px inferred",
+        "radius": "0px",
+        "border": "#2D2D2D default; #FFD600 active/focus inferred",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 11-12px, tracking 1-2px",
+        "states": "selected option yellow text/dot; hover muted text brightens; disabled dim gray",
+        "variants": [
+          "single-select-inferred",
+          "compact-filter-select-inferred"
+        ]
+      }
+    },
+    "dropdowns": {
+      "explicit": true,
+      "source_basis": "Navbar mobile drawer is an explicit collapsible dropdown panel with blurred near-black background and section buttons.",
+      "confidence": "medium",
+      "rules": {
+        "purpose": "mobile navigation menu and inferred compact menu surfaces",
+        "appearance": "full-width dark drawer, rgba(10,10,10,0.97), blur(14px), border-bottom #1E1E1E, stacked rows with border dividers",
+        "spacing": "px-6 py-5 drawer, row py-[14px], gap 0, CTA stack gap 10px",
+        "radius": "0px",
+        "border": "bottom border #1E1E1E on open; row border #141414",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 12px uppercase, tracking 1.5-2px",
+        "states": "open max-height 400px; active row yellow text and yellow dot; inactive #666; close on link click",
+        "variants": [
+          "mobile-nav-drawer",
+          "inferred-menu-panel"
+        ]
+      }
+    },
+    "cards": {
+      "explicit": true,
+      "source_basis": "FeatureCard, StepCard, TestimonialCard, Bento panels, PricingCard, and Showcase cards define repeated panel rules.",
+      "confidence": "high",
+      "rules": {
+        "purpose": "feature explanation, process steps, testimonials, capability tiles, pricing tiers, showcase projects",
+        "appearance": "dark rectangular surfaces with 1px or 2px borders, no radius, no shadow; highlighted cards use yellow fill, yellow/orange border, or left accent rail",
+        "spacing": "p-8 mobile, md:p-[32px] or md:p-[40px]; content gap 16-32px; card rows gap-[2px]",
+        "radius": "0px",
+        "border": "#2D2D2D default; #FFD600 primary highlight; #FF6B35 secondary highlight; testimonial uses border-left-4 accent",
+        "shadow": "none",
+        "typography": "Space Grotesk bold 18-28px headings; IBM Plex Mono 11-13px support text; labels/tags 10-11px mono",
+        "states": "mostly static; carousel active chooses current card; featured pricing uses stronger border/fill; no hover state on cards",
+        "variants": [
+          "feature-card",
+          "step-card",
+          "testimonial-card",
+          "bento-tile",
+          "pricing-card",
+          "showcase-card",
+          "accent-filled-card",
+          "left-rail-card"
+        ]
+      }
+    },
+    "tables": {
+      "explicit": true,
+      "source_basis": "Comparison implements desktop table and mobile comparison grid with headers, rows, borders, and emphasized PixelCraft column.",
+      "confidence": "high",
+      "rules": {
+        "purpose": "feature comparison and structured data display",
+        "appearance": "square bordered table, dark header #111111, yellow 2px header divider, #1A1A1A highlighted product column, hard cell dividers",
+        "spacing": "desktop rows h-[56px], px-[32px]; first column w-[400px]; mobile grid px 2-3 and py 3-4",
+        "radius": "0px",
+        "border": "outer #2D2D2D; row separators #1D1D1D; column dividers #2D2D2D; active header border #FFD600",
+        "shadow": "none",
+        "typography": "headers Space Grotesk 9-11px bold tracking 1-2px; cells IBM Plex Mono 9-14px tracking 1px",
+        "states": "static; positive cells yellow for PixelCraft, competitor positives muted #444444, negatives/dashes dim #3D3D3D/#444444",
+        "variants": [
+          "desktop-comparison-table",
+          "mobile-comparison-grid"
+        ]
+      }
+    },
+    "modals": {
+      "explicit": false,
+      "source_basis": "No modal component found; inferred cautiously from drawer/cards/table surface language.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "blocking overlays should be rare and utilitarian",
+        "appearance": "near-black square panel, 2px #FFD600 or #2D2D2D border, mono labels, no rounded corners",
+        "spacing": "p 32-40px inferred; action row gap 16px",
+        "radius": "0px",
+        "border": "2px accent for critical/active modal, 1px #2D2D2D for neutral",
+        "shadow": "none or very subtle black overlay only inferred",
+        "typography": "Space Grotesk title; IBM Plex Mono body/actions",
+        "states": "focus trap and yellow focus ring should be added if implemented; no repo evidence",
+        "variants": [
+          "modal-inferred"
+        ]
+      }
+    },
+    "dialogs": {
+      "explicit": false,
+      "source_basis": "No dialog/alert dialog component found; inferred from FAQ toggles, pricing cards, and CTA controls.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "confirmation or short decision UI",
+        "appearance": "compact square dark panel with hard border and yellow/orange action emphasis",
+        "spacing": "p 24-32px inferred; stacked on mobile, inline actions on sm+",
+        "radius": "0px",
+        "border": "#2D2D2D default, #FFD600 for primary decision",
+        "shadow": "none",
+        "typography": "Space Grotesk 20-28px title; IBM Plex Mono 12-13px message/actions",
+        "states": "primary yellow action, secondary bordered dark action, no explicit repo state",
+        "variants": [
+          "confirm-dialog-inferred"
+        ]
+      }
+    },
+    "sidebars": {
+      "explicit": true,
+      "source_basis": "Hero SVG contains explicit left LAYERS and right INSPECT side panels; mobile nav drawer is also side/drawer-adjacent but vertical top panel.",
+      "confidence": "medium",
+      "rules": {
+        "purpose": "editor side panels for layers, inspect properties, and token lists",
+        "appearance": "#111111 panel on #0F0F0F canvas, 1px #2D2D2D separators, 36px darker header bars, yellow section labels",
+        "spacing": "200px left panel, 201px right panel in SVG; 36px headers; property rows spaced 26-32px",
+        "radius": "0px; tiny SVG swatches may use rx 1px",
+        "border": "1px #2D2D2D vertical separators and header dividers",
+        "shadow": "none",
+        "typography": "monospace 8-9px labels and values with 0.5-2px tracking",
+        "states": "active layer uses #1E1E1E row fill and 2px yellow left rail; selected tool uses yellow square",
+        "variants": [
+          "layers-sidebar",
+          "inspect-sidebar",
+          "mobile-nav-drawer"
+        ]
+      }
+    },
+    "tabs": {
+      "explicit": false,
+      "source_basis": "No tab component found; carousel dots and nav active underline provide only related selection patterns.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "section switching or compact segmented navigation if needed",
+        "appearance": "mono uppercase labels, square hit areas, active yellow text plus 1.5-2px underline or yellow block indicator",
+        "spacing": "desktop gap 32-36px inferred from nav; compact tabs 8-16px gaps inferred",
+        "radius": "0px",
+        "border": "active underline #FFD600; optional bottom border #1D1D1D",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 10-12px tracking 1.5-2px",
+        "states": "active yellow, inactive #555/#666, hover #F5F5F0, focus yellow outline inferred",
+        "variants": [
+          "underline-tabs-inferred",
+          "segmented-square-tabs-inferred"
+        ]
+      }
+    },
+    "badges": {
+      "explicit": true,
+      "source_basis": "Hero badge, FinalCTA badge, Feature tags, Bento tags, Pricing tier labels, and Showcase tags share compact rectangular badge rules.",
+      "confidence": "high",
+      "rules": {
+        "purpose": "section status, tags, tier labels, capability labels, project categories",
+        "appearance": "small square rectangular chips with dark or yellow fill, optional 1-2px accent border, all-caps bracket text",
+        "spacing": "height 24-32px; px 10-16px; internal dot gap 8px",
+        "radius": "0px",
+        "border": "1px or 2px #FFD600/#FF6B35/#3D3D3D; transparent border for filled badges",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 9-11px, often bold, tracking 1-2px",
+        "states": "static; active/featured badges invert to yellow fill with black text",
+        "variants": [
+          "section-badge",
+          "tag-chip",
+          "tier-badge",
+          "status-chip",
+          "dot-badge"
+        ]
+      }
+    },
+    "alerts": {
+      "explicit": false,
+      "source_basis": "No alert component found; color/status vocabulary exists in badges, pricing inclusion marks, and hero SVG status dots.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "system feedback should be terse and label-like",
+        "appearance": "square dark strip or panel with left accent rail or 2px border; monospace uppercase message",
+        "spacing": "p 16-24px inferred; gap 8-12px for icon/label",
+        "radius": "0px",
+        "border": "yellow for notice, orange for warning, green #4ADE80 for success, red #FF5F57 for destructive/error inferred from SVG tokens",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 11-13px tracking 1px, bold label prefix",
+        "states": "static; dismiss control should be square bordered button if needed",
+        "variants": [
+          "notice-inferred",
+          "warning-inferred",
+          "success-inferred",
+          "error-inferred"
+        ]
+      }
+    },
+    "empty_states": {
+      "explicit": true,
+      "source_basis": "Showcase placeholder panels use [SCREENSHOT] in muted mono text inside bordered dark blocks; hero editor also uses placeholder-like grid/canvas states.",
+      "confidence": "medium",
+      "rules": {
+        "purpose": "placeholder media, unavailable preview, or empty editor/data region",
+        "appearance": "#1A1A1A dark block with 1px #2D2D2D border and centered bracketed mono text in #333333",
+        "spacing": "showcase placeholders h-[160px] mobile and h-[200px] desktop; centered flex alignment",
+        "radius": "0px",
+        "border": "1px #2D2D2D",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 11px, tracking 2px, muted #333333",
+        "states": "static; can pair with yellow CTA or link below for recovery",
+        "variants": [
+          "media-placeholder",
+          "canvas-placeholder-inferred"
+        ]
+      }
+    },
+    "charts_containers": {
+      "explicit": true,
+      "source_basis": "Hero DesignInterfaceSVG implements dashboard/editor-like chart/code/canvas containers, token panels, rulers, code lines, and status bars.",
+      "confidence": "medium",
+      "rules": {
+        "purpose": "visual product demo, analytics/editor panels, token displays, code/canvas regions",
+        "appearance": "dark editor canvas with side panels, rulers, grid dots, code blocks, status bars, selection handles, and dashed yellow selection frame",
+        "spacing": "large fixed SVG viewBox 1100x580; 36px toolbar/panel headers; 16-32px panel rows; code lines spaced 16px",
+        "radius": "0px dominant; SVG mini swatches and toolbar buttons may use rx 1-2px",
+        "border": "1px #2D2D2D grid/panel borders; dashed #FFD600 selected frame; orange/blue measurement lines",
+        "shadow": "none in container; only external collaboration cursors have drop shadows",
+        "typography": "monospace 6-9px for editor labels, properties, rulers, and tokens",
+        "states": "animated scanline, blinking cursor, pulsing status dot, selected tool yellow fill, active layer left rail",
+        "variants": [
+          "editor-canvas",
+          "inspect-panel",
+          "code-block",
+          "token-list",
+          "status-bar",
+          "selected-frame"
+        ]
+      }
+    },
+    "page_headers": {
+      "explicit": true,
+      "source_basis": "SectionHeader is shared by most sections; Hero and FinalCTA define larger page-level header variants.",
+      "confidence": "high",
+      "rules": {
+        "purpose": "section introduction, hero headline, conversion headline",
+        "appearance": "stacked label, large multiline title, optional mono subtitle; label in yellow, title off-white or yellow emphasis",
+        "spacing": "SectionHeader gap 16px; section-to-content gap usually 48px mobile / 64px desktop; hero uses 32-64px explicit spacers",
+        "radius": "none",
+        "border": "none directly; nearby section badges may carry borders",
+        "shadow": "none",
+        "typography": "label IBM Plex Mono 10-12px bold tracking 1.5-3px; title Space Grotesk 36/56px or larger; subtitle IBM Plex Mono 10-15px leading 1.6",
+        "states": "GlitchText/typewriter reveal on many labels/titles/subtitles; no interactive states",
+        "variants": [
+          "section-header",
+          "hero-header",
+          "final-cta-header",
+          "compact-left-header"
+        ]
+      }
+    },
+    "filters": {
+      "explicit": false,
+      "source_basis": "No filters found; inferred from nav links, badges, carousel dots, and comparison controls.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "filtering lists or project categories should use chip/button controls",
+        "appearance": "rectangular dark chips with 1px border; active chip yellow fill or yellow border/text",
+        "spacing": "height 28-36px, px 10-16px, gap 8px inferred from badges and carousel controls",
+        "radius": "0px",
+        "border": "#2D2D2D default; #FFD600 active; #FF6B35 special category",
+        "shadow": "none",
+        "typography": "IBM Plex Mono 10-11px uppercase tracking 1-2px",
+        "states": "active yellow, hover border/text brighten, disabled dim #333333 inferred",
+        "variants": [
+          "chip-filter-inferred",
+          "dot-filter-inferred"
+        ]
+      }
+    },
+    "form_layouts": {
+      "explicit": false,
+      "source_basis": "No forms found beyond pricing actions; inferred layout follows stacked labels/controls and full-width mobile CTA behavior.",
+      "confidence": "low",
+      "rules": {
+        "purpose": "forms should be utilitarian and mono-labeled",
+        "appearance": "single-column dark form sections with hard borders and square controls",
+        "spacing": "field stack gap 16-24px; form padding 24-40px; action gap 16px; full-width buttons on mobile",
+        "radius": "0px",
+        "border": "section border #2D2D2D; focused field #FFD600 inferred",
+        "shadow": "none",
+        "typography": "IBM Plex Mono labels 10-12px uppercase; Space Grotesk form title if present",
+        "states": "inline validation below fields in mono text; success/error colors inferred from SVG status tokens",
+        "variants": [
+          "stacked-form-inferred",
+          "inline-action-form-inferred"
+        ]
+      }
+    }
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "Hero and FinalCTA establish paired CTAs: yellow filled primary first, dark bordered secondary second; navbar repeats small yellow primary CTA plus muted login link.",
+    "information_grouping": "Long landing page groups content into numbered sections, each with a yellow mono label, big title, and a dense grid/table/card block; repeated items sit edge-to-edge with 2px seams.",
+    "filter_placement": "No filters implemented; inferred placement is above data/card regions or as compact chip rows aligned with section headers, matching carousel dots below showcase content.",
+    "form_structure": "No forms implemented; inferred structure is single-column, mono labels, square bordered inputs, and full-width mobile action buttons.",
+    "validation_behavior": "No validation implemented; inferred behavior should use border color and terse mono helper text, with green success, red error, orange warning, and yellow attention states.",
+    "table_detail_strategy": "Desktop comparison table prioritizes first feature column and highlighted product column; mobile switches to compact grid with abbreviated competitor headers and fewer visible columns.",
+    "loading_error_empty_states": "Loading is expressed as typewriter/glitch text, blinking cursor, scanline, pulse, and carousel transitions; empty media uses a bordered placeholder with bracketed muted mono label.",
+    "action_placement": "Primary actions appear immediately after hero/final CTA copy, pricing details, or top-right section controls; secondary text links appear at section footers or next to support copy.",
+    "notes": [
+      "Interaction design favors instant state changes through color, border, underline, and glyph swaps over depth or motion-heavy feedback.",
+      "The system is intentionally low-radius and low-shadow; introducing soft cards or rounded controls would conflict with the repo identity.",
+      "Several accessibility states, especially focus-visible and disabled, are not explicitly coded and should be added if this design system is productized."
+    ]
+  },
+  "constraints": [
+    "Use valid Next.js/Tailwind-compatible tokens and preserve current font pair: Space Grotesk and IBM Plex Mono.",
+    "Avoid rounded cards/buttons; radius should normally be 0px.",
+    "Avoid shadows for layout elevation; prefer hard borders, color bands, and 2px seams.",
+    "Do not dilute #FFD600 as primary accent; use it sparingly but decisively for key hierarchy and active states.",
+    "Keep copy uppercase, terse, and technical when extending existing sections.",
+    "Respect mobile stacking and md desktop row/table/carousel switches.",
+    "Focus states are under-specified in the repo; any implementation should add accessible visible focus without changing the core square visual language.",
+    "The requested context files under input/ and outputs/ were absent, so this profile is based on direct source inspection of app/ and components/."
+  ]
+}

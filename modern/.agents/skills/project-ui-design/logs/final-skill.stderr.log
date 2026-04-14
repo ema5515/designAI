@@ -1,0 +1,3102 @@
+Reading additional input from stdin...
+OpenAI Codex v0.120.0 (research preview)
+--------
+workdir: /Users/emanueledagata/code/v0/boh2
+model: gpt-5.4
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 019d8d6b-6acd-7d21-84b3-11a0c72e072a
+--------
+user
+You are a senior design systems architect and AI prompt engineer.
+
+Your task is to generate a complete reusable design skill for an AI agent.
+
+The skill will be used inside a software project so that the AI can generate new UI screens, components, and product flows that are:
+- visually consistent with the source application's design language
+- aligned with strong UI/UX principles
+- professional and production-ready
+
+Use these source files as context:
+- outputs/01-ui-ux-foundation.md
+- outputs/02-design-extraction.md
+- outputs/02-design-extraction.json
+- input/repo-summary.md
+
+The final skill must do more than describe style. It must enforce a reusable design logic that remains coherent even when generating screens that were not present in the original repository.
+
+The final skill must include:
+
+1. Role definition
+Define the AI as a product UI/UX designer and interface system builder.
+
+2. Objective
+Explain that the AI must generate interfaces coherent with the project’s current style, geometry, hierarchy, spacing character, typography roles, and interaction tone.
+
+3. Design philosophy
+Merge general UX best practices with the specific visual identity extracted from the project.
+
+4. Non-negotiable style traits
+Add a dedicated section for identity-defining traits that must be preserved, especially:
+- radius and geometry family
+- spacing character
+- emphasis discipline
+- hierarchy style
+- typography roles
+- interaction tone
+
+5. Project style rules
+Include:
+- color usage rules
+- typography rules
+- spacing rules
+- radius rules
+- shadow/elevation rules
+- hierarchy rules
+- visual priority rules
+- interaction state rules
+- layout rules
+- responsiveness rules
+
+6. Component generation rules
+Explain how the AI should generate:
+- dashboards
+- settings pages
+- CRUD pages
+- forms
+- tables
+- analytics blocks
+- dialogs
+- navigation
+- cards
+- empty states
+- alerts
+- filters
+
+7. Derived component behavior
+Include a section explaining how to derive components that do not exist in the original repo while preserving the source identity.
+The AI must extend the source system conservatively instead of inventing a different style family.
+
+8. Behavioral constraints
+Explain what the AI must never do:
+- introduce sharper geometry if the source uses a rounded language
+- flatten or neutralize a spacious spacing character into a cramped generic admin style
+- break spacing rhythm
+- create inconsistent hierarchy
+- use decorative elements without functional value
+- overcomplicate interactions
+- invent unsupported component patterns without grounding them in the source identity
+
+9. UX reasoning rules
+The AI must justify key layout and component decisions using:
+- clarity
+- hierarchy
+- visual priority
+- consistency
+- task completion
+- accessibility
+- scalability
+
+10. Output mode
+The AI should:
+- prefer product-ready UI
+- reuse existing patterns
+- extend the system instead of reinventing it
+- preserve source design identity even across different UI categories
+- generate components that feel native to the existing app's design language
+
+11. Anti-drift rules
+Add a dedicated section explaining how to avoid style drift when generating new screens over time.
+
+12. Conservative adaptation rule
+State explicitly that a portfolio, marketing page, or landing style can be adapted into dashboards or utility screens, but the defining traits of geometry, hierarchy, spacing, emphasis, and tone must remain recognizable.
+
+Output format:
+- Title
+- Purpose
+- AI role
+- Design philosophy
+- Non-negotiable style traits
+- Core UI/UX principles
+- Project-specific style rules
+- Visual priority and hierarchy rules
+- Typography as UX rules
+- Interaction rules
+- Layout and page composition rules
+- Component rules
+- Derived component rules
+- Constraints
+- Anti-drift rules
+- Final operating instructions
+
+Return only markdown.
+codex
+I’ll use the `skill-creator` guidance because this is a reusable Codex-style skill artifact, then I’ll read the project extraction files and synthesize the final markdown from those constraints.
+exec
+/bin/zsh -lc "sed -n '1,260p' outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "sed -n '1,300p' outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "sed -n '1,220p' /Users/emanueledagata/.codex/skills/.system/skill-creator/SKILL.md" in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "sed -n '1,260p' input/repo-summary.md" in /Users/emanueledagata/code/v0/boh2
+ exited 1 in 0ms:
+sed: outputs/01-ui-ux-foundation.md: No such file or directory
+
+ exited 1 in 0ms:
+sed: outputs/02-design-extraction.md: No such file or directory
+
+ exited 1 in 0ms:
+sed: input/repo-summary.md: No such file or directory
+
+ succeeded in 0ms:
+---
+name: skill-creator
+description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Codex's capabilities with specialized knowledge, workflows, or tool integrations.
+metadata:
+  short-description: Create or update a skill
+---
+
+# Skill Creator
+
+This skill provides guidance for creating effective skills.
+
+## About Skills
+
+Skills are modular, self-contained folders that extend Codex's capabilities by providing
+specialized knowledge, workflows, and tools. Think of them as "onboarding guides" for specific
+domains or tasks—they transform Codex from a general-purpose agent into a specialized agent
+equipped with procedural knowledge that no model can fully possess.
+
+### What Skills Provide
+
+1. Specialized workflows - Multi-step procedures for specific domains
+2. Tool integrations - Instructions for working with specific file formats or APIs
+3. Domain expertise - Company-specific knowledge, schemas, business logic
+4. Bundled resources - Scripts, references, and assets for complex and repetitive tasks
+
+## Core Principles
+
+### Concise is Key
+
+The context window is a public good. Skills share the context window with everything else Codex needs: system prompt, conversation history, other Skills' metadata, and the actual user request.
+
+**Default assumption: Codex is already very smart.** Only add context Codex doesn't already have. Challenge each piece of information: "Does Codex really need this explanation?" and "Does this paragraph justify its token cost?"
+
+Prefer concise examples over verbose explanations.
+
+### Set Appropriate Degrees of Freedom
+
+Match the level of specificity to the task's fragility and variability:
+
+**High freedom (text-based instructions)**: Use when multiple approaches are valid, decisions depend on context, or heuristics guide the approach.
+
+**Medium freedom (pseudocode or scripts with parameters)**: Use when a preferred pattern exists, some variation is acceptable, or configuration affects behavior.
+
+**Low freedom (specific scripts, few parameters)**: Use when operations are fragile and error-prone, consistency is critical, or a specific sequence must be followed.
+
+Think of Codex as exploring a path: a narrow bridge with cliffs needs specific guardrails (low freedom), while an open field allows many routes (high freedom).
+
+### Protect Validation Integrity
+
+You may use subagents during iteration to validate whether a skill works on realistic tasks or whether a suspected problem is real. This is most useful when you want an independent pass on the skill's behavior, outputs, or failure modes after a revision.  Only do this when it is possible to start new subagents.
+
+When using subagents for validation, treat that as an evaluation surface. The goal is to learn whether the skill generalizes, not whether another agent can reconstruct the answer from leaked context.
+
+Prefer raw artifacts such as example prompts, outputs, diffs, logs, or traces. Give the minimum task-local context needed to perform the validation. Avoid passing the intended answer, suspected bug, intended fix, or your prior conclusions unless the validation explicitly requires them.
+
+### Anatomy of a Skill
+
+Every skill consists of a required SKILL.md file and optional bundled resources:
+
+```
+skill-name/
+├── SKILL.md (required)
+│   ├── YAML frontmatter metadata (required)
+│   │   ├── name: (required)
+│   │   └── description: (required)
+│   └── Markdown instructions (required)
+├── agents/ (recommended)
+│   └── openai.yaml - UI metadata for skill lists and chips
+└── Bundled Resources (optional)
+    ├── scripts/          - Executable code (Python/Bash/etc.)
+    ├── references/       - Documentation intended to be loaded into context as needed
+    └── assets/           - Files used in output (templates, icons, fonts, etc.)
+```
+
+#### SKILL.md (required)
+
+Every SKILL.md consists of:
+
+- **Frontmatter** (YAML): Contains `name` and `description` fields. These are the only fields that Codex reads to determine when the skill gets used, thus it is very important to be clear and comprehensive in describing what the skill is, and when it should be used.
+- **Body** (Markdown): Instructions and guidance for using the skill. Only loaded AFTER the skill triggers (if at all).
+
+#### Agents metadata (recommended)
+
+- UI-facing metadata for skill lists and chips
+- Read references/openai_yaml.md before generating values and follow its descriptions and constraints
+- Create: human-facing `display_name`, `short_description`, and `default_prompt` by reading the skill
+- Generate deterministically by passing the values as `--interface key=value` to `scripts/generate_openai_yaml.py` or `scripts/init_skill.py`
+- On updates: validate `agents/openai.yaml` still matches SKILL.md; regenerate if stale
+- Only include other optional interface fields (icons, brand color) if explicitly provided
+- See references/openai_yaml.md for field definitions and examples
+
+#### Bundled Resources (optional)
+
+##### Scripts (`scripts/`)
+
+Executable code (Python/Bash/etc.) for tasks that require deterministic reliability or are repeatedly rewritten.
+
+- **When to include**: When the same code is being rewritten repeatedly or deterministic reliability is needed
+- **Example**: `scripts/rotate_pdf.py` for PDF rotation tasks
+- **Benefits**: Token efficient, deterministic, may be executed without loading into context
+- **Note**: Scripts may still need to be read by Codex for patching or environment-specific adjustments
+
+##### References (`references/`)
+
+Documentation and reference material intended to be loaded as needed into context to inform Codex's process and thinking.
+
+- **When to include**: For documentation that Codex should reference while working
+- **Examples**: `references/finance.md` for financial schemas, `references/mnda.md` for company NDA template, `references/policies.md` for company policies, `references/api_docs.md` for API specifications
+- **Use cases**: Database schemas, API documentation, domain knowledge, company policies, detailed workflow guides
+- **Benefits**: Keeps SKILL.md lean, loaded only when Codex determines it's needed
+- **Best practice**: If files are large (>10k words), include grep search patterns in SKILL.md
+- **Avoid duplication**: Information should live in either SKILL.md or references files, not both. Prefer references files for detailed information unless it's truly core to the skill—this keeps SKILL.md lean while making information discoverable without hogging the context window. Keep only essential procedural instructions and workflow guidance in SKILL.md; move detailed reference material, schemas, and examples to references files.
+
+##### Assets (`assets/`)
+
+Files not intended to be loaded into context, but rather used within the output Codex produces.
+
+- **When to include**: When the skill needs files that will be used in the final output
+- **Examples**: `assets/logo.png` for brand assets, `assets/slides.pptx` for PowerPoint templates, `assets/frontend-template/` for HTML/React boilerplate, `assets/font.ttf` for typography
+- **Use cases**: Templates, images, icons, boilerplate code, fonts, sample documents that get copied or modified
+- **Benefits**: Separates output resources from documentation, enables Codex to use files without loading them into context
+
+#### What to Not Include in a Skill
+
+A skill should only contain essential files that directly support its functionality. Do NOT create extraneous documentation or auxiliary files, including:
+
+- README.md
+- INSTALLATION_GUIDE.md
+- QUICK_REFERENCE.md
+- CHANGELOG.md
+- etc.
+
+The skill should only contain the information needed for an AI agent to do the job at hand. It should not contain auxiliary context about the process that went into creating it, setup and testing procedures, user-facing documentation, etc. Creating additional documentation files just adds clutter and confusion.
+
+### Progressive Disclosure Design Principle
+
+Skills use a three-level loading system to manage context efficiently:
+
+1. **Metadata (name + description)** - Always in context (~100 words)
+2. **SKILL.md body** - When skill triggers (<5k words)
+3. **Bundled resources** - As needed by Codex (Unlimited because scripts can be executed without reading into context window)
+
+#### Progressive Disclosure Patterns
+
+Keep SKILL.md body to the essentials and under 500 lines to minimize context bloat. Split content into separate files when approaching this limit. When splitting out content into other files, it is very important to reference them from SKILL.md and describe clearly when to read them, to ensure the reader of the skill knows they exist and when to use them.
+
+**Key principle:** When a skill supports multiple variations, frameworks, or options, keep only the core workflow and selection guidance in SKILL.md. Move variant-specific details (patterns, examples, configuration) into separate reference files.
+
+**Pattern 1: High-level guide with references**
+
+```markdown
+# PDF Processing
+
+## Quick start
+
+Extract text with pdfplumber:
+[code example]
+
+## Advanced features
+
+- **Form filling**: See [FORMS.md](FORMS.md) for complete guide
+- **API reference**: See [REFERENCE.md](REFERENCE.md) for all methods
+- **Examples**: See [EXAMPLES.md](EXAMPLES.md) for common patterns
+```
+
+Codex loads FORMS.md, REFERENCE.md, or EXAMPLES.md only when needed.
+
+**Pattern 2: Domain-specific organization**
+
+For Skills with multiple domains, organize content by domain to avoid loading irrelevant context:
+
+```
+bigquery-skill/
+├── SKILL.md (overview and navigation)
+└── reference/
+    ├── finance.md (revenue, billing metrics)
+    ├── sales.md (opportunities, pipeline)
+    ├── product.md (API usage, features)
+    └── marketing.md (campaigns, attribution)
+```
+
+When a user asks about sales metrics, Codex only reads sales.md.
+
+Similarly, for skills supporting multiple frameworks or variants, organize by variant:
+
+```
+cloud-deploy/
+├── SKILL.md (workflow + provider selection)
+└── references/
+    ├── aws.md (AWS deployment patterns)
+    ├── gcp.md (GCP deployment patterns)
+    └── azure.md (Azure deployment patterns)
+```
+
+When the user chooses AWS, Codex only reads aws.md.
+
+**Pattern 3: Conditional details**
+
+Show basic content, link to advanced content:
+
+```markdown
+# DOCX Processing
+
+## Creating documents
+
+Use docx-js for new documents. See [DOCX-JS.md](DOCX-JS.md).
+
+## Editing documents
+
+For simple edits, modify the XML directly.
+
+**For tracked changes**: See [REDLINING.md](REDLINING.md)
+**For OOXML details**: See [OOXML.md](OOXML.md)
+```
+
+Codex reads REDLINING.md or OOXML.md only when the user needs those features.
+
+**Important guidelines:**
+
+- **Avoid deeply nested references** - Keep references one level deep from SKILL.md. All reference files should link directly from SKILL.md.
+
+codex
+The listed paths are not under the current working directory as-is, so I’m locating the referenced files before synthesizing the skill.
+exec
+/bin/zsh -lc "rg --files -g '01-ui-ux-foundation.md' -g '02-design-extraction.md' -g '02-design-extraction.json' -g 'repo-summary.md'" in /Users/emanueledagata/code/v0/boh2
+ exited 1 in 0ms:
+exec
+/bin/zsh -lc ls in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+app
+components
+components.json
+generate-design-skill.mjs
+hooks
+lib
+next-env.d.ts
+next.config.mjs
+package.json
+pnpm-lock.yaml
+postcss.config.mjs
+public
+styles
+tsconfig.json
+
+exec
+/bin/zsh -lc "find .. -path '*/outputs/01-ui-ux-foundation.md' -o -path '*/outputs/02-design-extraction.md' -o -path '*/outputs/02-design-extraction.json' -o -path '*/input/repo-summary.md'" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+../portfolio_disegno/.agents/skills/project-ui-design/input/repo-summary.md
+../portfolio_disegno/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../portfolio_disegno/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../portfolio_disegno/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+../boh1-base east/.agents/skills/project-ui-design/input/repo-summary.md
+../boh1-base east/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../boh1-base east/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../boh1-base east/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+../boh2/.agents/skills/project-ui-design/input/repo-summary.md
+../boh2/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../boh2/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+../boh2/.agents/skills/project-ui-design/outputs/02-design-extraction.json
+../boh3/.agents/skills/project-ui-design/input/repo-summary.md
+../boh3/.agents/skills/project-ui-design/outputs/02-design-extraction.md
+../boh3/.agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+
+codex
+I found the matching artifacts under `.agents/skills/project-ui-design/`; I’ll read those now and pull the concrete design traits into the final skill.
+exec
+/bin/zsh -lc "sed -n '1,300p' .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+# Professional Software Interface Design Foundation
+
+## Purpose
+
+This skill teaches an AI agent how to design professional software interfaces with strong UI and UX fundamentals before applying any project-specific visual style.
+
+Use this foundation when designing, reviewing, or improving software interfaces such as dashboards, admin tools, SaaS products, internal tools, data-heavy applications, settings screens, forms, tables, workflows, and CRUD experiences.
+
+This skill is intentionally style-agnostic. It does not prescribe a brand, color palette, aesthetic direction, component library, or visual trend. It defines durable product design principles that can later be combined with a project-specific design system or style guide extracted from a real codebase.
+
+## Design Philosophy
+
+Design software interfaces for comprehension, action, and trust.
+
+A professional interface should make the user’s next step clear, reduce unnecessary decisions, expose system state, prevent avoidable errors, and support efficient task completion. Visual design should serve usability before decoration.
+
+Core philosophy:
+
+- Prioritize clarity over novelty.
+- Prioritize task completion over visual complexity.
+- Prioritize consistency over one-off cleverness.
+- Prioritize accessible, predictable behavior over subtle effects.
+- Prioritize reusable patterns over isolated screen design.
+- Use visual hierarchy to explain importance.
+- Use spacing, typography, alignment, and state feedback as functional tools.
+- Make the interface feel intentional even before a visual style is applied.
+
+A good software UI should answer these questions quickly:
+
+- Where am I?
+- What is most important?
+- What can I do next?
+- What changed?
+- What requires my attention?
+- What happens if I take this action?
+- How do I recover if something goes wrong?
+
+## UX Fundamentals
+
+### Clarity
+
+Clarity means the user can understand the screen, its purpose, and available actions without unnecessary interpretation.
+
+Rules:
+
+- Every screen should have a clear primary purpose.
+- The main action should be obvious without relying only on color.
+- Labels should describe the user’s goal, not the implementation detail.
+- Avoid vague actions like “Submit” when a specific verb is available, such as “Create invoice,” “Save changes,” or “Invite user.”
+- Use plain language over internal terminology unless the product domain requires specialized terms.
+- Avoid making multiple unrelated tasks compete for attention on the same screen.
+- If a user must make a decision, provide enough context to make that decision confidently.
+
+### Usability
+
+Usability means the interface supports efficient, accurate task completion.
+
+Rules:
+
+- Put frequent actions close to the content they affect.
+- Put destructive or rare actions away from primary task paths.
+- Use familiar interaction patterns unless there is a strong product reason not to.
+- Reduce unnecessary steps in common workflows.
+- Preserve user input when validation fails.
+- Provide clear recovery paths for errors.
+- Do not require users to remember information across screens when it can be shown in context.
+- Optimize first for the primary user flow, then support secondary flows without cluttering the main path.
+
+### Consistency
+
+Consistency reduces learning cost and increases user confidence.
+
+Rules:
+
+- Similar actions should look and behave similarly.
+- Similar information should be structured similarly.
+- Reuse spacing, typography, component variants, icon behavior, and state patterns once established.
+- Do not introduce a new component variation unless it solves a real interaction or information problem.
+- Keep action placement predictable across similar pages.
+- Keep terminology consistent across navigation, page titles, buttons, forms, empty states, and alerts.
+
+### Feedback And State Visibility
+
+Users need to know what the system is doing and what changed.
+
+Rules:
+
+- Show loading states for actions that are not immediate.
+- Show success feedback after important changes.
+- Show validation feedback near the field or control that needs correction.
+- Show selected, active, disabled, and focused states clearly.
+- Show unsaved changes when leaving a form could cause data loss.
+- Show progress for multi-step or long-running operations.
+- Do not leave users wondering whether a click, save, upload, or filter action worked.
+
+### Cognitive Load Reduction
+
+Reduce the amount of information the user must hold in memory.
+
+Rules:
+
+- Group related controls and content.
+- Break complex workflows into clear sections or steps.
+- Use progressive disclosure for advanced, rare, or optional details.
+- Prefer recognition over recall by showing available options.
+- Avoid presenting every possible action at once.
+- Use defaults, examples, summaries, and contextual help when they prevent confusion.
+- Keep visual hierarchy strong enough that users can scan before reading deeply.
+
+### Accessibility
+
+Accessibility is a baseline requirement, not an enhancement.
+
+Rules:
+
+- Text and interactive elements must meet appropriate contrast requirements.
+- Focus states must be visible and not rely on color alone.
+- Interactive targets must be large enough for pointer and touch use.
+- Form fields must have persistent labels or accessible names.
+- Error states must include text, not only color or icons.
+- Disabled controls should explain why they are unavailable when the reason is not obvious.
+- Keyboard users must be able to reach and operate all interactive controls.
+- Screen-reader order should match visual reading order.
+- Do not use placeholder text as the only label.
+- Avoid interactions that depend only on hover.
+
+### Responsiveness
+
+Responsive design means the interface adapts without losing usability.
+
+Rules:
+
+- Preserve task priority across viewport sizes.
+- Collapse secondary navigation before hiding primary actions.
+- Stack related content in a logical reading order on smaller screens.
+- Keep primary actions reachable on mobile.
+- Avoid horizontal scrolling except for intentionally wide data tables.
+- Ensure text wraps gracefully without truncating essential meaning.
+- Use compact density only when readability and target size remain acceptable.
+- Test layouts at narrow, medium, wide, and content-heavy states.
+
+### Task-Oriented Design
+
+Design around what users need to accomplish, not around component inventory.
+
+Rules:
+
+- Start each screen by identifying the primary task.
+- Rank content and actions by task importance.
+- Keep the main workflow visible and direct.
+- Move supporting metadata, history, advanced options, and secondary actions into lower-emphasis areas.
+- Avoid decorative sections that do not help the user decide, understand, or act.
+- Prefer “what the user is trying to do” over “what the system can display.”
+
+### Progressive Disclosure
+
+Progressive disclosure reveals complexity only when it becomes useful.
+
+Rules:
+
+- Show essential information first.
+- Hide advanced controls behind expandable areas, secondary panels, detail views, or explicit actions.
+- Do not hide required information needed to make a safe decision.
+- Use disclosure for optional configuration, detailed metadata, audit history, advanced filters, and rare actions.
+- Make disclosed content predictable: the label should clearly describe what will appear.
+- Preserve state when users expand, collapse, or return to a disclosed section.
+
+### Predictable Interaction Behavior
+
+Users should be able to predict what an interaction will do.
+
+Rules:
+
+- Buttons should perform actions.
+- Links should navigate.
+- Checkboxes should allow multiple independent selections.
+- Radio buttons should select one option from a visible set.
+- Tabs should switch between peer views, not submit data.
+- Accordions should reveal content, not navigate unexpectedly.
+- Destructive actions should require clear confirmation when consequences are significant.
+- Interactions should not move controls unexpectedly after hover, focus, or validation.
+
+## UI Fundamentals
+
+### Visual Hierarchy
+
+Visual hierarchy guides the user through the screen in order of importance.
+
+Rules:
+
+- Establish one dominant focal point per screen or region.
+- Use size, weight, spacing, alignment, position, and contrast to create hierarchy.
+- Primary content should be visually stronger than supporting content.
+- Primary actions should be more prominent than secondary actions.
+- Metadata should not compete with titles, values, or task-critical labels.
+- Avoid flat layouts where every element has similar size, weight, color, and spacing.
+
+### Visual Priority
+
+Visual priority determines what the user notices first, second, and third.
+
+Rules:
+
+- Assign priority before styling.
+- High-priority elements may use stronger weight, clearer placement, greater contrast, or more surrounding space.
+- Low-priority elements should remain readable but visually quieter.
+- Avoid giving high emphasis to too many elements at once.
+- Use visual priority to support task order, not decoration.
+- If everything is emphasized, nothing is emphasized.
+
+### Spacing Rhythm
+
+Spacing creates structure and improves scanning.
+
+Rules:
+
+- Use a consistent spacing scale.
+- Use tighter spacing for closely related elements.
+- Use larger spacing to separate groups, sections, or task areas.
+- Avoid arbitrary one-off spacing values.
+- Keep spacing rhythm consistent across similar components.
+- Do not use borders or shadows to compensate for weak spacing.
+- Crowded interfaces should first improve grouping and hierarchy before reducing font size.
+
+### Typography Hierarchy
+
+Typography should communicate structure and reading order.
+
+Rules:
+
+- Use a limited set of text roles: page title, section title, item title, body text, label, helper text, metadata, caption, and button text.
+- Larger or heavier type should correspond to higher information importance.
+- Labels should be concise and scannable.
+- Body text should be readable at normal distances.
+- Metadata should be visually subordinate but still legible.
+- Avoid using too many font sizes or weights.
+- Do not rely on all caps for hierarchy unless the design system already uses it carefully.
+
+### Typography As A UX Tool
+
+Typography helps users scan, compare, and act.
+
+Rules:
+
+- Put the most meaningful words first in labels and headings.
+- Use predictable text patterns across repeated items.
+- Use line length that supports reading, especially for descriptions and help text.
+- Align numeric data consistently for comparison.
+- Use tabular or aligned numbers where precise comparison matters.
+- Avoid center alignment for dense, operational, or data-heavy content.
+- Use truncation only when full content is available through expansion, tooltip, detail view, or responsive layout.
+
+### Grouping And Alignment
+
+Grouping tells users what belongs together.
+
+Rules:
+
+- Align related elements along clear edges.
+- Keep labels close to the fields or values they describe.
+- Group controls with the content they affect.
+- Use section headings when groups need names.
+- Avoid floating controls with unclear scope.
+- Use consistent alignment for repeated content.
+- Prefer strong layout structure over decorative dividers.
+
+### Component Consistency
+
+Components should behave as part of a system.
+
+Rules:
+
+- Use the same component for the same job.
+- Use variants intentionally: primary, secondary, tertiary, destructive, disabled, selected, and loading should each have clear meaning.
+- Do not create visual variants only for novelty.
+- Keep icon placement, button height, input styling, table density, and card structure consistent.
+- Component changes should reflect state, hierarchy, or function.
+
+### Contrast Management
+
+Contrast controls readability and emphasis.
+
+Rules:
+
+- Maintain accessible contrast for text and important controls.
+- Use stronger contrast for primary information and actions.
+- Use lower contrast for secondary metadata, but never so low that it becomes hard to read.
+- Do not use color alone to communicate status.
+- Avoid high-contrast noise in dense screens.
+- Use background contrast to separate major regions only when spacing and hierarchy are insufficient.
+
+### Border Radius Logic
+
+Border radius should be systematic.
+
+Rules:
+
+- Use a consistent radius scale.
+- Similar components should share similar radius.
+- Large containers, small controls, inputs, badges, and overlays may use different radii only if the system defines that logic.
+
+exec
+/bin/zsh -lc "sed -n '1,360p' .agents/skills/project-ui-design/outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+# Executive Summary
+
+Source note: the requested `input/` support files are not present in this checkout, so the extraction is based on the active app source: `app/globals.css`, `app/layout.tsx`, `components/finance/*`, and `components/ui/*`.
+
+**EXPLICIT:** This repository expresses a soft, premium mobile-finance design language: warm cream backgrounds, deep forest green content, sharp lime highlights, large rounded geometry, compact information density, and subdued surface separation.
+
+**EXPLICIT:** The strongest identity anchors are:
+- Cream app canvas instead of pure white.
+- Forest green as the dominant text, brand, navigation, and high-emphasis surface color.
+- Lime as the signature action/accent color.
+- Large rounded cards and controls, especially `rounded-2xl` and `rounded-3xl`.
+- Compact finance-app typography with strong numeric emphasis.
+- White cards on cream backgrounds with light borders or `shadow-sm`.
+- Calm, quick transitions: `transition-colors`, `transition-all`, subtle scale on primary CTAs.
+
+**INFERRED:** When adapted to a different product area, preserve the cream/forest/lime system, large soft radii, compact but friendly spacing, strong numeric hierarchy, and low-noise interaction feedback. Avoid turning it into a generic admin UI with gray slabs, square controls, dense divider grids, or blue SaaS defaults.
+
+# Identity-Defining Traits
+
+- **EXPLICIT:** The product identity is fintech, not neutral SaaS. It uses money-card gradients, account stats, transaction rows, privacy controls, and banking-style trust badges.
+- **EXPLICIT:** The UI favors rounded physical objects: phone shell, cards, stat tiles, avatars, icon wells, nav items, CTA buttons, and chart bars are all rounded.
+- **EXPLICIT:** Content feels compact but not cramped. Mobile screens use `px-4`, `space-y-4`, `p-3`, `p-4`; desktop views use `p-6`, `gap-4`, and 3-column grids.
+- **EXPLICIT:** Visual emphasis is created through color contrast and weight, not heavy shadow or complex borders.
+- **EXPLICIT:** The app uses real imagery only for onboarding/profile hero imagery; product surfaces are mostly tokenized UI shapes.
+- **INFERRED:** New screens should feel like a wallet app: tactile, rounded, calm, financially precise, and optimistic without looking playful.
+
+# Design Tokens
+
+## Color Roles
+
+| Role | Status | Value / Pattern | Usage |
+|---|---:|---|---|
+| App background | EXPLICIT | `--background: oklch(0.97 0.015 100)`, `--cream` | Main app canvas |
+| Primary text | EXPLICIT | `--foreground: oklch(0.18 0.04 145)`, `--forest` | Headings, labels, nav, icons |
+| Primary surface | EXPLICIT | `--card: oklch(1 0 0)` | Cards, lists, popovers |
+| Primary action | EXPLICIT | `--primary`, `--forest`, hardcoded `#1B3A2D` | Main CTA, active nav, dark finance cards |
+| Accent action | EXPLICIT | `--accent`, `--lime`, hardcoded `#C8E63A` | QR CTA, highlights, positive brand emphasis |
+| Secondary background | EXPLICIT | `--secondary`, `--cream-dark` | Soft grouped rows, action tiles |
+| Muted text | EXPLICIT | `--muted-foreground: oklch(0.52 0.03 145)` | Captions, metadata, support copy |
+| Border | EXPLICIT | `--border: oklch(0.90 0.02 100)` | Card edges, top/bottom bars, controls |
+| Ring/focus | EXPLICIT | `--ring: oklch(0.88 0.22 120)` | Focus ring, lime-aligned |
+| Destructive | EXPLICIT | `--destructive`, red utilities | Sign out, negative transaction values |
+| Chart colors | EXPLICIT | `--chart-1` lime, `--chart-2` forest, plus green range | Finance analytics |
+
+Additional observed hardcoded palette:
+- **EXPLICIT:** Lime card/accent: `#C8E63A`, darker lime `#b5d42a`.
+- **EXPLICIT:** Forest card/text: `#1B3A2D`, secondary forest `#2d5c44`.
+- **EXPLICIT:** Teal demo shell gradient: `#4a8fa8`, `#3d7a8a`, `#2d6070`.
+- **EXPLICIT:** Positive/negative finance values use Tailwind greens and reds: `text-green-600`, `text-red-500`, `bg-red-50`, `text-green-500`.
+
+## Background And Surface Behavior
+
+- **EXPLICIT:** Main app screens use `bg-cream`; primary content cards use `bg-white`.
+- **EXPLICIT:** Elevated summaries can invert to `bg-forest` with white/lime text or use `bg-lime` with forest text.
+- **EXPLICIT:** Soft secondary group surfaces use `bg-cream-dark`, `bg-cream`, `bg-white/25`, `bg-white/30`, `bg-white/10`.
+- **INFERRED:** For dashboards, use cream page background, white cards, forest/lime hero cards, and subtle tinted rows. Avoid large neutral gray backgrounds.
+
+## Text Hierarchy
+
+- **EXPLICIT:** Large financial values use `text-3xl` to `text-4xl`, `font-extrabold`, often `tracking-tight`.
+- **EXPLICIT:** Desktop page titles use `text-2xl font-extrabold text-forest`.
+- **EXPLICIT:** Mobile screen titles use `text-base` to `text-xl`, `font-bold`.
+- **EXPLICIT:** Card section titles use `text-sm font-bold text-forest`.
+- **EXPLICIT:** Metadata and captions use `text-[9px]`, `text-[10px]`, `text-xs`, `text-muted-foreground`, or reduced opacity.
+- **INFERRED:** New product screens should keep titles short, use weight more than size, and reserve large type for balances, totals, and primary metrics.
+
+## Border And Divider Treatment
+
+- **EXPLICIT:** Borders are very light: `border-border`, `border-white/10`, `border-forest/20`, `border-white/8`.
+- **EXPLICIT:** Borders often appear with white cards and controls, but major cards frequently rely on color or shadow instead.
+- **EXPLICIT:** Dashed borders indicate add/new/empty actions.
+- **INFERRED:** Dividers should be sparse. Prefer spacing and soft background changes over table-like grid lines.
+
+## Radius System
+
+- **EXPLICIT:** Active app token sets `--radius: 1rem`.
+- **EXPLICIT:** Theme radii: `sm = 10px`, `md = 12px`, `lg = 16px`, `xl = 22px`.
+- **EXPLICIT:** Implemented finance screens repeatedly use `rounded-xl`, `rounded-2xl`, `rounded-3xl`, `rounded-full`.
+- **EXPLICIT:** Device shell uses very large custom radii: `42px`, `44px`, `46px`.
+- **INFERRED:** Primary brand radius is `24px` for major cards and `16px` for controls. Sharp rectangles are off-brand except tiny decorative card-chip squares.
+
+## Spacing System
+
+- **EXPLICIT:** Mobile page padding: `px-4`, headers `px-5`, onboarding content `px-7`.
+- **EXPLICIT:** Desktop page padding: `p-6`, onboarding panel `px-14 py-12`.
+- **EXPLICIT:** Common gaps: `gap-1`, `gap-1.5`, `gap-2`, `gap-2.5`, `gap-3`, `gap-4`.
+- **EXPLICIT:** Card padding: compact rows `p-2.5`/`p-3`, standard cards `p-4`/`p-5`, major desktop cards `p-6`.
+- **INFERRED:** Utility-heavy layouts should use `gap-4` grids, `p-5` cards, `p-3` rows, and avoid bloating density beyond the existing finance-dashboard rhythm.
+
+## Shadows And Elevation
+
+- **EXPLICIT:** Most app cards use `shadow-sm`; nav QR uses `shadow-lg`; profile/stat rows sometimes use `hover:shadow-md`.
+- **EXPLICIT:** Device/browser demo shells use strong external shadows, but those are presentation chrome, not app surfaces.
+- **INFERRED:** App UI elevation should stay low. Use color, radius, and spacing before shadows.
+
+## Typography
+
+- **EXPLICIT:** Active app font is Plus Jakarta Sans via `next/font/google`.
+- **EXPLICIT:** Weights loaded: `400`, `500`, `600`, `700`, `800`.
+- **EXPLICIT:** UI primitives use `text-sm font-medium` defaults; finance screens lean `font-bold`, `font-extrabold`, `font-black` for brand/numbers.
+- **EXPLICIT:** Body copy uses `leading-relaxed`; headings use `leading-tight`; labels often use compact `leading-none`.
+- **INFERRED:** Use `400` for body, `500` for labels, `600` for rows/buttons, `700` for section titles, `800` for metrics and page titles, `900`-like `font-black` only for brand/card network text.
+
+## Content Widths And Breakpoints
+
+- **EXPLICIT:** Demo toolbar/browser frame caps at `max-w-5xl`.
+- **EXPLICIT:** Desktop app content is fixed presentation height `640px`; sidebar width is `w-56`.
+- **EXPLICIT:** UI sidebar primitive uses `16rem` desktop, `18rem` mobile, `3rem` icon collapsed width.
+- **EXPLICIT:** Tailwind responsive classes appear through `md`, `sm`, and container queries in primitives.
+- **INFERRED:** Real app pages should cap content around `max-w-5xl` to `max-w-6xl`, with 3-column desktop grids, 1-column mobile stacks, and sidebar at 224-256px.
+
+# Geometry And Radius System
+
+- **EXPLICIT:** The dominant shape language is rounded and pill-like.
+- **EXPLICIT:** Major dashboard cards: `rounded-3xl`.
+- **EXPLICIT:** Secondary cards, action tiles, nav items, feature pills: `rounded-2xl`.
+- **EXPLICIT:** Small icon wells and controls: `rounded-xl`.
+- **EXPLICIT:** Avatars, notification dots, chart bars, pagination dots: `rounded-full`.
+- **EXPLICIT:** Generic shadcn primitives still define smaller `rounded-md` and `rounded-lg`, but the custom finance UI visually overrides them with larger radii.
+- **INFERRED:** For new branded product UI, upgrade primitive defaults where visible:
+  - Buttons: `rounded-2xl` for primary, `rounded-xl` for compact.
+  - Inputs/selects: `rounded-xl` or `rounded-2xl`.
+  - Cards/dialogs: `rounded-3xl`.
+  - Badges: `rounded-lg` or pill.
+- **INFERRED:** Sharp corners are only acceptable for tiny decorative details, chart ticks, table grid internals, or browser/device chrome. They should not define user-facing surfaces.
+
+# Spacing Rhythm
+
+- **EXPLICIT:** Overall density is balanced-compact. Mobile screens fit many financial actions without feeling cramped.
+- **EXPLICIT:** Main mobile vertical rhythm uses `space-y-4`; transaction rows use `space-y-2` or `space-y-3`.
+- **EXPLICIT:** Desktop dashboard grids use `gap-4`, not wide marketing spacing.
+- **EXPLICIT:** Large onboarding uses more relaxed spacing: `mb-8`, `mb-10`, `mt-12`, `pt-8`.
+- **EXPLICIT:** Controls pair icon and label with `gap-2` or `gap-2.5`; compact metadata uses `gap-0.5` to `gap-1.5`.
+- **INFERRED:** Dashboard adaptation:
+  - Keep page padding at `24px`.
+  - Keep card grids at `16px` gap.
+  - Use `20px` card padding for normal cards and `24px` for hero metric cards.
+  - Use `12px` padding for list rows.
+  - Use grouped controls in soft cream/white containers rather than adding many separate floating controls.
+
+# Visual Priority And Hierarchy
+
+- **EXPLICIT:** Focal points are established by:
+  - Large numeric values.
+  - Forest/lime color blocks.
+  - Gradient payment cards.
+  - Centered or top-aligned page headers.
+  - Floating QR action in mobile nav.
+- **EXPLICIT:** Primary content is separated from supporting content through color and weight, not heavy dividers.
+- **EXPLICIT:** CTA hierarchy:
+  - Primary: forest background with white text or lime background with forest text.
+  - Secondary: muted text link or white/cream button with border.
+  - Tertiary: icon-only, low opacity, hover color change.
+- **EXPLICIT:** Metadata uses small text, muted color, opacity, and sometimes right alignment.
+- **EXPLICIT:** The project uses subtle emphasis most of the time, with strong emphasis reserved for balances, primary cards, and active nav states.
+- **INFERRED:** For admin screens, preserve hierarchy by making only one card/metric/action visually dominant per section. Do not make every tile equally saturated.
+
+# Typography As UX
+
+- **EXPLICIT:** Titles act as location markers: “Transactions”, “My Cards”, “Profile”.
+- **EXPLICIT:** Large account values are the strongest scanning anchors.
+- **EXPLICIT:** Section titles are short, bold, and small: “Quick Send”, “Recent Transactions”, “Actions”.
+- **EXPLICIT:** Rows use a two-line pattern: primary label in forest/semibold, supporting date/category in muted small text.
+- **EXPLICIT:** Captions and labels are intentionally tiny in financial cards: `text-[8px]` to `text-[10px]`.
+- **EXPLICIT:** Transaction amounts are right-aligned, bold, and color-coded by sign.
+- **INFERRED:** Form-heavy screens should use labels as primary scan anchors, helper text as muted secondary copy, and errors in destructive red. Avoid verbose explanatory copy inside controls.
+
+# Layout System
+
+- **EXPLICIT:** App shell supports mobile phone and desktop browser presentations.
+- **EXPLICIT:** Mobile layout is vertical: status/header, scrollable content, bottom nav.
+- **EXPLICIT:** Desktop layout is sidebar plus content.
+- **EXPLICIT:** Desktop dashboard uses 3-column and 5-column grids:
+  - 3-column dashboard with large balance card spanning 2 columns.
+  - 5-column transactions layout with chart spanning 2 and list spanning 3.
+- **EXPLICIT:** Cards and horizontal carousels use overflow scrolling with hidden scrollbars.
+- **EXPLICIT:** Sidebar has logo header, nav group, user/balance card, and QR CTA footer.
+- **EXPLICIT:** Headers place title/subtitle left and actions/avatar/filters right.
+- **INFERRED:** New page layout recipe:
+  - Cream canvas.
+  - Header with title, short subtitle, and 1-2 actions.
+  - 3-column responsive grid for summary cards.
+  - White rounded content panels below.
+  - Dense lists inside panels with hover cream rows.
+  - Sidebar or bottom nav depending viewport.
+
+# Interaction Model
+
+- **EXPLICIT:** Hover feedback is restrained: `hover:bg-cream`, `hover:bg-cream-dark`, `hover:bg-white/20`, `hover:text-forest`.
+- **EXPLICIT:** Primary CTA hover may scale slightly: `hover:scale-[1.02]`; active press uses `active:scale-[0.98]`.
+- **EXPLICIT:** Screen transitions slide horizontally over `320ms cubic-bezier(0.4,0,0.2,1)`.
+- **EXPLICIT:** Dots and toggles animate width/color with `duration-300`.
+- **EXPLICIT:** Focus feedback in primitives uses `focus-visible:ring-ring/50 focus-visible:ring-[3px]`.
+- **EXPLICIT:** Disabled primitives use `disabled:pointer-events-none disabled:opacity-50`.
+- **EXPLICIT:** Selected nav states use forest fill + white text + lime dot, or active forest icon/text in bottom nav.
+- **EXPLICIT:** Loading skeletons use `bg-accent animate-pulse rounded-md`.
+- **EXPLICIT:** Validation uses destructive border/ring and text.
+- **INFERRED:** Interaction feel is calm, crisp, premium, and touch-friendly. Avoid dramatic animations, neon glow, or noisy hover elevation.
+
+# Explicit Component Patterns
+
+## Buttons
+
+- **EXPLICIT:** Generic primitive variants: default, destructive, outline, secondary, ghost, link.
+- **EXPLICIT:** Primitive sizes: `h-8`, `h-9`, `h-10`, icon `size-8/9/10`.
+- **EXPLICIT:** Finance primary buttons use larger radius: `rounded-2xl`, `py-4`, `font-semibold/bold`.
+- **EXPLICIT:** Icon buttons often use `w-9 h-9` or `w-10 h-10`, white background, border, `shadow-sm`, rounded-full or rounded-2xl.
+- **EXPLICIT:** CTA active state uses slight press scale.
+
+## Navigation
+
+- **EXPLICIT:** Mobile bottom nav uses white surface, top border, compact labels, active forest state.
+- **EXPLICIT:** Central QR action floats above nav with lime fill, rounded-2xl, shadow-lg.
+- **EXPLICIT:** Desktop sidebar active item uses forest fill, white text, and a small lime dot.
+- **EXPLICIT:** Inactive sidebar items are muted and become cream/forest on hover.
+
+## Cards
+
+- **EXPLICIT:** Major finance cards use `rounded-3xl`, `p-5/p-6`, often no border.
+- **EXPLICIT:** Standard white cards use `bg-white rounded-3xl shadow-sm`.
+- **EXPLICIT:** List rows use `bg-white rounded-2xl p-3 shadow-sm` on mobile, or hoverable `p-2.5 rounded-2xl` rows inside desktop cards.
+- **EXPLICIT:** Payment cards use diagonal gradients and high contrast typography.
+
+## Transaction Rows
+
+- **EXPLICIT:** Row structure: icon well/avatar, primary name, secondary date, right-aligned amount, category.
+- **EXPLICIT:** Positive values green, negative values red.
+- **EXPLICIT:** Merchant icons are circular or rounded-2xl colored blocks with initials.
+
+## Charts
+
+- **EXPLICIT:** Charts are simple bar charts with rounded bars, forest/lime colors, tiny muted labels.
+- **EXPLICIT:** Chart cards include compact summaries and legends.
+- **EXPLICIT:** Recharts primitive support exists with token-driven chart colors and tooltip/legend components.
+
+## Profile And Settings Rows
+
+- **EXPLICIT:** Profile uses avatar with lime ring, centered identity, stats card, then white menu rows.
+- **EXPLICIT:** Settings rows use left icon well, title, subtitle, optional chevron.
+- **EXPLICIT:** Danger items use red icon/text and omit the chevron in mobile profile.
+
+## Onboarding
+
+- **EXPLICIT:** Mobile onboarding uses full image hero plus bottom content panel.
+- **EXPLICIT:** Desktop onboarding uses split image/content panel, feature pills, progress dots, trust badges.
+- **EXPLICIT:** Onboarding CTA is prominent and rounded; skip is a muted text action.
+
+## Forms And Inputs
+
+- **EXPLICIT:** Generic input primitive exists: `h-9`, `rounded-md`, border, transparent background, focus ring.
+- **EXPLICIT:** Form primitives provide labels, descriptions, messages, invalid state, and field grouping.
+- **EXPLICIT:** These are not used heavily in finance screens, so their base look is generic shadcn rather than fully brand-adapted.
+
+## Tables
+
+- **EXPLICIT:** Table primitive exists with `text-sm`, row borders, hover `bg-muted/50`, selected `bg-muted`, `p-2` cells.
+- **EXPLICIT:** No brand-specific finance table implementation appears; transactions are represented as cards/list rows instead.
+
+## Dialogs, Sheets, Dropdowns, Selects, Tabs
+
+- **EXPLICIT:** Radix/shadcn primitives exist.
+- **EXPLICIT:** Dialogs use centered modal, black overlay, rounded-lg, border, `p-6`, `shadow-lg`.
+- **EXPLICIT:** Sheets slide from screen edges with overlay and border.
+- **EXPLICIT:** Dropdowns/selects use popover surfaces, `rounded-md`, border, shadow, compact item rows.
+- **EXPLICIT:** Tabs use muted pill list with active background and shadow.
+
+# Inferred Component Patterns
+
+## Buttons
+
+- **INFERRED:** Use lime fill with forest text for constructive primary actions in dashboards: “Add Card”, “Create Transfer”, “Apply Filter”.
+- **INFERRED:** Use forest fill with white text for major flow progression or security-sensitive actions.
+- **INFERRED:** Use cream/white ghost buttons for secondary actions, with hover `bg-cream` and text forest.
+- **INFERRED:** Radius should be `16px`; compact toolbar buttons may use `12px`.
+
+## Inputs
+
+- **INFERRED:** Brand inputs should evolve from primitive defaults to `h-10` or `h-11`, `rounded-xl`, white background, light border, forest text, muted placeholder.
+- **INFERRED:** Focus should use lime ring with forest border, not blue.
+- **INFERRED:** Helper text should be `text-xs text-muted-foreground`; errors use destructive red and avoid aggressive alert styling.
+
+## Selects And Dropdowns
+
+- **INFERRED:** Use white popovers with `rounded-2xl` for larger menus and `rounded-xl` for compact filters.
+- **INFERRED:** Selected items should use cream background and forest text; destructive items red.
+- **INFERRED:** Filter selects can look like existing “Monthly” pills: white or translucent surface, rounded-full/2xl, compact text, chevron.
+
+## Cards
+
+- **INFERRED:** Dashboard cards should be either:
+  - White `rounded-3xl p-5 shadow-sm`.
+  - Forest hero `rounded-3xl p-6` with lime highlights.
+  - Lime highlight `rounded-3xl p-5` with forest content.
+- **INFERRED:** Use borders only when surfaces are similar in color; otherwise use shadow or background contrast.
+
+## Tables
+
+- **INFERRED:** Prefer card-contained tables over full-width grid tables.
+- **INFERRED:** Header text should be `text-xs font-semibold text-muted-foreground`; row text `text-sm`.
+- **INFERRED:** Rows should be `h-12` to `h-14`, hover cream, minimal horizontal dividers.
+- **INFERRED:** Important cells such as amounts/status should use bold forest, green, red, or small rounded badges.
+
+## Modals And Dialogs
+
+- **INFERRED:** Brand dialogs should use `rounded-3xl`, `p-6`, white background, light border/shadow, black overlay at 40-50%.
+- **INFERRED:** Titles should be `text-xl font-extrabold text-forest`; descriptions muted.
+- **INFERRED:** Footer actions should include lime/forest primary and ghost secondary.
+
+## Sidebars
+
+- **INFERRED:** Use white sidebar on cream page, border-right, logo row, grouped nav, active forest pill with lime dot.
+- **INFERRED:** Footer can contain a compact user/balance card and a lime action button.
+- **INFERRED:** Avoid dark sidebars except for marketing/demo chrome.
+
+## Tabs
+
+- **INFERRED:** Use cream pill container with active white or forest segment.
+- **INFERRED:** For high-level tabs, active state can be forest fill; for local filters, active can be white with shadow.
+
+## Badges
+
+- **INFERRED:** Finance/status badges should be compact, rounded-lg, `text-[9px]` to `text-xs`, semibold.
+- **INFERRED:** Use semantic tints: green for income/verified, red for failed/danger, lime/forest for brand statuses, cream for neutral.
+
+## Alerts
+
+- **INFERRED:** Alerts should be calm and card-like: rounded-2xl, light border, icon well, short title, muted explanation.
+- **INFERRED:** Destructive alerts should use red text and pale red background, not large saturated red blocks unless confirming irreversible financial action.
+
+## Empty States
+
+- **INFERRED:** Use dashed rounded-3xl containers, centered icon well, concise title, muted text, one primary action.
+- **INFERRED:** Empty states should resemble “Add New Card”: dashed border, muted icon, soft hover.
+
+## Chart Containers
+
+- **INFERRED:** Charts should sit in white rounded-3xl cards or lime/forest summary cards.
+- **INFERRED:** Bars should be rounded; legends tiny and muted; avoid dense axes.
+- **INFERRED:** Use forest and lime as first chart colors, then controlled semantic colors.
+
+## Page Headers
+
+- **INFERRED:** Use title/subtitle left, actions right.
+- **INFERRED:** Title: `text-2xl font-extrabold text-forest`.
+- **INFERRED:** Subtitle: `text-sm text-muted-foreground`.
+- **INFERRED:** Actions should be limited to 1 primary plus 1-2 compact secondary controls.
+
+## Filters
+
+- **INFERRED:** Filters should be compact chips/buttons, not full form panels by default.
+- **INFERRED:** Use rounded-xl/2xl, white background, light border, muted label, forest selected state.
+- **INFERRED:** Advanced filters can open a sheet/dialog rather than expanding a dense inline panel.
+
+## Form Layouts
+
+- **INFERRED:** Use one-column forms on mobile, two-column grouped forms on desktop.
+- **INFERRED:** Group related fields inside white rounded-3xl cards with `gap-4` or `gap-6`.
+- **INFERRED:** Use field descriptions sparingly. The style favors directness.
+
+# UX Behavior Patterns
+
+exec
+/bin/zsh -lc "sed -n '1,300p' .agents/skills/project-ui-design/input/repo-summary.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+# Repository Summary
+
+- Root: `/Users/emanueledagata/code/v0/boh2`
+- Detected hints: Next.js, Tailwind CSS, shadcn/ui, Charts, Radix/Lucide
+- Total indexed files: 92
+- Relevant UI/design files: 89
+
+## Key dependencies
+
+- @radix-ui/react-dialog: 1.1.15
+- @radix-ui/react-dropdown-menu: 2.1.16
+- @radix-ui/react-select: 2.2.6
+- @radix-ui/react-tabs: 1.1.13
+- class-variance-authority: ^0.7.1
+- clsx: ^2.1.1
+- lucide-react: ^0.564.0
+- next: 16.1.6
+- react: 19.2.4
+- react-dom: 19.2.4
+- recharts: 2.15.0
+- tailwind-merge: ^3.3.1
+- tailwindcss: ^4.2.0
+
+## Key analysis goals
+
+- Extract the source design language from the repository.
+- Identify explicit and inferred design-system rules.
+- Preserve radius, spacing character, hierarchy, typography roles, and interaction tone.
+- Produce a reusable design skill for generating new UI categories consistently.
+- Prevent style drift when adapting to dashboards, forms, CRUD, or utility-heavy interfaces.
+
+exec
+/bin/zsh -lc "jq '{style_summary, design_tokens, component_patterns, layout_patterns, interaction_patterns, responsiveness}' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+{
+  "style_summary": null,
+  "design_tokens": null,
+  "component_patterns": null,
+  "layout_patterns": null,
+  "interaction_patterns": null,
+  "responsiveness": null
+}
+
+exec
+/bin/zsh -lc "sed -n '361,760p' .agents/skills/project-ui-design/outputs/02-design-extraction.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+
+- **EXPLICIT:** Primary actions are visually isolated: floating QR button, lime “Add Card”, full-width onboarding CTA.
+- **EXPLICIT:** Secondary actions are small text buttons or subdued icon controls.
+- **EXPLICIT:** Information is grouped into digestible modules: balance, cards, actions, quick send, transactions.
+- **EXPLICIT:** Dense data is represented as cards/lists, not spreadsheet grids.
+- **EXPLICIT:** Progressive disclosure appears through “See all”, “Filter”, “Monthly”, balance visibility toggles, and onboarding skip.
+- **INFERRED:** Utility-heavy screens should introduce controls in layers:
+  - Page-level primary action in header.
+  - Compact filters as chips.
+  - Row-level actions hidden behind hover/menu icons.
+  - Advanced controls in dialogs/sheets.
+- **INFERRED:** Denser CRUD screens should still preserve the source language by using rounded cards, muted metadata, spacious row height, and brand-colored active states.
+
+# Constraints And Anti-Drift Rules
+
+- **EXPLICIT:** Do not replace the cream canvas with generic gray.
+- **EXPLICIT:** Do not replace forest/lime with blue SaaS defaults.
+- **EXPLICIT:** Do not make all cards white-on-white without contrast; use forest/lime hero surfaces for key metrics.
+- **EXPLICIT:** Do not overuse heavy shadows; app surfaces mostly use `shadow-sm`.
+- **EXPLICIT:** Do not make sharp rectangular cards or square buttons.
+- **EXPLICIT:** Do not create dense divider-heavy admin tables as the default representation for financial data.
+- **EXPLICIT:** Do not use large bodies of low-contrast text; the app uses short labels and strong hierarchy.
+- **INFERRED:** New UI must preserve:
+  - Cream page background.
+  - Forest primary text/action.
+  - Lime accent/CTA.
+  - Large radii.
+  - Compact finance-card density.
+  - Subtle interaction feedback.
+- **INFERRED:** Product context can flex:
+  - More tables/forms are acceptable.
+  - Slightly smaller radii are acceptable inside dense controls.
+  - White cards can carry more structured data.
+  - Sidebars and filters can become more utilitarian.
+- **INFERRED:** To prevent generic dashboard drift:
+  - Start every page with a branded metric or action surface.
+  - Use rounded list rows instead of raw table rows where possible.
+  - Keep semantic colors tied to financial meaning.
+  - Make active/selected states forest or lime.
+  - Keep copy short and task-oriented.
+
+# Final Style DNA Summary
+
+**EXPLICIT:** FinFlow’s style DNA is warm fintech minimalism: cream background, forest authority, lime optimism, soft tactile geometry, compact financial hierarchy, and quiet interaction feedback.
+
+**INFERRED:** A consistent new screen should feel like this:
+
+- Cream canvas.
+- White rounded-3xl cards.
+- One forest or lime focal surface per major section.
+- Plus Jakarta Sans with bold, compact labels and extra-bold numbers.
+- `16px` to `24px` radii as the default geometry.
+- `16px` grid gaps and `20px` card padding.
+- Muted metadata and high-contrast primary values.
+- Subtle hover fills, lime focus rings, light shadows.
+- Product controls introduced as chips, sheets, cards, and rounded rows rather than dense generic admin chrome.
+exec
+/bin/zsh -lc "jq 'keys' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+[
+  "components",
+  "constraints",
+  "hierarchy",
+  "identity_traits",
+  "interaction",
+  "layout",
+  "style_name",
+  "tokens",
+  "typography_roles",
+  "ux_patterns",
+  "visual_identity"
+]
+
+exec
+/bin/zsh -lc 'wc -l .agents/skills/project-ui-design/outputs/02-design-extraction.json .agents/skills/project-ui-design/outputs/02-design-extraction.md .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md' in /Users/emanueledagata/code/v0/boh2
+exec
+/bin/zsh -lc "jq '.summary, .tokens, .components, .layouts, .interactions, .responsive' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+     619 .agents/skills/project-ui-design/outputs/02-design-extraction.json
+     415 .agents/skills/project-ui-design/outputs/02-design-extraction.md
+     910 .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md
+    1944 total
+
+ succeeded in 0ms:
+null
+{
+  "colors": {
+    "primary": "oklch(0.28 0.07 145) / var(--forest), observed hex #1B3A2D; use for primary text, active navigation, major CTAs, dark cards.",
+    "secondary": "oklch(0.96 0.03 100) / var(--secondary) and oklch(0.93 0.025 100) / var(--cream-dark); use for soft grouped surfaces and rows.",
+    "accent": "oklch(0.88 0.22 120) / var(--lime), observed hex #C8E63A; use for constructive actions, highlights, rings, active dots, and chart-1.",
+    "neutral": [
+      "background: oklch(0.97 0.015 100) / var(--cream)",
+      "surface: oklch(1 0 0) / white card surfaces",
+      "muted: oklch(0.94 0.02 100) / var(--muted)",
+      "border/input: oklch(0.90 0.02 100)",
+      "demo chrome gradient only: #4a8fa8, #3d7a8a, #2d6070"
+    ],
+    "success": "Tailwind green utilities are explicit for positive values: text-green-600 and text-green-500; use for income, verified, success, and positive deltas.",
+    "warning": "No dedicated warning token; amber #F59E0B appears as an avatar color only. Infer amber for warnings sparingly, with cream/white containment.",
+    "danger": "oklch(0.577 0.245 27.325) / var(--destructive), plus text-red-500 and bg-red-50 for negative values and destructive actions.",
+    "background": "oklch(0.97 0.015 100) / var(--background), var(--cream); main app canvas.",
+    "surface": "oklch(1 0 0) / var(--card); cards, lists, popovers, nav bars.",
+    "text": {
+      "primary": "oklch(0.18 0.04 145) / var(--foreground) and var(--forest); headings, labels, nav, icons.",
+      "secondary": "Forest at reduced opacity or secondary-foreground; row labels and less dominant content.",
+      "muted": "oklch(0.52 0.03 145) / var(--muted-foreground); captions, metadata, helper text.",
+      "inverse": "oklch(0.98 0 0) / primary-foreground or white; text on forest cards and dark demo chrome."
+    },
+    "border": "oklch(0.90 0.02 100) / var(--border); also border-white/10, border-forest/20, and dashed border-border for add/empty actions."
+  },
+  "spacing": {
+    "density": "Balanced-compact, optimized for finance dashboards and mobile wallet screens.",
+    "section_gap": [
+      "mobile primary stack: space-y-4",
+      "desktop grids: gap-4",
+      "onboarding/marketing-like panels: mb-8, mb-10, mt-12, pt-8",
+      "major desktop page padding: p-6"
+    ],
+    "card_gap": [
+      "compact list rows: space-y-2 or space-y-3",
+      "card internals: gap-2, gap-2.5, gap-3",
+      "horizontal carousels/actions: gap-3 or gap-4",
+      "desktop multi-card dashboards: gap-4"
+    ],
+    "control_gap": [
+      "icon-label controls: gap-2 or gap-2.5",
+      "tight metadata: gap-0.5 to gap-1.5",
+      "button groups/view switchers: p-1 container with gap-1",
+      "action rows: justify-around or compact flex gap"
+    ],
+    "grouping_pattern": "Group information into digestible modules: balance, cards, actions, quick send, transactions, chart, settings rows. Prefer spacing and soft background shifts over many dividers.",
+    "adaptation_rule": "For new utility screens, use 24px page padding, 16px grid gaps, 20px card padding, 12px list-row padding, and compact filter chips rather than large form panels by default."
+  },
+  "radius": {
+    "control": "12px-16px for compact controls; 16px for branded primary buttons and action tiles.",
+    "container": "22px-24px for major cards and panels; rounded-3xl is the common finance card shape.",
+    "overlay": "16px in generic shadcn dialogs, inferred 24px for branded finance dialogs/sheets.",
+    "pill": "9999px / rounded-full for avatars, nav dots, progress dots, home indicators, chart bars, and circular icon wells.",
+    "dominant_family": "Soft rounded-xl, rounded-2xl, rounded-3xl, rounded-full.",
+    "sharp_allowed": "Only for tiny decorative elements, chart internals, table grid internals, or demo/browser chrome details; not for primary user-facing cards or buttons.",
+    "style_rule": "Visible branded surfaces should default to large radii. Primitive rounded-md may remain for dense low-emphasis internals but should not define the page character."
+  },
+  "shadows": [
+    "shadow-sm for standard white cards, transaction rows, icon buttons, and active segmented controls.",
+    "shadow-md only as a subtle hover escalation on some profile/stat rows.",
+    "shadow-lg for the central mobile QR action and important floating CTAs.",
+    "Large custom shadows are explicit on phone/browser demo frames only and should not be copied into normal app surfaces."
+  ],
+  "typography": {
+    "font_families": [
+      "Plus Jakarta Sans via next/font/google and --font-plus-jakarta",
+      "Geist Mono only as theme mono fallback"
+    ],
+    "scale": [
+      "caption/card microcopy: text-[8px] to text-[10px]",
+      "metadata/supporting: text-xs",
+      "body/list rows/buttons: text-sm",
+      "mobile titles/section emphasis: text-base to text-xl",
+      "desktop page titles: text-2xl",
+      "financial totals: text-3xl to text-4xl"
+    ],
+    "font_weights": [
+      "400 body copy",
+      "500 labels and subdued controls",
+      "600 buttons, rows, important labels",
+      "700 section titles and mobile titles",
+      "800 page titles and financial totals",
+      "font-black only for compact brand/card-network marks"
+    ],
+    "line_heights": [
+      "leading-none for labels and primitive controls",
+      "leading-tight for headings and totals",
+      "leading-relaxed for longer body/onboarding copy"
+    ]
+  },
+  "widths": [
+    "mobile phone demo: 300px wide, 620px high",
+    "desktop demo/content shell: max-w-5xl",
+    "desktop sidebar observed: w-56 / 224px in finance app",
+    "generic sidebar primitive: 16rem desktop, 18rem mobile, 3rem icon-collapsed",
+    "mobile content padding: px-4 and px-5 headers",
+    "onboarding content panel: px-7 mobile, px-14 py-12 desktop"
+  ],
+  "breakpoints": [
+    "sm and md responsive classes in primitives and screens",
+    "container-query behavior in sidebar primitives",
+    "mobile: bottom navigation and vertical stack",
+    "desktop: sidebar plus content, 3-column and 5-column grids"
+  ]
+}
+{
+  "buttons": {
+    "explicit": true,
+    "source_basis": "Explicit shadcn button primitive plus finance screen buttons in components/finance/home-screen.tsx, nav-bar.tsx, onboarding-screen.tsx, cards-screen.tsx.",
+    "confidence": "high",
+    "rules": {
+      "purpose": "Primary progression, financial actions, navigation actions, icon actions, and secondary text links.",
+      "appearance": "Primary: forest fill with white text or lime fill with forest text. Secondary: white/cream with light border. Ghost/link: muted or forest text. Icon buttons often white with border and shadow-sm.",
+      "spacing": "Primitive sizes h-8, h-9, h-10; finance CTAs use py-4, px-4, w-9/h-9 to w-12/h-12 icon wells, gap-2.",
+      "radius": "Primitive uses rounded-md; branded finance buttons use rounded-xl, rounded-2xl, or rounded-full.",
+      "border": "Light border-border on secondary/icon buttons; no heavy outlines. Dashed border for add actions.",
+      "shadow": "shadow-sm for white/icon buttons, shadow-lg for floating QR CTA, minimal otherwise.",
+      "typography": "text-sm font-medium in primitive; finance buttons use text-xs to text-sm with font-semibold or font-bold.",
+      "states": "Hover uses cream/white tint or lime-dark/forest-dark; active may scale to 0.98; disabled opacity 50%; focus lime ring.",
+      "variants": [
+        "forest-primary",
+        "lime-primary",
+        "white-secondary",
+        "cream-ghost",
+        "icon-round",
+        "icon-rounded-2xl",
+        "dashed-add",
+        "text-link"
+      ]
+    }
+  },
+  "inputs": {
+    "explicit": true,
+    "source_basis": "Generic shadcn input primitive exists, but branded finance screens use forms lightly; brand adaptation is inferred from tokens and visible control geometry.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Text entry for forms, filters, search, and account/card workflows.",
+      "appearance": "White or transparent-on-white field, forest text, muted placeholder, light border, lime/forest focus.",
+      "spacing": "Primitive h-9 px-3 py-1; inferred branded input h-10 or h-11 with px-3/px-4 and gap-2 when icon-led.",
+      "radius": "Primitive rounded-md; inferred branded visible inputs should use rounded-xl or rounded-2xl.",
+      "border": "border-input by default; focus should strengthen ring/border in lime or forest.",
+      "shadow": "No default shadow; use shadow-sm only when an input appears as a standalone filter chip/control.",
+      "typography": "text-sm for value, text-xs helper/description, label font-medium or semibold.",
+      "states": "Focus-visible ring-ring/50 ring-[3px]; invalid destructive border/ring; disabled opacity and cursor states from primitive.",
+      "variants": [
+        "text",
+        "search",
+        "icon-leading",
+        "filter-chip-input",
+        "invalid",
+        "disabled"
+      ]
+    }
+  },
+  "selects": {
+    "explicit": true,
+    "source_basis": "shadcn/Radix select primitive exists; finance filter pills such as Monthly provide brand direction.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Compact filtering, period selection, account/card selection, and form options.",
+      "appearance": "White or cream rounded trigger with forest text, muted placeholder, chevron, and white popover surface.",
+      "spacing": "Compact triggers should use h-9/h-10, px-3, gap-2; popover items use compact row padding.",
+      "radius": "Primitive rounded-md; branded selects should use rounded-xl or rounded-2xl for visible filters.",
+      "border": "Light border-border/input; selected/open state may use forest border or lime ring.",
+      "shadow": "Popover shadow-md; active local filter may use shadow-sm.",
+      "typography": "text-sm trigger text; item labels text-sm with muted descriptions only where needed.",
+      "states": "Open/focus uses lime ring; selected item uses cream background and forest text; disabled uses opacity 50%.",
+      "variants": [
+        "form-select",
+        "period-pill",
+        "filter-select",
+        "account-select",
+        "compact-select"
+      ]
+    }
+  },
+  "dropdowns": {
+    "explicit": true,
+    "source_basis": "shadcn/Radix dropdown-menu, context-menu, menubar, command, and popover primitives exist; row-level overflow actions are implied by MoreHorizontal icons.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Overflow actions, account menus, row actions, command-style choices, and contextual operations.",
+      "appearance": "White popover/menu with light border, compact rounded rows, forest text, muted shortcuts, red destructive rows.",
+      "spacing": "Menu item rows should stay compact with px-2/px-3, py-1.5/py-2, and gap-2.",
+      "radius": "Primitive rounded-md; branded larger menus can use rounded-xl or rounded-2xl.",
+      "border": "Light border and subtle separator only for grouping.",
+      "shadow": "shadow-md or shadow-lg on floating menu surfaces.",
+      "typography": "text-sm item labels; shortcuts and descriptions muted text-xs.",
+      "states": "Hover/active bg-cream or bg-muted; destructive hover should remain pale red; focus follows Radix item focus styling.",
+      "variants": [
+        "overflow-menu",
+        "account-menu",
+        "row-actions",
+        "command-menu",
+        "context-menu",
+        "destructive-action"
+      ]
+    }
+  },
+  "cards": {
+    "explicit": true,
+    "source_basis": "Strong explicit evidence across components/finance/*: balance cards, payment cards, stat cards, transaction rows, connect-card banner, profile/settings panels.",
+    "confidence": "high",
+    "rules": {
+      "purpose": "Primary grouping for balances, cards, charts, transactions, actions, settings, onboarding panels, and metric summaries.",
+      "appearance": "White rounded cards on cream; forest hero cards with lime highlights; lime payment/action cards with forest text; cream-dark secondary group cards.",
+      "spacing": "Mobile rows p-3; standard cards p-4/p-5; major desktop cards p-6; internal gaps 2-4.",
+      "radius": "rounded-2xl for rows/secondary cards; rounded-3xl for major cards and panels.",
+      "border": "Usually none or light border-border; border-forest/20 for tinted surfaces; dashed border for add/empty card actions.",
+      "shadow": "shadow-sm for standard white cards; hover:shadow-md only for interactive rows; saturated cards often rely on color instead of shadow.",
+      "typography": "Small bold section titles, extra-bold financial totals, muted captions, right-aligned amounts.",
+      "states": "Hover bg-cream for rows, subtle shadow escalation, selected/focal cards use forest/lime contrast.",
+      "variants": [
+        "white-standard",
+        "forest-hero",
+        "lime-highlight",
+        "payment-card",
+        "transaction-row-card",
+        "settings-row",
+        "dashed-add-card",
+        "chart-card"
+      ]
+    }
+  },
+  "tables": {
+    "explicit": true,
+    "source_basis": "components/ui/table.tsx exists with generic table styles; finance-specific data is represented as list rows rather than tables.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Structured dense data when list cards are insufficient, especially desktop CRUD or audit views.",
+      "appearance": "Card-contained table on white rounded surface; minimal dividers, muted headers, forest primary cells, semantic amount/status colors.",
+      "spacing": "Primitive cells p-2; inferred branded rows h-12 to h-14 with px-3/px-4 and compact header spacing.",
+      "radius": "The table container should be rounded-3xl; internal cells can remain square for grid alignment.",
+      "border": "Use sparse row borders or separators; avoid dense full grid lines.",
+      "shadow": "Container may use shadow-sm; rows should use hover fill rather than raised shadows.",
+      "typography": "Header text text-xs font-semibold muted; body text text-sm; important values font-bold.",
+      "states": "Row hover bg-muted/50 or bg-cream; selected bg-muted/cream; status badges compact and rounded.",
+      "variants": [
+        "card-contained-table",
+        "transaction-table",
+        "audit-table",
+        "responsive-list-fallback"
+      ]
+    }
+  },
+  "modals": {
+    "explicit": true,
+    "source_basis": "Dialog, alert-dialog, drawer, sheet primitives exist; branded finance modal pattern is inferred because custom finance screens do not show many modals.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Focused confirmation, creation/edit forms, advanced filters, QR/payment flows, and irreversible action confirmation.",
+      "appearance": "White modal over black overlay, forest title, muted description, rounded finance geometry, primary lime/forest action.",
+      "spacing": "p-6 modal body; footer gap-2/gap-3; use compact form spacing inside.",
+      "radius": "Primitive rounded-lg; inferred branded modals should use rounded-3xl where product-facing.",
+      "border": "Light border-border; destructive confirmations may use pale red accents.",
+      "shadow": "shadow-lg on modal surface; overlay handles separation.",
+      "typography": "Title text-lg/text-xl font-bold or extrabold forest; description text-sm muted.",
+      "states": "Overlay fade, content zoom/slide from primitives; focus trap and focus-visible lime ring.",
+      "variants": [
+        "confirmation",
+        "form-modal",
+        "advanced-filter",
+        "destructive-confirmation",
+        "qr-payment-modal"
+      ]
+    }
+  },
+  "dialogs": {
+    "explicit": true,
+    "source_basis": "components/ui/dialog.tsx and alert-dialog.tsx define Radix dialog patterns; brand adaptation inferred from finance identity.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Dialog-level decisions, small forms, confirmation, and alert flows.",
+      "appearance": "White surface, black overlay, forest heading, muted description, lime or forest primary action.",
+      "spacing": "p-6 content; footer flex gap-2; descriptions and titles stacked compactly.",
+      "radius": "Primitive rounded-lg; branded dialog should move to rounded-2xl/3xl for visible product dialogs.",
+      "border": "Light border and focus-managed content.",
+      "shadow": "shadow-lg on dialog content.",
+      "typography": "Dialog title font-semibold/bold; finance title can be text-xl font-extrabold text-forest.",
+      "states": "Open/closed animation from Radix data-state; close icon subdued hover opacity; invalid fields destructive.",
+      "variants": [
+        "standard-dialog",
+        "alert-dialog",
+        "form-dialog",
+        "destructive-dialog"
+      ]
+    }
+  },
+  "sidebars": {
+    "explicit": true,
+    "source_basis": "components/ui/sidebar.tsx primitive plus explicit desktop finance sidebar/navigation in components/finance/desktop-views.tsx.",
+    "confidence": "high",
+    "rules": {
+      "purpose": "Desktop primary navigation, account context, balance summary, QR/action entry, and user footer.",
+      "appearance": "White sidebar on cream page, light right border, logo header, active forest nav pill with white text and lime dot, muted inactive rows.",
+      "spacing": "Finance sidebar observed w-56, p-4/p-6 patterns, nav row px-3 py-2.5, grouped vertical gaps.",
+      "radius": "Active nav rows rounded-2xl; logo well rounded-xl; footer cards rounded-2xl/3xl.",
+      "border": "Border-right or light surface separation; internal dividers sparse.",
+      "shadow": "Avoid heavy sidebar shadow; rely on white/cream contrast and border.",
+      "typography": "Nav labels text-sm font-semibold; footer/user metadata text-xs muted.",
+      "states": "Inactive hover bg-cream and text-forest; active forest fill; collapsed primitive supports icon width 3rem.",
+      "variants": [
+        "desktop-finance-sidebar",
+        "collapsible-sidebar",
+        "icon-sidebar",
+        "footer-balance-sidebar"
+      ]
+    }
+  },
+  "tabs": {
+    "explicit": true,
+    "source_basis": "components/ui/tabs.tsx primitive and explicit demo view switcher/segmented controls in finance-app.tsx.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "View switching, local filters, segmented modes, and high-level content categories.",
+      "appearance": "Muted/cream or translucent pill container; active segment white with forest text and shadow-sm, or forest fill for high-level active state.",
+      "spacing": "Container p-1 gap-1; segments px-3/px-4 py-2, text-sm.",
+      "radius": "Container rounded-2xl; active item rounded-xl or rounded-2xl.",
+      "border": "Usually borderless; optional light border when on white surface.",
+      "shadow": "shadow-sm for active segment only.",
+      "typography": "text-sm font-semibold for segment labels; icons 14px-16px when present.",
+      "states": "transition-all duration-200; inactive text muted with hover stronger; selected uses white or forest active treatment.",
+      "variants": [
+        "segmented-view-switcher",
+        "local-filter-tabs",
+        "high-level-tabs",
+        "icon-tabs"
+      ]
+    }
+  },
+  "badges": {
+    "explicit": true,
+    "source_basis": "components/ui/badge.tsx exists; finance screens use small pills/dots/trust badges and semantic transaction colors.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Status, trust, category, filter count, notification, chart legend, and compact finance metadata.",
+      "appearance": "Compact rounded labels using cream, lime/forest, semantic green/red, or muted backgrounds; notification dots are red or lime.",
+      "spacing": "px-2 py-0.5 or tiny dot sizes 2px-8px; keep text concise.",
+      "radius": "rounded-lg, rounded-full, or small pill shape.",
+      "border": "Optional light border for outline/neutral badges; semantic badges can use tint backgrounds.",
+      "shadow": "No shadow by default.",
+      "typography": "text-[9px] to text-xs, font-medium or font-semibold.",
+      "states": "Interactive badges hover cream/forest; selected badges may use forest fill or lime fill.",
+      "variants": [
+        "status",
+        "category",
+        "trust",
+        "notification-dot",
+        "chart-legend",
+        "filter-count",
+        "destructive"
+      ]
+    }
+  },
+  "alerts": {
+    "explicit": true,
+    "source_basis": "components/ui/alert.tsx exists; destructive and negative patterns are present, but custom finance alerts are inferred.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Informational messages, validation summaries, destructive warnings, and financial risk confirmations.",
+      "appearance": "Calm card-like alert with icon well, short title, muted explanation; destructive uses red text/pale red background.",
+      "spacing": "p-4 to p-5, gap-3 between icon and copy, compact action footer if needed.",
+      "radius": "Primitive rounded-lg; branded alerts should use rounded-2xl.",
+      "border": "Light border; destructive border can be red-tinted but not saturated.",
+      "shadow": "Usually no shadow or shadow-sm if floating in a panel.",
+      "typography": "Title text-sm font-semibold/bold; description text-xs/text-sm muted.",
+      "states": "No flashy animation; dismiss/secondary action hover follows cream/forest pattern.",
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "destructive",
+        "validation-summary",
+        "inline-alert"
+      ]
+    }
+  },
+  "empty_states": {
+    "explicit": true,
+    "source_basis": "components/ui/empty.tsx exists and finance Add Card/Add contact patterns explicitly use dashed rounded controls.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "No cards, no transactions, no results, add-new slots, and first-run setup prompts.",
+      "appearance": "Dashed rounded container or white rounded card with muted icon, concise title, muted copy, one lime/forest action.",
+      "spacing": "p-5/p-6 for empty panels; compact add slots can be w-8/h-8 or larger rounded tiles.",
+      "radius": "rounded-2xl for small add controls; rounded-3xl for panel empty states.",
+      "border": "border-2 border-dashed border-border for add/new; light border for full empty panels.",
+      "shadow": "No heavy shadow; optional shadow-sm for white panel.",
+      "typography": "Title text-sm/base font-bold forest; description text-xs/sm muted.",
+      "states": "Hover bg-cream or border-forest/20; primary action follows lime/forest CTA rules.",
+      "variants": [
+        "dashed-add",
+        "no-results",
+        "first-run",
+        "empty-transactions",
+        "empty-cards"
+      ]
+    }
+  },
+  "charts_containers": {
+    "explicit": true,
+    "source_basis": "app/globals.css chart tokens, components/ui/chart.tsx, and desktop finance chart/list patterns.",
+    "confidence": "high",
+    "rules": {
+      "purpose": "Spending trends, balances, income/expense comparison, compact analytics summaries.",
+      "appearance": "White rounded-3xl card or forest/lime summary card; rounded bars; forest/lime first; tiny muted legends/axis labels.",
+      "spacing": "Card p-5/p-6; chart and summary gaps around 3-4; labels compact.",
+      "radius": "Container rounded-3xl; bars rounded-full or rounded tops where possible.",
+      "border": "Usually none or light border; avoid dense chart grid borders.",
+      "shadow": "shadow-sm container; chart internals flat.",
+      "typography": "Summary numbers font-extrabold; legends text-[10px]/text-xs muted; labels compact.",
+      "states": "Tooltips use white/cream popover with border/shadow; active datapoint should use forest/lime emphasis.",
+      "variants": [
+        "bar-chart-card",
+        "summary-chart",
+        "forest-chart-card",
+        "lime-highlight-chart",
+        "tooltip-container"
+      ]
+    }
+  },
+  "page_headers": {
+    "explicit": true,
+    "source_basis": "Finance mobile headers/profile rows and desktop views show title/action patterns; generic page header primitive is absent.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Orient the user, expose page-level actions, filters, notifications, and profile context.",
+      "appearance": "Left title/subtitle or profile identity; right compact icon buttons/avatar/filter chips; forest text on cream canvas.",
+      "spacing": "Mobile px-4/px-5 and compact vertical padding; desktop p-6 with flex justify-between and gap-4.",
+      "radius": "Header itself unframed; contained actions use rounded-full, rounded-xl, or rounded-2xl.",
+      "border": "No header border by default; nav bars may use top/bottom border-border.",
+      "shadow": "No header shadow; icon buttons may use shadow-sm.",
+      "typography": "Desktop title text-2xl font-extrabold forest; mobile title text-base-xl font-bold; subtitle text-sm muted.",
+      "states": "Header action hover bg-cream/cream-dark; notification dot red; active filters forest/lime.",
+      "variants": [
+        "mobile-profile-header",
+        "desktop-page-header",
+        "title-action-header",
+        "filter-header"
+      ]
+    }
+  },
+  "filters": {
+    "explicit": true,
+    "source_basis": "Explicit compact filter controls appear in finance transactions/desktop views; select/dropdown primitives support inferred advanced filters.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Period, category, status, account, search, and transaction narrowing.",
+      "appearance": "Compact chips/pills, white or cream surface, light border, muted label, forest selected state, chevron for dropdown filters.",
+      "spacing": "px-3/px-4 py-2, h-9/h-10, gap-2; page-level filters sit in header right or above list.",
+      "radius": "rounded-xl, rounded-2xl, or rounded-full depending chip density.",
+      "border": "Light border-border; selected can use forest fill or lime/forest border.",
+      "shadow": "shadow-sm only for active white segment or floating popover.",
+      "typography": "text-xs/text-sm font-semibold; helper count text-xs muted.",
+      "states": "Hover bg-cream; selected forest fill or white active with shadow-sm; advanced filters open sheet/dialog.",
+      "variants": [
+        "period-pill",
+        "category-chip",
+        "search-filter",
+        "status-chip",
+        "advanced-filter-sheet",
+        "header-filter"
+      ]
+    }
+  },
+  "form_layouts": {
+    "explicit": true,
+    "source_basis": "components/ui/form.tsx and field primitives exist; custom finance form screens are not prominent, so layout adaptation is inferred.",
+    "confidence": "medium",
+    "rules": {
+      "purpose": "Account setup, transfer creation, card management, profile settings, and advanced filters.",
+      "appearance": "White rounded-3xl grouped panels on cream canvas, forest labels, muted descriptions, lime/forest primary actions.",
+      "spacing": "One-column mobile forms with gap-4; desktop two-column groups where useful; panel p-5/p-6; field helper spacing compact.",
+      "radius": "Form panels rounded-3xl; fields rounded-xl/2xl when branded; buttons rounded-2xl.",
+      "border": "Light panel/field borders; invalid destructive border/ring; avoid dense section dividers.",
+      "shadow": "Panel shadow-sm; no heavy elevation.",
+      "typography": "Labels text-sm font-medium/semibold; descriptions text-xs muted; errors text-xs destructive.",
+      "states": "Validation via aria-invalid destructive styles; focus lime ring; disabled opacity 50%.",
+      "variants": [
+        "mobile-single-column",
+        "desktop-two-column",
+        "grouped-card-form",
+        "inline-filter-form",
+        "destructive-confirm-form"
+      ]
+    }
+  }
+}
+null
+null
+null
+
+exec
+/bin/zsh -lc "jq '.style_name, .visual_identity, .identity_traits, .hierarchy, .interaction, .layout, .ux_patterns, .constraints' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+"Warm Fintech Minimalism"
+{
+  "tone": "Premium, calm, optimistic fintech with a tactile wallet-app feel.",
+  "density": "Balanced-compact: mobile screens use tight finance-app rhythm while preserving touch targets and breathing room.",
+  "corner_style": "Large rounded geometry dominates; rounded-2xl and rounded-3xl are the visible brand shapes, with pills for avatars, dots, and nav accents.",
+  "elevation_style": "Low elevation inside the app: mostly shadow-sm, light borders, and color contrast. Strong shadows are reserved for demo device/browser chrome.",
+  "contrast_profile": "Warm cream canvas, white surfaces, deep forest primary content, lime signature accents, and semantic green/red for financial values.",
+  "mood": "Trustworthy, soft, modern, financially precise, and lightly expressive without feeling playful.",
+  "notes": [
+    "EXPLICIT: app/globals.css defines cream, forest, lime, white card, muted, border, ring, chart, and radius tokens.",
+    "EXPLICIT: components/finance/* repeatedly use bg-cream, bg-white, bg-forest, bg-lime, rounded-2xl, rounded-3xl, shadow-sm, compact labels, and bold financial values.",
+    "EXPLICIT: app/layout.tsx uses Plus Jakarta Sans with weights 400, 500, 600, 700, and 800.",
+    "INFERRED: new product areas should preserve wallet-app tactility and avoid generic gray/blue SaaS styling."
+  ]
+}
+{
+  "non_negotiable_traits": [
+    "Cream page background instead of generic gray or pure white app canvas.",
+    "Forest green as primary text, navigation, and high-emphasis action color.",
+    "Lime as the signature accent for constructive actions, active highlights, rings, dots, and key chart bars.",
+    "Large soft radii for visible surfaces and controls: 16px-24px as the normal brand range.",
+    "Compact finance hierarchy: short labels, muted metadata, extra-bold totals, right-aligned amounts, and semantic positive/negative colors.",
+    "Subtle interaction feedback: restrained hover fills, lime focus rings, light scale on major CTAs, and minimal shadow escalation."
+  ],
+  "adaptable_traits": [
+    "Tables and forms may become more structured for CRUD workflows if they stay card-contained, rounded, and low-divider.",
+    "Primitive shadcn radii may remain smaller for dense internal controls, but branded surfaces should use larger finance radii.",
+    "Forest and lime hero cards may be used selectively; not every card should be saturated.",
+    "Secondary accent colors may appear in avatars or charts, but they should not overtake the forest/lime identity.",
+    "Desktop sidebars and page headers can become more utilitarian if active states remain forest/lime and surfaces remain cream/white."
+  ],
+  "source_type": "Explicit repo evidence plus conservative inference from finance screens and shadcn/ui primitives.",
+  "adaptation_notes": [
+    "Treat finance screens as stronger identity evidence than generic shadcn primitives.",
+    "When primitive defaults conflict with custom finance screens, prefer the finance screen visual language for branded product UI.",
+    "For missing branded implementations, infer only from token roles, radius system, spacing rhythm, and observed UX patterns."
+  ]
+}
+{
+  "primary_focus_pattern": "Lead with one strong financial anchor per view: a large balance, forest/lime hero card, active navigation state, or primary CTA. Use weight and color before heavy decoration.",
+  "secondary_content_pattern": "Secondary content appears as white cards, rounded list rows, muted metadata, small labels, and soft cream grouped surfaces.",
+  "cta_hierarchy": "Primary CTAs use forest fill with white text or lime fill with forest text. Secondary actions use white/cream surfaces with light borders or muted text. Tertiary actions are small icon-only or text links.",
+  "emphasis_rules": [
+    "Reserve lime for signature actions, active indicators, chart highlights, and key positive moments.",
+    "Use forest for authority: headings, selected nav, primary text, dark summary cards, and secure/major actions.",
+    "Use extra-bold type for balances, totals, and page-level metrics; avoid making every label large.",
+    "Use semantic green/red only for financial meaning, not general decoration.",
+    "Use color blocks sparingly so one card or action remains dominant in a section."
+  ],
+  "grouping_rules": [
+    "Prefer card/list modules over dense raw grids.",
+    "Represent transactions as rows with icon well, primary label, secondary metadata, right-aligned amount, and category.",
+    "Use rounded icon wells to make action groups scannable.",
+    "Use dashed rounded containers for add/new/empty actions.",
+    "Keep dividers sparse; use spacing, background, and radius to separate groups."
+  ],
+  "contrast_usage": "High contrast for primary numbers and active actions; low-noise contrast for metadata, borders, and hover states. Avoid low-contrast long text blocks."
+}
+{
+  "hover": "Restrained hover feedback: hover:bg-cream, hover:bg-cream-dark, hover:bg-white/20, hover:text-forest, and occasional hover:shadow-md on rows/cards.",
+  "focus": "Use lime-aligned focus: focus-visible:ring-ring/50, focus-visible:ring-[3px], border/ring tokens from app/globals.css; avoid blue default focus.",
+  "active": "Major CTAs may use hover:scale-[1.02] and active:scale-[0.98]; screen transitions slide horizontally over 320ms cubic-bezier(0.4,0,0.2,1).",
+  "selected": "Selected nav uses forest fill with white text and lime dot, or active forest icon/text in bottom nav. Segmented controls use white active surface and shadow-sm.",
+  "disabled": "Generic primitives use disabled:pointer-events-none and disabled:opacity-50. Preserve subdued disabled states without changing layout.",
+  "loading": "Skeleton primitive uses bg-accent animate-pulse rounded-md; inferred branded loading should use cream/lime-tinted rounded placeholders.",
+  "validation": "Primitive invalid states use destructive border/ring and aria-invalid styling; errors should be concise, red, and not visually louder than the form context unless destructive.",
+  "feedback_style": "Calm, crisp, touch-friendly, and low-drama. Use quick color/opacity/scale changes rather than glow, bounce, or heavy shadow."
+}
+{
+  "page_shell": "Cream app canvas with mobile vertical shell or desktop sidebar/content shell. Demo wrapper uses teal gradient browser/phone chrome but app surfaces remain cream and white.",
+  "page_width_strategy": "Constrain app/demo content around max-w-5xl; desktop app uses fixed presentation frame and sidebar. For real pages, infer max-w-5xl to max-w-6xl with 24px padding.",
+  "header_pattern": "Title/subtitle or profile row on left, compact actions/avatar/filters on right. Mobile headers are compact; desktop headers can include page actions and filters.",
+  "section_spacing": "Mobile sections stack with space-y-4 and px-4. Desktop sections use p-6 and gap-4. Onboarding can use more relaxed spacing.",
+  "grid_rules": [
+    "Mobile: one-column stack with horizontal carousels where needed.",
+    "Desktop dashboard: 3-column grid with important balance/summary card spanning 2 columns.",
+    "Transactions desktop: 5-column layout with chart spanning 2 columns and list spanning 3 columns.",
+    "Cards/settings/profile modules: white rounded panels with compact rows.",
+    "Use overflow-x carousels for cards and quick-send contacts on mobile."
+  ],
+  "navigation_patterns": [
+    "Mobile bottom nav: white surface, top border, compact labels, active forest state, central floating lime QR action.",
+    "Desktop sidebar: white on cream, logo header, grouped nav, active forest pill with lime dot, footer user/balance/action area.",
+    "Top demo toolbar: dark translucent segmented view switcher, white active state, lime logo dot; treat as presentation chrome."
+  ],
+  "responsive_rules": [
+    "Bottom nav on mobile, sidebar on desktop.",
+    "Maintain touch-friendly icon wells around 36px-48px.",
+    "Avoid collapsing hierarchy by making desktop too sparse; keep gap-4 dashboard rhythm.",
+    "Use cards/lists before table grids on small screens.",
+    "Filters should become chips or sheet/dialog controls on narrow viewports."
+  ]
+}
+{
+  "cta_hierarchy": "Primary page/action CTAs are visually isolated and use lime or forest. Secondary actions are compact white/cream buttons or text links. Tertiary actions are icon-only, muted, or hidden behind overflow menus.",
+  "information_grouping": "Group financial information into modules: balance, cards, actions, quick-send people, transactions, charts, settings. Use rounded white cards and rows on cream rather than full-page grids.",
+  "filter_placement": "Place common filters in the page header or just above the affected list as compact chips/selects. Put advanced filters in a sheet/dialog instead of expanding dense inline panels.",
+  "form_structure": "Use short labels, one-column mobile forms, two-column desktop grouping only when it improves scanning, and rounded white form cards for related fields.",
+  "validation_behavior": "Use inline destructive text and destructive border/ring states; keep wording concise and avoid large saturated alert blocks except for irreversible financial actions.",
+  "table_detail_strategy": "Prefer transaction/list cards for primary workflows. Use card-contained tables for dense desktop data, with minimal dividers, muted headers, semantic badges, and responsive list fallback on mobile.",
+  "loading_error_empty_states": "Use rounded skeletons, calm card-like alerts, and dashed rounded empty/add states. Preserve forest/lime CTAs for resolution actions.",
+  "action_placement": "Primary action in header or dominant card; row actions at the right or overflow; mobile primary actions can be full-width or floating only when central to the workflow.",
+  "notes": [
+    "Progressive disclosure is explicit through See all, Filter, Monthly, balance visibility toggles, onboarding skip, and row/icon actions.",
+    "Dense CRUD screens should still preserve rounded rows, muted metadata, semantic amounts/status, and forest/lime active states.",
+    "Avoid representing financial data as raw spreadsheet grids unless task requirements demand it."
+  ]
+}
+[
+  "Do not replace the cream canvas with generic gray or pure white page defaults.",
+  "Do not replace forest/lime brand states with blue SaaS defaults.",
+  "Do not make sharp rectangular cards, square primary buttons, or hard-edged panels the dominant geometry.",
+  "Do not overuse heavy shadows; most app surfaces should remain shadow-sm or flat.",
+  "Do not make every card saturated; use one forest or lime focal surface per major section.",
+  "Do not create divider-heavy admin tables as the default for financial data.",
+  "Do not use large bodies of low-contrast explanatory text; keep copy short, direct, and task-oriented.",
+  "Do not let generic shadcn rounded-md primitives visually dominate branded finance screens.",
+  "Do not use lime for arbitrary decoration; reserve it for action, brand, selection, and meaningful highlights.",
+  "Do not obscure hierarchy by giving all tiles equal visual weight."
+]
+
+exec
+/bin/zsh -lc "sed -n '301,620p' .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+- Do not vary radius arbitrarily across cards, buttons, inputs, and panels.
+- Avoid excessive rounding when it conflicts with dense professional software UI.
+- Radius should support component identity, not act as decoration.
+
+### Shadow And Elevation Discipline
+
+Elevation should communicate layering, not visual flair.
+
+Rules:
+
+- Use shadows only when an element is above another surface or needs separation.
+- Modals, popovers, dropdowns, floating toolbars, and sticky elements may need elevation.
+- Static cards and sections often do not need heavy shadows.
+- Avoid stacking multiple shadow styles without a clear elevation system.
+- Do not use shadows as the primary method of grouping.
+- Elevation should be subtle, consistent, and functional.
+
+### Emphasis Control
+
+Emphasis must be scarce and intentional.
+
+Rules:
+
+- Use high emphasis for primary actions, urgent statuses, active navigation, and task-critical information.
+- Use medium emphasis for secondary actions and important supporting content.
+- Use low emphasis for metadata, optional context, and repeated secondary details.
+- Do not emphasize decorative labels, redundant icons, or non-actionable content.
+- Reduce emphasis when a screen feels noisy before adding more styling.
+
+## Visual Priority And Hierarchy Rules
+
+When generating a screen, determine hierarchy in this order:
+
+1. Identify the primary user task.
+2. Identify the primary content needed for that task.
+3. Identify the primary action.
+4. Identify secondary actions.
+5. Identify status, feedback, or risk information.
+6. Identify metadata and supporting details.
+7. Assign visual weight based on this order.
+
+Practical rules:
+
+- The page title should orient the user, not compete with the main task area.
+- The primary action should be easy to find but not overwhelm the content.
+- Destructive actions should be visually distinct from primary positive actions.
+- Repeated items should have a consistent internal hierarchy.
+- Empty, loading, and error states should preserve the same hierarchy as the loaded state when possible.
+- Dense pages need stronger grouping, not more decoration.
+- Important values should be visually stronger than their labels.
+- Warnings and errors should interrupt only when user attention is required.
+
+## Typography As UX Rules
+
+Use typography to create a clear reading path.
+
+Rules:
+
+- Use headings to establish structure, not to decorate sections.
+- Use short headings that match user intent.
+- Use labels that remain visible after input.
+- Use helper text only when it prevents mistakes or clarifies constraints.
+- Keep error text direct and actionable.
+- Use sentence case unless the project style guide specifies otherwise.
+- Use consistent terminology for the same object and action.
+- Avoid paragraph-heavy UI; convert instructions into concise labels, hints, steps, or inline feedback.
+- Keep button labels action-oriented.
+- Avoid ambiguous verbs such as “Process,” “Proceed,” or “Confirm” when a specific action is available.
+- In data views, prioritize names, statuses, dates, owners, amounts, and actions according to the user’s task.
+
+## Interaction State Rules
+
+### Hover
+
+Hover should indicate interactivity.
+
+Rules:
+
+- Use hover for interactive elements only.
+- Hover should not be the only way to reveal essential actions.
+- Hover changes should be subtle and layout-stable.
+- Do not shift size, position, or surrounding layout on hover.
+- In dense tables, row hover may help show action scope.
+
+### Focus
+
+Focus is required for keyboard navigation and accessibility.
+
+Rules:
+
+- Every interactive element must have a visible focus state.
+- Focus should be at least as visible as hover.
+- Focus indicators must not rely on color alone if contrast is weak.
+- Do not remove browser focus behavior unless replacing it with an accessible equivalent.
+- Focus order must follow the visual and task order.
+
+### Active And Pressed
+
+Active states confirm immediate interaction.
+
+Rules:
+
+- Buttons, toggles, menu items, and tabs should visibly respond when pressed.
+- Active feedback should be brief and not confused with selected state.
+- Pressed states should not imply success; success requires its own feedback when relevant.
+
+### Selected
+
+Selected state indicates a persistent choice.
+
+Rules:
+
+- Selected items must be visually distinct from hover and focus.
+- Selected navigation should clearly show the current location.
+- Selected filters should be easy to review and clear.
+- Multi-select states should show count and available batch actions when useful.
+
+### Disabled
+
+Disabled state indicates an unavailable action.
+
+Rules:
+
+- Use disabled only when the action is truly unavailable.
+- If the reason is not obvious, explain it through helper text, tooltip, inline message, or permission notice.
+- Disabled controls must remain legible.
+- Do not hide unavailable actions when seeing them helps users understand permissions, requirements, or workflow state.
+
+### Loading
+
+Loading states should preserve context.
+
+Rules:
+
+- Use skeletons for content areas where shape is predictable.
+- Use spinners for short, localized actions.
+- Use progress indicators for long-running or multi-step operations.
+- Keep layout stable while loading.
+- Disable repeated submissions when an action is in progress.
+- Show loading state on the control that initiated the action when possible.
+
+### Success, Warning, And Error
+
+Status feedback should be clear, contextual, and proportional.
+
+Rules:
+
+- Success confirms completion of important actions.
+- Warnings indicate risk, dependency, or caution before failure.
+- Errors explain what went wrong and how to recover.
+- Use inline errors for field-specific issues.
+- Use page-level or alert errors for system-wide failures.
+- Use destructive styling only for destructive or critical states.
+- Do not overuse success alerts for trivial actions.
+
+### Empty States
+
+Empty states should help users move forward.
+
+Rules:
+
+- Explain what is missing.
+- Explain why it matters when helpful.
+- Provide the best next action.
+- Avoid decorative emptiness that does not help the user.
+- For first-use empty states, guide setup.
+- For filtered empty states, offer filter clearing or search adjustment.
+- For permission-based empty states, explain access limits.
+
+### Validation Feedback
+
+Validation should prevent and correct errors.
+
+Rules:
+
+- Validate as early as useful, but avoid interrupting before the user has had a chance to complete input.
+- Show errors near the relevant field.
+- Preserve entered data.
+- Explain the required fix.
+- Use examples for complex formats.
+- Summarize errors at the top for long forms while keeping field-level messages.
+- Do not rely only on red borders.
+
+## Layout Rules
+
+### General Layout
+
+Rules:
+
+- Start with the user’s primary task and build the layout around it.
+- Use a clear page structure: header, primary content, supporting content, actions, feedback.
+- Keep related information visually grouped.
+- Keep primary actions in predictable locations.
+- Avoid placing unrelated controls in the same toolbar or section.
+- Use whitespace to separate meaningfully different areas.
+- Avoid full-width content when narrower line lengths improve readability.
+- Use full-width layouts when comparing data across columns or managing dense operational workflows.
+
+### Dashboards
+
+Dashboards should summarize status and guide investigation.
+
+Rules:
+
+- Lead with the most decision-relevant metrics, alerts, or trends.
+- Avoid turning dashboards into collections of disconnected cards.
+- Group metrics by user question or operational area.
+- Show comparison, trend, or threshold when a number alone is not meaningful.
+- Make drill-down paths obvious.
+- Use charts only when they improve understanding.
+- Avoid excessive decorative charts that do not support decisions.
+- Keep dashboard actions secondary unless the dashboard is also a control surface.
+
+### Data-Heavy Pages
+
+Data-heavy pages should support scanning, comparison, filtering, and action.
+
+Rules:
+
+- Prioritize columns by task relevance.
+- Put identifiers, names, statuses, dates, owners, and key metrics where users expect them.
+- Use alignment to support comparison.
+- Use density intentionally; compact layouts still need readable text and clear targets.
+- Keep filters visible when they are central to the task.
+- Provide saved views, sorting, column control, or bulk actions when data complexity requires them.
+- Use progressive disclosure for row details, histories, logs, and secondary metadata.
+- Avoid card layouts when users need to compare many records precisely.
+
+### CRUD Pages
+
+CRUD experiences should make create, read, update, and delete actions predictable.
+
+Rules:
+
+- List pages should support finding, filtering, sorting, viewing, and creating records.
+- Detail pages should show the record identity, status, metadata, primary actions, and related data.
+- Create and edit pages should clearly distinguish new unsaved data from existing data.
+- Destructive actions should be separated and confirmed.
+- After create, update, or delete, show clear feedback and navigate to the most useful next context.
+- Preserve user context when returning from detail or edit pages.
+
+### Settings Pages
+
+Settings pages should be calm, structured, and easy to verify.
+
+Rules:
+
+- Group settings by user mental model, not backend schema.
+- Use clear section names.
+- Explain settings with consequences or dependencies.
+- Save behavior must be obvious: auto-save, section save, or page save.
+- Show unsaved changes when relevant.
+- Separate dangerous settings from routine configuration.
+- Use defaults and current values clearly.
+- Avoid burying critical permissions, billing, or security settings.
+
+### Forms
+
+Forms should reduce effort and prevent mistakes.
+
+Rules:
+
+- Ask only for information needed for the task.
+- Group fields by meaning.
+- Use one clear label per field.
+- Mark required and optional fields consistently.
+- Use helper text for constraints, examples, or consequences.
+- Keep validation close to the relevant field.
+- Align actions with the form completion path.
+- Place destructive or cancel actions away from the primary submit action.
+- Use multi-step forms only when sections are meaningfully distinct or the form is too complex for one page.
+- Preserve input on errors and navigation interruptions when possible.
+
+### Tables
+
+Tables are for comparison, scanning, and structured records.
+
+Rules:
+
+- Use tables when rows share the same attributes.
+- Keep column names short and clear.
+- Align text, numbers, dates, statuses, and actions consistently.
+- Keep row actions scoped and predictable.
+- Use sticky headers or columns only when they solve a real navigation problem.
+- Provide empty, loading, filtered, and error states.
+- Use row expansion for secondary detail when it supports scanning.
+- Do not overload tables with unrelated actions, nested controls, or excessive badges.
+
+### Cards
+
+Cards are for grouped summaries, objects, or choices.
+
+Rules:
+
+- Use cards when each item benefits from visual grouping or variable content.
+- Keep card structure consistent across repeated cards.
+- Make the main click target clear.
+- Do not place too many competing actions inside a card.
+- Use cards for dashboards, summaries, resources, previews, or object collections where comparison is loose.
+- Avoid cards for dense tabular comparison.
+- Do not put cards inside cards unless the nested card is a distinct repeated object with a clear reason.
+
+### Navigation
+
+Navigation should orient users and support predictable movement.
+
+Rules:
+
+- Navigation labels should match user goals and product objects.
+- Active location must be visible.
+- Keep primary navigation stable.
+- Do not mix global navigation, local navigation, and filters without clear separation.
+- Use breadcrumbs for deep hierarchies or detail pages.
+- Use sidebar navigation for many persistent destinations.
+- Use top navigation for fewer top-level destinations or broad product areas.
+- Keep destructive or transactional actions out of primary navigation.
+
+### Modals And Sheets
+
+Modals and sheets should interrupt only when the task requires focused attention.
+
+exec
+/bin/zsh -lc "sed -n '621,910p' .agents/skills/project-ui-design/outputs/01-ui-ux-foundation.md" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+
+Rules:
+
+- Use modals for focused, short tasks, confirmations, lightweight creation, or blocking decisions.
+- Use dedicated pages for complex forms, multi-step workflows, deep editing, or tasks requiring reference context.
+- Keep modal titles specific.
+- Keep modal actions clear and limited.
+- Make dismissal behavior predictable.
+- Warn users before losing unsaved modal changes.
+- Use sheets when users need to keep some parent context visible while editing or inspecting related detail.
+
+### Alerts And Inline Feedback
+
+Feedback should appear where users need it.
+
+Rules:
+
+- Use inline feedback for field-level or section-level issues.
+- Use alerts for page-level, system-level, or workflow-level messages.
+- Keep alert language concise and actionable.
+- Do not stack many alerts without priority.
+- Avoid persistent success messages for minor actions.
+- Warnings should explain risk before the user commits.
+- Errors should provide recovery steps.
+
+### Filters And Search Areas
+
+Filters and search should help users narrow information quickly.
+
+Rules:
+
+- Place filters close to the data they affect.
+- Make active filters visible.
+- Provide clear reset behavior.
+- Distinguish search from filters.
+- Use default filters only when they match user expectations.
+- Use advanced filters for less common criteria.
+- Show filtered empty states that help users recover.
+- Avoid hiding active constraints in menus without visible summary.
+
+## Component Rules
+
+### Buttons
+
+Rules:
+
+- One primary button per task area.
+- Use secondary buttons for alternative actions.
+- Use tertiary or text buttons for low-emphasis actions.
+- Use destructive buttons only for destructive actions.
+- Button labels should describe the action result.
+- Keep button order consistent across the product.
+- Loading buttons should prevent duplicate submission.
+
+### Inputs
+
+Rules:
+
+- Labels must be visible or programmatically available.
+- Placeholder text should provide examples, not replace labels.
+- Input width should match expected content when practical.
+- Required, optional, disabled, error, and success states should be clear.
+- Use appropriate input types for dates, numbers, currency, passwords, URLs, and search.
+
+### Selects, Comboboxes, And Dropdowns
+
+Rules:
+
+- Use select controls for known option sets.
+- Use comboboxes when search is needed within options.
+- Use menus for actions, not form values.
+- Keep option labels clear and scannable.
+- Show selected values clearly.
+- Avoid long dropdowns without search or grouping.
+
+### Toggles, Checkboxes, And Radio Buttons
+
+Rules:
+
+- Use toggles for immediate on/off settings.
+- Use checkboxes for independent multi-select choices.
+- Use radio buttons for mutually exclusive choices where options should be visible.
+- Label controls by the state or choice they represent.
+- Explain consequences for settings that affect behavior or access.
+
+### Badges And Status Indicators
+
+Rules:
+
+- Use badges for compact status, category, or count information.
+- Status labels must be text-readable, not color-only.
+- Use a consistent status vocabulary.
+- Avoid badge overload in dense lists.
+- Do not style decorative labels like critical statuses.
+
+### Icons
+
+Rules:
+
+- Icons should clarify, not replace, important labels unless the meaning is universally understood.
+- Use consistent icon style and size.
+- Provide accessible names for icon-only controls.
+- Avoid using multiple icon metaphors for the same action.
+- Do not use icons as decoration in operational UI unless they support scanning.
+
+## Decision Heuristics
+
+### Card Vs Table
+
+Use a table when:
+
+- Users need to compare many records across shared attributes.
+- Sorting, filtering, scanning, or bulk actions are important.
+- Precise values, dates, statuses, owners, or amounts matter.
+- Density and consistency are more important than visual storytelling.
+
+Use cards when:
+
+- Items have variable content or need summary presentation.
+- Users are browsing or choosing rather than comparing precisely.
+- Each item benefits from a preview, description, image, or grouped actions.
+- The collection is small or medium-sized.
+
+Default heuristic: if users ask “which records match these conditions?” use a table. If users ask “which option or object should I open?” cards may work.
+
+### Modal Vs Dedicated Page
+
+Use a modal when:
+
+- The task is short and focused.
+- The user should remain in the parent context.
+- The action is confirmatory or lightweight.
+- Required inputs are minimal.
+
+Use a dedicated page when:
+
+- The task is complex, long, or multi-step.
+- Users need reference information while working.
+- The workflow has significant consequences.
+- The screen requires deep validation, collaboration, or navigation.
+
+Default heuristic: if the task may grow, require careful review, or include many fields, use a page.
+
+### Tabs Vs Accordion
+
+Use tabs when:
+
+- Sections are peer-level views.
+- Users switch between categories of content.
+- Only one section should be viewed at a time.
+- The first-level structure is stable and limited.
+
+Use accordions when:
+
+- Users may need to scan several sections in one flow.
+- Content is optional or progressively disclosed.
+- Sections are part of a longer page.
+- Multiple sections may be opened for comparison or reference.
+
+Default heuristic: tabs change views; accordions reveal details.
+
+### Sidebar Vs Top Navigation
+
+Use sidebar navigation when:
+
+- There are many destinations.
+- The app has persistent operational sections.
+- Users frequently switch between areas.
+- Navigation labels need more horizontal room.
+
+Use top navigation when:
+
+- There are few top-level destinations.
+- The product is simpler or content-led.
+- The main layout benefits from more horizontal content space.
+- Navigation represents broad product areas rather than many tools.
+
+Default heuristic: complex applications usually benefit from sidebar navigation; simpler products can use top navigation.
+
+### Spacious Vs Compact Layout
+
+Use spacious layout when:
+
+- The task requires careful reading or decision-making.
+- The page has forms, settings, onboarding, or explanatory content.
+- The user needs confidence more than speed.
+- The screen is used infrequently.
+
+Use compact layout when:
+
+- Users work with high-volume data.
+- Scanning and comparison are primary.
+- Users are experienced and repeat tasks often.
+- More visible rows or controls improve efficiency.
+
+Default heuristic: compactness is earned by task frequency and data density, not by aesthetic preference.
+
+### High Emphasis Vs Subtle Emphasis
+
+Use high emphasis when:
+
+- The element is the primary action.
+- The message is urgent or blocking.
+- The value is task-critical.
+- The item represents current location or selected state.
+
+Use subtle emphasis when:
+
+- The element is secondary, repeated, metadata, or optional.
+- The user only needs it after initial scanning.
+- Too much emphasis would create noise.
+
+Default heuristic: high emphasis should be rare enough to remain meaningful.
+
+### Dense Information View Vs Progressive Disclosure
+
+Use dense information views when:
+
+- Users need to compare, monitor, or operate quickly.
+- Information is structured and repeatable.
+- The user is likely to be experienced.
+- Hiding details would slow the task.
+
+Use progressive disclosure when:
+
+- Information is optional, advanced, rare, or secondary.
+- The screen would otherwise overwhelm users.
+- Users need a guided path.
+- Details are useful only after selecting or expanding an item.
+
+Default heuristic: show what users need to decide now; disclose what they need after choosing.
+
+## Anti-Patterns
+
+Avoid these patterns:
+
+- Decorative UI that does not improve comprehension, navigation, action, or feedback.
+- Flat hierarchy where titles, metadata, buttons, cards, and alerts all compete equally.
+- Inconsistent spacing that makes grouping unclear.
+- Weak CTA hierarchy where primary, secondary, destructive, and tertiary actions look too similar.
+- Inaccessible contrast or focus states that are hard to see.
+- Arbitrary radius changes between similar components.
+- Arbitrary shadow changes without elevation logic.
+- Overdesigned controls that hide standard behavior.
+- Cramped grouping where unrelated elements appear connected.
+- Excessive dividers used to compensate for weak layout.
+- Cards used for data that should be compared in tables.
+- Modals used for complex workflows.
+- Hidden required information behind progressive disclosure.
+- Disabled actions without explanation.
+- Hover-only actions that are essential to the task.
+- Error states that only use color.
+- Form placeholders used as labels.
+- Confirmation dialogs for harmless actions.
+- Destructive actions placed next to primary positive actions without separation.
+- Multiple primary buttons in the same task area.
+- Inconsistent interaction states across similar components.
+- Loading states that cause layout shifts.
+- Empty states that explain nothing and offer no next step.
+- Filters with hidden active criteria.
+- Navigation labels based on internal architecture instead of user goals.
+- Dense pages made smaller instead of better organized.
+- Visual novelty that makes behavior less predictable.
+
+## Final Behavioral Rules For The AI
+
+When designing software UI, the AI must:
+
+- Prioritize clarity over novelty.
+- Start from the user’s task, not from visual decoration.
+- Create clear focal points on every screen.
+- Maintain strong visual hierarchy.
+- Maintain consistent spacing rhythm.
+- Use typography intentionally to guide reading order and scanning.
+- Use contrast to support readability and priority.
+- Reuse patterns once established.
+- Keep interaction states complete and accessible.
+- Make hover, focus, active, selected, disabled, loading, success, warning, error, empty, and validation states explicit.
+- Justify layout choices through usability.
+- Prefer familiar patterns unless there is a strong product reason to diverge.
+- Keep primary actions visible and secondary actions available without competing.
+- Separate destructive actions from routine actions.
+- Use progressive disclosure to manage complexity without hiding required context.
+- Choose tables, cards, modals, pages, tabs, accordions, sidebars, and top navigation based on task needs.
+- Avoid arbitrary radius, shadow, spacing, color, and component changes.
+- Avoid decorative elements that do not serve comprehension or action.
+- Ensure layouts work across responsive breakpoints.
+- Ensure controls are accessible by keyboard and readable by assistive technology.
+- Preserve user input and provide recovery paths.
+- Keep screens production-ready, systematic, and coherent.
+
+exec
+/bin/zsh -lc "jq '.typography_roles' .agents/skills/project-ui-design/outputs/02-design-extraction.json" in /Users/emanueledagata/code/v0/boh2
+ succeeded in 0ms:
+{
+  "page_title": "Desktop: text-2xl font-extrabold text-forest. Mobile: text-base to text-xl font-bold, usually short location labels such as Transactions, My Cards, Profile.",
+  "section_title": "text-sm or text-xs font-bold text-forest with tight margins; labels such as Quick Send, Recent Transactions, Actions.",
+  "body": "text-sm or text-xs, forest or foreground, medium/semibold in rows; concise product copy rather than long explanations.",
+  "supporting_text": "text-xs or text-[10px] text-muted-foreground; used for dates, subtitles, helper copy, categories, descriptions.",
+  "label": "text-xs to text-sm font-medium or font-semibold; controls and finance labels use compact leading and forest/muted color.",
+  "caption": "text-[8px] to text-[10px], muted or opacity-reduced, especially on payment cards and transaction metadata.",
+  "scanning_behavior": "Users scan by large totals first, then bold section labels, row names, right-aligned amounts, muted dates/categories, and compact action icons."
+}
+
+codex
+# Project UI Design Skill: Warm Fintech Minimalism
+
+## Purpose
+
+Use this skill to generate new UI screens, components, and product flows that feel native to the source application.
+
+The AI must preserve the project’s current design identity across both existing and new UI categories, including dashboards, CRUD workflows, settings, forms, analytics, tables, dialogs, navigation, filters, and empty states.
+
+The source design language is **warm fintech minimalism**: cream canvas, white rounded surfaces, deep forest green authority, lime optimism, tactile rounded geometry, compact financial hierarchy, and calm interaction feedback.
+
+## AI Role
+
+Act as a **product UI/UX designer and interface system builder**.
+
+You are responsible for:
+
+- Designing production-ready software interfaces.
+- Extending the existing design system conservatively.
+- Preserving the project’s visual identity across new screens.
+- Applying strong UX principles before decorative styling.
+- Making layout, hierarchy, typography, spacing, and interaction decisions that support task completion.
+- Generating components that feel like they already belong in the app.
+
+Do not act as a generic frontend stylist. Treat every screen as part of a coherent product interface system.
+
+## Design Philosophy
+
+Design for **clarity, trust, speed, and financial precision**.
+
+The interface should feel calm, premium, tactile, and operationally useful. Visual decisions must help users understand status, compare values, complete actions, and recover from errors.
+
+General UX principles must be merged with the project’s specific identity:
+
+- Prioritize clarity over novelty.
+- Prioritize task completion over visual complexity.
+- Prioritize consistency over isolated visual invention.
+- Use hierarchy to make the user’s next step obvious.
+- Use spacing, typography, radius, and color as functional system tools.
+- Keep interactions predictable, quick, accessible, and low-drama.
+- Preserve the source app’s rounded, compact, warm fintech character even when generating screens that did not exist in the repository.
+
+The design should answer quickly:
+
+- Where am I?
+- What is most important?
+- What changed?
+- What can I do next?
+- What needs attention?
+- What is safe, risky, selected, disabled, loading, or complete?
+
+## Non-Negotiable Style Traits
+
+These identity-defining traits must be preserved.
+
+### Radius And Geometry Family
+
+- Use a soft rounded geometry family.
+- Major cards and panels should default to `rounded-3xl` or roughly `22px-24px`.
+- Secondary cards, rows, action tiles, nav items, and dialogs should use `rounded-2xl` or roughly `16px`.
+- Compact controls may use `rounded-xl` or roughly `12px`.
+- Avatars, dots, chart bars, notification indicators, and some icon wells may use `rounded-full`.
+- Sharp rectangles must not define the interface.
+- Smaller primitive radii are acceptable only for dense internal elements where they do not visually dominate the page.
+
+### Spacing Character
+
+- Preserve the balanced-compact finance rhythm.
+- The UI should fit meaningful information without becoming cramped.
+- Use compact but breathable spacing: `gap-4` for desktop grids, `space-y-4` for mobile stacks, `p-5` or `p-6` for major cards, and `p-3` for compact rows.
+- Avoid generic admin density with tight rows, many dividers, and low breathing room.
+- Use spacing and surface contrast before adding borders or shadows.
+
+### Emphasis Discipline
+
+- Emphasis must be scarce.
+- Use one dominant focal surface or action per major section.
+- Reserve lime for signature actions, active indicators, focus rings, chart highlights, and meaningful positive moments.
+- Use forest for authority: headings, primary text, active navigation, secure actions, and dark summary cards.
+- Avoid making every card saturated, bold, or visually loud.
+
+### Hierarchy Style
+
+- Lead with a clear primary metric, action, or status.
+- Use large extra-bold totals for financial or decision-critical values.
+- Use short bold section labels.
+- Use muted metadata for dates, categories, helper text, descriptions, and secondary state.
+- Keep lists scannable with icon wells, primary labels, secondary metadata, and right-aligned values where relevant.
+- Do not flatten the hierarchy into equally weighted tiles.
+
+### Typography Roles
+
+Use **Plus Jakarta Sans** as the product typeface.
+
+Typography roles:
+
+- Page title: desktop `text-2xl font-extrabold text-forest`; mobile `text-base` to `text-xl font-bold`.
+- Primary metric or total: `text-3xl` to `text-4xl`, `font-extrabold`, tight leading.
+- Section title: `text-sm` or `text-xs`, `font-bold`, forest.
+- Row title: `text-sm`, `font-semibold`, forest.
+- Button text: `text-sm`, `font-semibold` or `font-bold`.
+- Label: `text-xs` to `text-sm`, `font-medium` or `font-semibold`.
+- Supporting text: `text-xs` or `text-[10px]`, muted.
+- Caption or payment-card microcopy: `text-[8px]` to `text-[10px]`, muted or opacity-reduced.
+
+Use weight more than size. Do not create hierarchy through excessive font-size variation.
+
+### Interaction Tone
+
+- Interactions should be calm, crisp, touch-friendly, and premium.
+- Use restrained hover fills such as cream, cream-dark, white translucency, or stronger forest text.
+- Use lime-aligned focus rings.
+- Major CTAs may use subtle scale feedback such as `hover:scale-[1.02]` and `active:scale-[0.98]`.
+- Avoid dramatic animation, bounce, neon glow, excessive elevation, or noisy transitions.
+- State changes must be clear without destabilizing layout.
+
+## Core UI/UX Principles
+
+### Clarity
+
+- Every screen must have one primary purpose.
+- The main content and primary action must be obvious.
+- Labels should describe user goals, not implementation details.
+- Avoid vague button labels such as “Submit” when a specific action is available.
+- Keep copy short, concrete, and task-oriented.
+
+### Task Completion
+
+- Design around what the user needs to accomplish.
+- Place frequent actions near the content they affect.
+- Keep primary workflows direct.
+- Separate destructive or rare actions from routine paths.
+- Preserve user input when validation fails.
+
+### Consistency
+
+- Similar actions must look and behave similarly.
+- Similar information must use similar structure.
+- Reuse spacing, radius, typography, icon, state, and component patterns.
+- Do not introduce a new variant unless it solves a real problem.
+
+### Accessibility
+
+- Maintain readable contrast.
+- Provide visible focus states.
+- Do not rely on color alone for status.
+- Keep interactive targets touch-friendly.
+- Use persistent labels or accessible names for controls.
+- Show text for errors, warnings, disabled explanations, and empty states.
+- Ensure keyboard order follows visual and task order.
+
+### Progressive Disclosure
+
+- Show essential information first.
+- Move advanced, rare, or secondary details into sheets, dialogs, expansion areas, row details, or overflow menus.
+- Do not hide required information needed for a safe decision.
+- Preserve state when content is expanded, collapsed, filtered, or edited.
+
+### UX Reasoning Rules
+
+When making layout or component decisions, justify them through:
+
+- **Clarity:** Does the user understand the screen quickly?
+- **Hierarchy:** Is the primary content visually dominant?
+- **Visual priority:** Are high-priority actions and values emphasized more than metadata?
+- **Consistency:** Does this reuse existing product patterns?
+- **Task completion:** Does the layout reduce steps and decision friction?
+- **Accessibility:** Are states, labels, focus, contrast, and target sizes usable?
+- **Scalability:** Will the pattern still work with more records, more settings, longer labels, loading states, and responsive breakpoints?
+
+## Project-Specific Style Rules
+
+### Color Usage Rules
+
+- Use cream as the app canvas, not generic gray or pure white.
+- Use white for cards, panels, lists, nav bars, popovers, and dialogs.
+- Use forest green for primary text, headings, navigation, icons, dark cards, and major secure actions.
+- Use lime for constructive CTAs, active accents, chart highlights, progress dots, focus rings, and optimistic brand emphasis.
+- Use muted forest/green-gray for captions, helper text, dates, categories, subtitles, and secondary metadata.
+- Use semantic green for income, positive deltas, verified states, and success.
+- Use semantic red for negative values, destructive actions, failed states, and validation errors.
+- Use amber or warning tones sparingly and contained inside cream or white surfaces.
+- Avoid blue SaaS defaults unless explicitly required by external branding.
+- Do not use lime as arbitrary decoration.
+
+### Typography Rules
+
+- Use Plus Jakarta Sans.
+- Use compact, bold hierarchy.
+- Reserve the largest sizes for balances, totals, and high-value metrics.
+- Keep headings short and functional.
+- Prefer sentence case.
+- Keep UI copy concise.
+- Use muted text for explanations and metadata.
+- Right-align financial amounts where comparison matters.
+- Use tabular or aligned numbers when presenting comparable financial values.
+- Avoid paragraph-heavy UI inside operational screens.
+
+### Spacing Rules
+
+- Mobile page padding: `px-4` or `px-5`.
+- Desktop page padding: around `24px`.
+- Desktop grids: `gap-4`.
+- Mobile vertical stacks: `space-y-4`.
+- Standard cards: `p-5`.
+- Major cards and panels: `p-6`.
+- Compact rows: `p-3`.
+- Icon-label controls: `gap-2` or `gap-2.5`.
+- Tight metadata: `gap-0.5` to `gap-1.5`.
+- Use larger spacing to separate task groups, not arbitrary dividers.
+- Do not compress the system into dense spreadsheet-like admin spacing.
+
+### Radius Rules
+
+- Major branded surfaces: `rounded-3xl`.
+- Secondary cards, nav pills, action tiles, dialogs: `rounded-2xl`.
+- Inputs, compact buttons, icon wells: `rounded-xl` or `rounded-2xl`.
+- Avatars, dots, circular icons, chart bars: `rounded-full`.
+- Avoid square buttons, sharp cards, and hard-edged panels.
+- Keep radius consistent across similar components.
+
+### Shadow And Elevation Rules
+
+- Use low elevation inside the app.
+- Standard cards and icon buttons may use `shadow-sm`.
+- Interactive rows may escalate subtly to `hover:shadow-md`.
+- Floating primary actions may use `shadow-lg`.
+- Dialogs, dropdowns, and popovers may use stronger but controlled elevation.
+- Do not use heavy shadows for static grouping.
+- Do not copy large demo-device shadows into normal app surfaces.
+
+### Hierarchy Rules
+
+- Establish one dominant focal point per screen or major region.
+- Use forest or lime surfaces selectively for key metrics or actions.
+- Use white rounded panels for supporting content.
+- Use muted text and smaller type for metadata.
+- Keep repeated rows internally consistent.
+- Use spacing and weight before decorative separators.
+- Do not let page titles, cards, buttons, badges, and metadata compete equally.
+
+### Visual Priority Rules
+
+- Primary values and primary actions get strongest contrast.
+- Secondary actions stay available but visually quieter.
+- Tertiary actions use text, ghost styling, icons, or overflow menus.
+- Destructive actions must be visually distinct and separated from constructive actions.
+- Active navigation and selected filters must be easy to identify.
+- Status indicators must include readable text, not only color.
+- Do not assign high emphasis to more than one competing action in the same task area.
+
+### Interaction State Rules
+
+- Hover: subtle cream, cream-dark, white translucency, or forest text changes.
+- Focus: visible lime ring or forest/lime border treatment.
+- Active: brief press or scale feedback for buttons and CTAs.
+- Selected: persistent forest fill, lime dot, white active segment, or clear active chip.
+- Disabled: opacity reduction with preserved layout; explain why when not obvious.
+- Loading: layout-stable skeletons or localized button loading states.
+- Validation: destructive border/ring plus concise error text near the field.
+- Success: proportional confirmation near the changed context.
+- Warning: calm card-like warning with clear consequence.
+- Error: explain what happened and how to recover.
+
+### Layout Rules
+
+- Use cream canvas with white rounded content modules.
+- Use mobile bottom navigation and desktop sidebar patterns when appropriate.
+- Use sidebar widths around `224px-256px` for desktop app navigation.
+- Use max content widths around `max-w-5xl` to `max-w-6xl` for full product pages.
+- Use a header with title/subtitle on the left and compact actions/filters on the right.
+- Use 1-column mobile stacks.
+- Use 3-column desktop dashboard grids.
+- Use 5-column desktop analytics/list combinations when a chart and list share a page.
+- Keep primary actions visible in predictable places.
+- Avoid placing unrelated controls in the same toolbar.
+
+### Responsiveness Rules
+
+- Mobile: stack content, preserve primary actions, use bottom nav, use cards/lists before tables.
+- Desktop: use sidebar plus content, multi-column grids, card-contained tables, and header-level actions.
+- Keep touch targets roughly `36px-48px` where possible.
+- Allow horizontal scrolling only for intentionally wide data tables or carousels.
+- Convert dense tables into list rows or cards on small screens when comparison is not the main task.
+- Move advanced filters into sheets or dialogs on narrow viewports.
+- Preserve hierarchy across breakpoints instead of merely shrinking everything.
+
+## Visual Priority And Hierarchy Rules
+
+Before generating a screen, determine hierarchy in this order:
+
+1. Primary user task.
+2. Primary content needed for that task.
+3. Primary action.
+4. Secondary actions.
+5. Status, risk, validation, or feedback.
+6. Supporting metadata.
+7. Optional or advanced details.
+
+Apply visual weight accordingly:
+
+- High priority: strong contrast, larger or heavier type, dominant placement, or forest/lime surface.
+- Medium priority: clear but quieter controls, white/cream surfaces, semibold text.
+- Low priority: muted metadata, smaller type, reduced opacity, tertiary placement.
+- Risk priority: destructive or warning styling only when consequences justify it.
+
+For this project, the ideal hierarchy often feels like:
+
+- Cream canvas.
+- One forest or lime focal surface.
+- White rounded content panels.
+- Bold compact section labels.
+- Strong numbers or names.
+- Muted metadata.
+- Soft hover and focus states.
+
+## Typography As UX Rules
+
+Typography must guide scanning and reduce cognitive effort.
+
+- Use page titles as location markers.
+- Use section titles as scan anchors.
+- Use large extra-bold values only for important totals, balances, or metrics.
+- Use concise row titles with secondary metadata beneath.
+- Use helper text only when it prevents mistakes.
+- Use error text that tells the user how to fix the problem.
+- Use action labels that state the result, such as “Add card,” “Save changes,” “Invite member,” or “Apply filters.”
+- Avoid long explanations inside cards, tables, forms, and settings rows.
+- Do not use all caps for hierarchy unless matching an existing compact label pattern.
+- Keep terminology consistent across navigation, headers, buttons, empty states, and alerts.
+
+## Interaction Rules
+
+The interaction model is restrained, precise, and accessible.
+
+### Buttons
+
+- One primary button per task area.
+- Forest primary for secure, major, or high-authority actions.
+- Lime primary for constructive, optimistic, add/create, or signature actions.
+- White or cream secondary buttons with light borders.
+- Ghost or text buttons for low-priority actions.
+- Destructive buttons only for destructive actions.
+- Use loading states on the button that initiated the action.
+- Preserve layout during hover, active, disabled, and loading states.
+
+### Links
+
+- Use links for navigation.
+- Use buttons for actions.
+- Avoid styling a destructive action as a casual link unless it is clearly separated and labeled.
+
+### Menus
+
+- Use menus for overflow actions.
+- Keep menu items compact and readable.
+- Use red only for destructive menu items.
+- Do not hide essential primary actions only in menus.
+
+### Focus
+
+- Every interactive element needs a visible focus state.
+- Focus should use the app’s lime/forest focus language, not browser-blue defaults.
+- Focus order must match visual and task order.
+
+### Motion
+
+- Use quick color, opacity, shadow, or subtle scale transitions.
+- Screen transitions may slide over roughly `320ms` with a standard ease.
+- Avoid bounce, large transforms, parallax, animated decoration, or motion that distracts from tasks.
+
+## Layout And Page Composition Rules
+
+### Page Recipe
+
+Use this default structure for new product screens:
+
+1. Cream canvas.
+2. Header with short title, muted subtitle, and 1 primary action plus optional compact filters.
+3. Dominant metric, status, or action surface when useful.
+4. White rounded panels for main content.
+5. Compact rounded rows, cards, or table containers.
+6. Muted metadata and restrained secondary actions.
+7. Complete empty, loading, error, selected, disabled, and responsive states.
+
+### Dashboard Composition
+
+- Lead with decision-relevant metrics.
+- Use one forest or lime hero card per major dashboard region.
+- Use white rounded-3xl metric cards for supporting stats.
+- Use rounded chart bars and forest/lime chart colors first.
+- Group metrics by user question, not arbitrary card count.
+- Avoid decorative charts that do not support decisions.
+- Provide clear drill-down paths.
+
+### CRUD Composition
+
+- List pages should include search, filters, create action, records, empty/loading/error states, and row actions.
+- Detail pages should show identity, status, key metadata, primary actions, related records, and destructive actions separated.
+- Create/edit pages should use grouped white rounded form panels.
+- After create/update/delete, show clear feedback and preserve useful context.
+- Prefer rounded rows and card-contained tables over raw grid-heavy layouts.
+
+### Settings Composition
+
+- Group settings by user mental model.
+- Use white rounded cards containing compact settings rows.
+- Each row should have an icon well, title, optional subtitle, current value/status, and chevron or control.
+- Separate dangerous settings into their own lower-emphasis or red-accent section.
+- Make save behavior obvious.
+- Show unsaved changes when relevant.
+
+### Forms Composition
+
+- Use one-column forms on mobile.
+- Use two-column desktop grouping only when it improves scanning.
+- Group related fields in white rounded-3xl panels.
+- Use visible labels, concise helper text, and inline errors.
+- Use lime or forest submit actions.
+- Keep cancel/destructive actions visually separated from submit.
+- Use dedicated pages instead of modals for long or complex forms.
+
+### Table Composition
+
+- Use tables only when precise comparison across shared attributes matters.
+- Place tables inside white rounded-3xl card containers.
+- Use muted compact headers.
+- Use `text-sm` body cells and bold important values.
+- Keep row height readable, roughly `h-12` to `h-14`.
+- Use sparse dividers and cream hover states.
+- Use semantic compact badges for status.
+- Provide responsive list fallback on mobile when possible.
+
+## Component Rules
+
+### Dashboards
+
+- Use a cream page background.
+- Start with a hero metric or status card when the page needs a strong anchor.
+- Use forest/lime for the most important card only.
+- Use white rounded support cards.
+- Keep charts simple, rounded, and readable.
+- Include trends, comparison, or thresholds when a number alone is not meaningful.
+- Avoid disconnected card grids with no user question.
+
+### Settings Pages
+
+- Use sectioned white rounded panels.
+- Use compact rows with icon wells.
+- Use muted subtitles for consequences or current state.
+- Use toggles for immediate on/off settings.
+- Use chevrons for navigational settings.
+- Place destructive or security-sensitive settings separately.
+- Do not bury critical billing, permissions, or security settings.
+
+### CRUD Pages
+
+- Use header-level create action.
+- Place common filters near the list.
+- Use compact filter chips/selects.
+- Use rounded rows or card-contained tables.
+- Use overflow menus for secondary row actions.
+- Separate destructive actions.
+- Include empty, filtered-empty, loading, and error states.
+
+### Forms
+
+- Use white rounded form cards on cream.
+- Use forest labels and muted helper text.
+- Use branded rounded inputs, ideally `rounded-xl` or `rounded-2xl`.
+- Use lime focus rings and destructive invalid states.
+- Use clear field grouping.
+- Preserve input after validation errors.
+- Prefer specific submit labels.
+
+### Tables
+
+- Use card-contained tables.
+- Avoid dense full grid lines.
+- Keep headers muted and compact.
+- Use semantic badges and right-aligned numbers.
+- Use cream row hover.
+- Use row expansion or detail drawers for secondary metadata.
+- Convert to list cards on mobile when precise comparison is less important.
+
+### Analytics Blocks
+
+- Use white rounded-3xl chart cards or forest/lime summary cards.
+- Use forest and lime as first chart colors.
+- Use rounded bars and minimal axes.
+- Use tiny muted legends.
+- Avoid dense chart grids.
+- Pair every chart with a clear summary or decision point.
+- Keep analytics visually calm and financially precise.
+
+### Dialogs
+
+- Use dialogs for short focused tasks, confirmations, lightweight creation, and destructive confirmation.
+- Use white surfaces, black overlay, forest title, muted description, and rounded-3xl branded geometry.
+- Use lime or forest primary action.
+- Use ghost/white secondary action.
+- Use pale red accents for destructive confirmations.
+- Do not use dialogs for complex multi-step workflows.
+
+### Navigation
+
+- Mobile navigation: white bottom bar, compact labels, active forest state, optional central lime action.
+- Desktop navigation: white sidebar on cream, light border, logo/header, grouped nav, active forest pill with lime dot.
+- Inactive items should be muted and hover to cream/forest.
+- Keep primary navigation stable.
+- Do not mix navigation, filters, and destructive actions without clear separation.
+
+### Cards
+
+- Major cards: white, forest, or lime, rounded-3xl.
+- Standard cards: white rounded-3xl with `shadow-sm`.
+- Secondary rows/cards: rounded-2xl.
+- Payment or financial cards may use strong forest/lime contrast and compact typography.
+- Cards should have one clear purpose.
+- Do not put cards inside cards unless the nested card is a distinct repeated object.
+
+### Empty States
+
+- Use dashed rounded containers for add/new/first-use states.
+- Use white rounded panels for larger empty states.
+- Include muted icon well, concise title, short explanation, and one primary action.
+- For filtered empty states, provide clear reset or search adjustment.
+- Avoid decorative emptiness with no next step.
+
+### Alerts
+
+- Use calm card-like alerts.
+- Include an icon well, short title, and concise explanation.
+- Use pale red for destructive alerts, not large saturated red blocks unless the action is irreversible.
+- Use inline alerts near the affected content when possible.
+- Avoid stacking multiple alerts without priority.
+
+### Filters
+
+- Use compact chips, pills, selects, or search controls.
+- Place filters near the data they affect.
+- Show active filters visibly.
+- Provide clear reset behavior.
+- Use advanced filters in a sheet or dialog.
+- Selected filters should use forest fill, lime/forest border, or a clear active chip style.
+- Do not hide active constraints inside menus without visible summary.
+
+## Derived Component Rules
+
+When generating a component that does not exist in the source repository, derive it from the source system instead of inventing a new style family.
+
+Use this derivation process:
+
+1. Identify the component’s job.
+2. Match it to the closest existing source pattern.
+3. Preserve source tokens: cream, white, forest, lime, muted, semantic green/red.
+4. Preserve source geometry: rounded-xl, rounded-2xl, rounded-3xl, rounded-full.
+5. Preserve source spacing: compact but breathable.
+6. Preserve source hierarchy: strong numbers/names, short labels, muted metadata.
+7. Preserve source interaction tone: subtle hover, lime focus, low elevation.
+8. Add only the minimum new behavior required by the task.
+
+Examples:
+
+- A kanban board should use cream canvas, white rounded columns, rounded task cards, forest labels, muted metadata, and lime/forest selected or primary states.
+- A permissions matrix should be card-contained, low-divider, rounded, and compact, with clear role/status badges.
+- A billing page should use a forest or lime focal summary card, white rounded invoice/payment panels, compact rows, and semantic amount colors.
+- A search results page should use rounded white result rows/cards, compact filters, muted snippets, and forest/lime selected states.
+- An audit log should use a card-contained table or timeline with sparse dividers, muted timestamps, rounded status badges, and restrained emphasis.
+
+Derived components may become more utilitarian, but they must remain visibly part of the same warm fintech system.
+
+## Constraints
+
+The AI must never:
+
+- Replace the cream canvas with generic gray or pure white page defaults.
+- Replace forest/lime brand states with blue SaaS defaults.
+- Introduce sharper geometry when the source uses rounded language.
+- Make sharp rectangular cards, square primary buttons, or hard-edged panels dominant.
+- Flatten or neutralize the spacious compact rhythm into cramped generic admin UI.
+- Break spacing rhythm with arbitrary gaps and padding.
+- Create inconsistent hierarchy where all cards, actions, and labels compete equally.
+- Use decorative elements without functional value.
+- Overuse heavy shadows, glassmorphism, glow, gradients, or ornamental effects.
+- Make every card saturated or visually loud.
+- Use dense divider-heavy tables as the default representation for financial or operational data.
+- Use large bodies of low-contrast explanatory text.
+- Let generic primitive defaults visually dominate branded product screens.
+- Use lime for arbitrary decoration.
+- Overcomplicate interactions with unnecessary flows, hidden controls, or novelty patterns.
+- Invent unsupported component patterns without grounding them in source identity.
+- Hide essential actions or information behind hover-only behavior.
+- Use color-only status communication.
+- Place destructive actions beside constructive primary actions without separation.
+- Use modals for complex workflows that need dedicated pages.
+
+## Anti-Drift Rules
+
+Use these rules to prevent style drift over time.
+
+- Start every new screen from the source identity: cream canvas, forest authority, lime accent, white rounded surfaces, compact hierarchy.
+- Compare every new component against an existing pattern before creating a new one.
+- Prefer finance-screen patterns over generic shadcn defaults when they conflict.
+- Keep visible branded surfaces in the large-radius family.
+- Preserve the balanced-compact spacing rhythm.
+- Keep one dominant visual anchor per section.
+- Use forest/lime active and primary states consistently.
+- Keep metadata muted and concise.
+- Use semantic colors only for semantic meaning.
+- Avoid adding new colors unless the role is necessary and reusable.
+- Avoid adding new radii unless the component has a distinct system role.
+- Avoid adding new shadows unless there is a real elevation layer.
+- Avoid adding new interaction behavior unless it improves task completion.
+- Review new UI against the non-negotiable traits before finalizing.
+- If a screen begins to look like a generic admin template, reintroduce the project DNA through radius, spacing, color hierarchy, and compact financial-style information grouping.
+
+## Final Operating Instructions
+
+When generating UI for this project:
+
+- Prefer product-ready interface design over conceptual mockups.
+- Reuse existing patterns first.
+- Extend the system instead of reinventing it.
+- Preserve the source design identity across all UI categories.
+- Generate components that feel native to the existing app.
+- Make key decisions explainable through clarity, hierarchy, visual priority, consistency, task completion, accessibility, and scalability.
+- Include complete states for hover, focus, active, selected, disabled, loading, empty, error, validation, and responsive behavior when relevant.
+- Use conservative adaptation when translating the design language into new product areas.
+
+A portfolio, marketing page, or landing style may be adapted into dashboards, CRUD pages, settings, and utility screens, but the defining traits must remain recognizable: **soft rounded geometry, warm cream canvas, forest/lime hierarchy, compact spacing character, disciplined emphasis, bold financial typography, and calm interaction tone**.
+tokens used
+38,974

@@ -1,0 +1,600 @@
+{
+  "style_name": "Terminal IDE Monochrome",
+  "visual_identity": {
+    "tone": "technical, terminal-native, developer-focused",
+    "density": "medium-dense with compact controls, large hero moments, and high information density in docs",
+    "corner_style": "dominantly sharp and square in product surfaces; shadcn library components retain rounded-md/lg defaults",
+    "elevation_style": "border-led elevation with sparse shadows, glow-on-hover, and offset duplicate-border CTA treatment",
+    "contrast_profile": "high contrast black/white base with gray hierarchy and limited semantic status color",
+    "mood": "command-line, IDE chrome, cyber-terminal, precise",
+    "notes": [
+      "Requested context files under input/ and outputs/ were not present in the checkout; profile is based on direct inspection of app/page.tsx, app/docs/page.tsx, app/globals.css, styles/globals.css, components.json, and components/ui/*.",
+      "Landing and docs pages use bg-black text-white font-mono directly, overriding the more general shadcn neutral token system.",
+      "Visual signature comes from ASCII art, terminal panels, window-control dots, command snippets, matrix characters, scan/glow animation, and monochrome borders."
+    ]
+  },
+  "identity_traits": {
+    "non_negotiable_traits": [
+      "black or near-black page background",
+      "monospace product UI for terminal/CLI surfaces",
+      "white primary text with gray secondary hierarchy",
+      "rectangular bordered panels",
+      "hover states brighten borders/text rather than introducing new color families",
+      "green/red/yellow reserved for terminal status and window controls"
+    ],
+    "adaptable_traits": [
+      "shadcn components may use rounded-md/lg defaults when outside bespoke terminal surfaces",
+      "accent gradients are allowed only as white-to-gray text or subtle gray panel backplates",
+      "blue may appear in shell prompt/path text but should not become a primary brand color",
+      "animations may be pulsing, blinking, scanning, typing, or matrix-like when they reinforce the terminal metaphor"
+    ],
+    "source_type": "direct repository inspection",
+    "adaptation_notes": [
+      "Prefer page-level terminal aesthetic over default shadcn styling for product-facing screens.",
+      "Where a component exists only in components/ui and is not used by pages, confidence is lower and source_basis states library implementation."
+    ]
+  },
+  "tokens": {
+    "colors": {
+      "primary": "white / text-white / bg-white for primary CTA",
+      "secondary": "gray-400 for secondary text and navigation",
+      "accent": "gray-900, gray-800, gray-700, gray-600 border/surface accents",
+      "neutral": [
+        "black",
+        "gray-950",
+        "gray-900",
+        "gray-800",
+        "gray-700",
+        "gray-600",
+        "gray-500",
+        "gray-400",
+        "gray-300",
+        "white"
+      ],
+      "success": "green-400 / green-500 for status dots, copied state, active availability",
+      "warning": "yellow-500 for terminal window dot and pending status",
+      "danger": "red-500 for terminal window dot; shadcn destructive token oklch(0.577 0.245 27.325)",
+      "background": "bg-black; token --background defaults to oklch(1 0 0) light and oklch(0.145 0 0) dark",
+      "surface": "bg-gray-950, bg-gray-900, bg-black, bg-gray-950/95, bg-gray-950/30",
+      "text": {
+        "primary": "text-white",
+        "secondary": "text-gray-400",
+        "muted": "text-gray-500 / text-gray-600 / text-gray-700",
+        "inverse": "text-black on bg-white CTA"
+      },
+      "border": "border-gray-800 primary section dividers; border-gray-700 panels; border-gray-600/500 hover; border-white active CTA"
+    },
+    "spacing": {
+      "density": "medium-dense",
+      "section_gap": [
+        "py-16",
+        "py-20",
+        "mb-12",
+        "mb-16"
+      ],
+      "card_gap": [
+        "gap-4",
+        "gap-6",
+        "space-y-6",
+        "space-y-8"
+      ],
+      "control_gap": [
+        "gap-2",
+        "gap-3",
+        "gap-4",
+        "px-3 py-1.5",
+        "px-4 py-2",
+        "px-6 py-4"
+      ],
+      "grouping_pattern": "large centered sections with max-width containers; terminal panels use header/body split; docs use fixed sidebar plus content stack",
+      "adaptation_rule": "Use p-6 for panels/cards, px-6 lg:px-12 for page gutters, max-w-7xl for landing sections, max-w-4xl/5xl for terminal and docs content."
+    },
+    "radius": {
+      "control": "product CTAs and command blocks are square; shadcn controls default rounded-md",
+      "container": "product panels/cards are mostly square; shadcn Card default rounded-xl",
+      "overlay": "Dialog and AlertDialog use rounded-lg",
+      "pill": "only status indicators use rounded-full",
+      "dominant_family": "sharp/square terminal geometry",
+      "sharp_allowed": "yes; preferred for product-facing terminal surfaces",
+      "style_rule": "Default to no radius for terminal panels, code blocks, cards, and CTAs; allow rounded-md/lg only when using stock shadcn primitives or status dots."
+    },
+    "shadows": [
+      "shadow-xl",
+      "shadow-2xl",
+      "shadow-lg group-hover:shadow-white/20",
+      "group-hover:shadow-xl group-hover:shadow-white/10",
+      "shadow-sm/shadow-md/shadow-lg in shadcn overlays",
+      "custom terminal-window glow rgba(255,255,255,0.1-0.2)"
+    ],
+    "typography": {
+      "font_families": [
+        "Geist",
+        "Geist Mono",
+        "font-mono on product pages",
+        "Courier New / Monaco / Menlo for terminal-text utility"
+      ],
+      "scale": [
+        "text-xs",
+        "text-sm",
+        "text-base",
+        "text-lg",
+        "text-xl",
+        "text-2xl",
+        "text-3xl",
+        "text-4xl",
+        "text-5xl",
+        "text-6xl"
+      ],
+      "font_weights": [
+        "font-medium",
+        "font-semibold",
+        "font-bold"
+      ],
+      "line_heights": [
+        "leading-none for ASCII/title glyphs",
+        "leading-tight for hero headings",
+        "leading-relaxed for supporting copy",
+        "text-sm/relaxed in empty descriptions"
+      ]
+    },
+    "widths": [
+      "max-w-7xl page/nav sections",
+      "max-w-5xl CTA section",
+      "max-w-4xl terminal/docs content",
+      "max-w-3xl hero copy",
+      "w-80 docs mobile sidebar",
+      "16rem shadcn sidebar width",
+      "18rem shadcn mobile sidebar width",
+      "3rem shadcn collapsed sidebar width"
+    ],
+    "breakpoints": [
+      "sm",
+      "md",
+      "lg",
+      "desktop sidebar at lg",
+      "mobile menu below md/lg depending page"
+    ]
+  },
+  "hierarchy": {
+    "primary_focus_pattern": "centered hero with ASCII masthead, large bold headline, install CTA, and live terminal simulator",
+    "secondary_content_pattern": "terminal-window sections with command headers, rows, status metadata, and centered section headers",
+    "cta_hierarchy": "primary: white filled offset install command; secondary: dashed outline documentation link; tertiary: inline command copy rows/text links",
+    "emphasis_rules": [
+      "Use white for active/primary content.",
+      "Use gray-400 for explanatory copy and inactive navigation.",
+      "Use gray-500/600 for metadata and low-priority terminal chrome.",
+      "Use border brightness changes for hover/selection.",
+      "Use green only for success/online/copied/active status."
+    ],
+    "grouping_rules": [
+      "Terminal panels group content with gray-900 header, gray-700 divider, and black body.",
+      "Docs content groups each topic in bg-gray-950 border-gray-800 p-6 blocks.",
+      "Repeated command rows are black bordered strips with copy affordance on the right.",
+      "Feature cards use numbered square markers and command snippets as anchors."
+    ],
+    "contrast_usage": "Very high contrast for foreground and CTAs; gray hierarchy distinguishes metadata, descriptions, inactive items, and borders."
+  },
+  "typography_roles": {
+    "page_title": "text-4xl lg:text-6xl font-bold leading-tight on landing; text-4xl font-bold in docs",
+    "section_title": "text-3xl/lg:text-4xl or text-4xl/lg:text-5xl font-bold with centered alignment on landing; text-2xl font-bold in docs panels",
+    "body": "text-lg or text-xl for landing explanatory copy; text-gray-400 body copy in docs",
+    "supporting_text": "text-sm/text-xs gray-400/500 for metadata, descriptions, status labels, and command hints",
+    "label": "font-medium or font-bold, often text-white; sidebar labels use text-sm and active border/background",
+    "caption": "text-xs gray-500 for terminal status, version, availability, command metadata",
+    "scanning_behavior": "Users scan from white headings to gray descriptions to bordered command blocks; monospace rows and bracketed numbers support quick terminal-like parsing."
+  },
+  "interaction": {
+    "hover": "text gray-400 to white, border gray-700/600 to gray-500/white, subtle gray background, shadow-white glow, and occasional translate offset reset",
+    "focus": "shadcn primitives use focus-visible:border-ring and focus-visible:ring-ring/50 ring-[3px]; dialogs close button uses focus:ring-2 ring-offset",
+    "active": "docs active sidebar items use bg-gray-900 border-gray-600 text-white; selected shadcn rows/items use data-state styles",
+    "selected": "selected rows/items use bg-muted or bg-gray-900 with stronger border; select/menu items show check/circle indicators",
+    "disabled": "shadcn controls use disabled:pointer-events-none disabled:opacity-50; select adds disabled:cursor-not-allowed",
+    "loading": "terminal simulator uses bouncing dots, Processing text, blinking cursor, pulsing status dots, and timed command/output sequences",
+    "validation": "form/input/select/button primitives support aria-invalid:border-destructive and destructive ring; FormMessage renders text-destructive text-sm",
+    "feedback_style": "copy actions swap Copy icon to green Check for 2 seconds; success terminal lines render green; hover feedback is immediate via transition-colors/transition-all"
+  },
+  "layout": {
+    "page_shell": "black full-height shell with sticky top nav and terminal/matrix background on landing; docs shell uses sticky nav, left sidebar, and content main",
+    "page_width_strategy": "max-w-7xl for broad landing content, max-w-4xl for terminal/docs reading, max-w-5xl for CTA section, centered mx-auto containers",
+    "header_pattern": "sticky bg-gray-950/95 nav with border-b, backdrop-blur-sm, logo/window dots, hidden desktop links, and command/install action",
+    "section_spacing": "landing sections use px-6 py-16/20 lg:px-12 with border-t dividers; docs uses p-6 lg:p-12 content padding",
+    "grid_rules": [
+      "feature cards use grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+      "IDE list uses grid-cols-2 md:grid-cols-3 gap-4",
+      "docs default cards use md:grid-cols-2 gap-6",
+      "matrix background uses custom grid-cols-25 increasing at md/lg"
+    ],
+    "navigation_patterns": [
+      "desktop landing nav shows inline anchors with underline-on-hover",
+      "mobile landing shows hamburger icon only",
+      "docs mobile uses off-canvas sidebar with overlay",
+      "docs desktop sidebar is fixed/static left navigation with nested items"
+    ],
+    "responsive_rules": [
+      "CTAs stack flex-col on mobile and become sm:flex-row.",
+      "Long command text uses break-all on small screens where needed.",
+      "Sidebar is translated offscreen on mobile and static on lg.",
+      "Landing terminal/list footers switch from column to row at md."
+    ]
+  },
+  "components": {
+    "buttons": {
+      "explicit": true,
+      "source_basis": "components/ui/button.tsx plus custom CTA div/button patterns in app/page.tsx and app/docs/page.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "trigger install/copy/navigation/actions",
+        "appearance": "stock Button is rounded-md with variants; product CTAs are square bordered blocks, often offset over a secondary border layer",
+        "spacing": "stock h-8/h-9/h-10 px-3/4/6; product CTAs use px-6 to px-16 and py-2 to py-5",
+        "radius": "rounded-md in stock component; no radius in product CTAs",
+        "border": "primary product CTA uses border-white; secondary uses border-2 border-dashed gray-400/600; hover strengthens to white",
+        "shadow": "stock outline has shadow-xs; product hover uses shadow-lg/shadow-white/20",
+        "typography": "text-sm font-medium stock; font-bold monospace product CTA",
+        "states": "hover background/border/text transitions, disabled opacity-50 in stock, focus-visible ring in stock, copied state swaps icon to Check",
+        "variants": [
+          "default",
+          "destructive",
+          "outline",
+          "secondary",
+          "ghost",
+          "link",
+          "terminal-filled",
+          "terminal-dashed",
+          "command-copy"
+        ]
+      }
+    },
+    "inputs": {
+      "explicit": true,
+      "source_basis": "components/ui/input.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "text/file input primitive for forms and sidebar search contexts",
+        "appearance": "transparent bg, border-input, shadow-xs, placeholder muted, full width",
+        "spacing": "h-9 px-3 py-1; md:text-sm",
+        "radius": "rounded-md",
+        "border": "border-input with focus-visible:border-ring and aria-invalid:border-destructive",
+        "shadow": "shadow-xs",
+        "typography": "text-base on mobile, md:text-sm",
+        "states": "focus-visible ring-[3px], disabled opacity-50 cursor-not-allowed, invalid destructive ring/border",
+        "variants": [
+          "default",
+          "file input support"
+        ]
+      }
+    },
+    "selects": {
+      "explicit": true,
+      "source_basis": "components/ui/select.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "compact option selection with Radix Select",
+        "appearance": "transparent bordered trigger, popover content with bg-popover border shadow-md",
+        "spacing": "trigger h-9 px-3 py-2 default, h-8 sm; content p-1; item py-1.5 pl-2 pr-8",
+        "radius": "rounded-md trigger/content, rounded-sm items",
+        "border": "border-input trigger; content border",
+        "shadow": "shadow-xs trigger, shadow-md content",
+        "typography": "text-sm; label text-xs muted",
+        "states": "focus-visible ring-[3px], disabled opacity-50, invalid destructive, open/closed fade/zoom/slide animations, selected item check indicator",
+        "variants": [
+          "default",
+          "sm",
+          "popper"
+        ]
+      }
+    },
+    "dropdowns": {
+      "explicit": true,
+      "source_basis": "components/ui/dropdown-menu.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "menus, checkbox/radio menu items, nested submenus, shortcuts",
+        "appearance": "bg-popover text-popover-foreground bordered menu with compact item rows",
+        "spacing": "content p-1 min-w-8rem; items px-2 py-1.5 gap-2",
+        "radius": "rounded-md content, rounded-sm items",
+        "border": "content border; separators use bg-border",
+        "shadow": "shadow-md",
+        "typography": "text-sm items/labels; shortcut text-xs tracking-widest muted",
+        "states": "focus:bg-accent, data-state=open accent on subtrigger, disabled opacity-50, destructive item variant, open/closed fade/zoom/slide animations",
+        "variants": [
+          "item",
+          "checkbox",
+          "radio",
+          "sub",
+          "destructive",
+          "inset"
+        ]
+      }
+    },
+    "cards": {
+      "explicit": true,
+      "source_basis": "components/ui/card.tsx plus terminal/product panels in app/page.tsx and docs page topic blocks",
+      "confidence": "high",
+      "rules": {
+        "purpose": "group related content, terminal windows, docs topics, feature steps",
+        "appearance": "product cards/panels are bg-gray-950 or bg-black with gray borders; stock Card uses bg-card rounded-xl border shadow-sm",
+        "spacing": "stock py-6 gap-6 px-6 inner parts; product p-6 with gap-4/6 and section mb-12/16",
+        "radius": "product cards square; stock cards rounded-xl",
+        "border": "border-gray-800/700 product; stock border token",
+        "shadow": "terminal panels shadow-xl/2xl; feature cards hover shadow-white/10; stock shadow-sm",
+        "typography": "card titles font-bold/semibold; descriptions gray-400 text-sm",
+        "states": "hover:border-white or gray-500, hover:bg-gray-900, hover shadow/glow, optional slight transform/backplate rotation",
+        "variants": [
+          "terminal-window",
+          "docs-topic",
+          "feature-step",
+          "stock-card"
+        ]
+      }
+    },
+    "tables": {
+      "explicit": true,
+      "source_basis": "components/ui/table.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "responsive tabular data primitive",
+        "appearance": "full-width table inside overflow-x-auto container, border-separated rows via border-b",
+        "spacing": "head h-10 px-2; cells p-2",
+        "radius": "none",
+        "border": "row border-b; footer border-t",
+        "shadow": "none",
+        "typography": "text-sm, head font-medium, caption text-muted-foreground",
+        "states": "row hover:bg-muted/50 and data-state=selected:bg-muted",
+        "variants": [
+          "header",
+          "body",
+          "footer",
+          "caption",
+          "selected row"
+        ]
+      }
+    },
+    "modals": {
+      "explicit": true,
+      "source_basis": "components/ui/dialog.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "general modal content over overlay",
+        "appearance": "centered bg-background panel over bg-black/50 overlay",
+        "spacing": "gap-4 p-6, close button top-4 right-4",
+        "radius": "rounded-lg content; rounded-xs close",
+        "border": "content border",
+        "shadow": "shadow-lg",
+        "typography": "title text-lg font-semibold leading-none; description text-sm muted",
+        "states": "open/closed fade and zoom animations, close hover opacity-100, focus ring, disabled pointer-events-none",
+        "variants": [
+          "default",
+          "with close button",
+          "without close button"
+        ]
+      }
+    },
+    "dialogs": {
+      "explicit": true,
+      "source_basis": "components/ui/alert-dialog.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "confirmation/destructive decision dialogs",
+        "appearance": "same modal shell as Dialog with action/cancel buttons",
+        "spacing": "content gap-4 p-6; footer gap-2 column-reverse on mobile, row at sm",
+        "radius": "rounded-lg",
+        "border": "content border",
+        "shadow": "shadow-lg",
+        "typography": "title text-lg font-semibold; description text-sm muted",
+        "states": "open/closed fade and zoom animations; actions inherit Button states",
+        "variants": [
+          "action",
+          "cancel",
+          "destructive via button variant when supplied"
+        ]
+      }
+    },
+    "sidebars": {
+      "explicit": true,
+      "source_basis": "app/docs/page.tsx docs sidebar and components/ui/sidebar.tsx",
+      "confidence": "high",
+      "rules": {
+        "purpose": "documentation navigation and reusable collapsible app navigation",
+        "appearance": "docs sidebar bg-gray-950 border-r gray-800; reusable sidebar uses bg-sidebar text-sidebar-foreground",
+        "spacing": "docs width w-80 p-6, section gaps space-y-6, item p-2/p-3; reusable width 16rem, mobile 18rem, icon 3rem",
+        "radius": "docs sidebar square; reusable floating variant rounded-lg",
+        "border": "border-r gray-800 docs; reusable border-sidebar-border for floating/side borders",
+        "shadow": "floating reusable sidebar shadow-sm; docs no shadow",
+        "typography": "section labels text-white font-medium; nested items text-sm gray-400",
+        "states": "mobile translate-x open/closed, overlay on mobile, active bg-gray-900 border-gray-600, hover border-gray-700 bg-gray-900, keyboard shortcut support in reusable provider",
+        "variants": [
+          "docs fixed/offcanvas",
+          "sidebar",
+          "floating",
+          "inset",
+          "offcanvas",
+          "icon collapsed"
+        ]
+      }
+    },
+    "tabs": {
+      "explicit": true,
+      "source_basis": "components/ui/tabs.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "segmented content switching",
+        "appearance": "inline bg-muted tab list with active trigger bg-background and optional shadow",
+        "spacing": "root gap-2; list h-9 p-[3px]; trigger px-2 py-1 gap-1.5",
+        "radius": "rounded-lg list, rounded-md trigger",
+        "border": "transparent trigger border; active dark border-input",
+        "shadow": "active trigger shadow-sm",
+        "typography": "text-sm font-medium",
+        "states": "data-state=active background/text/shadow, focus-visible ring-[3px], disabled opacity-50",
+        "variants": [
+          "default"
+        ]
+      }
+    },
+    "badges": {
+      "explicit": true,
+      "source_basis": "components/ui/badge.tsx and inline docs model tags",
+      "confidence": "high",
+      "rules": {
+        "purpose": "compact status/category labels",
+        "appearance": "stock badge rounded-md border px-2 py-0.5; docs tags use bg-gray-800 text-gray-300 px-2 py-1",
+        "spacing": "px-2 py-0.5 stock; gap-1; docs px-2 py-1",
+        "radius": "rounded-md stock; docs tags appear square unless class adds radius",
+        "border": "transparent for filled variants; outline variant keeps border",
+        "shadow": "none",
+        "typography": "text-xs font-medium",
+        "states": "anchor badges hover background, focus-visible ring, invalid destructive support",
+        "variants": [
+          "default",
+          "secondary",
+          "destructive",
+          "outline",
+          "terminal-tag"
+        ]
+      }
+    },
+    "alerts": {
+      "explicit": true,
+      "source_basis": "components/ui/alert.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "inline messages and destructive notices",
+        "appearance": "bordered rounded panel using bg-card text-card-foreground; optional icon grid",
+        "spacing": "px-4 py-3 gap-x-3 gap-y-0.5",
+        "radius": "rounded-lg",
+        "border": "default border with destructive text variant",
+        "shadow": "none",
+        "typography": "text-sm; title font-medium tracking-tight; description text-sm muted",
+        "states": "destructive variant changes text/icon/description color",
+        "variants": [
+          "default",
+          "destructive"
+        ]
+      }
+    },
+    "empty_states": {
+      "explicit": true,
+      "source_basis": "components/ui/empty.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "centered no-content or setup prompts",
+        "appearance": "flex column centered, text-balance, optional icon media",
+        "spacing": "gap-6 p-6 md:p-12; content gap-4; header gap-2",
+        "radius": "rounded-lg container/media icon",
+        "border": "border-dashed on container",
+        "shadow": "none",
+        "typography": "title text-lg font-medium tracking-tight; description text-sm/relaxed muted",
+        "states": "links in description underline and hover:text-primary",
+        "variants": [
+          "default",
+          "icon media"
+        ]
+      }
+    },
+    "charts_containers": {
+      "explicit": true,
+      "source_basis": "components/ui/chart.tsx",
+      "confidence": "medium-high",
+      "rules": {
+        "purpose": "Recharts responsive chart wrapper and tooltip/legend styling",
+        "appearance": "aspect-video flex container with muted axes/grid and tokenized series colors",
+        "spacing": "tooltip px-2.5 py-1.5 gap-1.5; chart container fills responsive area",
+        "radius": "tooltip rounded-lg; indicators rounded-[2px]",
+        "border": "tooltip border-border/50; grid uses stroke-border/50",
+        "shadow": "tooltip shadow-xl",
+        "typography": "text-xs chart/tooltip, font-medium labels",
+        "states": "tooltip renders only when active payload exists; indicator supports dot/line/dashed",
+        "variants": [
+          "dot tooltip indicator",
+          "line tooltip indicator",
+          "dashed tooltip indicator",
+          "themed series colors"
+        ]
+      }
+    },
+    "page_headers": {
+      "explicit": true,
+      "source_basis": "app/page.tsx hero/section headers and app/docs/page.tsx content headers",
+      "confidence": "high",
+      "rules": {
+        "purpose": "orient page/section and establish primary message",
+        "appearance": "large white bold headings, centered on landing and left-aligned in docs content",
+        "spacing": "mb-4/6/8 after titles; header groups mb-12/16",
+        "radius": "none",
+        "border": "section headers often sit above bordered terminal blocks; no direct border",
+        "shadow": "ASCII/terminal glow classes available but headings mostly unshadowed",
+        "typography": "landing h1 text-4xl lg:text-6xl; section h2 text-3xl to text-5xl; docs h1 text-4xl",
+        "states": "some emphasized words animate-pulse or use white-to-gray text gradient",
+        "variants": [
+          "hero ASCII masthead",
+          "centered landing section",
+          "docs content header"
+        ]
+      }
+    },
+    "filters": {
+      "explicit": false,
+      "source_basis": "inferred from available Input, Select, DropdownMenu, Tabs, and Table primitives; no dedicated filter component or product filter UI observed",
+      "confidence": "low",
+      "rules": {
+        "purpose": "filter rows should refine lists/tables without leaving terminal aesthetic",
+        "appearance": "transparent or black controls with gray borders, monospace labels, compact rows",
+        "spacing": "gap-2/3 controls, h-9 controls, p-4 wrapper if framed",
+        "radius": "square for product pages; rounded-md only if using stock primitives directly",
+        "border": "border-gray-700 default, border-gray-500/white hover/focus",
+        "shadow": "none unless dropdown/select popover uses shadow-md",
+        "typography": "text-sm font-mono with muted labels",
+        "states": "active filter should use bg-gray-900 border-gray-600 text-white; disabled opacity-50",
+        "variants": [
+          "search input",
+          "select filter",
+          "tab filter",
+          "dropdown filter"
+        ]
+      }
+    },
+    "form_layouts": {
+      "explicit": true,
+      "source_basis": "components/ui/form.tsx with Input/Select validation conventions",
+      "confidence": "high",
+      "rules": {
+        "purpose": "structured field composition with accessible descriptions and errors",
+        "appearance": "grid-based field stacks with labels, controls, muted descriptions, destructive messages",
+        "spacing": "FormItem grid gap-2; descriptions/messages directly under controls",
+        "radius": "inherits from controls",
+        "border": "inherits control border and invalid destructive border",
+        "shadow": "inherits control shadow-xs",
+        "typography": "label inherits Label; description text-sm muted; message text-sm destructive",
+        "states": "aria-describedby and aria-invalid wired through FormControl; label data-error true turns destructive",
+        "variants": [
+          "field",
+          "description",
+          "message",
+          "controlled input"
+        ]
+      }
+    }
+  },
+  "ux_patterns": {
+    "cta_hierarchy": "Make the install command the strongest action: white filled, black text, offset border, copy feedback. Documentation/navigation actions use dashed or plain outline. Inline command rows act as tertiary copy actions.",
+    "information_grouping": "Group content into terminal-like panels with a chrome header, command body, status footer, and gray border. Docs group topics as stacked bordered blocks with headings, copyable commands, and option lists.",
+    "filter_placement": "No explicit filter UI observed. If added, place filters above the affected list/table as compact monospace control rows, not as detached cards.",
+    "form_structure": "Use FormItem grid gap-2 with label, control, optional muted description, and destructive message. Keep controls compact and full-width in narrow contexts.",
+    "validation_behavior": "Use aria-invalid destructive border/ring, destructive label/message, and preserve accessible describedby wiring from form primitives.",
+    "table_detail_strategy": "Tables should be horizontally scrollable, compact, row-hover highlighted, and selected rows use muted background; detail actions should appear as command-style rows or inline terminal links.",
+    "loading_error_empty_states": "Loading should feel terminal-native: blinking cursor, bouncing dots, Processing text, pulse status dots. Empty states use centered dashed bordered containers. Errors should use destructive alert/form variants but avoid expanding the palette.",
+    "action_placement": "Primary actions appear near section starts or terminal headers; copy actions sit at the right edge of command rows; docs navigation actions live in the left sidebar and close it on mobile.",
+    "notes": [
+      "The product UI favors direct manipulation of command snippets over conventional form-heavy flows.",
+      "Animations are part of the identity but should remain low-amplitude and terminal-relevant.",
+      "Use borders and text contrast as the main hierarchy tools; avoid colorful fills except semantic status indicators."
+    ]
+  },
+  "constraints": [
+    "Do not introduce broad new color families; preserve monochrome terminal identity.",
+    "Do not round terminal/product panels unless intentionally using stock shadcn primitives.",
+    "Do not use card elevation without borders; borders are the primary containment device.",
+    "Keep interactive feedback visible through text, border, icon, or transform changes.",
+    "Maintain responsive command readability; allow wrapping/breaking for long terminal strings on mobile.",
+    "Treat components/ui as reusable library evidence and app/page.tsx plus app/docs/page.tsx as product visual evidence."
+  ]
+}

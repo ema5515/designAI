@@ -1,0 +1,977 @@
+# Professional Software Interface Design Foundation
+
+## Purpose
+
+This skill teaches an AI agent how to design professional, production-ready software interfaces using strong UI and UX fundamentals.
+
+It is intentionally style-agnostic. It does not prescribe a visual brand, color palette, aesthetic trend, or component library. It should be combined later with a project-specific style guide, design system, or codebase-derived UI conventions.
+
+Use this foundation when designing:
+
+- SaaS products
+- Admin tools
+- Dashboards
+- CRUD interfaces
+- Developer tools
+- Internal tools
+- Settings areas
+- Forms and workflows
+- Data-heavy software screens
+
+The goal is to produce interfaces that are clear, usable, consistent, accessible, responsive, and implementation-ready.
+
+## Design Philosophy
+
+Prioritize usefulness before visual novelty.
+
+A professional software interface should help people understand where they are, what matters, what they can do, what will happen next, and whether their action succeeded.
+
+Design decisions must support the user’s task. Every layout, component, interaction state, and visual emphasis should have a reason.
+
+Core philosophy:
+
+- Clarity beats decoration.
+- Hierarchy beats visual noise.
+- Consistency beats cleverness.
+- Feedback beats ambiguity.
+- Accessibility is part of quality, not an optional layer.
+- Reuse established patterns unless there is a clear usability reason to introduce a new one.
+- Good UI should make the user feel oriented, not impressed by the interface itself.
+
+## UX Fundamentals
+
+### Clarity
+
+Make the purpose of each screen immediately understandable.
+
+Rules:
+
+- Each screen should have one primary purpose.
+- The primary user action should be visually and spatially clear.
+- Labels should describe the user’s goal, not internal system concepts.
+- Avoid vague button text such as “Submit” when a specific action is possible, such as “Create report” or “Save changes”.
+- Use plain language over clever copy.
+- Show enough context for users to make decisions without hunting.
+
+### Usability
+
+Design for efficient completion of real tasks.
+
+Rules:
+
+- Put the most common actions where users expect them.
+- Reduce unnecessary steps in frequent workflows.
+- Avoid making users remember information from previous screens.
+- Preserve user input when possible after errors, navigation, or failed submissions.
+- Make destructive or irreversible actions harder to trigger accidentally.
+- Support keyboard and pointer usage for core interactions.
+
+### Consistency
+
+Use the same patterns for the same types of problems.
+
+Rules:
+
+- Similar actions should use similar components.
+- Similar information should be formatted similarly.
+- Do not change spacing, radius, elevation, or typography arbitrarily between similar elements.
+- Once a pattern is established, reuse it across screens.
+- Avoid creating one-off layouts unless the workflow genuinely requires one.
+
+### Feedback And State Visibility
+
+Users should always understand what is happening.
+
+Rules:
+
+- Show loading states for async actions.
+- Show success, warning, and error states near the affected area.
+- Reflect selected, active, expanded, disabled, and focused states visually.
+- Confirm important completed actions when the result is not immediately obvious.
+- Keep system status visible during long-running operations.
+- Do not leave users wondering whether a click worked.
+
+### Cognitive Load Reduction
+
+Reduce the amount users must parse, remember, or decide at once.
+
+Rules:
+
+- Group related controls and information.
+- Break complex workflows into clear steps.
+- Use progressive disclosure for advanced or infrequent options.
+- Avoid showing every possible action at equal weight.
+- Keep primary, secondary, and tertiary actions visually distinct.
+- Prefer recognition over recall: show options, summaries, previews, and context.
+
+### Accessibility
+
+Design for inclusive use from the start.
+
+Rules:
+
+- Maintain sufficient contrast for text, icons, controls, and focus states.
+- Do not communicate meaning through color alone.
+- Provide visible keyboard focus for all interactive elements.
+- Ensure controls have meaningful labels.
+- Use semantic structure where applicable.
+- Support touch targets large enough for mobile and coarse pointer use.
+- Avoid relying only on hover interactions.
+- Preserve readability at different viewport sizes and zoom levels.
+
+### Responsiveness
+
+Interfaces must adapt without losing hierarchy or function.
+
+Rules:
+
+- Define how layouts collapse from desktop to tablet to mobile.
+- Preserve the primary action and key content across breakpoints.
+- Avoid horizontal scrolling except for intentional data tables.
+- Stack related controls logically on smaller screens.
+- Keep forms readable and inputs usable on mobile.
+- Reconsider density for small screens instead of only shrinking elements.
+
+### Task-Oriented Design
+
+Design screens around user intent, not database structure.
+
+Rules:
+
+- Start by identifying the user’s main task.
+- Put task-critical content before supporting metadata.
+- Use action labels that match the user’s desired outcome.
+- Avoid exposing implementation details unless users need them.
+- Organize pages around workflows, decisions, and outcomes.
+
+### Progressive Disclosure
+
+Show simple defaults first and advanced options when needed.
+
+Rules:
+
+- Hide low-frequency controls behind expandable areas, secondary menus, or advanced sections.
+- Keep primary workflows visible without forcing users through advanced settings.
+- Use disclosure only when hidden content is not essential to the immediate task.
+- Clearly indicate when more options are available.
+- Avoid hiding critical errors, required fields, or primary actions.
+
+### Predictable Interaction Behavior
+
+Interactions should behave the way users expect.
+
+Rules:
+
+- Buttons perform actions.
+- Links navigate.
+- Toggles change persistent on/off settings.
+- Checkboxes allow multiple selection.
+- Radio buttons select one option from a visible set.
+- Tabs switch between peer sections of related content.
+- Accordions expand and collapse content within the same context.
+- Modals interrupt the current flow and should be used sparingly.
+
+## UI Fundamentals
+
+### Visual Hierarchy
+
+Hierarchy determines what users notice first, second, and third.
+
+Rules:
+
+- Create a clear primary focal point on every screen.
+- Use size, weight, spacing, position, and contrast to establish order.
+- Avoid giving all elements similar visual emphasis.
+- Section headings, content groups, and actions should form a readable structure.
+- The most important content should not be visually buried.
+
+### Visual Priority
+
+Not everything can be important at the same time.
+
+Rules:
+
+- Use high emphasis for primary actions and critical information.
+- Use medium emphasis for secondary actions and supporting controls.
+- Use low emphasis for metadata, helper text, and tertiary actions.
+- De-emphasize repetitive, low-risk, or rarely used actions.
+- Avoid competing CTAs with equal weight unless they are truly equal choices.
+
+### Spacing Rhythm
+
+Spacing should create structure and rhythm.
+
+Rules:
+
+- Use consistent spacing increments from the project’s design system.
+- Related elements should sit closer together than unrelated elements.
+- Larger gaps should separate sections.
+- Smaller gaps should separate labels, helper text, controls, and metadata.
+- Avoid cramped groups that make users parse boundaries manually.
+- Avoid random spacing values that weaken layout consistency.
+
+### Typography Hierarchy
+
+Typography should organize information, not decorate it.
+
+Rules:
+
+- Use type size, weight, and color to establish reading order.
+- Limit the number of type styles per screen.
+- Headings should introduce sections clearly.
+- Body text should prioritize readability.
+- Helper text and metadata should be visibly secondary.
+- Do not use oversized type where it harms information density or workflow efficiency.
+
+### Typography As A UX Tool
+
+Typography helps users scan, compare, and act.
+
+Rules:
+
+- Use strong labels for fields, tables, cards, and controls.
+- Keep labels short but specific.
+- Use consistent capitalization patterns.
+- Align numbers and comparable values for easy scanning.
+- Use typography to distinguish titles, descriptions, statuses, counts, and timestamps.
+- Avoid long unbroken text blocks in operational software screens.
+- Make error and validation text easy to associate with the relevant field.
+
+### Grouping And Alignment
+
+Alignment makes interfaces easier to understand.
+
+Rules:
+
+- Align related content to a clear grid.
+- Keep labels, controls, and values visually connected.
+- Group actions with the content they affect.
+- Separate global page actions from row-level or item-level actions.
+- Avoid floating controls without a clear relationship to content.
+- Use consistent alignment across similar sections.
+
+### Component Consistency
+
+Components should behave and appear consistently across the product.
+
+Rules:
+
+- Use existing components before inventing new ones.
+- Match existing button, input, table, card, modal, alert, and navigation patterns.
+- Keep component states consistent across contexts.
+- Do not alter radius, shadow, padding, icon size, or typography for a single instance without a clear reason.
+- Prefer composition of existing components over bespoke one-off designs.
+
+### Contrast Management
+
+Contrast controls attention and accessibility.
+
+Rules:
+
+- Ensure readable contrast between text and background.
+- Reserve strongest contrast for primary content and actions.
+- Use lower contrast for supporting metadata only when still legible.
+- Do not rely on subtle contrast alone for critical states.
+- Make disabled states visually distinct while still understandable.
+- Avoid excessive contrast that causes every element to compete.
+
+### Border Radius Logic
+
+Radius should follow system logic.
+
+Rules:
+
+- Use the project’s established radius scale.
+- Similar components should use similar radius values.
+- Larger surfaces may use slightly larger radius if established by the system.
+- Small controls should not receive exaggerated rounding unless that is part of the product language.
+- Do not mix sharp, soft, and pill-shaped corners arbitrarily.
+- Radius should support component identity, not become decoration.
+
+### Shadow And Elevation Discipline
+
+Elevation should communicate layering and interaction.
+
+Rules:
+
+- Use shadows to indicate surfaces above other surfaces.
+- Use elevation for menus, popovers, modals, sheets, sticky bars, and dragged items.
+- Avoid shadows on every card or container by default.
+- Do not use heavy shadows as decoration.
+- Keep elevation levels consistent.
+- If borders are sufficient to separate surfaces, avoid adding unnecessary shadow.
+
+### Emphasis Control
+
+Use emphasis intentionally to guide attention.
+
+Rules:
+
+- One primary action per decision area is usually enough.
+- Secondary actions should be visible but less prominent.
+- Destructive actions should be clear, deliberate, and not visually confused with primary actions.
+- Status badges should not overpower core content unless the status is the main decision factor.
+- Avoid excessive badges, icons, colors, and labels competing for attention.
+
+## Visual Priority And Hierarchy Rules
+
+Every screen should answer these questions visually:
+
+1. Where am I?
+2. What is this screen for?
+3. What matters most?
+4. What can I do next?
+5. What needs my attention?
+
+Rules:
+
+- Place the page title and primary action in predictable locations.
+- Use section hierarchy to divide complex pages.
+- Put high-value summary information before detailed tables when it helps decision-making.
+- Keep primary actions close to the content they affect.
+- Use visual weight sparingly so the most important item is obvious.
+- Avoid layouts where cards, alerts, buttons, and headings all have equal contrast and scale.
+- Use whitespace as a hierarchy tool, not empty decoration.
+- Make critical warnings visually distinct from neutral information.
+- Use consistent status patterns so users can scan without relearning meanings.
+
+## Typography As UX Rules
+
+Typography must support comprehension and task flow.
+
+Rules:
+
+- Use the largest or strongest type for the screen or section title, not decorative slogans.
+- Use headings to create a clear outline of the page.
+- Use labels that remain understandable when scanned quickly.
+- Use body text for explanation only where it helps the user act.
+- Keep helper text concise and close to the relevant control.
+- Use consistent type treatment for repeated data types.
+- Use tabular alignment or consistent formatting for numeric comparison.
+- Avoid low-contrast small text for important information.
+- Avoid using all caps for long labels or content.
+- Do not rely on typography alone to indicate error, selection, or disabled state.
+
+## Interaction State Rules
+
+### Hover
+
+Hover should reveal affordance or provide lightweight feedback.
+
+Rules:
+
+- Use hover to indicate clickable or interactive elements.
+- Keep hover changes subtle and consistent.
+- Do not reveal critical functionality only on hover.
+- Avoid layout shifts on hover.
+- Use hover states for rows, cards, buttons, navigation items, and menus when interactive.
+
+### Focus
+
+Focus must be visible and accessible.
+
+Rules:
+
+- Every keyboard-focusable element must have a clear focus state.
+- Focus should be visually stronger than hover.
+- Focus indicators must meet contrast expectations.
+- Do not remove outlines unless replacing them with an equally clear custom focus style.
+- Focus order should follow visual and logical reading order.
+
+### Active Or Pressed
+
+Pressed states confirm immediate interaction.
+
+Rules:
+
+- Buttons and clickable controls should show a pressed state.
+- Pressed states should feel connected to the component’s existing style.
+- Avoid dramatic motion or visual change that distracts from the task.
+- For touch interfaces, pressed feedback is especially important.
+
+### Selected
+
+Selected states indicate a persistent choice.
+
+Rules:
+
+- Selected items must be clearly distinguishable from hover and focus.
+- Selection should persist until changed or cleared.
+- Selected states are required for tabs, list items, filters, segmented controls, and selectable rows.
+- Use color, weight, border, background, or iconography consistently to show selection.
+
+### Disabled
+
+Disabled states indicate unavailable actions.
+
+Rules:
+
+- Disabled controls should look inactive but remain understandable.
+- Provide a reason when the disabled state is not obvious.
+- Do not use disabled states to hide validation requirements.
+- Avoid making disabled text so faint that users cannot read it.
+- Prefer inline guidance when users can do something to enable the action.
+
+### Loading
+
+Loading states should reduce uncertainty.
+
+Rules:
+
+- Use skeletons for content that preserves layout shape.
+- Use spinners for short, indeterminate actions.
+- Use progress indicators for long or measurable tasks.
+- Disable repeated submission while an action is processing.
+- Keep loading labels specific when possible, such as “Saving changes”.
+- Do not clear existing content unnecessarily during refresh.
+
+### Success, Warning, And Error
+
+Status feedback must be clear and placed correctly.
+
+Rules:
+
+- Success confirms completed actions when the result is not obvious.
+- Warning indicates risk, limitation, or required attention before failure.
+- Error explains what went wrong and how to recover.
+- Place field errors near the affected field.
+- Place page-level errors near the relevant page region or action area.
+- Use color plus text or iconography, not color alone.
+- Keep error messages actionable.
+
+### Empty States
+
+Empty states should help users move forward.
+
+Rules:
+
+- Explain what is missing.
+- Explain why it matters when useful.
+- Provide a relevant next action.
+- Avoid decorative empty states that do not help the task.
+- Use different empty states for first use, no results, filtered results, and permission-limited content.
+
+### Validation Feedback
+
+Validation should be timely, specific, and recoverable.
+
+Rules:
+
+- Validate inline when it helps users correct input early.
+- Avoid aggressive validation before the user has had a chance to type.
+- Show all blocking errors after submit.
+- Preserve entered values after validation errors.
+- Use clear requirements near complex inputs.
+- Associate validation messages with the relevant field.
+
+## Layout Rules
+
+### General Layout
+
+Rules:
+
+- Start with the user’s main task and design the layout around it.
+- Establish a clear page structure: header, main content, supporting controls, feedback areas.
+- Keep global navigation, page actions, and content actions visually distinct.
+- Use predictable locations for primary actions.
+- Avoid excessive containers.
+- Use grids and alignment to reduce visual noise.
+- Preserve hierarchy at all responsive breakpoints.
+
+### Dashboards
+
+Dashboards summarize status and support quick decisions.
+
+Rules:
+
+- Put the most decision-critical metrics first.
+- Avoid filling dashboards with decorative charts.
+- Use charts only when they reveal comparison, trend, distribution, or anomaly.
+- Group metrics by user goal or operational area.
+- Provide clear paths from summary data to details.
+- Use alerts sparingly and only for actionable issues.
+- Do not make every metric card equally prominent.
+
+### Data-Heavy Pages
+
+Data-heavy pages must prioritize scanning, filtering, and comparison.
+
+Rules:
+
+- Use tables for comparable records with repeated fields.
+- Provide sorting, filtering, search, and pagination where needed.
+- Keep key identifiers visible.
+- Align numeric values consistently.
+- Use status badges consistently.
+- Avoid overloading rows with too many actions.
+- Provide detail views for dense records instead of forcing all data into one table.
+
+### CRUD Pages
+
+CRUD screens should make create, read, update, and delete flows predictable.
+
+Rules:
+
+- Use consistent placement for create actions.
+- Make edit and delete actions available near the relevant record.
+- Separate destructive actions from routine actions.
+- Confirm destructive actions when data loss is possible.
+- Keep form structure aligned with the object model only when it matches user understanding.
+- Provide clear success and failure feedback after operations.
+
+### Settings Pages
+
+Settings pages should prioritize findability and confidence.
+
+Rules:
+
+- Group settings by user intent, not internal implementation.
+- Use clear section headings.
+- Keep dangerous settings visually separated.
+- Explain settings whose consequences are not obvious.
+- Show current state clearly.
+- Use toggles only for immediate on/off settings.
+- Use save actions when multiple changes need review before applying.
+
+### Forms
+
+Forms should be easy to scan, complete, and recover from.
+
+Rules:
+
+- Group related fields.
+- Use clear labels for every input.
+- Mark required and optional fields consistently.
+- Place helper text near the field it explains.
+- Use appropriate input types.
+- Keep primary form actions at the end of the flow or in a sticky action area for long forms.
+- Show validation close to fields.
+- Avoid multi-column forms when reading order becomes unclear.
+
+### Tables
+
+Tables are for structured comparison.
+
+Rules:
+
+- Use tables when users need to compare many records across consistent attributes.
+- Keep columns meaningful and scannable.
+- Prioritize the first columns for identity and key decision data.
+- Avoid truncating essential information without a way to inspect it.
+- Use row hover when rows are interactive.
+- Keep row actions consistent.
+- Provide empty, loading, filtered, and error states.
+
+### Cards
+
+Cards are for grouped summaries, previews, or independent objects.
+
+Rules:
+
+- Use cards when each item has varied content or benefits from visual grouping.
+- Keep card structure consistent within a set.
+- Avoid putting unrelated controls inside the same card.
+- Do not make every surface a card.
+- Avoid cards inside cards.
+- Use card actions consistently.
+- Ensure cards do not obscure the primary page hierarchy.
+
+### Navigation
+
+Navigation should help users understand location and movement.
+
+Rules:
+
+- Use navigation labels based on user-recognizable product areas.
+- Show current location clearly.
+- Keep navigation structure stable.
+- Avoid hiding primary navigation behind unclear icons on desktop.
+- Use breadcrumbs for deep hierarchical structures.
+- Use tabs for peer views within the same context.
+- Keep navigation separate from page actions.
+
+### Modals And Sheets
+
+Modals and sheets should be used for focused interruptions.
+
+Rules:
+
+- Use modals for short, focused tasks that should not require full navigation.
+- Use dedicated pages for complex creation, editing, comparison, or review.
+- Keep modal titles specific.
+- Include clear primary and secondary actions.
+- Make dismissal behavior predictable.
+- Avoid stacking modals.
+- Do not use modals for large multi-step workflows unless there is a strong reason.
+
+### Alerts And Inline Feedback
+
+Feedback should appear where users need it.
+
+Rules:
+
+- Use inline feedback for field-level or section-level issues.
+- Use page alerts for broader system or page-level issues.
+- Use toast notifications for transient confirmation that does not require action.
+- Avoid using toast notifications for critical errors that users may miss.
+- Keep alert copy concise and actionable.
+- Do not overuse alerts for normal interface information.
+
+### Filters And Search Areas
+
+Filters and search should support data exploration without overwhelming users.
+
+Rules:
+
+- Put common filters first.
+- Use advanced filters behind disclosure when many filters exist.
+- Make active filters visible.
+- Provide a clear way to remove individual filters and clear all filters.
+- Preserve filter state when users inspect details and return.
+- Distinguish search from filtering when both exist.
+- Show empty filtered states with a path to broaden results.
+
+## Component Rules
+
+### Buttons
+
+Rules:
+
+- Use one primary button per main action area.
+- Use secondary buttons for alternative actions.
+- Use tertiary or ghost buttons for low-emphasis actions.
+- Use destructive styling only for destructive actions.
+- Button labels should be specific verbs.
+- Keep button order consistent across the product.
+
+### Inputs
+
+Rules:
+
+- Every input needs a label.
+- Placeholder text is not a replacement for a label.
+- Match input type to expected data.
+- Use helper text for constraints, examples, or consequences.
+- Show validation messages inline.
+- Keep required indicators consistent.
+
+### Selects, Comboboxes, And Pickers
+
+Rules:
+
+- Use select controls for short, known option lists.
+- Use comboboxes when search is needed.
+- Use radio groups when all options should be visible and mutually exclusive.
+- Use checkboxes for multiple selections.
+- Do not hide important choices in a dropdown when comparison matters.
+
+### Tabs
+
+Rules:
+
+- Use tabs for peer sections within the same context.
+- Keep tab labels short.
+- Do not use tabs for sequential steps.
+- Avoid too many tabs.
+- Preserve selected tab state when appropriate.
+
+### Accordions
+
+Rules:
+
+- Use accordions for optional sections that do not need simultaneous comparison.
+- Avoid accordions when users need to compare content across sections.
+- Make expanded and collapsed states clear.
+- Do not hide primary actions inside collapsed areas.
+
+### Cards
+
+Rules:
+
+- Use cards for independent content groups.
+- Keep internal spacing consistent.
+- Maintain clear title, body, metadata, and action hierarchy.
+- Avoid making cards visually heavier than the content they contain.
+
+### Tables
+
+Rules:
+
+- Use consistent row height, column alignment, and cell padding.
+- Use clear column headers.
+- Keep row-level actions predictable.
+- Support sorting and filtering where users expect them.
+- Avoid using tables for content that is not meaningfully comparable.
+
+### Badges And Status Indicators
+
+Rules:
+
+- Use badges for compact status or categorization.
+- Keep badge language consistent.
+- Avoid too many badge colors.
+- Ensure status meaning is not color-only.
+- Do not let badges overpower primary content.
+
+### Icons
+
+Rules:
+
+- Use icons to support recognition, not replace unclear labels.
+- Pair icons with text for important actions unless the icon is universally understood.
+- Keep icon size and stroke style consistent.
+- Avoid decorative icons that add no comprehension.
+- Provide accessible labels for icon-only controls.
+
+## Decision Heuristics
+
+### Card Vs Table
+
+Use a table when:
+
+- Users compare many items across the same attributes.
+- Sorting, filtering, and scanning rows matter.
+- Records have consistent fields.
+- Density and comparison are more important than visual individuality.
+
+Use cards when:
+
+- Items have varied content.
+- Users need a preview or summary.
+- Each item has a small set of distinct actions.
+- Visual grouping helps comprehension more than comparison.
+
+### Modal Vs Dedicated Page
+
+Use a modal when:
+
+- The task is short and focused.
+- The user should remain in the current context.
+- The action has limited fields or decisions.
+- The modal can be completed without deep reference material.
+
+Use a dedicated page when:
+
+- The task is complex.
+- The user needs to review or compare information.
+- The form is long or multi-step.
+- The workflow has significant consequences.
+- The content needs a shareable URL or browser navigation support.
+
+### Tabs Vs Accordion
+
+Use tabs when:
+
+- Sections are peers.
+- Only one section needs to be visible at a time.
+- Users switch between views within the same context.
+- The number of sections is small and stable.
+
+Use accordions when:
+
+- Sections are optional or secondary.
+- Users may expand only what they need.
+- The content belongs on one page but should not all be shown at once.
+- Comparison between sections is not critical.
+
+### Sidebar Vs Top Navigation
+
+Use sidebar navigation when:
+
+- The product has many primary sections.
+- Users frequently move between areas.
+- Hierarchical navigation is needed.
+- The application is more tool-like or workspace-like.
+
+Use top navigation when:
+
+- There are few primary sections.
+- The product structure is shallow.
+- Horizontal space supports the navigation clearly.
+- The experience is more site-like or simple.
+
+### Spacious Vs Compact Layout
+
+Use a spacious layout when:
+
+- The task requires focus, comprehension, or careful input.
+- Content is sparse.
+- The interface is used occasionally.
+- Errors are costly.
+- The product benefits from a calmer reading experience.
+
+Use a compact layout when:
+
+- Users are expert or frequent.
+- Data density improves productivity.
+- Comparison and scanning are central.
+- The interface is operational or monitoring-focused.
+- The design system supports compact density clearly.
+
+### High Emphasis Vs Subtle Emphasis
+
+Use high emphasis when:
+
+- The action is primary.
+- The information is urgent or critical.
+- The element determines the next step.
+- The user must notice the item immediately.
+
+Use subtle emphasis when:
+
+- The content is supporting or repetitive.
+- The action is secondary.
+- The information is useful but not urgent.
+- Too much emphasis would create noise.
+
+### Dense Information View Vs Progressive Disclosure
+
+Use dense information views when:
+
+- Users need to compare many values.
+- Users are experienced with the domain.
+- Frequent scanning is part of the workflow.
+- Hiding information would slow task completion.
+
+Use progressive disclosure when:
+
+- The user is making a focused decision.
+- Advanced options are infrequently used.
+- Showing everything increases confusion.
+- The workflow benefits from step-by-step guidance.
+
+## Anti-Patterns
+
+Avoid these patterns unless a project-specific requirement gives a strong reason.
+
+### Decorative UI Without Function
+
+Problems:
+
+- Adds visual noise.
+- Competes with task-critical content.
+- Makes screens feel less professional.
+- Increases implementation cost without improving usability.
+
+Rule:
+
+- Every visual element should support structure, meaning, affordance, feedback, or brand expression without harming clarity.
+
+### Flat Hierarchy Where Everything Competes Equally
+
+Problems:
+
+- Users cannot tell what matters.
+- Primary actions become hard to find.
+- Pages feel noisy and tiring.
+
+Rule:
+
+- Establish clear primary, secondary, and tertiary emphasis.
+
+### Inconsistent Spacing
+
+Problems:
+
+- Groups become unclear.
+- Screens feel unpolished.
+- Users must work harder to understand relationships.
+
+Rule:
+
+- Use a consistent spacing scale and apply it according to content relationships.
+
+### Weak CTA Hierarchy
+
+Problems:
+
+- Users hesitate.
+- Secondary actions compete with primary actions.
+- Destructive actions may appear too casual.
+
+Rule:
+
+- Make the next best action clear and distinguish alternatives appropriately.
+
+### Inaccessible Contrast Or Weak Focus Feedback
+
+Problems:
+
+- Users with low vision or keyboard usage may be blocked.
+- Interactive elements become hard to identify.
+- The product fails basic accessibility expectations.
+
+Rule:
+
+- Ensure readable contrast and visible focus states for all interactive elements.
+
+### Arbitrary Radius Or Shadow Changes
+
+Problems:
+
+- Components feel inconsistent.
+- Visual style becomes fragmented.
+- Elevation loses meaning.
+
+Rule:
+
+- Radius and shadow should follow a system scale and communicate component role or depth.
+
+### Overdesigned Controls
+
+Problems:
+
+- Controls become harder to recognize.
+- Interaction behavior becomes less predictable.
+- Visual novelty harms usability.
+
+Rule:
+
+- Controls should look and behave like controls.
+
+### Cramped Grouping
+
+Problems:
+
+- Related and unrelated elements blur together.
+- Touch and pointer interaction become harder.
+- Forms and tables become tiring to use.
+
+Rule:
+
+- Use spacing to clarify relationships and preserve comfortable interaction.
+
+### Inconsistent Interaction States
+
+Problems:
+
+- Users cannot predict behavior.
+- Accessibility suffers.
+- Components feel unreliable.
+
+Rule:
+
+- Hover, focus, active, selected, disabled, loading, success, warning, and error states must be defined and reused consistently.
+
+## Final Behavioral Rules For The AI
+
+When designing software UI, the AI must:
+
+- Prioritize clarity over novelty.
+- Create clear focal points on every screen.
+- Maintain hierarchy and spacing rhythm.
+- Use typography intentionally to support reading order, scanning, and comprehension.
+- Justify layout choices through usability and task needs.
+- Reuse patterns once established.
+- Keep screens production-ready.
+- Prefer established project components over invented ones.
+- Avoid decorative elements that do not improve comprehension or task completion.
+- Make primary, secondary, tertiary, destructive, and disabled actions visually distinct.
+- Provide visible and accessible interaction states.
+- Design responsive behavior intentionally.
+- Use progressive disclosure when complexity would otherwise overwhelm the user.
+- Keep data-heavy views scannable and comparable.
+- Place feedback close to the action or content it relates to.
+- Avoid arbitrary visual changes between similar components.
+- Treat accessibility, consistency, and state visibility as baseline requirements.
+- Ensure every design decision supports the user’s ability to understand, decide, and act.
